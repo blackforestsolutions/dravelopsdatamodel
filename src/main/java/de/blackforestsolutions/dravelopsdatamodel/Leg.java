@@ -32,11 +32,11 @@ public final class Leg implements Serializable {
 
     private final UUID id;
 
-    private final TravelPoint start;
+    private final TravelPoint departure;
 
     private final TravelPoint arrival;
 
-    private final LocalDateTime startTime;
+    private final LocalDateTime departureTime;
 
     private final LocalDateTime arrivalTime;
 
@@ -62,9 +62,9 @@ public final class Leg implements Serializable {
 
     private Leg(LegBuilder legBuilder) {
         this.id = legBuilder.getId();
-        this.start = legBuilder.getStart();
+        this.departure = legBuilder.getDeparture();
         this.arrival = legBuilder.getArrival();
-        this.startTime = legBuilder.getStartTime();
+        this.departureTime = legBuilder.getStartTime();
         this.arrivalTime = legBuilder.getArrivalTime();
         this.duration = legBuilder.getDuration();
         this.delay = legBuilder.getDelay();
@@ -110,7 +110,6 @@ public final class Leg implements Serializable {
         return false;
     }
 
-
     @Setter
     @Getter
     @Accessors(chain = true)
@@ -120,7 +119,7 @@ public final class Leg implements Serializable {
 
         private UUID id;
 
-        private TravelPoint start;
+        private TravelPoint departure;
 
         private TravelPoint arrival;
 
