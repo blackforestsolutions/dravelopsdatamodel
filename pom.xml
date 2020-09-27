@@ -14,6 +14,7 @@
         <github.global.server>github</github.global.server>
         <maven.github.version>0.12</maven.github.version>
         <!-- Maven Dependencies -->
+        <springframework.version>2.2.1.RELEASE</springframework.version>
         <lombok.version>1.18.8</lombok.version>
         <apache.lang-version>2.6</apache.lang-version>
         <jackson.version>2.10.1</jackson.version>
@@ -73,6 +74,11 @@
             <artifactId>mockito-core</artifactId>
             <version>${mockito.version}</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-geode</artifactId>
+            <version>${springframework.version}</version>
         </dependency>
     </dependencies>
 
