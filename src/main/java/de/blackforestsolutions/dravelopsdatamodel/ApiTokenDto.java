@@ -46,6 +46,8 @@ final class ApiTokenDto {
     @Getter(AccessLevel.NONE)
     @JsonProperty("hasReferences")
     private boolean hasReferences;
+    @JsonProperty("path")
+    private String path;
 
     ApiTokenDto() {
 
@@ -66,6 +68,7 @@ final class ApiTokenDto {
         this.radius = apiToken.getRadius();
         this.hasDetails = apiToken.getHasDetails();
         this.hasReferences = apiToken.getHasReferences();
+        this.path = apiToken.getPath();
     }
 
     void setIsDeparture(boolean isDeparture) {

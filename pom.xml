@@ -141,9 +141,7 @@
                     <failOnViolation>true</failOnViolation>
                     <linkXRef>true</linkXRef>
                     <excludes>
-                        <exclude>**/Journey.java</exclude>
-                        <exclude>**/ApiTokenAndUrlInformation.java</exclude>
-                        <exclude>**/TravelPoint.java</exclude>
+<!--                        <exclude>**/TravelPoint.java</exclude>-->
                     </excludes>
                 </configuration>
                 <executions>

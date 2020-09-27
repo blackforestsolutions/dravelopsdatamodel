@@ -12,5 +12,6 @@
   "optimize": "QUICK",
   "radius": 3000,
   "hasDetails": true,
-  "hasReferences": true
+  "hasReferences": true,
+  "path": "/path"
 }
