@@ -1,7 +1,9 @@
 package de.blackforestsolutions.dravelopsdatamodel.util;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.exc.MismatchedInputException;
 import org.junit.jupiter.api.Test;
+import reactor.core.publisher.Mono;
+import reactor.test.StepVerifier;
 
 import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.ApiTokenObjectMother.getApiTokenWithNoEmptyFields;
 import static de.blackforestsolutions.dravelopsdatamodel.testutil.TestUtils.getResourceFileAsString;
@@ -13,22 +15,37 @@ class DravelOpsJsonMapperTest {
     private final DravelOpsJsonMapper classUnderTest = new DravelOpsJsonMapper();
 
     @Test
-    void test_map_apiToken_returns_jsonObject() throws JsonProcessingException {
+    void test_map_apiToken_returns_jsonObject() {
         ApiToken testData = getApiTokenWithNoEmptyFields();
         String expectedJsonApiToken = getResourceFileAsString("json/apitoken.json");
 
-        String result = classUnderTest.map(testData);
+        Mono<String> result = classUnderTest.map(testData);
 
-        assertThat(deleteWhitespace(result)).isEqualTo(deleteWhitespace(expectedJsonApiToken));
+        StepVerifier.create(result)
+                .assertNext(apiToken -> assertThat(deleteWhitespace(apiToken)).isEqualTo(deleteWhitespace(expectedJsonApiToken)))
+                .verifyComplete();
     }
 
     @Test
-    void test_mapJsonToApiToken_with_valid_json_returns_apiTokenObject() throws JsonProcessingException {
+    void test_mapJsonToApiToken_with_valid_json_returns_apiTokenObject() {
         String jsonApiToken = getResourceFileAsString("json/apitoken.json");
         ApiToken expectedApiToken = getApiTokenWithNoEmptyFields();
 
-        ApiToken result = classUnderTest.mapJsonToApiToken(jsonApiToken);
+        Mono<ApiToken> result = classUnderTest.mapJsonToApiToken(jsonApiToken);
 
-        assertThat(result).isEqualToComparingFieldByField(expectedApiToken);
+        StepVerifier.create(result)
+                .assertNext(apiToken -> assertThat(apiToken).isEqualToComparingFieldByField(expectedApiToken))
+                .verifyComplete();
+    }
+
+    @Test
+    void test_mapJsonToApiToken_with_invalid_json_returns_error() {
+        String jsonError = "";
+
+        Mono<ApiToken> result = classUnderTest.mapJsonToApiToken(jsonError);
+
+        StepVerifier.create(result)
+                .expectError(MismatchedInputException.class)
+                .verify();
     }
 }
