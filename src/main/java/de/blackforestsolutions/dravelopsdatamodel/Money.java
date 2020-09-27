@@ -15,7 +15,7 @@ import java.util.Currency;
 @JsonDeserialize(builder = Money.MoneyBuilder.class)
 public final class Money implements Serializable {
 
-    // todo serialversion where?
+    // todo serialversion where can I find this?
 
     private final Currency currency;
 

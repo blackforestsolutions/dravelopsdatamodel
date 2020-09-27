@@ -12,33 +12,28 @@ import java.util.LinkedList;
 
 @Getter
 @JsonDeserialize(builder = GeoJson.GeoJsonBuilder.class)
-//@Schema(accessMode = Schema.AccessMode.READ_ONLY)
 public final class GeoJson implements Serializable {
 
     private static final long serialVersionUID = -2529427008797565631L;
 
-    //@Schema(accessMode = Schema.AccessMode.READ_ONLY)
     private final String type;
 
-    //@Schema(accessMode = Schema.AccessMode.READ_ONLY)
     private final LinkedList<Point> coordinates;
 
-    public GeoJson(GeoJson geojson) {
-        this.type = geojson.getType();
-        this.coordinates = geojson.coordinates;
+    /**
+     * Copy constructor
+     *
+     * @param geoJson you would like to copy
+     */
+    public GeoJson(GeoJson geoJson) {
+        this.coordinates = geoJson.getCoordinates();
+        this.type = geoJson.getType();
     }
 
-    public GeoJson(String type, LinkedList<Point> coordinates) {
-        super();
-        this.type = type;
-        this.coordinates = coordinates;
+    private GeoJson(GeoJson.GeoJsonBuilder geoJsonBuilder) {
+        this.coordinates = geoJsonBuilder.getCoordinates();
+        this.type = geoJsonBuilder.getType();
     }
-
-    private GeoJson(GeoJsonBuilder geojsonBuilder) {
-        this.coordinates = geojsonBuilder.getCoordinates();
-        this.type = geojsonBuilder.getType();
-    }
-
 
     @Getter
     @Setter

@@ -21,11 +21,6 @@ public final class TravelProvider implements Serializable {
 
     private final URL url;
 
-    public TravelProvider(String name, URL url) {
-        this.name = name;
-        this.url = url;
-    }
-
     /**
      * Copy constructor
      *
