@@ -1,6 +1,6 @@
 package de.blackforestsolutions.dravelopsdatamodel.objectmothers;
 
-import de.blackforestsolutions.dravelopsdatamodel.ApiToken;
+import de.blackforestsolutions.dravelopsdatamodel.util.ApiToken;
 import de.blackforestsolutions.dravelopsdatamodel.Optimization;
 
 import java.time.ZonedDateTime;

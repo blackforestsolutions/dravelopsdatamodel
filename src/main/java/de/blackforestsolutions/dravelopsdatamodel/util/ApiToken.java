@@ -1,5 +1,6 @@
-package de.blackforestsolutions.dravelopsdatamodel;
+package de.blackforestsolutions.dravelopsdatamodel.util;
 
+import de.blackforestsolutions.dravelopsdatamodel.Optimization;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

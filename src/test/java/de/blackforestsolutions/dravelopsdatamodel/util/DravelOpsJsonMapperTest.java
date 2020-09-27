@@ -1,4 +1,4 @@
-package de.blackforestsolutions.dravelopsdatamodel;
+package de.blackforestsolutions.dravelopsdatamodel.util;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.junit.jupiter.api.Test;
