@@ -1,8 +1,6 @@
 package de.blackforestsolutions.dravelopsdatamodel;
 
-import java.io.Serializable;
-
-public enum PriceType implements Serializable {
+public enum PriceType {
     REGULAR,
     STUDENT,
     SENIOR,

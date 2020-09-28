@@ -1,6 +1,5 @@
 package de.blackforestsolutions.dravelopsdatamodel.util;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
@@ -28,16 +27,33 @@ public class DravelOpsJsonMapper {
         try {
             ApiTokenDto apiTokenDto = new ApiTokenDto(apiToken);
             return Mono.just(mapper.writeValueAsString(apiTokenDto));
-        } catch (JsonProcessingException e) {
+        } catch (Exception e) {
             return Mono.error(e);
         }
     }
+
 
     public Mono<ApiToken> mapJsonToApiToken(String json) {
         try {
             ApiTokenDto apiTokenDto = mapper.readValue(json, ApiTokenDto.class);
             return Mono.just(new ApiToken.ApiTokenBuilder(apiTokenDto).build());
-        } catch (JsonProcessingException e) {
+        } catch (Exception e) {
+            return Mono.error(e);
+        }
+    }
+
+    public <T> Mono<String> map(T object) {
+        try {
+            return Mono.just(mapper.writeValueAsString(object));
+        } catch (Exception e) {
+            return Mono.error(e);
+        }
+    }
+
+    public <T> Mono<T> mapJsonToPojo(String json, Class<T> pojo) {
+        try {
+            return Mono.just(mapper.readValue(json, pojo));
+        } catch (Exception e) {
             return Mono.error(e);
         }
     }

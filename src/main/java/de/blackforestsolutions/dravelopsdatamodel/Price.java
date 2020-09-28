@@ -6,28 +6,22 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
-import java.io.Serializable;
-import java.util.List;
+import java.util.Currency;
 
 @Getter
 @JsonDeserialize(builder = Price.PriceBuilder.class)
-public final class Price implements Serializable {
+public final class Price {
 
-    private static final long serialVersionUID = 6106269076155338045L;
+    private final PriceType priceType;
 
-    private final List<Money> prices;
+    private final Currency currency;
 
-    /**
-     * Copy constructor
-     *
-     * @param price you would like to copy
-     */
-    public Price(Price price) {
-        this.prices = price.getPrices();
-    }
+    private final Double smallestCurrencyValue;
 
     private Price(PriceBuilder priceBuilder) {
-        this.prices = priceBuilder.getPrices();
+        this.currency = priceBuilder.getCurrency();
+        this.smallestCurrencyValue = priceBuilder.getSmallestCurrencyValue();
+        this.priceType = priceBuilder.getPriceType();
     }
 
     @Setter
@@ -36,7 +30,11 @@ public final class Price implements Serializable {
     @JsonPOJOBuilder(withPrefix = "set")
     public static class PriceBuilder {
 
-        private List<Money> prices;
+        private PriceType priceType;
+
+        private Currency currency;
+
+        private Double smallestCurrencyValue;
 
         public Price build() {
             return new Price(this);

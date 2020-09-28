@@ -1,8 +1,6 @@
 package de.blackforestsolutions.dravelopsdatamodel;
 
-import java.io.Serializable;
-
-public enum VehicleType implements Serializable {
+public enum VehicleType {
     WALK,
     BICYCLE,
     CAR,
