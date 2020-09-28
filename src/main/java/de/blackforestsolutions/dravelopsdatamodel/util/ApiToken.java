@@ -1,5 +1,6 @@
-package de.blackforestsolutions.dravelopsdatamodel;
+package de.blackforestsolutions.dravelopsdatamodel.util;
 
+import de.blackforestsolutions.dravelopsdatamodel.Optimization;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,6 +30,7 @@ public final class ApiToken {
     private final boolean hasDetails;
     @Getter(AccessLevel.NONE)
     private final boolean hasReferences;
+    private final String path;
 
     private ApiToken(ApiTokenBuilder apiTokenBuilder) {
         this.host = apiTokenBuilder.getHost();
@@ -45,6 +47,7 @@ public final class ApiToken {
         this.radius = apiTokenBuilder.getRadius();
         this.hasDetails = apiTokenBuilder.getHasDetails();
         this.hasReferences = apiTokenBuilder.getHasReferences();
+        this.path = apiTokenBuilder.getPath();
     }
 
     public boolean getIsDeparture() {
@@ -85,6 +88,7 @@ public final class ApiToken {
         @Setter(AccessLevel.NONE)
         @Getter(AccessLevel.NONE)
         private boolean hasReferences = true;
+        private String path;
 
         @SuppressWarnings("CPD-START")
         public ApiTokenBuilder(ApiToken apiToken) {
@@ -102,6 +106,7 @@ public final class ApiToken {
             this.radius = apiToken.getRadius();
             this.hasDetails = apiToken.getHasDetails();
             this.hasReferences = apiToken.getHasReferences();
+            this.path = apiToken.getPath();
         }
 
         @SuppressWarnings("CPD-START")
@@ -120,6 +125,7 @@ public final class ApiToken {
             this.radius = apiTokenDto.getRadius();
             this.hasDetails = apiTokenDto.getHasDetails();
             this.hasReferences = apiTokenDto.getHasReferences();
+            this.path = apiTokenDto.getPath();
         }
 
         public ApiTokenBuilder setIsDeparture(boolean isDeparture) {

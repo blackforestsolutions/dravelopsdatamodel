@@ -1,7 +1,7 @@
 {
   "host": "localhost",
   "protocol": "http",
-  "port": -1,
+  "port": 8080,
   "departure": "Furtwangen",
   "arrival": "Triberg",
   "departureDate": "2020-09-27T10:15:30+02:00",
@@ -12,5 +12,6 @@
   "optimize": "QUICK",
   "radius": 3000,
   "hasDetails": true,
-  "hasReferences": true
+  "hasReferences": true,
+  "path": "/path"
 }
