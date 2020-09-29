@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
+import org.springframework.data.geo.Point;
 
 import java.time.ZonedDateTime;
 import java.util.Locale;
@@ -17,7 +18,9 @@ public final class ApiToken {
     private final String protocol;
     private final int port;
     private final String departure;
+    private final Point departureCoordinates;
     private final String arrival;
+    private final Point arrivalCoordinates;
     private final ZonedDateTime dateTime;
     @Getter(AccessLevel.NONE)
     private final boolean isDepartureDateTime;
@@ -36,7 +39,9 @@ public final class ApiToken {
         this.protocol = apiTokenBuilder.getProtocol();
         this.port = apiTokenBuilder.getPort();
         this.departure = apiTokenBuilder.getDeparture();
+        this.departureCoordinates = apiTokenBuilder.getDepartureCoordinates();
         this.arrival = apiTokenBuilder.getArrival();
+        this.arrivalCoordinates = apiTokenBuilder.getArrivalCoordinates();
         this.dateTime = apiTokenBuilder.getDateTime();
         this.isDepartureDateTime = apiTokenBuilder.getIsDepartureDateTime();
         this.language = apiTokenBuilder.getLanguage();
@@ -70,7 +75,9 @@ public final class ApiToken {
         private String protocol;
         private int port = -1;
         private String departure;
+        private Point departureCoordinates;
         private String arrival;
+        private Point arrivalCoordinates;
         private ZonedDateTime dateTime;
         @Setter(AccessLevel.NONE)
         @Getter(AccessLevel.NONE)
@@ -93,7 +100,9 @@ public final class ApiToken {
             this.protocol = apiToken.getProtocol();
             this.port = apiToken.getPort();
             this.departure = apiToken.getDeparture();
+            this.departureCoordinates = apiToken.getDepartureCoordinates();
             this.arrival = apiToken.getArrival();
+            this.arrivalCoordinates =  apiToken.getArrivalCoordinates();
             this.dateTime = apiToken.getDateTime();
             this.isDepartureDateTime = apiToken.getIsDepartureDateTime();
             this.language = apiToken.getLanguage();
@@ -111,7 +120,9 @@ public final class ApiToken {
             this.protocol = apiTokenDto.getProtocol();
             this.port = apiTokenDto.getPort();
             this.departure = apiTokenDto.getDeparture();
+            this.departureCoordinates = apiTokenDto.getDepartureCoordinates();
             this.arrival = apiTokenDto.getArrival();
+            this.arrivalCoordinates = apiTokenDto.getArrivalCoordinates();
             this.dateTime = apiTokenDto.getDateTime();
             this.isDepartureDateTime = apiTokenDto.getIsDepartureDateTime();
             this.language = apiTokenDto.getLanguage();

@@ -5,6 +5,7 @@ import de.blackforestsolutions.dravelopsdatamodel.Optimization;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.geo.Point;
 
 import java.time.ZonedDateTime;
 import java.util.Locale;
@@ -21,8 +22,12 @@ final class ApiTokenDto {
     private int port;
     @JsonProperty("departure")
     private String departure;
+    @JsonProperty("departureCoordinates")
+    private Point departureCoordinates;
     @JsonProperty("arrival")
     private String arrival;
+    @JsonProperty("arrivalCoordinates")
+    private Point arrivalCoordinates;
     @JsonProperty("dateTime")
     private ZonedDateTime dateTime;
     @Setter(AccessLevel.NONE)
@@ -57,7 +62,9 @@ final class ApiTokenDto {
         this.protocol = apiToken.getProtocol();
         this.port = apiToken.getPort();
         this.departure = apiToken.getDeparture();
+        this.departureCoordinates = apiToken.getDepartureCoordinates();
         this.arrival = apiToken.getArrival();
+        this.arrivalCoordinates = apiToken.getArrivalCoordinates();
         this.dateTime = apiToken.getDateTime();
         this.isDepartureDateTime = apiToken.getIsDepartureDateTime();
         this.language = apiToken.getLanguage();
