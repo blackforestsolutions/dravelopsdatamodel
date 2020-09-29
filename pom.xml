@@ -121,32 +121,32 @@
                 </executions>
             </plugin>
             <!-- 2. Make static Code Analysis with spot Bugs -->
-<!--            <plugin>-->
-<!--                <groupId>com.github.spotbugs</groupId>-->
-<!--                <artifactId>spotbugs-maven-plugin</artifactId>-->
-<!--                <version>${maven.spotbugs.plugin.version}</version>-->
-<!--                <configuration>-->
-<!--                    <excludeFilterFile>${project.basedir}/findbugs/findbugs-exclude.xml</excludeFilterFile>-->
-<!--                    &lt;!&ndash; Enables analysis which takes more memory but finds more bugs. &ndash;&gt;-->
-<!--                    <effort>Max</effort>-->
-<!--                    &lt;!&ndash; Reports all bugs (other values are medium and max) &ndash;&gt;-->
-<!--                    <threshold>Low</threshold>-->
-<!--                    &lt;!&ndash; Produces XML report &ndash;&gt;-->
-<!--                    <xmlOutput>true</xmlOutput>-->
-<!--                    &lt;!&ndash; Configures the directory in which the XML report is created &ndash;&gt;-->
-<!--                    <spotbugsXmlOutputDirectory>${project.build.directory}/findbugs</spotbugsXmlOutputDirectory>-->
-<!--                </configuration>-->
-<!--                <executions>-->
-<!--                    &lt;!&ndash; Ensures that FindBugs inspects source code when project is compiled. &ndash;&gt;-->
-<!--                    <execution>-->
-<!--                        <id>analyze-compile</id>-->
-<!--                        <phase>compile</phase>-->
-<!--                        <goals>-->
-<!--                            <goal>check</goal>-->
-<!--                        </goals>-->
-<!--                    </execution>-->
-<!--                </executions>-->
-<!--            </plugin>-->
+            <plugin>
+                <groupId>com.github.spotbugs</groupId>
+                <artifactId>spotbugs-maven-plugin</artifactId>
+                <version>${maven.spotbugs.plugin.version}</version>
+                <configuration>
+                    <excludeFilterFile>${project.basedir}/findbugs/findbugs-exclude.xml</excludeFilterFile>
+                    <!-- Enables analysis which takes more memory but finds more bugs. -->
+                    <effort>Max</effort>
+                    <!-- Reports all bugs (other values are medium and max) -->
+                    <threshold>Low</threshold>
+                    <!-- Produces XML report -->
+                    <xmlOutput>true</xmlOutput>
+                    <!-- Configures the directory in which the XML report is created -->
+                    <spotbugsXmlOutputDirectory>${project.build.directory}/findbugs</spotbugsXmlOutputDirectory>
+                </configuration>
+                <executions>
+                    <!-- Ensures that FindBugs inspects source code when project is compiled. -->
+                    <execution>
+                        <id>analyze-compile</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
             <!-- 2. Make static Code Analysis with pmd -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

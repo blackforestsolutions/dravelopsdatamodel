@@ -2,6 +2,7 @@ package de.blackforestsolutions.dravelopsdatamodel;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
+import edu.umd.cs.findbugs.annotations.SuppressWarnings;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,8 +22,21 @@ public final class Journey implements Serializable {
 
     private final UUID id;
 
+
+    /**
+     * The mistake indicates a serialization problem with this property.
+     * The tests in {@link de.blackforestsolutions.dravelopsdatamodel.util.DravelOpsJsonMapper} prove that the object
+     * is serializable and deserializable despite this warning.
+     */
+    @SuppressWarnings("SE_BAD_FIELD")
     private final LinkedHashMap<UUID, Leg> legs;
 
+    /**
+     * The mistake indicates a serialization problem with this property.
+     * The tests in {@link de.blackforestsolutions.dravelopsdatamodel.util.DravelOpsJsonMapper} prove that the object
+     * is serializable and deserializable despite this warning.
+     */
+    @SuppressWarnings("SE_BAD_FIELD")
     private final HashSet<Price> prices;
 
     private Journey(JourneyBuilder journey) {
