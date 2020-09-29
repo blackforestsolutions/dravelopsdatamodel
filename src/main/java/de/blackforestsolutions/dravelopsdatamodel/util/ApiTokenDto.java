@@ -22,12 +22,12 @@ final class ApiTokenDto {
     private int port;
     @JsonProperty("departure")
     private String departure;
-    @JsonProperty("departureCoordinates")
-    private Point departureCoordinates;
+    @JsonProperty("departureCoordinate")
+    private Point departureCoordinate;
     @JsonProperty("arrival")
     private String arrival;
-    @JsonProperty("arrivalCoordinates")
-    private Point arrivalCoordinates;
+    @JsonProperty("arrivalCoordinate")
+    private Point arrivalCoordinate;
     @JsonProperty("dateTime")
     private ZonedDateTime dateTime;
     @Setter(AccessLevel.NONE)
@@ -62,9 +62,9 @@ final class ApiTokenDto {
         this.protocol = apiToken.getProtocol();
         this.port = apiToken.getPort();
         this.departure = apiToken.getDeparture();
-        this.departureCoordinates = apiToken.getDepartureCoordinates();
+        this.departureCoordinate = apiToken.getDepartureCoordinate();
         this.arrival = apiToken.getArrival();
-        this.arrivalCoordinates = apiToken.getArrivalCoordinates();
+        this.arrivalCoordinate = apiToken.getArrivalCoordinate();
         this.dateTime = apiToken.getDateTime();
         this.isDepartureDateTime = apiToken.getIsDepartureDateTime();
         this.language = apiToken.getLanguage();
