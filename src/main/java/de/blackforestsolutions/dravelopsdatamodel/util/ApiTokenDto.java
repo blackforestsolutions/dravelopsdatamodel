@@ -23,14 +23,12 @@ final class ApiTokenDto {
     private String departure;
     @JsonProperty("arrival")
     private String arrival;
-    @JsonProperty("departureTime")
-    private ZonedDateTime departureTime;
-    @JsonProperty("arrivalTime")
-    private ZonedDateTime arrivalTime;
+    @JsonProperty("dateTime")
+    private ZonedDateTime dateTime;
     @Setter(AccessLevel.NONE)
     @Getter(AccessLevel.NONE)
-    @JsonProperty("isDeparture")
-    private boolean isDeparture;
+    @JsonProperty("isDepartureDateTime")
+    private boolean isDepartureDateTime;
     @JsonProperty("language")
     private Locale language;
     @JsonProperty("router")
@@ -60,9 +58,8 @@ final class ApiTokenDto {
         this.port = apiToken.getPort();
         this.departure = apiToken.getDeparture();
         this.arrival = apiToken.getArrival();
-        this.departureTime = apiToken.getDepartureTime();
-        this.arrivalTime = apiToken.getArrivalTime();
-        this.isDeparture = apiToken.getIsDeparture();
+        this.dateTime = apiToken.getDateTime();
+        this.isDepartureDateTime = apiToken.getIsDepartureDateTime();
         this.language = apiToken.getLanguage();
         this.router = apiToken.getRouter();
         this.optimize = apiToken.getOptimize();
@@ -73,11 +70,11 @@ final class ApiTokenDto {
     }
 
     void setIsDeparture(boolean isDeparture) {
-        this.isDeparture = isDeparture;
+        this.isDepartureDateTime = isDeparture;
     }
 
-    boolean getIsDeparture() {
-        return this.isDeparture;
+    boolean getIsDepartureDateTime() {
+        return this.isDepartureDateTime;
     }
 
     void setHasDetails(boolean hasDetails) {

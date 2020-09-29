@@ -18,10 +18,9 @@ public final class ApiToken {
     private final int port;
     private final String departure;
     private final String arrival;
-    private final ZonedDateTime departureTime;
-    private final ZonedDateTime arrivalTime;
+    private final ZonedDateTime dateTime;
     @Getter(AccessLevel.NONE)
-    private final boolean isDeparture;
+    private final boolean isDepartureDateTime;
     private final Locale language;
     private final String router;
     private final Optimization optimize;
@@ -38,9 +37,8 @@ public final class ApiToken {
         this.port = apiTokenBuilder.getPort();
         this.departure = apiTokenBuilder.getDeparture();
         this.arrival = apiTokenBuilder.getArrival();
-        this.departureTime = apiTokenBuilder.getDepartureTime();
-        this.arrivalTime = apiTokenBuilder.getArrivalTime();
-        this.isDeparture = apiTokenBuilder.getIsDeparture();
+        this.dateTime = apiTokenBuilder.getDateTime();
+        this.isDepartureDateTime = apiTokenBuilder.getIsDepartureDateTime();
         this.language = apiTokenBuilder.getLanguage();
         this.router = apiTokenBuilder.getRouter();
         this.optimize = apiTokenBuilder.getOptimize();
@@ -50,8 +48,8 @@ public final class ApiToken {
         this.path = apiTokenBuilder.getPath();
     }
 
-    public boolean getIsDeparture() {
-        return this.isDeparture;
+    public boolean getIsDepartureDateTime() {
+        return this.isDepartureDateTime;
     }
 
     public boolean getHasDetails() {
@@ -73,11 +71,10 @@ public final class ApiToken {
         private int port = -1;
         private String departure;
         private String arrival;
-        private ZonedDateTime departureTime;
-        private ZonedDateTime arrivalTime;
+        private ZonedDateTime dateTime;
         @Setter(AccessLevel.NONE)
         @Getter(AccessLevel.NONE)
-        private boolean isDeparture;
+        private boolean isDepartureDateTime;
         private Locale language;
         private String router;
         private Optimization optimize;
@@ -97,9 +94,8 @@ public final class ApiToken {
             this.port = apiToken.getPort();
             this.departure = apiToken.getDeparture();
             this.arrival = apiToken.getArrival();
-            this.departureTime = apiToken.getDepartureTime();
-            this.arrivalTime = apiToken.getArrivalTime();
-            this.isDeparture = apiToken.getIsDeparture();
+            this.dateTime = apiToken.getDateTime();
+            this.isDepartureDateTime = apiToken.getIsDepartureDateTime();
             this.language = apiToken.getLanguage();
             this.router = apiToken.getRouter();
             this.optimize = apiToken.getOptimize();
@@ -116,9 +112,8 @@ public final class ApiToken {
             this.port = apiTokenDto.getPort();
             this.departure = apiTokenDto.getDeparture();
             this.arrival = apiTokenDto.getArrival();
-            this.departureTime = apiTokenDto.getDepartureTime();
-            this.arrivalTime = apiTokenDto.getArrivalTime();
-            this.isDeparture = apiTokenDto.getIsDeparture();
+            this.dateTime = apiTokenDto.getDateTime();
+            this.isDepartureDateTime = apiTokenDto.getIsDepartureDateTime();
             this.language = apiTokenDto.getLanguage();
             this.router = apiTokenDto.getRouter();
             this.optimize = apiTokenDto.getOptimize();
@@ -128,13 +123,13 @@ public final class ApiToken {
             this.path = apiTokenDto.getPath();
         }
 
-        public ApiTokenBuilder setIsDeparture(boolean isDeparture) {
-            this.isDeparture = isDeparture;
+        public ApiTokenBuilder setIsDepartureDateTime(boolean isDeparture) {
+            this.isDepartureDateTime = isDeparture;
             return this;
         }
 
-        public boolean getIsDeparture() {
-            return this.isDeparture;
+        public boolean getIsDepartureDateTime() {
+            return this.isDepartureDateTime;
         }
 
         public ApiTokenBuilder setHasDetails(boolean hasDetails) {
