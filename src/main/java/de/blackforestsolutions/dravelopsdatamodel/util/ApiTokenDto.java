@@ -23,10 +23,10 @@ final class ApiTokenDto {
     private String departure;
     @JsonProperty("arrival")
     private String arrival;
-    @JsonProperty("departureDate")
-    private ZonedDateTime departureDate;
-    @JsonProperty("arrivalDate")
-    private ZonedDateTime arrivalDate;
+    @JsonProperty("departureTime")
+    private ZonedDateTime departureTime;
+    @JsonProperty("arrivalTime")
+    private ZonedDateTime arrivalTime;
     @Setter(AccessLevel.NONE)
     @Getter(AccessLevel.NONE)
     @JsonProperty("isDeparture")
@@ -60,8 +60,8 @@ final class ApiTokenDto {
         this.port = apiToken.getPort();
         this.departure = apiToken.getDeparture();
         this.arrival = apiToken.getArrival();
-        this.departureDate = apiToken.getDepartureDate();
-        this.arrivalDate = apiToken.getArrivalDate();
+        this.departureTime = apiToken.getDepartureTime();
+        this.arrivalTime = apiToken.getArrivalTime();
         this.isDeparture = apiToken.getIsDeparture();
         this.language = apiToken.getLanguage();
         this.router = apiToken.getRouter();

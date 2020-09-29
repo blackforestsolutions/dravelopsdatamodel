@@ -18,8 +18,8 @@ public final class ApiToken {
     private final int port;
     private final String departure;
     private final String arrival;
-    private final ZonedDateTime departureDate;
-    private final ZonedDateTime arrivalDate;
+    private final ZonedDateTime departureTime;
+    private final ZonedDateTime arrivalTime;
     @Getter(AccessLevel.NONE)
     private final boolean isDeparture;
     private final Locale language;
@@ -38,8 +38,8 @@ public final class ApiToken {
         this.port = apiTokenBuilder.getPort();
         this.departure = apiTokenBuilder.getDeparture();
         this.arrival = apiTokenBuilder.getArrival();
-        this.departureDate = apiTokenBuilder.getDepartureDate();
-        this.arrivalDate = apiTokenBuilder.getArrivalDate();
+        this.departureTime = apiTokenBuilder.getDepartureTime();
+        this.arrivalTime = apiTokenBuilder.getArrivalTime();
         this.isDeparture = apiTokenBuilder.getIsDeparture();
         this.language = apiTokenBuilder.getLanguage();
         this.router = apiTokenBuilder.getRouter();
@@ -73,8 +73,8 @@ public final class ApiToken {
         private int port = -1;
         private String departure;
         private String arrival;
-        private ZonedDateTime departureDate;
-        private ZonedDateTime arrivalDate;
+        private ZonedDateTime departureTime;
+        private ZonedDateTime arrivalTime;
         @Setter(AccessLevel.NONE)
         @Getter(AccessLevel.NONE)
         private boolean isDeparture;
@@ -97,8 +97,8 @@ public final class ApiToken {
             this.port = apiToken.getPort();
             this.departure = apiToken.getDeparture();
             this.arrival = apiToken.getArrival();
-            this.departureDate = apiToken.getDepartureDate();
-            this.arrivalDate = apiToken.getArrivalDate();
+            this.departureTime = apiToken.getDepartureTime();
+            this.arrivalTime = apiToken.getArrivalTime();
             this.isDeparture = apiToken.getIsDeparture();
             this.language = apiToken.getLanguage();
             this.router = apiToken.getRouter();
@@ -116,8 +116,8 @@ public final class ApiToken {
             this.port = apiTokenDto.getPort();
             this.departure = apiTokenDto.getDeparture();
             this.arrival = apiTokenDto.getArrival();
-            this.departureDate = apiTokenDto.getDepartureDate();
-            this.arrivalDate = apiTokenDto.getArrivalDate();
+            this.departureTime = apiTokenDto.getDepartureTime();
+            this.arrivalTime = apiTokenDto.getArrivalTime();
             this.isDeparture = apiTokenDto.getIsDeparture();
             this.language = apiTokenDto.getLanguage();
             this.router = apiTokenDto.getRouter();
