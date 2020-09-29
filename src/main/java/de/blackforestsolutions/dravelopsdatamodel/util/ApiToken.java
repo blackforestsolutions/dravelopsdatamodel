@@ -23,7 +23,7 @@ public final class ApiToken {
     private final Point arrivalCoordinate;
     private final ZonedDateTime dateTime;
     @Getter(AccessLevel.NONE)
-    private final boolean isDepartureDateTime;
+    private final boolean isArrivalDateTime;
     private final Locale language;
     private final String router;
     private final Optimization optimize;
@@ -43,7 +43,7 @@ public final class ApiToken {
         this.arrival = apiTokenBuilder.getArrival();
         this.arrivalCoordinate = apiTokenBuilder.getArrivalCoordinate();
         this.dateTime = apiTokenBuilder.getDateTime();
-        this.isDepartureDateTime = apiTokenBuilder.getIsDepartureDateTime();
+        this.isArrivalDateTime = apiTokenBuilder.getIsArrivalDateTime();
         this.language = apiTokenBuilder.getLanguage();
         this.router = apiTokenBuilder.getRouter();
         this.optimize = apiTokenBuilder.getOptimize();
@@ -53,8 +53,8 @@ public final class ApiToken {
         this.path = apiTokenBuilder.getPath();
     }
 
-    public boolean getIsDepartureDateTime() {
-        return this.isDepartureDateTime;
+    public boolean getIsArrivalDateTime() {
+        return this.isArrivalDateTime;
     }
 
     public boolean getHasDetails() {
@@ -81,7 +81,7 @@ public final class ApiToken {
         private ZonedDateTime dateTime;
         @Setter(AccessLevel.NONE)
         @Getter(AccessLevel.NONE)
-        private boolean isDepartureDateTime;
+        private boolean isArrivalDateTime;
         private Locale language;
         private String router;
         private Optimization optimize;
@@ -104,7 +104,7 @@ public final class ApiToken {
             this.arrival = apiToken.getArrival();
             this.arrivalCoordinate =  apiToken.getArrivalCoordinate();
             this.dateTime = apiToken.getDateTime();
-            this.isDepartureDateTime = apiToken.getIsDepartureDateTime();
+            this.isArrivalDateTime = apiToken.getIsArrivalDateTime();
             this.language = apiToken.getLanguage();
             this.router = apiToken.getRouter();
             this.optimize = apiToken.getOptimize();
@@ -124,7 +124,7 @@ public final class ApiToken {
             this.arrival = apiTokenDto.getArrival();
             this.arrivalCoordinate = apiTokenDto.getArrivalCoordinate();
             this.dateTime = apiTokenDto.getDateTime();
-            this.isDepartureDateTime = apiTokenDto.getIsDepartureDateTime();
+            this.isArrivalDateTime = apiTokenDto.getIsArrivalDateTime();
             this.language = apiTokenDto.getLanguage();
             this.router = apiTokenDto.getRouter();
             this.optimize = apiTokenDto.getOptimize();
@@ -134,13 +134,13 @@ public final class ApiToken {
             this.path = apiTokenDto.getPath();
         }
 
-        public ApiTokenBuilder setIsDepartureDateTime(boolean isDeparture) {
-            this.isDepartureDateTime = isDeparture;
+        public ApiTokenBuilder setIsArrivalDateTime(boolean isArrivalDateTime) {
+            this.isArrivalDateTime = isArrivalDateTime;
             return this;
         }
 
-        public boolean getIsDepartureDateTime() {
-            return this.isDepartureDateTime;
+        public boolean getIsArrivalDateTime() {
+            return this.isArrivalDateTime;
         }
 
         public ApiTokenBuilder setHasDetails(boolean hasDetails) {
