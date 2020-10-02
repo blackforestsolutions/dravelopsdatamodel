@@ -16,7 +16,7 @@ public final class Price {
 
     private final Currency currency;
 
-    private final Double smallestCurrencyValue;
+    private final Long smallestCurrencyValue;
 
     private Price(PriceBuilder priceBuilder) {
         this.currency = priceBuilder.getCurrency();
@@ -34,7 +34,7 @@ public final class Price {
 
         private Currency currency;
 
-        private Double smallestCurrencyValue;
+        private Long smallestCurrencyValue;
 
         public Price build() {
             return new Price(this);
