@@ -10,7 +10,6 @@ import lombok.Setter;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
-import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.UUID;
 
@@ -37,7 +36,7 @@ public final class Journey implements Serializable {
      * is serializable and deserializable despite this warning.
      */
     @SuppressWarnings("SE_BAD_FIELD")
-    private final HashSet<Price> prices;
+    private final LinkedHashMap<PriceType, Price> prices;
 
     private Journey(JourneyBuilder journey) {
         this.id = journey.getId();
@@ -52,9 +51,9 @@ public final class Journey implements Serializable {
         return null;
     }
 
-    public HashSet<Price> getPrices() {
+    public LinkedHashMap<PriceType, Price> getPrices() {
         if (prices != null) {
-            return (HashSet<Price>) prices.clone();
+            return (LinkedHashMap<PriceType, Price>) prices.clone();
         }
         return null;
     }
@@ -70,7 +69,7 @@ public final class Journey implements Serializable {
 
         private LinkedHashMap<UUID, Leg> legs = new LinkedHashMap<>();
 
-        private HashSet<Price> prices = new HashSet<>();
+        private LinkedHashMap<PriceType, Price> prices = new LinkedHashMap<>();
 
         public JourneyBuilder(UUID id) {
             this.id = id;

@@ -52,9 +52,11 @@
       } ]
     }
   },
-  "prices" : [ {
-    "priceType" : "REGULAR",
-    "currency" : "EUR",
-    "smallestCurrencyValue" : 100
-  } ]
+  "prices" : {
+    "REGULAR": {
+      "priceType": "REGULAR",
+      "currency": "EUR",
+      "smallestCurrencyValue": 100
+    }
+  }
 }

@@ -3,6 +3,7 @@ package de.blackforestsolutions.dravelopsdatamodel.objectmothers;
 import de.blackforestsolutions.dravelopsdatamodel.Journey;
 import de.blackforestsolutions.dravelopsdatamodel.Leg;
 import de.blackforestsolutions.dravelopsdatamodel.Price;
+import de.blackforestsolutions.dravelopsdatamodel.PriceType;
 
 import java.util.HashSet;
 import java.util.LinkedHashMap;
@@ -29,9 +30,9 @@ public class JourneyObjectMother {
         return legs;
     }
 
-    private static HashSet<Price> getPrices() {
-        HashSet<Price> prices = new HashSet<>();
-        prices.add(getPriceWithNoEmptyFields());
+    private static LinkedHashMap<PriceType, Price> getPrices() {
+        LinkedHashMap<PriceType, Price> prices = new LinkedHashMap<>();
+        prices.put(getPriceWithNoEmptyFields().getPriceType(), getPriceWithNoEmptyFields());
         return prices;
     }
 

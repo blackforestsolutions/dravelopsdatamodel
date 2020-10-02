@@ -2,6 +2,7 @@ package de.blackforestsolutions.dravelopsdatamodel.util;
 
 import com.fasterxml.jackson.databind.exc.MismatchedInputException;
 import de.blackforestsolutions.dravelopsdatamodel.Journey;
+import de.blackforestsolutions.dravelopsdatamodel.PriceType;
 import de.blackforestsolutions.dravelopsdatamodel.TravelPoint;
 import org.junit.jupiter.api.Test;
 import reactor.core.publisher.Mono;
@@ -84,7 +85,7 @@ class DravelOpsJsonMapperTest {
                     assertThat(journey.getLegs().get(TEST_UUID_2).getIntermediateStops().size()).isEqualTo(1);
                     assertThat(journey.getLegs().get(TEST_UUID_2).getIntermediateStops().get(0)).isEqualToComparingFieldByField(expectedJourney.getLegs().get(TEST_UUID_2).getIntermediateStops().get(0));
                     assertThat(journey.getPrices().size()).isEqualTo(1);
-                    assertThat(journey.getPrices().toArray()[0]).isEqualToComparingFieldByField(expectedJourney.getPrices().toArray()[0]);
+                    assertThat(journey.getPrices().get(PriceType.REGULAR)).isEqualToComparingFieldByField(expectedJourney.getPrices().get(PriceType.REGULAR));
                 })
                 .verifyComplete();
     }
