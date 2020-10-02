@@ -55,6 +55,6 @@
   "prices" : [ {
     "priceType" : "REGULAR",
     "currency" : "EUR",
-    "smallestCurrencyValue" : 1.0
+    "smallestCurrencyValue" : 100
   } ]
 }

@@ -11,7 +11,7 @@ public class PriceObjectMother {
         return new Price.PriceBuilder()
                 .setPriceType(PriceType.REGULAR)
                 .setCurrency(Currency.getInstance("EUR"))
-                .setSmallestCurrencyValue(1.0d)
+                .setSmallestCurrencyValue(100L)
                 .build();
     }
 
