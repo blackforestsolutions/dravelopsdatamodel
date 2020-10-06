@@ -9,7 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.geo.Point;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 
 @Getter
 @Slf4j
@@ -22,9 +22,9 @@ public final class TravelPoint implements Serializable {
 
     private final Point coordinates;
 
-    private final LocalDateTime arrivalTime;
+    private final ZonedDateTime arrivalTime;
 
-    private final LocalDateTime departureTime;
+    private final ZonedDateTime departureTime;
 
     private final String platform;
 
@@ -47,9 +47,9 @@ public final class TravelPoint implements Serializable {
 
         private Point coordinates;
 
-        private LocalDateTime arrivalTime;
+        private ZonedDateTime arrivalTime;
 
-        private LocalDateTime departureTime;
+        private ZonedDateTime departureTime;
 
         private String platform = "";
 
