@@ -2,6 +2,7 @@ package de.blackforestsolutions.dravelopsdatamodel.objectmothers;
 
 import de.blackforestsolutions.dravelopsdatamodel.Optimization;
 import de.blackforestsolutions.dravelopsdatamodel.util.ApiToken;
+import org.springframework.data.geo.Point;
 
 import java.time.ZonedDateTime;
 import java.util.Locale;
@@ -14,10 +15,11 @@ public class ApiTokenObjectMother {
                 .setProtocol("http")
                 .setPort(8080)
                 .setDeparture("Furtwangen")
+                .setDepartureCoordinate(new Point(8.0d, 50.0d))
                 .setArrival("Triberg")
-                .setDepartureDate(ZonedDateTime.parse("2020-09-27T10:15:30+02:00"))
-                .setArrivalDate(ZonedDateTime.parse("2020-09-27T10:15:30+02:00"))
-                .setIsDeparture(true)
+                .setArrivalCoordinate(new Point(8.0d, 50.0d))
+                .setDateTime(ZonedDateTime.parse("2020-09-27T10:15:30+02:00"))
+                .setIsArrivalDateTime(true)
                 .setLanguage(Locale.GERMAN)
                 .setRouter("sbg")
                 .setOptimize(Optimization.QUICK)
@@ -33,10 +35,11 @@ public class ApiTokenObjectMother {
                 .setProtocol("http")
                 .setPort(8080)
                 .setDeparture("Furtwangen")
+                .setDepartureCoordinate(new Point(8.0d, 50.0d))
                 .setArrival("Triberg")
-                .setDepartureDate(ZonedDateTime.parse("2020-09-27T10:15:30+02:00"))
-                .setArrivalDate(ZonedDateTime.parse("2020-09-27T10:15:30+02:00"))
-                .setIsDeparture(true)
+                .setArrivalCoordinate(new Point(8.0d, 50.0d))
+                .setDateTime(ZonedDateTime.parse("2020-09-27T10:15:30+02:00"))
+                .setIsArrivalDateTime(true)
                 .setLanguage(Locale.GERMAN)
                 .setRouter("sbg")
                 .setOptimize(Optimization.QUICK)

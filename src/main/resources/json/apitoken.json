@@ -3,10 +3,17 @@
   "protocol": "http",
   "port": 8080,
   "departure": "Furtwangen",
+  "departureCoordinate": {
+    "x": 8.0,
+    "y": 50.0
+  },
   "arrival": "Triberg",
-  "departureDate": "2020-09-27T10:15:30+02:00",
-  "arrivalDate": "2020-09-27T10:15:30+02:00",
-  "isDeparture": true,
+  "arrivalCoordinate": {
+    "x": 8.0,
+    "y": 50.0
+  },
+  "dateTime": "2020-09-27T10:15:30+02:00",
+  "isArrivalDateTime": true,
   "language": "de",
   "router": "sbg",
   "optimize": "QUICK",

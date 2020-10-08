@@ -5,6 +5,7 @@ import de.blackforestsolutions.dravelopsdatamodel.Optimization;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.geo.Point;
 
 import java.time.ZonedDateTime;
 import java.util.Locale;
@@ -21,16 +22,18 @@ final class ApiTokenDto {
     private int port;
     @JsonProperty("departure")
     private String departure;
+    @JsonProperty("departureCoordinate")
+    private Point departureCoordinate;
     @JsonProperty("arrival")
     private String arrival;
-    @JsonProperty("departureDate")
-    private ZonedDateTime departureDate;
-    @JsonProperty("arrivalDate")
-    private ZonedDateTime arrivalDate;
+    @JsonProperty("arrivalCoordinate")
+    private Point arrivalCoordinate;
+    @JsonProperty("dateTime")
+    private ZonedDateTime dateTime;
     @Setter(AccessLevel.NONE)
     @Getter(AccessLevel.NONE)
-    @JsonProperty("isDeparture")
-    private boolean isDeparture;
+    @JsonProperty("isArrivalDateTime")
+    private boolean isArrivalDateTime;
     @JsonProperty("language")
     private Locale language;
     @JsonProperty("router")
@@ -59,10 +62,11 @@ final class ApiTokenDto {
         this.protocol = apiToken.getProtocol();
         this.port = apiToken.getPort();
         this.departure = apiToken.getDeparture();
+        this.departureCoordinate = apiToken.getDepartureCoordinate();
         this.arrival = apiToken.getArrival();
-        this.departureDate = apiToken.getDepartureDate();
-        this.arrivalDate = apiToken.getArrivalDate();
-        this.isDeparture = apiToken.getIsDeparture();
+        this.arrivalCoordinate = apiToken.getArrivalCoordinate();
+        this.dateTime = apiToken.getDateTime();
+        this.isArrivalDateTime = apiToken.getIsArrivalDateTime();
         this.language = apiToken.getLanguage();
         this.router = apiToken.getRouter();
         this.optimize = apiToken.getOptimize();
@@ -72,12 +76,12 @@ final class ApiTokenDto {
         this.path = apiToken.getPath();
     }
 
-    void setIsDeparture(boolean isDeparture) {
-        this.isDeparture = isDeparture;
+    void setIsArrivalDateTime(boolean isArrivalDateTime) {
+        this.isArrivalDateTime = isArrivalDateTime;
     }
 
-    boolean getIsDeparture() {
-        return this.isDeparture;
+    boolean getIsArrivalDateTime() {
+        return this.isArrivalDateTime;
     }
 
     void setHasDetails(boolean hasDetails) {

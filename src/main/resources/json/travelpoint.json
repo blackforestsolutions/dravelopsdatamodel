@@ -1,0 +1,10 @@
+{
+  "name" : "Furtwangen",
+  "coordinates" : {
+    "x" : 48.05259,
+    "y" : 8.207245
+  },
+  "arrivalTime" : "2020-09-27T10:15:30+02:00",
+  "departureTime" : "2020-09-27T10:15:30+02:00",
+  "platform" : "1"
+}
