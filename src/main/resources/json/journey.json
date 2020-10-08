@@ -1,0 +1,62 @@
+{
+  "id" : "5f7df5c4-3b55-11ea-b77f-2e728ce88125",
+  "legs" : {
+    "3b4057a4-b0c9-4d6d-9a14-d89854fa42af" : {
+      "id" : "3b4057a4-b0c9-4d6d-9a14-d89854fa42af",
+      "departure" : {
+        "name" : "Furtwangen",
+        "coordinates" : {
+          "x" : 48.05259,
+          "y" : 8.207245
+        },
+        "arrivalTime" : "2020-09-27T10:15:30+02:00",
+        "departureTime" : "2020-09-27T10:15:30+02:00",
+        "platform" : "1"
+      },
+      "arrival" : {
+        "name" : "Furtwangen",
+        "coordinates" : {
+          "x" : 48.05259,
+          "y" : 8.207245
+        },
+        "arrivalTime" : "2020-09-27T10:15:30+02:00",
+        "departureTime" : "2020-09-27T10:15:30+02:00",
+        "platform" : "1"
+      },
+      "duration" : 0.0,
+      "delay" : 60.000000000,
+      "distance" : {
+        "value" : 5.253,
+        "metric" : "KILOMETERS"
+      },
+      "vehicleType" : "BUS",
+      "track" : [ {
+        "x" : 0.0,
+        "y" : 0.0
+      } ],
+      "travelProvider" : {
+        "name" : "Verkehrsverbund Schwarzwald-Baar",
+        "url" : "https://www.v-s-b.de"
+      },
+      "vehicleNumber" : "7020",
+      "vehicleName" : "Furtwangen - Triberg",
+      "intermediateStops" : [ {
+        "name" : "Furtwangen",
+        "coordinates" : {
+          "x" : 48.05259,
+          "y" : 8.207245
+        },
+        "arrivalTime" : "2020-09-27T10:15:30+02:00",
+        "departureTime" : "2020-09-27T10:15:30+02:00",
+        "platform" : "1"
+      } ]
+    }
+  },
+  "prices" : {
+    "REGULAR": {
+      "priceType": "REGULAR",
+      "currency": "EUR",
+      "smallestCurrencyValue": 100
+    }
+  }
+}

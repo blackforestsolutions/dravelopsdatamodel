@@ -190,7 +190,7 @@
                         <configuration>
                             <excludes>
                                 <!-- configuration exclude -->
-<!--                                <exclude>**/*de/blackforestsolutions/crawler/Application.class</exclude>-->
+                                <!--                                <exclude>**/*de/blackforestsolutions/crawler/Application.class</exclude>-->
                             </excludes>
                             <rules>
                                 <rule>
@@ -240,5 +240,5 @@
         </plugins>
     </build>
 
-    
+
 </project>
