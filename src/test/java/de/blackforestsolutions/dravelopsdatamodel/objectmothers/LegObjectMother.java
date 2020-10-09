@@ -9,15 +9,15 @@ import org.springframework.data.geo.Point;
 
 import java.time.Duration;
 import java.util.LinkedList;
+import java.util.UUID;
 
 import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.TravelPointObjectMother.getTravelPointWithNoEmptyFields;
 import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.TravelProviderObjectMother.getTravelProviderWithNoEmptyFields;
-import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.UUIDObjectMother.TEST_UUID_2;
 
 public class LegObjectMother {
 
-    public static Leg getLegWithNoEmptyFields() {
-        return new Leg.LegBuilder(TEST_UUID_2)
+    public static Leg getLegWithNoEmptyFields(UUID id) {
+        return new Leg.LegBuilder(id)
                 .setDeparture(getTravelPointWithNoEmptyFields())
                 .setArrival(getTravelPointWithNoEmptyFields())
                 .setDelay(Duration.ofSeconds(60L))

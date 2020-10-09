@@ -11,7 +11,12 @@ import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 import java.util.LinkedList;
+import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Function;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 @Getter
 @JsonDeserialize(builder = Journey.JourneyBuilder.class)
@@ -58,13 +63,13 @@ public final class Journey implements Serializable {
         return null;
     }
 
-    @Setter
     @Getter
     @Accessors(chain = true)
     @JsonPOJOBuilder(withPrefix = "set")
     @NoArgsConstructor(access = AccessLevel.PRIVATE)
     public static class JourneyBuilder {
 
+        @Setter
         private UUID id;
 
         private LinkedList<Leg> legs = new LinkedList<>();
@@ -75,8 +80,31 @@ public final class Journey implements Serializable {
             this.id = id;
         }
 
+        public JourneyBuilder setLegs(LinkedList<Leg> legs) {
+            this.legs = legs
+                    .stream()
+                    .filter(distinctByKey(Leg::getId))
+                    .collect(Collectors.toCollection(LinkedList::new));
+
+            return this;
+        }
+
+        public JourneyBuilder setPrices(LinkedList<Price> prices) {
+            this.prices = prices
+                    .stream()
+                    .filter(distinctByKey(Price::getPriceType))
+                    .collect(Collectors.toCollection(LinkedList::new));
+
+            return this;
+        }
+
         public Journey build() {
             return new Journey(this);
+        }
+
+        private <T> Predicate<T> distinctByKey(Function<? super T, ?> keyExtractor) {
+            Map<Object, Boolean> seen = new ConcurrentHashMap<>();
+            return t -> seen.putIfAbsent(keyExtractor.apply(t), Boolean.TRUE) == null;
         }
     }
 }

@@ -7,9 +7,9 @@ import java.util.Currency;
 
 public class PriceObjectMother {
 
-    public static Price getPriceWithNoEmptyFields() {
+    public static Price getPriceWithNoEmptyFields(PriceType priceType) {
         return new Price.PriceBuilder()
-                .setPriceType(PriceType.REGULAR)
+                .setPriceType(priceType)
                 .setCurrencyCode(Currency.getInstance("EUR"))
                 .setSmallestCurrencyValue(100L)
                 .build();
