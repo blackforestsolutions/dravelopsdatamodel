@@ -1,7 +1,6 @@
 {
   "id" : "5f7df5c4-3b55-11ea-b77f-2e728ce88125",
-  "legs" : {
-    "3b4057a4-b0c9-4d6d-9a14-d89854fa42af" : {
+  "legs" : [ {
       "id" : "3b4057a4-b0c9-4d6d-9a14-d89854fa42af",
       "departure" : {
         "name" : "Furtwangen",
@@ -49,13 +48,10 @@
         "departureTime" : "2020-09-27T10:15:30+02:00",
         "platform" : "1"
       } ]
-    }
-  },
-  "prices" : {
-    "REGULAR": {
+  } ],
+  "prices" : [ {
       "priceType": "REGULAR",
       "currencyCode": "EUR",
       "smallestCurrencyValue": 100
-    }
-  }
+  } ]
 }

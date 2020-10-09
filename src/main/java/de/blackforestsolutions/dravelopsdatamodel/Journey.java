@@ -10,7 +10,7 @@ import lombok.Setter;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
-import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.UUID;
 
 @Getter
@@ -28,7 +28,7 @@ public final class Journey implements Serializable {
      * is serializable and deserializable despite this warning.
      */
     @SuppressWarnings("SE_BAD_FIELD")
-    private final LinkedHashMap<UUID, Leg> legs;
+    private final LinkedList<Leg> legs;
 
     /**
      * The mistake indicates a serialization problem with this property.
@@ -36,7 +36,7 @@ public final class Journey implements Serializable {
      * is serializable and deserializable despite this warning.
      */
     @SuppressWarnings("SE_BAD_FIELD")
-    private final LinkedHashMap<PriceType, Price> prices;
+    private final LinkedList<Price> prices;
 
     private Journey(JourneyBuilder journey) {
         this.id = journey.getId();
@@ -44,16 +44,16 @@ public final class Journey implements Serializable {
         this.prices = journey.getPrices();
     }
 
-    public LinkedHashMap<UUID, Leg> getLegs() {
+    public LinkedList<Leg> getLegs() {
         if (legs != null) {
-            return (LinkedHashMap<UUID, Leg>) legs.clone();
+            return (LinkedList<Leg>) legs.clone();
         }
         return null;
     }
 
-    public LinkedHashMap<PriceType, Price> getPrices() {
+    public LinkedList<Price> getPrices() {
         if (prices != null) {
-            return (LinkedHashMap<PriceType, Price>) prices.clone();
+            return (LinkedList<Price>) prices.clone();
         }
         return null;
     }
@@ -67,9 +67,9 @@ public final class Journey implements Serializable {
 
         private UUID id;
 
-        private LinkedHashMap<UUID, Leg> legs = new LinkedHashMap<>();
+        private LinkedList<Leg> legs = new LinkedList<>();
 
-        private LinkedHashMap<PriceType, Price> prices = new LinkedHashMap<>();
+        private LinkedList<Price> prices = new LinkedList<>();
 
         public JourneyBuilder(UUID id) {
             this.id = id;

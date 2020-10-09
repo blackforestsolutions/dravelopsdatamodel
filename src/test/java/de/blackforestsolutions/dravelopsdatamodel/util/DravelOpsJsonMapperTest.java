@@ -2,7 +2,6 @@ package de.blackforestsolutions.dravelopsdatamodel.util;
 
 import com.fasterxml.jackson.databind.exc.MismatchedInputException;
 import de.blackforestsolutions.dravelopsdatamodel.Journey;
-import de.blackforestsolutions.dravelopsdatamodel.PriceType;
 import de.blackforestsolutions.dravelopsdatamodel.TravelPoint;
 import org.junit.jupiter.api.Test;
 import reactor.core.publisher.Mono;
@@ -11,7 +10,6 @@ import reactor.test.StepVerifier;
 import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.ApiTokenObjectMother.getApiTokenWithNoEmptyFields;
 import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.JourneyObjectMother.getJourneyWithNoEmptyFields;
 import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.TravelPointObjectMother.getTravelPointWithNoEmptyFields;
-import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.UUIDObjectMother.TEST_UUID_2;
 import static de.blackforestsolutions.dravelopsdatamodel.testutil.TestUtils.getResourceFileAsString;
 import static org.apache.commons.lang.StringUtils.deleteWhitespace;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -78,14 +76,14 @@ class DravelOpsJsonMapperTest {
                 .assertNext(journey -> {
                     assertThat(journey.getId()).isEqualTo(expectedJourney.getId());
                     assertThat(journey.getLegs().size()).isEqualTo(1);
-                    assertThat(journey.getLegs().get(TEST_UUID_2)).isEqualToIgnoringGivenFields(expectedJourney.getLegs().get(TEST_UUID_2), "departure", "arrival", "travelProvider", "intermediateStops");
-                    assertThat(journey.getLegs().get(TEST_UUID_2).getDeparture()).isEqualToComparingFieldByField(expectedJourney.getLegs().get(TEST_UUID_2).getDeparture());
-                    assertThat(journey.getLegs().get(TEST_UUID_2).getArrival()).isEqualToComparingFieldByField(expectedJourney.getLegs().get(TEST_UUID_2).getArrival());
-                    assertThat(journey.getLegs().get(TEST_UUID_2).getTravelProvider()).isEqualToComparingFieldByField(expectedJourney.getLegs().get(TEST_UUID_2).getTravelProvider());
-                    assertThat(journey.getLegs().get(TEST_UUID_2).getIntermediateStops().size()).isEqualTo(1);
-                    assertThat(journey.getLegs().get(TEST_UUID_2).getIntermediateStops().get(0)).isEqualToComparingFieldByField(expectedJourney.getLegs().get(TEST_UUID_2).getIntermediateStops().get(0));
+                    assertThat(journey.getLegs().get(0)).isEqualToIgnoringGivenFields(expectedJourney.getLegs().get(0), "departure", "arrival", "travelProvider", "intermediateStops");
+                    assertThat(journey.getLegs().get(0).getDeparture()).isEqualToComparingFieldByField(expectedJourney.getLegs().get(0).getDeparture());
+                    assertThat(journey.getLegs().get(0).getArrival()).isEqualToComparingFieldByField(expectedJourney.getLegs().get(0).getArrival());
+                    assertThat(journey.getLegs().get(0).getTravelProvider()).isEqualToComparingFieldByField(expectedJourney.getLegs().get(0).getTravelProvider());
+                    assertThat(journey.getLegs().get(0).getIntermediateStops().size()).isEqualTo(1);
+                    assertThat(journey.getLegs().get(0).getIntermediateStops().get(0)).isEqualToComparingFieldByField(expectedJourney.getLegs().get(0).getIntermediateStops().get(0));
                     assertThat(journey.getPrices().size()).isEqualTo(1);
-                    assertThat(journey.getPrices().get(PriceType.REGULAR)).isEqualToComparingFieldByField(expectedJourney.getPrices().get(PriceType.REGULAR));
+                    assertThat(journey.getPrices().get(0)).isEqualToComparingFieldByField(expectedJourney.getPrices().get(0));
                 })
                 .verifyComplete();
     }
