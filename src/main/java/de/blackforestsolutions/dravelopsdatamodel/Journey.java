@@ -10,6 +10,7 @@ import lombok.Setter;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.UUID;
@@ -93,6 +94,7 @@ public final class Journey implements Serializable {
             this.prices = prices
                     .stream()
                     .filter(distinctByKey(Price::getPriceType))
+                    .sorted(Comparator.comparing(Price::getPriceType))
                     .collect(Collectors.toCollection(LinkedList::new));
 
             return this;

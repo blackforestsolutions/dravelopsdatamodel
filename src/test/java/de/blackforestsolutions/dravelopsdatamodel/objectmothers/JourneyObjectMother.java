@@ -46,7 +46,7 @@ public class JourneyObjectMother {
         return prices;
     }
 
-    private static LinkedList<Leg> getLegsWithDoubleLeg() {
+    public static LinkedList<Leg> getLegsWithDoubleLeg() {
         LinkedList<Leg> legs = new LinkedList<>();
         legs.add(getLegWithNoEmptyFields(TEST_UUID_2));
         legs.add(getLegWithNoEmptyFields(TEST_UUID_2));
@@ -56,9 +56,9 @@ public class JourneyObjectMother {
 
     private static LinkedList<Price> getPricesWithDoublePrice() {
         LinkedList<Price> prices = new LinkedList<>();
-        prices.add(getPriceWithNoEmptyFields(PriceType.REGULAR));
-        prices.add(getPriceWithNoEmptyFields(PriceType.REGULAR));
         prices.add(getPriceWithNoEmptyFields(PriceType.SENIOR));
+        prices.add(getPriceWithNoEmptyFields(PriceType.REGULAR));
+        prices.add(getPriceWithNoEmptyFields(PriceType.REGULAR));
         return prices;
     }
 
