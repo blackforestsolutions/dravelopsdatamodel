@@ -21,5 +21,6 @@
   "hasDetails": true,
   "hasReferences": true,
   "path": "/path",
-  "maxResults": 1
+  "maxResults": 1,
+  "apiVersion": "v1"
 }

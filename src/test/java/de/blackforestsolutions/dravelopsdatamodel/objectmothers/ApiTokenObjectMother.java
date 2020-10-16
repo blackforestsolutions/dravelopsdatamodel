@@ -27,6 +27,7 @@ public class ApiTokenObjectMother {
                 .setHasDetails(true)
                 .setHasReferences(true)
                 .setPath("/path")
+                .setApiVersion("v1")
                 .setMaxResults(1);
     }
 
@@ -49,6 +50,7 @@ public class ApiTokenObjectMother {
                 .setHasReferences(true)
                 .setPath("/path")
                 .setMaxResults(1)
+                .setApiVersion("v1")
                 .build();
     }
 }
