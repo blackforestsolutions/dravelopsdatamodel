@@ -20,5 +20,6 @@
   "radius": 3000,
   "hasDetails": true,
   "hasReferences": true,
-  "path": "/path"
+  "path": "/path",
+  "maxResults": 1
 }

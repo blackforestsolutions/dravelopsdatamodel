@@ -52,6 +52,8 @@ final class ApiTokenDto {
     private boolean hasReferences;
     @JsonProperty("path")
     private String path;
+    @JsonProperty("maxResults")
+    private Integer maxResults;
 
     ApiTokenDto() {
 
@@ -74,6 +76,7 @@ final class ApiTokenDto {
         this.hasDetails = apiToken.getHasDetails();
         this.hasReferences = apiToken.getHasReferences();
         this.path = apiToken.getPath();
+        this.maxResults = apiToken.getMaxResults();
     }
 
     void setIsArrivalDateTime(boolean isArrivalDateTime) {
