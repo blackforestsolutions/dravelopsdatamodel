@@ -26,7 +26,9 @@ public class ApiTokenObjectMother {
                 .setRadius(3000)
                 .setHasDetails(true)
                 .setHasReferences(true)
-                .setPath("/path");
+                .setPath("/path")
+                .setApiVersion("v1")
+                .setMaxResults(1);
     }
 
     public static ApiToken getApiTokenWithNoEmptyFields() {
@@ -47,6 +49,8 @@ public class ApiTokenObjectMother {
                 .setHasDetails(true)
                 .setHasReferences(true)
                 .setPath("/path")
+                .setMaxResults(1)
+                .setApiVersion("v1")
                 .build();
     }
 }

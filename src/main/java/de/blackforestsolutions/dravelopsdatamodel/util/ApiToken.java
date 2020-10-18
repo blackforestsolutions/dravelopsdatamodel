@@ -33,6 +33,8 @@ public final class ApiToken {
     @Getter(AccessLevel.NONE)
     private final boolean hasReferences;
     private final String path;
+    private final Integer maxResults;
+    private final String apiVersion;
 
     private ApiToken(ApiTokenBuilder apiTokenBuilder) {
         this.host = apiTokenBuilder.getHost();
@@ -51,6 +53,8 @@ public final class ApiToken {
         this.hasDetails = apiTokenBuilder.getHasDetails();
         this.hasReferences = apiTokenBuilder.getHasReferences();
         this.path = apiTokenBuilder.getPath();
+        this.maxResults = apiTokenBuilder.getMaxResults();
+        this.apiVersion = apiTokenBuilder.getApiVersion();
     }
 
     public boolean getIsArrivalDateTime() {
@@ -93,6 +97,8 @@ public final class ApiToken {
         @Getter(AccessLevel.NONE)
         private boolean hasReferences = true;
         private String path;
+        private Integer maxResults;
+        private String apiVersion;
 
         @SuppressWarnings("CPD-START")
         public ApiTokenBuilder(ApiToken apiToken) {
@@ -112,6 +118,8 @@ public final class ApiToken {
             this.hasDetails = apiToken.getHasDetails();
             this.hasReferences = apiToken.getHasReferences();
             this.path = apiToken.getPath();
+            this.maxResults = apiToken.getMaxResults();
+            this.apiVersion = apiToken.getApiVersion();
         }
 
         @SuppressWarnings("CPD-START")
@@ -132,6 +140,8 @@ public final class ApiToken {
             this.hasDetails = apiTokenDto.getHasDetails();
             this.hasReferences = apiTokenDto.getHasReferences();
             this.path = apiTokenDto.getPath();
+            this.maxResults = apiTokenDto.getMaxResults();
+            this.apiVersion = apiTokenDto.getApiVersion();
         }
 
         public ApiTokenBuilder setIsArrivalDateTime(boolean isArrivalDateTime) {
