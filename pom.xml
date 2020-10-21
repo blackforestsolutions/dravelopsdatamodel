@@ -120,6 +120,16 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <artifactId>maven-jar-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>test-jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
             <!-- 2. Make static Code Analysis with spot Bugs -->
             <plugin>
                 <groupId>com.github.spotbugs</groupId>
