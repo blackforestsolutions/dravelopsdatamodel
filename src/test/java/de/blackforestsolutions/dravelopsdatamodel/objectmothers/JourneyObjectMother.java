@@ -5,11 +5,11 @@ import de.blackforestsolutions.dravelopsdatamodel.Leg;
 import de.blackforestsolutions.dravelopsdatamodel.Price;
 import de.blackforestsolutions.dravelopsdatamodel.PriceType;
 
-import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.UUID;
 
-import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.LegObjectMother.getLegWithNoEmptyFields;
+import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.LegObjectMother.*;
+import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.PriceObjectMother.getFurtwangenToWaldkirchPrice;
 import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.PriceObjectMother.getPriceWithNoEmptyFields;
 import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.UUIDObjectMother.*;
 
@@ -31,6 +31,19 @@ public class JourneyObjectMother {
         return new Journey.JourneyBuilder(TEST_UUID_1)
                 .setLegs(getLegsWithDoubleLeg())
                 .setPrices(getPricesWithDoublePrice())
+                .build();
+    }
+
+    public static Journey getFurtwangenToWaldkirchJourney() {
+        return new Journey.JourneyBuilder(TEST_UUID_1)
+                .setLegs(getFurtwangenToWaldkirchLegs())
+                .setPrices(getFurtwangenToWaldkirchPrices())
+                .build();
+    }
+
+    public static Journey getMannheimHbfLudwigsburgCenterJourney() {
+        return new Journey.JourneyBuilder(TEST_UUID_1)
+                .setLegs(getMannheimHbfToLudwigsburgCenterLegs())
                 .build();
     }
 
@@ -60,6 +73,29 @@ public class JourneyObjectMother {
         prices.add(getPriceWithNoEmptyFields(PriceType.REGULAR));
         prices.add(getPriceWithNoEmptyFields(PriceType.REGULAR));
         return prices;
+    }
+
+    private static LinkedList<Leg> getFurtwangenToWaldkirchLegs() {
+        LinkedList<Leg> legs = new LinkedList<>();
+        legs.add(getGrosshausbergToFurtwangenIlbenstreetLeg());
+        legs.add(getFurtwangenIlbenstreetToBleibachLeg());
+        legs.add(getBleibachToWaldkirchKastelberghalleLeg());
+        legs.add(getWaldkirchKastelberghalleToSickLeg());
+        return legs;
+    }
+
+    private static LinkedList<Price> getFurtwangenToWaldkirchPrices() {
+        LinkedList<Price> prices = new LinkedList<>();
+        prices.add(getFurtwangenToWaldkirchPrice());
+        return prices;
+    }
+
+    private static LinkedList<Leg> getMannheimHbfToLudwigsburgCenterLegs() {
+        LinkedList<Leg> legs = new LinkedList<>();
+        legs.add(getMannheimHbfToMannheimUniversityLeg());
+        legs.add(getMannheimUniversityToMannheimBerlinerPlaceLeg());
+        legs.add(getBerlinerPlaceToDestinationLeg());
+        return legs;
     }
 
 }
