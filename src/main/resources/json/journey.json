@@ -22,7 +22,7 @@
         "departureTime" : "2020-09-27T10:15:30+02:00",
         "platform" : "1"
       },
-      "delay" : 60.000000000,
+      "delayInMinutes" : 60.000000000,
       "distanceInKilometers" : {
         "value" : 5.253,
         "metric" : "KILOMETERS"

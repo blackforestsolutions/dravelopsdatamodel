@@ -26,7 +26,7 @@ public final class Leg {
 
     private final TravelPoint arrival;
 
-    private final Duration delay;
+    private final Duration delayInMinutes;
 
     private final Distance distanceInKilometers;
 
@@ -46,7 +46,7 @@ public final class Leg {
         this.id = legBuilder.getId();
         this.departure = legBuilder.getDeparture();
         this.arrival = legBuilder.getArrival();
-        this.delay = legBuilder.getDelay();
+        this.delayInMinutes = legBuilder.getDelayInMinutes();
         this.distanceInKilometers = legBuilder.getDistanceInKilometers();
         this.vehicleType = legBuilder.getVehicleType();
         this.track = legBuilder.getTrack();
@@ -84,7 +84,7 @@ public final class Leg {
 
         private TravelPoint arrival;
 
-        private Duration delay;
+        private Duration delayInMinutes;
 
         private Distance distanceInKilometers;
 
