@@ -94,6 +94,12 @@ public class ApiTokenObjectMother {
                 .build();
     }
 
+    public static ApiToken getPeliasApiToken() {
+        return new ApiToken.ApiTokenBuilder(getConfiguredPeliasApiToken())
+                .setLanguage(Locale.forLanguageTag("de"))
+                .build();
+    }
+
     public static ApiToken getConfiguredPeliasApiToken() {
         return new ApiToken.ApiTokenBuilder()
                 .setProtocol("http")
