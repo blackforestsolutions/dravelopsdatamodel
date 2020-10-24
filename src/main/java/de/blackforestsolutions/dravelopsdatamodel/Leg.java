@@ -32,7 +32,7 @@ public final class Leg {
 
     private final VehicleType vehicleType;
 
-    private final LinkedList<Point> track;
+    private final LinkedList<Point> waypoints;
 
     private final TravelProvider travelProvider;
 
@@ -49,16 +49,16 @@ public final class Leg {
         this.delayInMinutes = legBuilder.getDelayInMinutes();
         this.distanceInKilometers = legBuilder.getDistanceInKilometers();
         this.vehicleType = legBuilder.getVehicleType();
-        this.track = legBuilder.getTrack();
+        this.waypoints = legBuilder.getWaypoints();
         this.travelProvider = legBuilder.getTravelProvider();
         this.vehicleNumber = legBuilder.getVehicleNumber();
         this.vehicleName = legBuilder.getVehicleName();
         this.intermediateStops = legBuilder.getIntermediateStops();
     }
 
-    public LinkedList<Point> getTrack() {
-        if (track != null) {
-            return (LinkedList<Point>) track.clone();
+    public LinkedList<Point> getWaypoints() {
+        if (waypoints != null) {
+            return (LinkedList<Point>) waypoints.clone();
         }
         return null;
     }
@@ -90,7 +90,7 @@ public final class Leg {
 
         private VehicleType vehicleType;
 
-        private LinkedList<Point> track;
+        private LinkedList<Point> waypoints;
 
         private TravelProvider travelProvider;
 

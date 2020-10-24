@@ -11,7 +11,7 @@ import java.time.Duration;
 import java.util.LinkedList;
 import java.util.UUID;
 
-import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.TrackObjectMother.getExampleTrack;
+import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.WaypointsObjectMother.getExampleWaypoints;
 import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.TravelPointObjectMother.*;
 import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.TravelProviderObjectMother.*;
 import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.UUIDObjectMother.*;
@@ -25,7 +25,7 @@ public class LegObjectMother {
                 .setDelayInMinutes(Duration.ofSeconds(60L))
                 .setDistanceInKilometers(new Distance(5.253d, Metrics.KILOMETERS))
                 .setVehicleType(VehicleType.BUS)
-                .setTrack(getTrack())
+                .setWaypoints(getTrack())
                 .setTravelProvider(getTravelProviderWithNoEmptyFields())
                 .setVehicleNumber("7020")
                 .setVehicleName("Furtwangen - Triberg")
@@ -42,7 +42,7 @@ public class LegObjectMother {
                 .setVehicleType(VehicleType.WALK)
                 .setDeparture(departure)
                 .setArrival(arrival)
-                .setTrack(getExampleTrack())
+                .setWaypoints(getExampleWaypoints())
                 .build();
     }
 
@@ -56,7 +56,7 @@ public class LegObjectMother {
                 .setTravelProvider(getSuedbadenTravelProvider())
                 .setDeparture(departure)
                 .setArrival(arrival)
-                .setTrack(getExampleTrack())
+                .setWaypoints(getExampleWaypoints())
                 .setVehicleNumber("272")
                 .setVehicleName("Waldkirch Gymnasium - Furtwangen Rößleplatz")
                 .setIntermediateStops(getFurtwangenIlbenStreetToBleibachIntermediateStops())
@@ -73,7 +73,7 @@ public class LegObjectMother {
                 .setTravelProvider(getSuedbadenTravelProvider())
                 .setDeparture(departure)
                 .setArrival(arrival)
-                .setTrack(getExampleTrack())
+                .setWaypoints(getExampleWaypoints())
                 .setVehicleNumber("201")
                 .setVehicleName("Oberprechtal Forellenhof - Emmendingen Bahnhof/ZOB")
                 .setIntermediateStops(getBleibachToWaldkirchKastelberghalleIntermediateStops())
@@ -89,7 +89,7 @@ public class LegObjectMother {
                 .setVehicleType(VehicleType.WALK)
                 .setDeparture(departure)
                 .setArrival(arrival)
-                .setTrack(getExampleTrack())
+                .setWaypoints(getExampleWaypoints())
                 .build();
     }
 
@@ -102,7 +102,7 @@ public class LegObjectMother {
                 .setVehicleType(VehicleType.WALK)
                 .setDeparture(departure)
                 .setArrival(arrival)
-                .setTrack(getExampleTrack())
+                .setWaypoints(getExampleWaypoints())
                 .build();
     }
 
@@ -116,7 +116,7 @@ public class LegObjectMother {
                 .setTravelProvider(getRnvTravelProvider())
                 .setDeparture(departure)
                 .setArrival(arrival)
-                .setTrack(getExampleTrack())
+                .setWaypoints(getExampleWaypoints())
                 .setVehicleNumber("4")
                 .setVehicleName("Bad Dürkheim - LU Oggersheim - LU Hbf - Berliner Platz - MA Hbf - Wasserturm - Paradeplatz - Alte Feuerwache - Schafweide - Universitätsklinikum - Bonafitiuskirche - Ulmenweg - Waldfriedhof")
                 .setIntermediateStops(getMannheimUniversityToMannheimBerlinerPlaceIntermediateStop())
@@ -132,7 +132,7 @@ public class LegObjectMother {
                 .setVehicleType(VehicleType.WALK)
                 .setDeparture(departure)
                 .setArrival(arrival)
-                .setTrack(getExampleTrack())
+                .setWaypoints(getExampleWaypoints())
                 .build();
 
     }

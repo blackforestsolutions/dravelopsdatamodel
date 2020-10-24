@@ -4,15 +4,15 @@ import org.springframework.data.geo.Point;
 
 import java.util.LinkedList;
 
-public class TrackObjectMother {
+public class WaypointsObjectMother {
 
-    public static LinkedList<Point> getExampleTrack() {
+    public static LinkedList<Point> getExampleWaypoints() {
         LinkedList<Point> track = new LinkedList<>();
         track.add(new Point(7.95293d, 48.09047d));
         return track;
     }
 
-    public static LinkedList<Point> getFurtwangenExampleTrack() {
+    public static LinkedList<Point> getFurtwangenExampleWaypoints() {
         LinkedList<Point> track = new LinkedList<>();
 
         track.add(new Point(7.95293d, 48.09047d));
@@ -42,7 +42,7 @@ public class TrackObjectMother {
         return track;
     }
 
-    public static LinkedList<Point> getMannheimUniversityToMannheimBerlinerPlatzTrack() {
+    public static LinkedList<Point> getMannheimUniversityToMannheimBerlinerPlatzWaypoints() {
         LinkedList<Point> track = new LinkedList<>();
 
         track.add(new Point(8.46334d, 49.48218d));

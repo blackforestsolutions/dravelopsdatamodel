@@ -4,7 +4,7 @@
       "id" : "3b4057a4-b0c9-4d6d-9a14-d89854fa42af",
       "departure" : {
         "name" : "Furtwangen",
-        "coordinates" : {
+        "point" : {
           "x" : 48.05259,
           "y" : 8.207245
         },
@@ -14,7 +14,7 @@
       },
       "arrival" : {
         "name" : "Furtwangen",
-        "coordinates" : {
+        "point" : {
           "x" : 48.05259,
           "y" : 8.207245
         },
@@ -28,7 +28,7 @@
         "metric" : "KILOMETERS"
       },
       "vehicleType" : "BUS",
-      "track" : [ {
+      "waypoints" : [ {
         "x" : 0.0,
         "y" : 0.0
       } ],
@@ -40,7 +40,7 @@
       "vehicleName" : "Furtwangen - Triberg",
       "intermediateStops" : [ {
         "name" : "Furtwangen",
-        "coordinates" : {
+        "point" : {
           "x" : 48.05259,
           "y" : 8.207245
         },
