@@ -2,9 +2,12 @@ package de.blackforestsolutions.dravelopsdatamodel.objectmothers;
 
 import de.blackforestsolutions.dravelopsdatamodel.Optimization;
 import de.blackforestsolutions.dravelopsdatamodel.util.ApiToken;
+import org.apache.commons.beanutils.PropertyUtilsBean;
+import org.springframework.data.geo.Box;
 import org.springframework.data.geo.Point;
 
 import java.time.ZonedDateTime;
+import java.util.List;
 import java.util.Locale;
 
 import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.PointObjectMother.getAmGrosshausbergPoint;
@@ -31,7 +34,9 @@ public class ApiTokenObjectMother {
                 .setHasReferences(true)
                 .setPath("/path")
                 .setApiVersion("v1")
-                .setMaxResults(1);
+                .setMaxResults(1)
+                .setBox(new Box(new Point(0.0d, 0.0d), new Point(0.0d, 0.0d)))
+                .setLayers(List.of("test"));
     }
 
     public static ApiToken getApiTokenWithNoEmptyFields() {
@@ -54,6 +59,8 @@ public class ApiTokenObjectMother {
                 .setPath("/path")
                 .setMaxResults(1)
                 .setApiVersion("v1")
+                .setBox(new Box(new Point(0.0d, 0.0d), new Point(0.0d, 0.0d)))
+                .setLayers(List.of("test"))
                 .build();
     }
 
@@ -64,6 +71,13 @@ public class ApiTokenObjectMother {
                 .setDateTime(ZonedDateTime.parse("2020-09-30T13:00:00+02:00"))
                 .setDepartureCoordinate(getAmGrosshausbergPoint())
                 .setArrivalCoordinate(getSickAgPoint())
+                .setLanguage(Locale.forLanguageTag("de"))
+                .build();
+    }
+
+    public static ApiToken getTravelPointUserRequestToken() {
+        return new ApiToken.ApiTokenBuilder()
+                .setDeparture("Sick AG")
                 .setLanguage(Locale.forLanguageTag("de"))
                 .build();
     }
@@ -94,21 +108,53 @@ public class ApiTokenObjectMother {
                 .build();
     }
 
-    public static ApiToken getPeliasApiToken() {
-        return new ApiToken.ApiTokenBuilder(getConfiguredPeliasApiToken())
+    public static ApiToken getConfiguredPeliasApiToken() {
+        return new ApiToken.ApiTokenBuilder(getConfiguredPeliasBaseApiToken())
+                .setMaxResults(2)
+                .setDeparture("Start")
+                .setArrival("Ziel")
+                .build();
+    }
+
+    public static ApiToken getPeliasAutocompleteApiToken() {
+        return new ApiToken.ApiTokenBuilder(getConfiguredPeliasAutocompleteApiToken())
+                .setDeparture("Sick AG")
                 .setLanguage(Locale.forLanguageTag("de"))
                 .build();
     }
 
-    public static ApiToken getConfiguredPeliasApiToken() {
+    public static ApiToken getConfiguredPeliasAutocompleteApiToken() {
+        return new ApiToken.ApiTokenBuilder(getConfiguredPeliasBaseApiToken())
+                .setMaxResults(10)
+                .setLayers(List.of(
+                        "venue",
+                        "address",
+                        "street",
+                        "country",
+                        "macroregion",
+                        "region",
+                        "macrocounty",
+                        "county",
+                        "locality",
+                        "localadmin",
+                        "borough",
+                        "neighbourhood",
+                        "coarse",
+                        "postalcode"
+                ))
+                .setBox(new Box(
+                        new Point(7.593844d, 47.590746d),
+                        new Point(9.798538d, 49.717617d)
+                ))
+                .build();
+    }
+
+    private static ApiToken getConfiguredPeliasBaseApiToken() {
         return new ApiToken.ApiTokenBuilder()
                 .setProtocol("http")
                 .setHost("localhost")
                 .setPort(4000)
                 .setApiVersion("v1")
-                .setMaxResults(2)
-                .setDeparture("Start")
-                .setArrival("Ziel")
                 .build();
     }
 
@@ -118,6 +164,15 @@ public class ApiTokenObjectMother {
                 .setHost("localhost")
                 .setPort(8084)
                 .setPath("/otp/journeys/get")
+                .build();
+    }
+
+    public static ApiToken getConfiguredPolygonApiToken() {
+        return new ApiToken.ApiTokenBuilder()
+                .setProtocol("http")
+                .setHost("localhost")
+                .setPort(8083)
+                .setPath("/pelias/travelpoints/get")
                 .build();
     }
 
@@ -132,6 +187,17 @@ public class ApiTokenObjectMother {
                 .setDateTime(ZonedDateTime.parse("2020-09-30T13:00:00+02:00"))
                 .setDepartureCoordinate(getAmGrosshausbergPoint())
                 .setArrivalCoordinate(getSickAgPoint())
+                .setLanguage(Locale.forLanguageTag("de"))
+                .build();
+    }
+
+    public static ApiToken getPolygonApiToken() {
+        return new ApiToken.ApiTokenBuilder()
+                .setProtocol("http")
+                .setHost("localhost")
+                .setPort(8083)
+                .setPath("/pelias/travelpoints/get")
+                .setDeparture("Sick AG")
                 .setLanguage(Locale.forLanguageTag("de"))
                 .build();
     }

@@ -5,9 +5,11 @@ import de.blackforestsolutions.dravelopsdatamodel.Optimization;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.geo.Box;
 import org.springframework.data.geo.Point;
 
 import java.time.ZonedDateTime;
+import java.util.List;
 import java.util.Locale;
 
 @Setter(AccessLevel.PACKAGE)
@@ -56,6 +58,10 @@ final class ApiTokenDto {
     private Integer maxResults;
     @JsonProperty("apiVersion")
     private String apiVersion;
+    @JsonProperty("box")
+    private Box box;
+    @JsonProperty("layers")
+    private List<String> layers;
 
 
     ApiTokenDto() {
@@ -81,6 +87,8 @@ final class ApiTokenDto {
         this.path = apiToken.getPath();
         this.maxResults = apiToken.getMaxResults();
         this.apiVersion = apiToken.getApiVersion();
+        this.box = apiToken.getBox();
+        this.layers = apiToken.getLayers();
     }
 
     void setIsArrivalDateTime(boolean isArrivalDateTime) {

@@ -6,9 +6,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
+import org.springframework.data.geo.Box;
 import org.springframework.data.geo.Point;
 
 import java.time.ZonedDateTime;
+import java.util.List;
 import java.util.Locale;
 
 @Getter
@@ -35,6 +37,8 @@ public final class ApiToken {
     private final String path;
     private final Integer maxResults;
     private final String apiVersion;
+    private final Box box;
+    private final List<String> layers;
 
     private ApiToken(ApiTokenBuilder apiTokenBuilder) {
         this.host = apiTokenBuilder.getHost();
@@ -55,6 +59,8 @@ public final class ApiToken {
         this.path = apiTokenBuilder.getPath();
         this.maxResults = apiTokenBuilder.getMaxResults();
         this.apiVersion = apiTokenBuilder.getApiVersion();
+        this.box = apiTokenBuilder.getBox();
+        this.layers = apiTokenBuilder.getLayers();
     }
 
     public boolean getIsArrivalDateTime() {
@@ -99,6 +105,8 @@ public final class ApiToken {
         private String path;
         private Integer maxResults;
         private String apiVersion;
+        private Box box;
+        private List<String> layers;
 
         @SuppressWarnings("CPD-START")
         public ApiTokenBuilder(ApiToken apiToken) {
@@ -120,6 +128,8 @@ public final class ApiToken {
             this.path = apiToken.getPath();
             this.maxResults = apiToken.getMaxResults();
             this.apiVersion = apiToken.getApiVersion();
+            this.box = apiToken.getBox();
+            this.layers = apiToken.getLayers();
         }
 
         @SuppressWarnings("CPD-START")
@@ -142,6 +152,8 @@ public final class ApiToken {
             this.path = apiTokenDto.getPath();
             this.maxResults = apiTokenDto.getMaxResults();
             this.apiVersion = apiTokenDto.getApiVersion();
+            this.box = apiTokenDto.getBox();
+            this.layers = apiTokenDto.getLayers();
         }
 
         public ApiTokenBuilder setIsArrivalDateTime(boolean isArrivalDateTime) {
