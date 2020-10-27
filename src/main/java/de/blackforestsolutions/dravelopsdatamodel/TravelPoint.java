@@ -20,7 +20,7 @@ public final class TravelPoint implements Serializable {
 
     private final String name;
 
-    private final Point coordinates;
+    private final Point point;
 
     private final ZonedDateTime arrivalTime;
 
@@ -30,7 +30,7 @@ public final class TravelPoint implements Serializable {
 
     private TravelPoint(TravelPointBuilder travelPointBuilder) {
         this.name = travelPointBuilder.getName();
-        this.coordinates = travelPointBuilder.getCoordinates();
+        this.point = travelPointBuilder.getPoint();
         this.arrivalTime = travelPointBuilder.getArrivalTime();
         this.departureTime = travelPointBuilder.getDepartureTime();
         this.platform = travelPointBuilder.getPlatform();
@@ -45,7 +45,7 @@ public final class TravelPoint implements Serializable {
 
         private String name = "";
 
-        private Point coordinates;
+        private Point point;
 
         private ZonedDateTime arrivalTime;
 

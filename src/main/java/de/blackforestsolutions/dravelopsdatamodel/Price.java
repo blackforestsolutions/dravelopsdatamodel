@@ -14,12 +14,12 @@ public final class Price {
 
     private final PriceType priceType;
 
-    private final Currency currency;
+    private final Currency currencyCode;
 
     private final Long smallestCurrencyValue;
 
     private Price(PriceBuilder priceBuilder) {
-        this.currency = priceBuilder.getCurrency();
+        this.currencyCode = priceBuilder.getCurrencyCode();
         this.smallestCurrencyValue = priceBuilder.getSmallestCurrencyValue();
         this.priceType = priceBuilder.getPriceType();
     }
@@ -32,7 +32,7 @@ public final class Price {
 
         private PriceType priceType;
 
-        private Currency currency;
+        private Currency currencyCode;
 
         private Long smallestCurrencyValue;
 

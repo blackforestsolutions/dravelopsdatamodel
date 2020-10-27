@@ -1,11 +1,14 @@
 package de.blackforestsolutions.dravelopsdatamodel.objectmothers;
 
-import de.blackforestsolutions.dravelopsdatamodel.util.ApiToken;
 import de.blackforestsolutions.dravelopsdatamodel.Optimization;
+import de.blackforestsolutions.dravelopsdatamodel.util.ApiToken;
 import org.springframework.data.geo.Point;
 
 import java.time.ZonedDateTime;
 import java.util.Locale;
+
+import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.PointObjectMother.getAmGrosshausbergPoint;
+import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.PointObjectMother.getSickAgPoint;
 
 public class ApiTokenObjectMother {
 
@@ -51,6 +54,85 @@ public class ApiTokenObjectMother {
                 .setPath("/path")
                 .setMaxResults(1)
                 .setApiVersion("v1")
+                .build();
+    }
+
+    public static ApiToken getUserRequestToken() {
+        return new ApiToken.ApiTokenBuilder()
+                .setOptimize(Optimization.QUICK)
+                .setIsArrivalDateTime(false)
+                .setDateTime(ZonedDateTime.parse("2020-09-30T13:00:00+02:00"))
+                .setDepartureCoordinate(getAmGrosshausbergPoint())
+                .setArrivalCoordinate(getSickAgPoint())
+                .setLanguage(Locale.forLanguageTag("de"))
+                .build();
+    }
+
+    public static ApiToken getOpenTripPlannerConfiguredApiToken() {
+        return new ApiToken.ApiTokenBuilder()
+                .setProtocol("http")
+                .setHost("localhost")
+                .setPort(8089)
+                .setRouter("bw")
+                .build();
+    }
+
+    public static ApiToken getOpenTripPlannerApiToken() {
+        return new ApiToken.ApiTokenBuilder()
+                .setProtocol("http")
+                .setHost("localhost")
+                .setPort(8089)
+                .setRouter("bw")
+                .setLanguage(Locale.forLanguageTag("de"))
+                .setOptimize(Optimization.QUICK)
+                .setIsArrivalDateTime(false)
+                .setDateTime(ZonedDateTime.parse("2020-09-30T13:00:00+02:00"))
+                .setDeparture("Am Großhausberg 8")
+                .setDepartureCoordinate(getAmGrosshausbergPoint())
+                .setArrival("Sick AG")
+                .setArrivalCoordinate(getSickAgPoint())
+                .build();
+    }
+
+    public static ApiToken getPeliasApiToken() {
+        return new ApiToken.ApiTokenBuilder(getConfiguredPeliasApiToken())
+                .setLanguage(Locale.forLanguageTag("de"))
+                .build();
+    }
+
+    public static ApiToken getConfiguredPeliasApiToken() {
+        return new ApiToken.ApiTokenBuilder()
+                .setProtocol("http")
+                .setHost("localhost")
+                .setPort(4000)
+                .setApiVersion("v1")
+                .setMaxResults(2)
+                .setDeparture("Start")
+                .setArrival("Ziel")
+                .build();
+    }
+
+    public static ApiToken getConfiguredOtpMapperApiToken() {
+        return new ApiToken.ApiTokenBuilder()
+                .setProtocol("http")
+                .setHost("localhost")
+                .setPort(8084)
+                .setPath("/otp/journeys/get")
+                .build();
+    }
+
+    public static ApiToken getOtpMapperApiToken() {
+        return new ApiToken.ApiTokenBuilder()
+                .setProtocol("http")
+                .setHost("localhost")
+                .setPort(8084)
+                .setPath("/otp/journeys/get")
+                .setOptimize(Optimization.QUICK)
+                .setIsArrivalDateTime(false)
+                .setDateTime(ZonedDateTime.parse("2020-09-30T13:00:00+02:00"))
+                .setDepartureCoordinate(getAmGrosshausbergPoint())
+                .setArrivalCoordinate(getSickAgPoint())
+                .setLanguage(Locale.forLanguageTag("de"))
                 .build();
     }
 }

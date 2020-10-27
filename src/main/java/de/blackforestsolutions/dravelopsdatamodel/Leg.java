@@ -26,15 +26,13 @@ public final class Leg {
 
     private final TravelPoint arrival;
 
-    private final Duration duration;
+    private final Duration delayInMinutes;
 
-    private final Duration delay;
-
-    private final Distance distance;
+    private final Distance distanceInKilometers;
 
     private final VehicleType vehicleType;
 
-    private final LinkedList<Point> track;
+    private final LinkedList<Point> waypoints;
 
     private final TravelProvider travelProvider;
 
@@ -48,20 +46,19 @@ public final class Leg {
         this.id = legBuilder.getId();
         this.departure = legBuilder.getDeparture();
         this.arrival = legBuilder.getArrival();
-        this.duration = legBuilder.getDuration();
-        this.delay = legBuilder.getDelay();
-        this.distance = legBuilder.getDistance();
+        this.delayInMinutes = legBuilder.getDelayInMinutes();
+        this.distanceInKilometers = legBuilder.getDistanceInKilometers();
         this.vehicleType = legBuilder.getVehicleType();
-        this.track = legBuilder.getTrack();
+        this.waypoints = legBuilder.getWaypoints();
         this.travelProvider = legBuilder.getTravelProvider();
         this.vehicleNumber = legBuilder.getVehicleNumber();
         this.vehicleName = legBuilder.getVehicleName();
         this.intermediateStops = legBuilder.getIntermediateStops();
     }
 
-    public LinkedList<Point> getTrack() {
-        if (track != null) {
-            return (LinkedList<Point>) track.clone();
+    public LinkedList<Point> getWaypoints() {
+        if (waypoints != null) {
+            return (LinkedList<Point>) waypoints.clone();
         }
         return null;
     }
@@ -87,15 +84,13 @@ public final class Leg {
 
         private TravelPoint arrival;
 
-        private Duration duration;
+        private Duration delayInMinutes;
 
-        private Duration delay;
-
-        private Distance distance;
+        private Distance distanceInKilometers;
 
         private VehicleType vehicleType;
 
-        private LinkedList<Point> track;
+        private LinkedList<Point> waypoints;
 
         private TravelProvider travelProvider;
 

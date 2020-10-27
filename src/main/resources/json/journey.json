@@ -1,11 +1,10 @@
 {
   "id" : "5f7df5c4-3b55-11ea-b77f-2e728ce88125",
-  "legs" : {
-    "3b4057a4-b0c9-4d6d-9a14-d89854fa42af" : {
+  "legs" : [ {
       "id" : "3b4057a4-b0c9-4d6d-9a14-d89854fa42af",
       "departure" : {
         "name" : "Furtwangen",
-        "coordinates" : {
+        "point" : {
           "x" : 48.05259,
           "y" : 8.207245
         },
@@ -15,7 +14,7 @@
       },
       "arrival" : {
         "name" : "Furtwangen",
-        "coordinates" : {
+        "point" : {
           "x" : 48.05259,
           "y" : 8.207245
         },
@@ -23,14 +22,13 @@
         "departureTime" : "2020-09-27T10:15:30+02:00",
         "platform" : "1"
       },
-      "duration" : 0.0,
-      "delay" : 60.000000000,
-      "distance" : {
+      "delayInMinutes" : 60.000000000,
+      "distanceInKilometers" : {
         "value" : 5.253,
         "metric" : "KILOMETERS"
       },
       "vehicleType" : "BUS",
-      "track" : [ {
+      "waypoints" : [ {
         "x" : 0.0,
         "y" : 0.0
       } ],
@@ -42,7 +40,7 @@
       "vehicleName" : "Furtwangen - Triberg",
       "intermediateStops" : [ {
         "name" : "Furtwangen",
-        "coordinates" : {
+        "point" : {
           "x" : 48.05259,
           "y" : 8.207245
         },
@@ -50,13 +48,10 @@
         "departureTime" : "2020-09-27T10:15:30+02:00",
         "platform" : "1"
       } ]
-    }
-  },
-  "prices" : {
-    "REGULAR": {
+  } ],
+  "prices" : [ {
       "priceType": "REGULAR",
-      "currency": "EUR",
+      "currencyCode": "EUR",
       "smallestCurrencyValue": 100
-    }
-  }
+  } ]
 }
