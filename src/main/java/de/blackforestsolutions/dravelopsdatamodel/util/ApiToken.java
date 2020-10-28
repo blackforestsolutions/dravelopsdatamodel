@@ -108,6 +108,13 @@ public final class ApiToken {
         private Box box;
         private List<String> layers;
 
+        /**
+         * This warning indicates a duplicated code fragment.
+         * However, since there are two constructors of different types, one solution would be to create a method with a
+         * large number of parameters. Since this leads to NumberParameter violation, I leave it with a constructor.
+         * Two constructors are also more readable than one method with many params and two constructors calling it.
+         * @param apiToken to copy to {@link ApiTokenBuilder}
+         */
         @SuppressWarnings("CPD-START")
         public ApiTokenBuilder(ApiToken apiToken) {
             this.host = apiToken.getHost();
@@ -131,7 +138,13 @@ public final class ApiToken {
             this.box = apiToken.getBox();
             this.layers = apiToken.getLayers();
         }
-
+        /**
+         * This warning indicates a duplicated code fragment.
+         * However, since there are two constructors of different types, one solution would be to create a method with a
+         * large number of parameters. Since this leads to NumberParameter violation, I leave it with a constructor.
+         * Two constructors are also more readable than one method with many params and two constructors calling it.
+         * @param apiTokenDto to copy to {@link ApiTokenBuilder}
+         */
         @SuppressWarnings("CPD-START")
         ApiTokenBuilder(ApiTokenDto apiTokenDto) {
             this.host = apiTokenDto.getHost();
