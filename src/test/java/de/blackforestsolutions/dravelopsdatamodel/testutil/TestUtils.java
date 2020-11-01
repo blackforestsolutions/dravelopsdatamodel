@@ -1,6 +1,7 @@
 package de.blackforestsolutions.dravelopsdatamodel.testutil;
 
 import de.blackforestsolutions.dravelopsdatamodel.Journey;
+import de.blackforestsolutions.dravelopsdatamodel.TravelPoint;
 import de.blackforestsolutions.dravelopsdatamodel.util.ApiToken;
 import de.blackforestsolutions.dravelopsdatamodel.util.DravelOpsJsonMapper;
 import org.springframework.core.io.ClassPathResource;
@@ -90,6 +91,18 @@ public class TestUtils {
     public static String toJson(ApiToken apiToken) {
         DravelOpsJsonMapper mapper = new DravelOpsJsonMapper();
         return mapper.map(apiToken).block();
+    }
+
+    /**
+     * NEVER USE IN PRODUCTIVE CODE!
+     * Stringify the given TravelPoint to Json
+     *
+     * @param travelPoint to stringify
+     * @return jsonTravelPoint
+     */
+    public static String toJson(TravelPoint travelPoint) {
+        DravelOpsJsonMapper mapper = new DravelOpsJsonMapper();
+        return mapper.map(travelPoint).block();
     }
 
 

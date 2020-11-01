@@ -141,4 +141,46 @@ public class TravelPointObjectMother {
                 .setArrivalTime(ZonedDateTime.parse("2020-10-06T01:33:29+02:00"))
                 .build();
     }
+
+    public static TravelPoint getStuttgarterStreetOneTravelPoint() {
+        return new TravelPoint.TravelPointBuilder()
+                .setName("Stuttgarter Straße 1, Rottweil, Deutschland")
+                .setPoint(new Point(8.674534d, 48.128923d))
+                .build();
+    }
+
+    public static TravelPoint getGermanyTravelPoint() {
+        return new TravelPoint.TravelPointBuilder()
+                .setName("Deutschland")
+                .setPoint(new Point(9.687096d, 50.970097d))
+                .build();
+    }
+
+    public static TravelPoint getRendsburgCountyTravelPoint() {
+        return new TravelPoint.TravelPointBuilder()
+                .setName("Kreis Rendsburg-Eckernförde, Deutschland")
+                .setPoint(new Point(9.7748d, 54.264295d))
+                .build();
+    }
+
+    public static TravelPoint getFurtwangenLocalityTravelPoint() {
+        return new TravelPoint.TravelPointBuilder()
+                .setName("Furtwangen im Schwarzwald, Deutschland")
+                .setPoint(new Point(8.195593d,48.049034d))
+                .build();
+    }
+
+    public static TravelPoint getAmGrosshaubergTravelPoint() {
+        return new TravelPoint.TravelPointBuilder()
+                .setName("Am Großhausberg, Furtwangen im Schwarzwald, Deutschland")
+                .setPoint(new Point(8.209198d,48.048381d))
+                .build();
+    }
+
+    public static TravelPoint getGermanWatchMuseumTravelPoint() {
+        return new TravelPoint.TravelPointBuilder()
+                .setName("Deutsches Uhrenmuseum Furtwangen, Furtwangen im Schwarzwald, Deutschland")
+                .setPoint(new Point(8.207673d,48.051086d))
+                .build();
+    }
 }

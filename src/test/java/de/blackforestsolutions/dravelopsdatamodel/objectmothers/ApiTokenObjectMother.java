@@ -2,11 +2,14 @@ package de.blackforestsolutions.dravelopsdatamodel.objectmothers;
 
 import de.blackforestsolutions.dravelopsdatamodel.Optimization;
 import de.blackforestsolutions.dravelopsdatamodel.util.ApiToken;
+import org.springframework.data.geo.Box;
 import org.springframework.data.geo.Point;
 
 import java.time.ZonedDateTime;
+import java.util.List;
 import java.util.Locale;
 
+import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.BoxObjectMother.getOpenTripPlannerBox;
 import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.PointObjectMother.getAmGrosshausbergPoint;
 import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.PointObjectMother.getSickAgPoint;
 
@@ -31,7 +34,9 @@ public class ApiTokenObjectMother {
                 .setHasReferences(true)
                 .setPath("/path")
                 .setApiVersion("v1")
-                .setMaxResults(1);
+                .setMaxResults(1)
+                .setBox(new Box(new Point(0.0d, 0.0d), new Point(0.0d, 0.0d)))
+                .setLayers(List.of("test"));
     }
 
     public static ApiToken getApiTokenWithNoEmptyFields() {
@@ -54,10 +59,14 @@ public class ApiTokenObjectMother {
                 .setPath("/path")
                 .setMaxResults(1)
                 .setApiVersion("v1")
+                .setBox(new Box(new Point(0.0d, 0.0d), new Point(0.0d, 0.0d)))
+                .setLayers(List.of("test"))
                 .build();
     }
 
-    public static ApiToken getUserRequestToken() {
+    // Start
+    // Journey Token Request Chain from StargateService to OpenTripPlanner
+    public static ApiToken getJourneyUserRequestToken() {
         return new ApiToken.ApiTokenBuilder()
                 .setOptimize(Optimization.QUICK)
                 .setIsArrivalDateTime(false)
@@ -65,50 +74,6 @@ public class ApiTokenObjectMother {
                 .setDepartureCoordinate(getAmGrosshausbergPoint())
                 .setArrivalCoordinate(getSickAgPoint())
                 .setLanguage(Locale.forLanguageTag("de"))
-                .build();
-    }
-
-    public static ApiToken getOpenTripPlannerConfiguredApiToken() {
-        return new ApiToken.ApiTokenBuilder()
-                .setProtocol("http")
-                .setHost("localhost")
-                .setPort(8089)
-                .setRouter("bw")
-                .build();
-    }
-
-    public static ApiToken getOpenTripPlannerApiToken() {
-        return new ApiToken.ApiTokenBuilder()
-                .setProtocol("http")
-                .setHost("localhost")
-                .setPort(8089)
-                .setRouter("bw")
-                .setLanguage(Locale.forLanguageTag("de"))
-                .setOptimize(Optimization.QUICK)
-                .setIsArrivalDateTime(false)
-                .setDateTime(ZonedDateTime.parse("2020-09-30T13:00:00+02:00"))
-                .setDeparture("Am Großhausberg 8")
-                .setDepartureCoordinate(getAmGrosshausbergPoint())
-                .setArrival("Sick AG")
-                .setArrivalCoordinate(getSickAgPoint())
-                .build();
-    }
-
-    public static ApiToken getPeliasApiToken() {
-        return new ApiToken.ApiTokenBuilder(getConfiguredPeliasApiToken())
-                .setLanguage(Locale.forLanguageTag("de"))
-                .build();
-    }
-
-    public static ApiToken getConfiguredPeliasApiToken() {
-        return new ApiToken.ApiTokenBuilder()
-                .setProtocol("http")
-                .setHost("localhost")
-                .setPort(4000)
-                .setApiVersion("v1")
-                .setMaxResults(2)
-                .setDeparture("Start")
-                .setArrival("Ziel")
                 .build();
     }
 
@@ -135,4 +100,152 @@ public class ApiTokenObjectMother {
                 .setLanguage(Locale.forLanguageTag("de"))
                 .build();
     }
+
+    public static ApiToken getConfiguredPeliasReverseApiToken() {
+        return new ApiToken.ApiTokenBuilder()
+                .setProtocol("http")
+                .setHost("localhost")
+                .setPort(4000)
+                .setApiVersion("v1")
+                .setMaxResults(1)
+                .setDeparture("Start")
+                .setArrival("Ziel")
+                .build();
+    }
+
+    public static ApiToken getPeliasReverseApiToken() {
+        return new ApiToken.ApiTokenBuilder()
+                .setProtocol("http")
+                .setHost("localhost")
+                .setPort(4000)
+                .setApiVersion("v1")
+                .setMaxResults(1)
+                .setDeparture("Start")
+                .setArrival("Ziel")
+                .setLanguage(Locale.forLanguageTag("de"))
+                .build();
+    }
+
+    // Now here is coming {@link getOpenTripPlannerConfiguredApiToken} which is used for DravelopsOtpMapperService
+    // as well as DravelOpsPolygonService
+
+    public static ApiToken getOpenTripPlannerApiToken() {
+        return new ApiToken.ApiTokenBuilder()
+                .setProtocol("http")
+                .setHost("localhost")
+                .setPort(8089)
+                .setRouter("bw")
+                .setLanguage(Locale.forLanguageTag("de"))
+                .setOptimize(Optimization.QUICK)
+                .setIsArrivalDateTime(false)
+                .setDateTime(ZonedDateTime.parse("2020-09-30T13:00:00+02:00"))
+                .setDeparture("Am Großhausberg 8")
+                .setDepartureCoordinate(getAmGrosshausbergPoint())
+                .setArrival("Sick AG")
+                .setArrivalCoordinate(getSickAgPoint())
+                .build();
+    }
+    // End
+
+
+    // Start
+    // TravelPoint Token Request Chain from StargateService to DravelOpsPelias
+    public static ApiToken getTravelPointUserRequestToken() {
+        return new ApiToken.ApiTokenBuilder()
+                .setDeparture("Sick AG")
+                .setLanguage(Locale.forLanguageTag("de"))
+                .build();
+    }
+
+    public static ApiToken getConfiguredPolygonApiToken() {
+        return new ApiToken.ApiTokenBuilder()
+                .setProtocol("http")
+                .setHost("localhost")
+                .setPort(8083)
+                .setPath("/pelias/travelpoints/get")
+                .build();
+    }
+
+    public static ApiToken getPolygonApiToken() {
+        return new ApiToken.ApiTokenBuilder()
+                .setProtocol("http")
+                .setHost("localhost")
+                .setPort(8083)
+                .setPath("/pelias/travelpoints/get")
+                .setDeparture("Sick AG")
+                .setLanguage(Locale.forLanguageTag("de"))
+                .build();
+    }
+
+    // Now here is coming {@link getOpenTripPlannerConfiguredApiToken()} which is used for DravelopsOtpMapperService
+    // as well as DravelOpsPolygonService
+
+    public static ApiToken getConfiguredPeliasAutocompleteApiToken() {
+        return new ApiToken.ApiTokenBuilder()
+                .setProtocol("http")
+                .setHost("localhost")
+                .setPort(4000)
+                .setApiVersion("v1")
+                .setMaxResults(10)
+                .setLayers(List.of(
+                        "venue",
+                        "address",
+                        "street",
+                        "country",
+                        "macroregion",
+                        "region",
+                        "macrocounty",
+                        "county",
+                        "locality",
+                        "localadmin",
+                        "borough",
+                        "neighbourhood",
+                        "coarse",
+                        "postalcode"
+                ))
+                .build();
+    }
+
+    public static ApiToken getPeliasAutocompleteApiToken() {
+        return new ApiToken.ApiTokenBuilder()
+                .setProtocol("http")
+                .setHost("localhost")
+                .setPort(4000)
+                .setApiVersion("v1")
+                .setDeparture("Sick AG")
+                .setLanguage(Locale.forLanguageTag("de"))
+                .setMaxResults(10)
+                .setLayers(List.of(
+                        "venue",
+                        "address",
+                        "street",
+                        "country",
+                        "macroregion",
+                        "region",
+                        "macrocounty",
+                        "county",
+                        "locality",
+                        "localadmin",
+                        "borough",
+                        "neighbourhood",
+                        "coarse",
+                        "postalcode"
+                ))
+                .setBox(getOpenTripPlannerBox())
+                .build();
+    }
+    // End
+
+    // Start
+    // Both (Journey and TravelPoint RequestToken)
+    public static ApiToken getOpenTripPlannerConfiguredApiToken() {
+        return new ApiToken.ApiTokenBuilder()
+                .setProtocol("http")
+                .setHost("localhost")
+                .setPort(8089)
+                .setRouter("bw")
+                .build();
+    }
+    // End
+
 }
