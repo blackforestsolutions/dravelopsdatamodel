@@ -1,5 +1,7 @@
 package de.blackforestsolutions.dravelopsdatamodel.util;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 import de.blackforestsolutions.dravelopsdatamodel.Optimization;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -14,6 +16,7 @@ import java.util.List;
 import java.util.Locale;
 
 @Getter
+@JsonDeserialize(builder = ApiToken.ApiTokenBuilder.class)
 public final class ApiToken {
 
     private final String host;
@@ -78,6 +81,7 @@ public final class ApiToken {
     @Setter
     @Getter
     @Accessors(chain = true)
+    @JsonPOJOBuilder(withPrefix = "set")
     @NoArgsConstructor
     public static class ApiTokenBuilder {
 
@@ -110,9 +114,42 @@ public final class ApiToken {
 
         /**
          * This warning indicates a duplicated code fragment.
-         * However, since there are two constructors of different types, one solution would be to create a method with a
+         * However, since there are three constructors of different types, one solution would be to create a method with a
          * large number of parameters. Since this leads to NumberParameter violation, I leave it with a constructor.
-         * Two constructors are also more readable than one method with many params and two constructors calling it.
+         * three constructors are also more readable than one method with many params and three constructors calling it.
+         *
+         * @param apiTokenBuilder to copy to {@link ApiTokenBuilder}
+         */
+        @SuppressWarnings("CPD-START")
+        public ApiTokenBuilder(ApiTokenBuilder apiTokenBuilder) {
+            this.host = apiTokenBuilder.getHost();
+            this.protocol = apiTokenBuilder.getProtocol();
+            this.port = apiTokenBuilder.getPort();
+            this.departure = apiTokenBuilder.getDeparture();
+            this.departureCoordinate = apiTokenBuilder.getDepartureCoordinate();
+            this.arrival = apiTokenBuilder.getArrival();
+            this.arrivalCoordinate = apiTokenBuilder.getArrivalCoordinate();
+            this.dateTime = apiTokenBuilder.getDateTime();
+            this.isArrivalDateTime = apiTokenBuilder.getIsArrivalDateTime();
+            this.language = apiTokenBuilder.getLanguage();
+            this.router = apiTokenBuilder.getRouter();
+            this.optimize = apiTokenBuilder.getOptimize();
+            this.radius = apiTokenBuilder.getRadius();
+            this.hasDetails = apiTokenBuilder.getHasDetails();
+            this.hasReferences = apiTokenBuilder.getHasReferences();
+            this.path = apiTokenBuilder.getPath();
+            this.maxResults = apiTokenBuilder.getMaxResults();
+            this.apiVersion = apiTokenBuilder.getApiVersion();
+            this.box = apiTokenBuilder.getBox();
+            this.layers = apiTokenBuilder.getLayers();
+        }
+
+        /**
+         * This warning indicates a duplicated code fragment.
+         * However, since there are three constructors of different types, one solution would be to create a method with a
+         * large number of parameters. Since this leads to NumberParameter violation, I leave it with a constructor.
+         * three constructors are also more readable than one method with many params and three constructors calling it.
+         *
          * @param apiToken to copy to {@link ApiTokenBuilder}
          */
         @SuppressWarnings("CPD-START")
@@ -123,7 +160,7 @@ public final class ApiToken {
             this.departure = apiToken.getDeparture();
             this.departureCoordinate = apiToken.getDepartureCoordinate();
             this.arrival = apiToken.getArrival();
-            this.arrivalCoordinate =  apiToken.getArrivalCoordinate();
+            this.arrivalCoordinate = apiToken.getArrivalCoordinate();
             this.dateTime = apiToken.getDateTime();
             this.isArrivalDateTime = apiToken.getIsArrivalDateTime();
             this.language = apiToken.getLanguage();
@@ -138,11 +175,13 @@ public final class ApiToken {
             this.box = apiToken.getBox();
             this.layers = apiToken.getLayers();
         }
+
         /**
          * This warning indicates a duplicated code fragment.
-         * However, since there are two constructors of different types, one solution would be to create a method with a
+         * However, since there are three constructors of different types, one solution would be to create a method with a
          * large number of parameters. Since this leads to NumberParameter violation, I leave it with a constructor.
-         * Two constructors are also more readable than one method with many params and two constructors calling it.
+         * three constructors are also more readable than one method with many params and three constructors calling it.
+         *
          * @param apiTokenDto to copy to {@link ApiTokenBuilder}
          */
         @SuppressWarnings("CPD-START")
