@@ -1,8 +1,7 @@
-package de.blackforestsolutions.dravelopsdatamodel.util;
+package de.blackforestsolutions.dravelopsdatamodel;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
-import de.blackforestsolutions.dravelopsdatamodel.Optimization;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -174,38 +173,6 @@ public final class ApiToken {
             this.apiVersion = apiToken.getApiVersion();
             this.box = apiToken.getBox();
             this.layers = apiToken.getLayers();
-        }
-
-        /**
-         * This warning indicates a duplicated code fragment.
-         * However, since there are three constructors of different types, one solution would be to create a method with a
-         * large number of parameters. Since this leads to NumberParameter violation, I leave it with a constructor.
-         * three constructors are also more readable than one method with many params and three constructors calling it.
-         *
-         * @param apiTokenDto to copy to {@link ApiTokenBuilder}
-         */
-        @SuppressWarnings("CPD-START")
-        ApiTokenBuilder(ApiTokenDto apiTokenDto) {
-            this.host = apiTokenDto.getHost();
-            this.protocol = apiTokenDto.getProtocol();
-            this.port = apiTokenDto.getPort();
-            this.departure = apiTokenDto.getDeparture();
-            this.departureCoordinate = apiTokenDto.getDepartureCoordinate();
-            this.arrival = apiTokenDto.getArrival();
-            this.arrivalCoordinate = apiTokenDto.getArrivalCoordinate();
-            this.dateTime = apiTokenDto.getDateTime();
-            this.isArrivalDateTime = apiTokenDto.getIsArrivalDateTime();
-            this.language = apiTokenDto.getLanguage();
-            this.router = apiTokenDto.getRouter();
-            this.optimize = apiTokenDto.getOptimize();
-            this.radius = apiTokenDto.getRadius();
-            this.hasDetails = apiTokenDto.getHasDetails();
-            this.hasReferences = apiTokenDto.getHasReferences();
-            this.path = apiTokenDto.getPath();
-            this.maxResults = apiTokenDto.getMaxResults();
-            this.apiVersion = apiTokenDto.getApiVersion();
-            this.box = apiTokenDto.getBox();
-            this.layers = apiTokenDto.getLayers();
         }
 
         public ApiTokenBuilder setIsArrivalDateTime(boolean isArrivalDateTime) {
