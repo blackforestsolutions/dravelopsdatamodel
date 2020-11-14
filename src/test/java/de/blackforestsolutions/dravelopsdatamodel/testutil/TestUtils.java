@@ -1,9 +1,11 @@
 package de.blackforestsolutions.dravelopsdatamodel.testutil;
 
+import de.blackforestsolutions.dravelopsdatamodel.util.DravelOpsJsonMapper;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PropertiesLoaderUtils;
+import reactor.core.publisher.Mono;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -50,5 +52,51 @@ public class TestUtils {
             return null;
         }
     }
+
+    /**
+     * NEVER USE IN PRODUCTIVE CODE!
+     * Parse the given json resource into object of type pojo
+     *
+     * @param resource   the given json file path
+     * @param returnType pojo the class the json has to be parsed
+     * @param <T>        type of the class the json has to be parsed
+     * @return object
+     */
+    public static <T> T retrieveJsonToPojo(String resource, Class<T> returnType) {
+        String json = getResourceFileAsString(resource);
+        return retrieveJsonToReactivePojo(json, returnType).block();
+    }
+
+    private static <T> Mono<T> retrieveJsonToReactivePojo(String json, Class<T> pojo) {
+        try {
+            DravelOpsJsonMapper mapper = new DravelOpsJsonMapper();
+            return Mono.just(mapper.readValue(json, pojo));
+        } catch (Exception e) {
+            return Mono.error(e);
+        }
+    }
+
+    /**
+     * NEVER USE IN PRODUCTIVE CODE!
+     * Stringify the given Object to Json
+     *
+     * @param object to stringify
+     * @param <T>    object
+     * @return jsonObject
+     */
+    public static <T> String toJson(T object) {
+        DravelOpsJsonMapper mapper = new DravelOpsJsonMapper();
+        return map(object).block();
+    }
+
+    private static <T> Mono<String> map(T object) {
+        try {
+            DravelOpsJsonMapper mapper = new DravelOpsJsonMapper();
+            return Mono.just(mapper.writeValueAsString(object));
+        } catch (Exception e) {
+            return Mono.error(e);
+        }
+    }
+
 
 }
