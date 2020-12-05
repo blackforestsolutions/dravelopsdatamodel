@@ -1,5 +1,6 @@
 package de.blackforestsolutions.dravelopsdatamodel.util;
 
+import de.blackforestsolutions.dravelopsdatamodel.ApiToken;
 import org.junit.jupiter.api.Test;
 
 import java.io.UncheckedIOException;
