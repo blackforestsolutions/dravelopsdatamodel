@@ -27,7 +27,7 @@ public class DravelOpsJsonMapper extends ObjectMapper {
 
     private JavaTimeModule configureJavaTimeModule() {
         JavaTimeModule module = new JavaTimeModule();
-        module.addSerializer(new ZonedDateTimeSerializer(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
+        module.addSerializer(new ZonedDateTimeSerializer(DateTimeFormatter.ISO_ZONED_DATE_TIME));
         module.addDeserializer(ZonedDateTime.class, new ZonedDateTimeDeserializer());
         return module;
     }
