@@ -3,7 +3,9 @@
   "legs" : [ {
       "id" : "3b4057a4-b0c9-4d6d-9a14-d89854fa42af",
       "departure" : {
-        "name" : "Furtwangen",
+        "name" : "Am Großhausberg 8",
+        "town": "Furtwangen im Schwarzwald",
+        "country": "Deutschland",
         "point" : {
           "x" : 48.05259,
           "y" : 8.207245
@@ -13,7 +15,9 @@
         "platform" : "1"
       },
       "arrival" : {
-        "name" : "Furtwangen",
+        "name" : "Am Großhausberg 8",
+        "town": "Furtwangen im Schwarzwald",
+        "country": "Deutschland",
         "point" : {
           "x" : 48.05259,
           "y" : 8.207245
@@ -39,7 +43,9 @@
       "vehicleNumber" : "7020",
       "vehicleName" : "Furtwangen - Triberg",
       "intermediateStops" : [ {
-        "name" : "Furtwangen",
+        "name" : "Am Großhausberg 8",
+        "town": "Furtwangen im Schwarzwald",
+        "country": "Deutschland",
         "point" : {
           "x" : 48.05259,
           "y" : 8.207245

@@ -1,5 +1,7 @@
 {
-  "name" : "Furtwangen",
+  "name" : "Am Großhausberg 8",
+  "town": "Furtwangen im Schwarzwald",
+  "country": "Deutschland",
   "point" : {
     "x" : 48.05259,
     "y" : 8.207245

@@ -10,6 +10,7 @@ import org.springframework.data.geo.Point;
 
 import java.io.Serializable;
 import java.time.ZonedDateTime;
+import java.util.Locale;
 
 @Getter
 @Slf4j
@@ -19,6 +20,10 @@ public final class TravelPoint implements Serializable {
     private static final long serialVersionUID = 6106269076155338045L;
 
     private final String name;
+
+    private final String town;
+
+    private final String country;
 
     private final Point point;
 
@@ -30,6 +35,8 @@ public final class TravelPoint implements Serializable {
 
     private TravelPoint(TravelPointBuilder travelPointBuilder) {
         this.name = travelPointBuilder.getName();
+        this.town = travelPointBuilder.getTown();
+        this.country = travelPointBuilder.getCountry();
         this.point = travelPointBuilder.getPoint();
         this.arrivalTime = travelPointBuilder.getArrivalTime();
         this.departureTime = travelPointBuilder.getDepartureTime();
@@ -44,6 +51,10 @@ public final class TravelPoint implements Serializable {
     public static class TravelPointBuilder {
 
         private String name = "";
+
+        private String town = "";
+
+        private String country = "";
 
         private Point point;
 
