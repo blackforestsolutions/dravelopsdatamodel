@@ -35,5 +35,7 @@
   },
   "layers": [
     "test"
-  ]
+  ],
+  "maxPastDaysInCalendar": 2,
+  "hazelcastTimeRangeInMinutes": 120
 }

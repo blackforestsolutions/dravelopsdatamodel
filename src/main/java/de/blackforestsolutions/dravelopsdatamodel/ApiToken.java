@@ -41,6 +41,8 @@ public final class ApiToken {
     private final String apiVersion;
     private final Box box;
     private final List<String> layers;
+    private final int maxPastDaysInCalendar;
+    private final int hazelcastTimeRangeInMinutes;
 
     private ApiToken(ApiTokenBuilder apiTokenBuilder) {
         this.host = apiTokenBuilder.getHost();
@@ -63,6 +65,8 @@ public final class ApiToken {
         this.apiVersion = apiTokenBuilder.getApiVersion();
         this.box = apiTokenBuilder.getBox();
         this.layers = apiTokenBuilder.getLayers();
+        this.maxPastDaysInCalendar = apiTokenBuilder.getMaxPastDaysInCalendar();
+        this.hazelcastTimeRangeInMinutes = apiTokenBuilder.getHazelcastTimeRangeInMinutes();
     }
 
     public boolean getIsArrivalDateTime() {
@@ -110,6 +114,8 @@ public final class ApiToken {
         private String apiVersion;
         private Box box;
         private List<String> layers;
+        private int maxPastDaysInCalendar;
+        private int hazelcastTimeRangeInMinutes;
 
         /**
          * This warning indicates a duplicated code fragment.
@@ -141,6 +147,8 @@ public final class ApiToken {
             this.apiVersion = apiTokenBuilder.getApiVersion();
             this.box = apiTokenBuilder.getBox();
             this.layers = apiTokenBuilder.getLayers();
+            this.maxPastDaysInCalendar = apiTokenBuilder.getMaxPastDaysInCalendar();
+            this.hazelcastTimeRangeInMinutes = apiTokenBuilder.getHazelcastTimeRangeInMinutes();
         }
 
         /**
@@ -173,6 +181,8 @@ public final class ApiToken {
             this.apiVersion = apiToken.getApiVersion();
             this.box = apiToken.getBox();
             this.layers = apiToken.getLayers();
+            this.maxPastDaysInCalendar = apiToken.getMaxPastDaysInCalendar();
+            this.hazelcastTimeRangeInMinutes = apiToken.getHazelcastTimeRangeInMinutes();
         }
 
         public ApiTokenBuilder setIsArrivalDateTime(boolean isArrivalDateTime) {
