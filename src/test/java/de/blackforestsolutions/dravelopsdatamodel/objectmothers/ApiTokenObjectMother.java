@@ -81,6 +81,30 @@ public class ApiTokenObjectMother {
                 .build();
     }
 
+    public static ApiToken getConfiguredRoutePersistenceApiToken() {
+        return new ApiToken.ApiTokenBuilder()
+                .setProtocol("http")
+                .setHost("localhost")
+                .setPort(8088)
+                .setPath("/otp/journeys/get")
+                .build();
+    }
+
+    public static ApiToken getRoutePersistenceApiToken() {
+        return new ApiToken.ApiTokenBuilder()
+                .setProtocol("http")
+                .setHost("localhost")
+                .setPort(8088)
+                .setPath("/otp/journeys/get")
+                .setIsArrivalDateTime(false)
+                .setOptimize(Optimization.QUICK)
+                .setDateTime(ZonedDateTime.parse("2020-09-30T13:00:00+02:00"))
+                .setDepartureCoordinate(getAmGrosshausbergPoint())
+                .setArrivalCoordinate(getSickAgPoint())
+                .setLanguage(Locale.forLanguageTag("de"))
+                .build();
+    }
+
     public static ApiToken getConfiguredOtpMapperApiToken() {
         return new ApiToken.ApiTokenBuilder()
                 .setProtocol("http")
