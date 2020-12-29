@@ -11,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.geo.Distance;
 import org.springframework.data.geo.Point;
 
+import java.io.Serializable;
 import java.time.Duration;
 import java.util.LinkedList;
 import java.util.UUID;
@@ -18,8 +19,9 @@ import java.util.UUID;
 @Getter
 @Slf4j
 @JsonDeserialize(builder = Leg.LegBuilder.class)
-public final class Leg {
+public final class Leg implements Serializable {
 
+    private static final long serialVersionUID = 5393486245718564673L;
     private final UUID id;
 
     private final TravelPoint departure;

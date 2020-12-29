@@ -8,13 +8,17 @@ import java.time.ZonedDateTime;
 public class TravelPointObjectMother {
 
     public static TravelPoint getTravelPointWithNoEmptyFields() {
+        return getTravelPointBuilderWithNoEmptyFields()
+                .build();
+    }
+
+    public static TravelPoint.TravelPointBuilder getTravelPointBuilderWithNoEmptyFields() {
         return new TravelPoint.TravelPointBuilder()
                 .setName("Furtwangen")
                 .setPoint(new Point(48.052590d, 8.207245d))
                 .setArrivalTime(ZonedDateTime.parse("2020-09-27T10:15:30+02:00[Europe/Berlin]"))
                 .setDepartureTime(ZonedDateTime.parse("2020-09-27T10:15:30+02:00[Europe/Berlin]"))
-                .setPlatform("1")
-                .build();
+                .setPlatform("1");
     }
 
     public static TravelPoint getGrosshausbergTravelPoint() {
@@ -166,21 +170,21 @@ public class TravelPointObjectMother {
     public static TravelPoint getFurtwangenLocalityTravelPoint() {
         return new TravelPoint.TravelPointBuilder()
                 .setName("Furtwangen im Schwarzwald, Deutschland")
-                .setPoint(new Point(8.195593d,48.049034d))
+                .setPoint(new Point(8.195593d, 48.049034d))
                 .build();
     }
 
     public static TravelPoint getAmGrosshaubergTravelPoint() {
         return new TravelPoint.TravelPointBuilder()
                 .setName("Am Großhausberg, Furtwangen im Schwarzwald, Deutschland")
-                .setPoint(new Point(8.209198d,48.048381d))
+                .setPoint(new Point(8.209198d, 48.048381d))
                 .build();
     }
 
     public static TravelPoint getGermanWatchMuseumTravelPoint() {
         return new TravelPoint.TravelPointBuilder()
                 .setName("Deutsches Uhrenmuseum Furtwangen, Furtwangen im Schwarzwald, Deutschland")
-                .setPoint(new Point(8.207673d,48.051086d))
+                .setPoint(new Point(8.207673d, 48.051086d))
                 .build();
     }
 }

@@ -6,6 +6,7 @@ import de.blackforestsolutions.dravelopsdatamodel.Price;
 import de.blackforestsolutions.dravelopsdatamodel.PriceType;
 
 import java.util.LinkedList;
+import java.util.Locale;
 import java.util.UUID;
 
 import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.LegObjectMother.*;
@@ -21,14 +22,20 @@ public class JourneyObjectMother {
     }
 
     public static Journey getJourneyWithNoEmptyFields() {
-        return new Journey.JourneyBuilder(TEST_UUID_1)
-                .setLegs(getLegs())
-                .setPrices(getPrices())
+        return getJourneyBuilderWithNoEmptyFields()
                 .build();
+    }
+
+    public static Journey.JourneyBuilder getJourneyBuilderWithNoEmptyFields() {
+        return new Journey.JourneyBuilder(TEST_UUID_1)
+                .setLanguage(Locale.forLanguageTag("de"))
+                .setLegs(getLegs())
+                .setPrices(getPrices());
     }
 
     public static Journey getJourneyWithDoubleLegAndPriceKey() {
         return new Journey.JourneyBuilder(TEST_UUID_1)
+                .setLanguage(Locale.forLanguageTag("de"))
                 .setLegs(getLegsWithDoubleLeg())
                 .setPrices(getPricesWithDoublePrice())
                 .build();
@@ -36,6 +43,7 @@ public class JourneyObjectMother {
 
     public static Journey getFurtwangenToWaldkirchJourney() {
         return new Journey.JourneyBuilder(TEST_UUID_1)
+                .setLanguage(Locale.forLanguageTag("de"))
                 .setLegs(getFurtwangenToWaldkirchLegs())
                 .setPrices(getFurtwangenToWaldkirchPrices())
                 .build();
@@ -43,6 +51,7 @@ public class JourneyObjectMother {
 
     public static Journey getMannheimHbfLudwigsburgCenterJourney() {
         return new Journey.JourneyBuilder(TEST_UUID_1)
+                .setLanguage(Locale.forLanguageTag("de"))
                 .setLegs(getMannheimHbfToLudwigsburgCenterLegs())
                 .build();
     }

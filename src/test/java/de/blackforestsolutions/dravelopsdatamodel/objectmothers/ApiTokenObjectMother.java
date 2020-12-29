@@ -276,4 +276,12 @@ public class ApiTokenObjectMother {
     }
     // End
 
+    // HazelcastApiToken
+    public static ApiToken getHazelcastApiToken() {
+        return new ApiToken.ApiTokenBuilder()
+                .setMaxPastDaysInCalendar(2)
+                .setHazelcastTimeRangeInMinutes(120)
+                .build();
+    }
+
 }

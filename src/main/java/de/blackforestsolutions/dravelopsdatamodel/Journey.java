@@ -11,6 +11,7 @@ import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 import java.util.LinkedList;
+import java.util.Locale;
 import java.util.UUID;
 
 @Getter
@@ -20,7 +21,7 @@ public final class Journey implements Serializable {
     private static final long serialVersionUID = 6106269076155338045L;
 
     private final UUID id;
-
+    private final Locale language;
 
     /**
      * The mistake indicates a serialization problem with this property.
@@ -42,6 +43,7 @@ public final class Journey implements Serializable {
         this.id = journey.getId();
         this.legs = journey.getLegs();
         this.prices = journey.getPrices();
+        this.language = journey.getLanguage();
     }
 
     public LinkedList<Leg> getLegs() {
@@ -66,6 +68,8 @@ public final class Journey implements Serializable {
     public static class JourneyBuilder {
 
         private UUID id;
+
+        private Locale language;
 
         private LinkedList<Leg> legs = new LinkedList<>();
 

@@ -6,12 +6,14 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
+import java.io.Serializable;
 import java.util.Currency;
 
 @Getter
 @JsonDeserialize(builder = Price.PriceBuilder.class)
-public final class Price {
+public final class Price implements Serializable {
 
+    private static final long serialVersionUID = -3355934959094849304L;
     private final PriceType priceType;
 
     private final Currency currencyCode;

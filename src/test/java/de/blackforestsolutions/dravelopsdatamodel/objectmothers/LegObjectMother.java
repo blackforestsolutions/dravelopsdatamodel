@@ -11,14 +11,19 @@ import java.time.Duration;
 import java.util.LinkedList;
 import java.util.UUID;
 
-import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.WaypointsObjectMother.getExampleWaypoints;
 import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.TravelPointObjectMother.*;
 import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.TravelProviderObjectMother.*;
 import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.UUIDObjectMother.*;
+import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.WaypointsObjectMother.getExampleWaypoints;
 
 public class LegObjectMother {
 
     public static Leg getLegWithNoEmptyFields(UUID id) {
+        return getLegBuilderWithNoEmptyFields(id)
+                .build();
+    }
+
+    public static Leg.LegBuilder getLegBuilderWithNoEmptyFields(UUID id) {
         return new Leg.LegBuilder(id)
                 .setDeparture(getTravelPointWithNoEmptyFields())
                 .setArrival(getTravelPointWithNoEmptyFields())
@@ -29,8 +34,7 @@ public class LegObjectMother {
                 .setTravelProvider(getTravelProviderWithNoEmptyFields())
                 .setVehicleNumber("7020")
                 .setVehicleName("Furtwangen - Triberg")
-                .setIntermediateStops(getIntermediateStops())
-                .build();
+                .setIntermediateStops(getIntermediateStops());
     }
 
     public static Leg getGrosshausbergToFurtwangenIlbenstreetLeg() {
