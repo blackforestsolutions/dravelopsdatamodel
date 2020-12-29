@@ -14,7 +14,7 @@
   },
   "dateTime": "2020-09-27T10:15:30+02:00",
   "isArrivalDateTime": true,
-  "language": "de_DE",
+  "language": "de",
   "router": "sbg",
   "optimize": "QUICK",
   "radius": 3000,

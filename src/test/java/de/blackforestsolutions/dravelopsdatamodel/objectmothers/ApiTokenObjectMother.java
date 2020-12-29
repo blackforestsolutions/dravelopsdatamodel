@@ -26,7 +26,7 @@ public class ApiTokenObjectMother {
                 .setArrivalCoordinate(new Point(8.0d, 50.0d))
                 .setDateTime(ZonedDateTime.parse("2020-09-27T10:15:30+02:00"))
                 .setIsArrivalDateTime(true)
-                .setLanguage(Locale.forLanguageTag("de-DE"))
+                .setLanguage(new Locale("de"))
                 .setRouter("sbg")
                 .setOptimize(Optimization.QUICK)
                 .setRadius(3000)
@@ -50,7 +50,7 @@ public class ApiTokenObjectMother {
                 .setArrivalCoordinate(new Point(8.0d, 50.0d))
                 .setDateTime(ZonedDateTime.parse("2020-09-27T10:15:30+02:00"))
                 .setIsArrivalDateTime(true)
-                .setLanguage(Locale.forLanguageTag("de-DE"))
+                .setLanguage(new Locale("de"))
                 .setRouter("sbg")
                 .setOptimize(Optimization.QUICK)
                 .setRadius(3000)
@@ -73,7 +73,7 @@ public class ApiTokenObjectMother {
                 .setDateTime(ZonedDateTime.parse("2020-09-30T13:00:00+02:00"))
                 .setDepartureCoordinate(getAmGrosshausbergPoint())
                 .setArrivalCoordinate(getSickAgPoint())
-                .setLanguage(Locale.forLanguageTag("de-DE"))
+                .setLanguage(new Locale("de"))
                 .build();
     }
 
@@ -97,7 +97,7 @@ public class ApiTokenObjectMother {
                 .setDateTime(ZonedDateTime.parse("2020-09-30T13:00:00+02:00"))
                 .setDepartureCoordinate(getAmGrosshausbergPoint())
                 .setArrivalCoordinate(getSickAgPoint())
-                .setLanguage(Locale.forLanguageTag("de-DE"))
+                .setLanguage(new Locale("de"))
                 .build();
     }
 
@@ -122,7 +122,7 @@ public class ApiTokenObjectMother {
                 .setMaxResults(1)
                 .setDeparture("Start")
                 .setArrival("Ziel")
-                .setLanguage(Locale.forLanguageTag("de-DE"))
+                .setLanguage(new Locale("de"))
                 .build();
     }
 
@@ -135,7 +135,7 @@ public class ApiTokenObjectMother {
                 .setHost("localhost")
                 .setPort(8089)
                 .setRouter("bw")
-                .setLanguage(Locale.forLanguageTag("de-DE"))
+                .setLanguage(new Locale("de"))
                 .setOptimize(Optimization.QUICK)
                 .setIsArrivalDateTime(false)
                 .setDateTime(ZonedDateTime.parse("2020-09-30T13:00:00+02:00"))
@@ -153,7 +153,7 @@ public class ApiTokenObjectMother {
     public static ApiToken getTravelPointUserRequestToken() {
         return new ApiToken.ApiTokenBuilder()
                 .setDeparture("Sick AG")
-                .setLanguage(Locale.forLanguageTag("de-DE"))
+                .setLanguage(new Locale("de"))
                 .build();
     }
 
@@ -173,7 +173,7 @@ public class ApiTokenObjectMother {
                 .setPort(8083)
                 .setPath("/pelias/travelpoints/get")
                 .setDeparture("Sick AG")
-                .setLanguage(Locale.forLanguageTag("de-DE"))
+                .setLanguage(new Locale("de"))
                 .build();
     }
 
@@ -213,7 +213,7 @@ public class ApiTokenObjectMother {
                 .setPort(4000)
                 .setApiVersion("v1")
                 .setDeparture("Sick AG")
-                .setLanguage(Locale.forLanguageTag("de-DE"))
+                .setLanguage(new Locale("de"))
                 .setMaxResults(10)
                 .setLayers(List.of(
                         "venue",

@@ -37,7 +37,7 @@ class DravelOpsJsonMapperTest {
         ApiToken result = classUnderTest.readValue(jsonApiToken, ApiToken.class);
 
         assertThat(result).isEqualToComparingFieldByField(expectedApiToken);
-        assertThat(result.getLanguage().toLanguageTag()).isEqualTo("de-DE");
+        assertThat(result.getLanguage().toLanguageTag()).isEqualTo("de");
         assertThat(result.getLanguage().getLanguage()).isEqualTo("de");
     }
 
