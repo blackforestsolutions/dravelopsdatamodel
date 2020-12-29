@@ -101,7 +101,7 @@ public class ApiTokenObjectMother {
                 .setDateTime(ZonedDateTime.parse("2020-09-30T13:00:00+02:00"))
                 .setDepartureCoordinate(getAmGrosshausbergPoint())
                 .setArrivalCoordinate(getSickAgPoint())
-                .setLanguage(Locale.forLanguageTag("de"))
+                .setLanguage(new Locale("de"))
                 .build();
     }
 

@@ -28,14 +28,14 @@ public class JourneyObjectMother {
 
     public static Journey.JourneyBuilder getJourneyBuilderWithNoEmptyFields() {
         return new Journey.JourneyBuilder(TEST_UUID_1)
-                .setLanguage(Locale.forLanguageTag("de"))
+                .setLanguage(new Locale("de"))
                 .setLegs(getLegs())
                 .setPrices(getPrices());
     }
 
     public static Journey getJourneyWithDoubleLegAndPriceKey() {
         return new Journey.JourneyBuilder(TEST_UUID_1)
-                .setLanguage(Locale.forLanguageTag("de"))
+                .setLanguage(new Locale("de"))
                 .setLegs(getLegsWithDoubleLeg())
                 .setPrices(getPricesWithDoublePrice())
                 .build();
@@ -43,7 +43,7 @@ public class JourneyObjectMother {
 
     public static Journey getFurtwangenToWaldkirchJourney() {
         return new Journey.JourneyBuilder(TEST_UUID_1)
-                .setLanguage(Locale.forLanguageTag("de"))
+                .setLanguage(new Locale("de"))
                 .setLegs(getFurtwangenToWaldkirchLegs())
                 .setPrices(getFurtwangenToWaldkirchPrices())
                 .build();
@@ -51,7 +51,7 @@ public class JourneyObjectMother {
 
     public static Journey getMannheimHbfLudwigsburgCenterJourney() {
         return new Journey.JourneyBuilder(TEST_UUID_1)
-                .setLanguage(Locale.forLanguageTag("de"))
+                .setLanguage(new Locale("de"))
                 .setLegs(getMannheimHbfToLudwigsburgCenterLegs())
                 .build();
     }
