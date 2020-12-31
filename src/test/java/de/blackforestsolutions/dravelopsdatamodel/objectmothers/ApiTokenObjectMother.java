@@ -6,7 +6,7 @@ import org.springframework.data.geo.Box;
 import org.springframework.data.geo.Point;
 
 import java.time.ZonedDateTime;
-import java.util.List;
+import java.util.Arrays;
 import java.util.Locale;
 
 import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.BoxObjectMother.getOpenTripPlannerBox;
@@ -36,7 +36,7 @@ public class ApiTokenObjectMother {
                 .setApiVersion("v1")
                 .setMaxResults(1)
                 .setBox(new Box(new Point(0.0d, 0.0d), new Point(0.0d, 0.0d)))
-                .setLayers(List.of("test"))
+                .setLayers(Arrays.asList("test"))
                 .setMaxPastDaysInCalendar(2)
                 .setHazelcastTimeRangeInMinutes(120);
     }
@@ -62,7 +62,7 @@ public class ApiTokenObjectMother {
                 .setMaxResults(1)
                 .setApiVersion("v1")
                 .setBox(new Box(new Point(0.0d, 0.0d), new Point(0.0d, 0.0d)))
-                .setLayers(List.of("test"))
+                .setLayers(Arrays.asList("test"))
                 .setMaxPastDaysInCalendar(2)
                 .setHazelcastTimeRangeInMinutes(120)
                 .build();
@@ -215,7 +215,7 @@ public class ApiTokenObjectMother {
                 .setPort(4000)
                 .setApiVersion("v1")
                 .setMaxResults(10)
-                .setLayers(List.of(
+                .setLayers(Arrays.asList(
                         "venue",
                         "address",
                         "street",
@@ -243,7 +243,7 @@ public class ApiTokenObjectMother {
                 .setDeparture("Sick AG")
                 .setLanguage(new Locale("de"))
                 .setMaxResults(10)
-                .setLayers(List.of(
+                .setLayers(Arrays.asList(
                         "venue",
                         "address",
                         "street",
