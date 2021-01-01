@@ -1,18 +1,19 @@
 package de.blackforestsolutions.dravelopsdatamodel;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
+import de.blackforestsolutions.dravelopsdatamodel.util.DravelOpsJsonMapper;
 import edu.umd.cs.findbugs.annotations.SuppressWarnings;
-import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
+import org.apache.commons.codec.digest.DigestUtils;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.Locale;
-import java.util.UUID;
 
 @Getter
 @JsonDeserialize(builder = Journey.JourneyBuilder.class)
@@ -20,7 +21,7 @@ public final class Journey implements Serializable {
 
     private static final long serialVersionUID = 6106269076155338045L;
 
-    private final UUID id;
+    private final String id;
     private final Locale language;
 
     /**
@@ -64,10 +65,12 @@ public final class Journey implements Serializable {
     @Getter
     @Accessors(chain = true)
     @JsonPOJOBuilder(withPrefix = "set")
-    @NoArgsConstructor(access = AccessLevel.PRIVATE)
-    public static class JourneyBuilder {
+    public static class JourneyBuilder implements Serializable {
 
-        private UUID id;
+        private static final long serialVersionUID = 2562545155672883922L;
+
+        @JsonIgnore
+        private String id;
 
         private Locale language;
 
@@ -75,12 +78,18 @@ public final class Journey implements Serializable {
 
         private LinkedList<Price> prices = new LinkedList<>();
 
-        public JourneyBuilder(UUID id) {
-            this.id = id;
+        public JourneyBuilder() {
         }
 
-        public Journey build() {
+        public Journey build() throws IOException {
+            this.id = createSha1Id();
             return new Journey(this);
         }
+
+        private String createSha1Id() throws IOException {
+            DravelOpsJsonMapper jsonMapper = new DravelOpsJsonMapper();
+            return DigestUtils.sha1Hex(jsonMapper.writeValueAsString(this));
+        }
+
     }
 }

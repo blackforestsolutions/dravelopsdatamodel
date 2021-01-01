@@ -2,8 +2,8 @@ package de.blackforestsolutions.dravelopsdatamodel.objectmothers;
 
 import de.blackforestsolutions.dravelopsdatamodel.ApiToken;
 import de.blackforestsolutions.dravelopsdatamodel.Optimization;
+import de.blackforestsolutions.dravelopsdatamodel.Point;
 import org.springframework.data.geo.Box;
-import org.springframework.data.geo.Point;
 
 import java.time.ZonedDateTime;
 import java.util.Collections;
@@ -22,9 +22,9 @@ public class ApiTokenObjectMother {
                 .setProtocol("http")
                 .setPort(8080)
                 .setDeparture("Furtwangen")
-                .setDepartureCoordinate(new Point(8.0d, 50.0d))
+                .setDepartureCoordinate(new Point.PointBuilder(8.0d, 50.0d).build())
                 .setArrival("Triberg")
-                .setArrivalCoordinate(new Point(8.0d, 50.0d))
+                .setArrivalCoordinate(new Point.PointBuilder(8.0d, 50.0d).build())
                 .setDateTime(ZonedDateTime.parse("2020-09-27T10:15:30+02:00"))
                 .setIsArrivalDateTime(true)
                 .setLanguage(new Locale("de"))
@@ -36,7 +36,7 @@ public class ApiTokenObjectMother {
                 .setPath("/path")
                 .setApiVersion("v1")
                 .setMaxResults(1)
-                .setBox(new Box(new Point(0.0d, 0.0d), new Point(0.0d, 0.0d)))
+                .setBox(new Box(new org.springframework.data.geo.Point(0.0d, 0.0d), new org.springframework.data.geo.Point(0.0d, 0.0d)))
                 .setLayers(Collections.singletonList("test"))
                 .setMaxPastDaysInCalendar(2)
                 .setHazelcastTimeRangeInMinutes(120);
@@ -48,9 +48,9 @@ public class ApiTokenObjectMother {
                 .setProtocol("http")
                 .setPort(8080)
                 .setDeparture("Furtwangen")
-                .setDepartureCoordinate(new Point(8.0d, 50.0d))
+                .setDepartureCoordinate(new Point.PointBuilder(8.0d, 50.0d).build())
                 .setArrival("Triberg")
-                .setArrivalCoordinate(new Point(8.0d, 50.0d))
+                .setArrivalCoordinate(new Point.PointBuilder(8.0d, 50.0d).build())
                 .setDateTime(ZonedDateTime.parse("2020-09-27T10:15:30+02:00"))
                 .setIsArrivalDateTime(true)
                 .setLanguage(new Locale("de"))
@@ -62,7 +62,7 @@ public class ApiTokenObjectMother {
                 .setPath("/path")
                 .setMaxResults(1)
                 .setApiVersion("v1")
-                .setBox(new Box(new Point(0.0d, 0.0d), new Point(0.0d, 0.0d)))
+                .setBox(new Box(new org.springframework.data.geo.Point(0.0d, 0.0d), new org.springframework.data.geo.Point(0.0d, 0.0d)))
                 .setLayers(Collections.singletonList("test"))
                 .setMaxPastDaysInCalendar(2)
                 .setHazelcastTimeRangeInMinutes(120)

@@ -1,6 +1,5 @@
-package de.blackforestsolutions.dravelopsdatamodel.util;
+package de.blackforestsolutions.dravelopsdatamodel;
 
-import de.blackforestsolutions.dravelopsdatamodel.ApiToken;
 import org.junit.jupiter.api.Test;
 
 import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.ApiTokenObjectMother.getApiTokenBuilderWithNoEmptyFields;

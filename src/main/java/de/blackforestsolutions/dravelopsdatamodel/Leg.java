@@ -7,22 +7,17 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.geo.Distance;
-import org.springframework.data.geo.Point;
 
 import java.io.Serializable;
 import java.time.Duration;
 import java.util.LinkedList;
-import java.util.UUID;
 
 @Getter
-@Slf4j
 @JsonDeserialize(builder = Leg.LegBuilder.class)
 public final class Leg implements Serializable {
 
     private static final long serialVersionUID = 5393486245718564673L;
-    private final UUID id;
 
     private final TravelPoint departure;
 
@@ -45,7 +40,6 @@ public final class Leg implements Serializable {
     private final LinkedList<TravelPoint> intermediateStops;
 
     private Leg(LegBuilder legBuilder) {
-        this.id = legBuilder.getId();
         this.departure = legBuilder.getDeparture();
         this.arrival = legBuilder.getArrival();
         this.delayInMinutes = legBuilder.getDelayInMinutes();
@@ -77,10 +71,8 @@ public final class Leg implements Serializable {
     @Getter
     @Accessors(chain = true)
     @JsonPOJOBuilder(withPrefix = "set")
-    @NoArgsConstructor(access = AccessLevel.PRIVATE)
+    @NoArgsConstructor(access = AccessLevel.PUBLIC)
     public static class LegBuilder {
-
-        private UUID id;
 
         private TravelPoint departure;
 
@@ -101,10 +93,6 @@ public final class Leg implements Serializable {
         private String vehicleName = "";
 
         private LinkedList<TravelPoint> intermediateStops = new LinkedList<>();
-
-        public LegBuilder(UUID id) {
-            this.id = id;
-        }
 
         public Leg build() {
             return new Leg(this);

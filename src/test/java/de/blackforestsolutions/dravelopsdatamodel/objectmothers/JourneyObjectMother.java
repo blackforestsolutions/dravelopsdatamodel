@@ -4,61 +4,87 @@ import de.blackforestsolutions.dravelopsdatamodel.Journey;
 import de.blackforestsolutions.dravelopsdatamodel.Leg;
 import de.blackforestsolutions.dravelopsdatamodel.Price;
 import de.blackforestsolutions.dravelopsdatamodel.PriceType;
+import lombok.extern.slf4j.Slf4j;
 
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Locale;
-import java.util.UUID;
 
 import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.LegObjectMother.*;
 import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.PriceObjectMother.getFurtwangenToWaldkirchPrice;
 import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.PriceObjectMother.getPriceWithNoEmptyFields;
-import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.UUIDObjectMother.*;
 
+@Slf4j
 public class JourneyObjectMother {
 
-    public static Journey getJourneyWithEmptyFields(UUID id) {
-        return new Journey.JourneyBuilder(id)
-                .build();
+    public static Journey getJourneyWithEmptyFields() {
+        try {
+            return new Journey.JourneyBuilder()
+                    .build();
+        } catch (IOException e) {
+            log.error("UUID from Journey could not be generated: ", e);
+            return null;
+        }
     }
 
     public static Journey getJourneyWithNoEmptyFields() {
-        return getJourneyBuilderWithNoEmptyFields()
-                .build();
+        try {
+            return getJourneyBuilderWithNoEmptyFields()
+                    .build();
+        } catch (IOException e) {
+            log.error("UUID from Journey could not be generated: ", e);
+            return null;
+        }
     }
 
     public static Journey.JourneyBuilder getJourneyBuilderWithNoEmptyFields() {
-        return new Journey.JourneyBuilder(TEST_UUID_1)
+        return new Journey.JourneyBuilder()
                 .setLanguage(new Locale("de"))
                 .setLegs(getLegs())
                 .setPrices(getPrices());
     }
 
     public static Journey getJourneyWithDoubleLegAndPriceKey() {
-        return new Journey.JourneyBuilder(TEST_UUID_1)
-                .setLanguage(new Locale("de"))
-                .setLegs(getLegsWithDoubleLeg())
-                .setPrices(getPricesWithDoublePrice())
-                .build();
+        try {
+            return new Journey.JourneyBuilder()
+                    .setLanguage(new Locale("de"))
+                    .setLegs(getLegsWithDoubleLeg())
+                    .setPrices(getPricesWithDoublePrice())
+                    .build();
+        } catch (IOException e) {
+            log.error("UUID from Journey could not be generated: ", e);
+            return null;
+        }
     }
 
     public static Journey getFurtwangenToWaldkirchJourney() {
-        return new Journey.JourneyBuilder(TEST_UUID_1)
-                .setLanguage(new Locale("de"))
-                .setLegs(getFurtwangenToWaldkirchLegs())
-                .setPrices(getFurtwangenToWaldkirchPrices())
-                .build();
+        try {
+            return new Journey.JourneyBuilder()
+                    .setLanguage(new Locale("de"))
+                    .setLegs(getFurtwangenToWaldkirchLegs())
+                    .setPrices(getFurtwangenToWaldkirchPrices())
+                    .build();
+        } catch (IOException e) {
+            log.error("UUID from Journey could not be generated: ", e);
+            return null;
+        }
     }
 
     public static Journey getMannheimHbfLudwigsburgCenterJourney() {
-        return new Journey.JourneyBuilder(TEST_UUID_1)
-                .setLanguage(new Locale("de"))
-                .setLegs(getMannheimHbfToLudwigsburgCenterLegs())
-                .build();
+        try {
+            return new Journey.JourneyBuilder()
+                    .setLanguage(new Locale("de"))
+                    .setLegs(getMannheimHbfToLudwigsburgCenterLegs())
+                    .build();
+        } catch (IOException e) {
+            log.error("UUID from Journey could not be generated: ", e);
+            return null;
+        }
     }
 
     private static LinkedList<Leg> getLegs() {
         LinkedList<Leg> legs = new LinkedList<>();
-        legs.add(getLegWithNoEmptyFields(TEST_UUID_2));
+        legs.add(getLegWithNoEmptyFields());
         return legs;
     }
 
@@ -70,9 +96,9 @@ public class JourneyObjectMother {
 
     public static LinkedList<Leg> getLegsWithDoubleLeg() {
         LinkedList<Leg> legs = new LinkedList<>();
-        legs.add(getLegWithNoEmptyFields(TEST_UUID_2));
-        legs.add(getLegWithNoEmptyFields(TEST_UUID_2));
-        legs.add(getLegWithNoEmptyFields(TEST_UUID_3));
+        legs.add(getLegWithNoEmptyFields());
+        legs.add(getLegWithNoEmptyFields());
+        legs.add(getLegWithNoEmptyFields());
         return legs;
     }
 

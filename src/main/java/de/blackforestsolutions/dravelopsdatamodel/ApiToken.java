@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 import org.springframework.data.geo.Box;
-import org.springframework.data.geo.Point;
 
 import java.time.ZonedDateTime;
 import java.util.List;

@@ -5,14 +5,11 @@ import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.geo.Point;
 
 import java.io.Serializable;
 import java.time.ZonedDateTime;
 
 @Getter
-@Slf4j
 @JsonDeserialize(builder = TravelPoint.TravelPointBuilder.class)
 public final class TravelPoint implements Serializable {
 
