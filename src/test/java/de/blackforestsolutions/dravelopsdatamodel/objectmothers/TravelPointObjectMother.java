@@ -1,5 +1,6 @@
 package de.blackforestsolutions.dravelopsdatamodel.objectmothers;
 
+import de.blackforestsolutions.dravelopsdatamodel.ApiToken;
 import de.blackforestsolutions.dravelopsdatamodel.Point;
 import de.blackforestsolutions.dravelopsdatamodel.TravelPoint;
 
@@ -19,6 +20,38 @@ public class TravelPointObjectMother {
                 .setArrivalTime(ZonedDateTime.parse("2020-09-27T10:15:30+02:00[Europe/Berlin]"))
                 .setDepartureTime(ZonedDateTime.parse("2020-09-27T10:15:30+02:00[Europe/Berlin]"))
                 .setPlatform("1");
+    }
+
+    public static TravelPoint getTravelPointWithNoEmptyFieldsByArrivalTime(Point point) {
+        return getTravelPointBuilderWithNoEmptyFields()
+                .setPoint(point)
+                .build();
+    }
+
+    public static TravelPoint getTravelPointWithNoEmptyFieldsByArrivalTime(ZonedDateTime arrivalTime) {
+        return getTravelPointBuilderWithNoEmptyFields()
+                .setArrivalTime(arrivalTime)
+                .build();
+    }
+
+    public static TravelPoint getTravelPointWithNoEmptyFieldsByDepartureTime(ZonedDateTime departureTime) {
+        return getTravelPointBuilderWithNoEmptyFields()
+                .setDepartureTime(departureTime)
+                .build();
+    }
+
+    public static TravelPoint getDepartureTravelPointWithNoEmptyFieldsBy(ApiToken apiToken) {
+        return getTravelPointBuilderWithNoEmptyFields()
+                .setPoint(apiToken.getDepartureCoordinate())
+                .setDepartureTime(apiToken.getDateTime())
+                .build();
+    }
+
+    public static TravelPoint getArrivalTravelPointWithNoEmptyFieldsBy(ApiToken apiToken) {
+        return getTravelPointBuilderWithNoEmptyFields()
+                .setPoint(apiToken.getArrivalCoordinate())
+                .setArrivalTime(apiToken.getDateTime())
+                .build();
     }
 
     public static TravelPoint getGrosshausbergTravelPoint() {

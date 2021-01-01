@@ -1,13 +1,11 @@
 package de.blackforestsolutions.dravelopsdatamodel.objectmothers;
 
-import de.blackforestsolutions.dravelopsdatamodel.Leg;
-import de.blackforestsolutions.dravelopsdatamodel.Point;
-import de.blackforestsolutions.dravelopsdatamodel.TravelPoint;
-import de.blackforestsolutions.dravelopsdatamodel.VehicleType;
+import de.blackforestsolutions.dravelopsdatamodel.*;
 import org.springframework.data.geo.Distance;
 import org.springframework.data.geo.Metrics;
 
 import java.time.Duration;
+import java.time.ZonedDateTime;
 import java.util.LinkedList;
 
 import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.TravelPointObjectMother.*;
@@ -33,6 +31,37 @@ public class LegObjectMother {
                 .setVehicleNumber("7020")
                 .setVehicleName("Furtwangen - Triberg")
                 .setIntermediateStops(getIntermediateStops());
+    }
+
+    public static Leg getLegWithNoEmptyFieldsByArrivalPoint(Point arrivalPoint) {
+        return getLegBuilderWithNoEmptyFields()
+                .setArrival(getTravelPointWithNoEmptyFieldsByArrivalTime(arrivalPoint))
+                .build();
+    }
+
+    public static Leg getLegWithNoEmptyFieldsByDeparturePoint(Point departurePoint) {
+        return getLegBuilderWithNoEmptyFields()
+                .setDeparture(getTravelPointWithNoEmptyFieldsByArrivalTime(departurePoint))
+                .build();
+    }
+
+    public static Leg getLegWithNoEmptyFieldsByArrivalTime(ZonedDateTime arrivalTime) {
+        return getLegBuilderWithNoEmptyFields()
+                .setArrival(getTravelPointWithNoEmptyFieldsByArrivalTime(arrivalTime))
+                .build();
+    }
+
+    public static Leg getLegWithNoEmptyFieldsByDepartureTime(ZonedDateTime departureTime) {
+        return getLegBuilderWithNoEmptyFields()
+                .setDeparture(getTravelPointWithNoEmptyFieldsByDepartureTime(departureTime))
+                .build();
+    }
+
+    public static Leg getLegWithNoEmptyFieldsBy(ApiToken apiToken) {
+        return getLegBuilderWithNoEmptyFields()
+                .setDeparture(getDepartureTravelPointWithNoEmptyFieldsBy(apiToken))
+                .setArrival(getArrivalTravelPointWithNoEmptyFieldsBy(apiToken))
+                .build();
     }
 
     public static Leg getGrosshausbergToFurtwangenIlbenstreetLeg() {

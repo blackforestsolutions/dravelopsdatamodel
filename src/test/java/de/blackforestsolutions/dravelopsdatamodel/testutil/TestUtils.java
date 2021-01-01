@@ -76,27 +76,4 @@ public class TestUtils {
         }
     }
 
-    /**
-     * NEVER USE IN PRODUCTIVE CODE!
-     * Stringify the given Object to Json
-     *
-     * @param object to stringify
-     * @param <T>    object
-     * @return jsonObject
-     */
-    public static <T> String toJson(T object) {
-        DravelOpsJsonMapper mapper = new DravelOpsJsonMapper();
-        return map(object).block();
-    }
-
-    private static <T> Mono<String> map(T object) {
-        try {
-            DravelOpsJsonMapper mapper = new DravelOpsJsonMapper();
-            return Mono.just(mapper.writeValueAsString(object));
-        } catch (Exception e) {
-            return Mono.error(e);
-        }
-    }
-
-
 }

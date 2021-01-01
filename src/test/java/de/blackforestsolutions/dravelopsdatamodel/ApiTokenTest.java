@@ -15,7 +15,7 @@ class ApiTokenTest {
 
         ApiToken result = testData.build();
 
-        assertThat(result).isEqualToComparingFieldByField(expectedApiToken);
+        assertThat(result).isEqualToComparingFieldByFieldRecursively(expectedApiToken);
     }
 
     @Test
@@ -25,7 +25,7 @@ class ApiTokenTest {
 
         ApiToken.ApiTokenBuilder result = new ApiToken.ApiTokenBuilder(testData);
 
-        assertThat(result).isEqualToComparingFieldByField(expectedApiTokenBuilder);
+        assertThat(result).isEqualToComparingFieldByFieldRecursively(expectedApiTokenBuilder);
     }
 
     @Test
@@ -34,7 +34,7 @@ class ApiTokenTest {
 
         ApiToken.ApiTokenBuilder result = new ApiToken.ApiTokenBuilder(testData);
 
-        assertThat(result).isEqualToComparingFieldByField(testData);
+        assertThat(result).isEqualToComparingFieldByFieldRecursively(testData);
         assertThat(result).isNotEqualTo(testData);
     }
 }

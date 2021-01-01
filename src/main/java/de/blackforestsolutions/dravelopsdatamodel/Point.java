@@ -7,10 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
-import org.springframework.lang.Nullable;
 
 import java.io.Serializable;
-import java.util.Locale;
 
 @Getter
 @JsonDeserialize(builder = Point.PointBuilder.class)
@@ -26,20 +24,6 @@ public final class Point implements Serializable {
         this.y = pointBuilder.getY();
     }
 
-    public boolean equals(@Nullable Object obj) {
-        if (this == obj) {
-            return true;
-        } else if (!(obj instanceof Point)) {
-            return false;
-        } else {
-            Point other = (Point) obj;
-            if (Double.doubleToLongBits(this.x) != Double.doubleToLongBits(other.x)) {
-                return false;
-            } else {
-                return Double.doubleToLongBits(this.y) == Double.doubleToLongBits(other.y);
-            }
-        }
-    }
 
     @Setter
     @Getter

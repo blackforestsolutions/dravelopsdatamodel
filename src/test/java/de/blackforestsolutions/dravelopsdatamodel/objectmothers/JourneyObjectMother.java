@@ -1,12 +1,10 @@
 package de.blackforestsolutions.dravelopsdatamodel.objectmothers;
 
-import de.blackforestsolutions.dravelopsdatamodel.Journey;
-import de.blackforestsolutions.dravelopsdatamodel.Leg;
-import de.blackforestsolutions.dravelopsdatamodel.Price;
-import de.blackforestsolutions.dravelopsdatamodel.PriceType;
+import de.blackforestsolutions.dravelopsdatamodel.*;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
+import java.time.ZonedDateTime;
 import java.util.LinkedList;
 import java.util.Locale;
 
@@ -22,7 +20,7 @@ public class JourneyObjectMother {
             return new Journey.JourneyBuilder()
                     .build();
         } catch (IOException e) {
-            log.error("UUID from Journey could not be generated: ", e);
+            log.error("ShaId from Journey could not be generated: ", e);
             return null;
         }
     }
@@ -32,7 +30,7 @@ public class JourneyObjectMother {
             return getJourneyBuilderWithNoEmptyFields()
                     .build();
         } catch (IOException e) {
-            log.error("UUID from Journey could not be generated: ", e);
+            log.error("ShaId from Journey could not be generated: ", e);
             return null;
         }
     }
@@ -44,6 +42,73 @@ public class JourneyObjectMother {
                 .setPrices(getPrices());
     }
 
+    public static Journey getJourneyWithNoEmptyFieldsByArrivalPoint(Point arrivalPoint) {
+        try {
+            return getJourneyBuilderWithNoEmptyFields()
+                    .setLegs(getLegsByArrivalPoint(arrivalPoint))
+                    .build();
+        } catch (IOException e) {
+            log.error("ShaId from Journey could not be generated: ", e);
+            return null;
+        }
+    }
+
+    public static Journey getJourneyWithNoEmptyFieldsByDeparturePoint(Point departurePoint) {
+        try {
+            return getJourneyBuilderWithNoEmptyFields()
+                    .setLegs(getLegsByDeparturePoint(departurePoint))
+                    .build();
+        } catch (IOException e) {
+            log.error("ShaId from Journey could not be generated: ", e);
+            return null;
+        }
+    }
+
+    public static Journey getJourneyWithNoEmptyFieldsByArrivalTime(ZonedDateTime arrivalTime) {
+        try {
+            return getJourneyBuilderWithNoEmptyFields()
+                    .setLegs(getLegsByArrivalTime(arrivalTime))
+                    .build();
+        } catch (IOException e) {
+            log.error("ShaId from Journey could not be generated: ", e);
+            return null;
+        }
+    }
+
+    public static Journey getJourneyWithNoEmptyFieldsByDepartureTime(ZonedDateTime departureTime) {
+        try {
+            return getJourneyBuilderWithNoEmptyFields()
+                    .setLegs(getLegsByDepartureTime(departureTime))
+                    .build();
+        } catch (IOException e) {
+            log.error("ShaId from Journey could not be generated: ", e);
+            return null;
+        }
+    }
+
+    public static Journey getJourneyWithNoEmptyFieldsByLanguage(Locale language) {
+        try {
+            return getJourneyBuilderWithNoEmptyFields()
+                    .setLanguage(language)
+                    .build();
+        } catch (IOException e) {
+            log.error("ShaId from Journey could not be generated: ", e);
+            return null;
+        }
+    }
+
+    public static Journey getJourneyWithNoEmptyFieldsBy(ApiToken apiToken) {
+        try {
+            return getJourneyBuilderWithNoEmptyFields()
+                    .setLanguage(apiToken.getLanguage())
+                    .setLegs(getLegsBy(apiToken))
+                    .build();
+        } catch (IOException e) {
+            log.error("ShaId from Journey could not be generated: ", e);
+            return null;
+        }
+    }
+
     public static Journey getJourneyWithDoubleLegAndPriceKey() {
         try {
             return new Journey.JourneyBuilder()
@@ -52,7 +117,7 @@ public class JourneyObjectMother {
                     .setPrices(getPricesWithDoublePrice())
                     .build();
         } catch (IOException e) {
-            log.error("UUID from Journey could not be generated: ", e);
+            log.error("ShaId from Journey could not be generated: ", e);
             return null;
         }
     }
@@ -65,7 +130,7 @@ public class JourneyObjectMother {
                     .setPrices(getFurtwangenToWaldkirchPrices())
                     .build();
         } catch (IOException e) {
-            log.error("UUID from Journey could not be generated: ", e);
+            log.error("ShaId from Journey could not be generated: ", e);
             return null;
         }
     }
@@ -77,7 +142,7 @@ public class JourneyObjectMother {
                     .setLegs(getMannheimHbfToLudwigsburgCenterLegs())
                     .build();
         } catch (IOException e) {
-            log.error("UUID from Journey could not be generated: ", e);
+            log.error("ShaId from Journey could not be generated: ", e);
             return null;
         }
     }
@@ -92,6 +157,37 @@ public class JourneyObjectMother {
         LinkedList<Price> prices = new LinkedList<>();
         prices.add(getPriceWithNoEmptyFields(PriceType.REGULAR));
         return prices;
+    }
+
+
+    private static LinkedList<Leg> getLegsByArrivalPoint(Point arrivalPoint) {
+        LinkedList<Leg> legs = new LinkedList<>();
+        legs.add(getLegWithNoEmptyFieldsByArrivalPoint(arrivalPoint));
+        return legs;
+    }
+
+    private static LinkedList<Leg> getLegsByDeparturePoint(Point departurePoint) {
+        LinkedList<Leg> legs = new LinkedList<>();
+        legs.add(getLegWithNoEmptyFieldsByDeparturePoint(departurePoint));
+        return legs;
+    }
+
+    private static LinkedList<Leg> getLegsByArrivalTime(ZonedDateTime arrivalTime) {
+        LinkedList<Leg> legs = new LinkedList<>();
+        legs.add(getLegWithNoEmptyFieldsByArrivalTime(arrivalTime));
+        return legs;
+    }
+
+    private static LinkedList<Leg> getLegsByDepartureTime(ZonedDateTime departureTime) {
+        LinkedList<Leg> legs = new LinkedList<>();
+        legs.add(getLegWithNoEmptyFieldsByDepartureTime(departureTime));
+        return legs;
+    }
+
+    private static LinkedList<Leg> getLegsBy(ApiToken apiToken) {
+        LinkedList<Leg> legs = new LinkedList<>();
+        legs.add(getLegWithNoEmptyFieldsBy(apiToken));
+        return legs;
     }
 
     public static LinkedList<Leg> getLegsWithDoubleLeg() {
