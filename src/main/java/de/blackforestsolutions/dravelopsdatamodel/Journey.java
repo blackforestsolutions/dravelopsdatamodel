@@ -3,6 +3,9 @@ package de.blackforestsolutions.dravelopsdatamodel;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
+import com.hazelcast.nio.serialization.Portable;
+import com.hazelcast.nio.serialization.PortableReader;
+import com.hazelcast.nio.serialization.PortableWriter;
 import de.blackforestsolutions.dravelopsdatamodel.util.DravelOpsJsonMapper;
 import edu.umd.cs.findbugs.annotations.SuppressWarnings;
 import lombok.Getter;
@@ -15,14 +18,18 @@ import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.Locale;
 
+import static de.blackforestsolutions.dravelopsdatamodel.hazelcast.DravelOpsPortableFactory.DRAVEL_OPS_FACTORY_ID;
+import static de.blackforestsolutions.dravelopsdatamodel.hazelcast.DravelOpsPortableFactory.JOURNEY_CLASS_ID;
+import static de.blackforestsolutions.dravelopsdatamodel.hazelcast.classdefinition.JourneyClassDefinition.*;
+
 @Getter
 @JsonDeserialize(builder = Journey.JourneyBuilder.class)
-public final class Journey implements Serializable {
+public final class Journey implements Serializable, Portable {
 
     private static final long serialVersionUID = 6106269076155338045L;
 
-    private final String id;
-    private final Locale language;
+    private String id;
+    private Locale language;
 
     /**
      * The mistake indicates a serialization problem with this property.
@@ -30,7 +37,7 @@ public final class Journey implements Serializable {
      * is serializable and deserializable despite this warning.
      */
     @SuppressWarnings("SE_BAD_FIELD")
-    private final LinkedList<Leg> legs;
+    private LinkedList<Leg> legs;
 
     /**
      * The mistake indicates a serialization problem with this property.
@@ -38,7 +45,7 @@ public final class Journey implements Serializable {
      * is serializable and deserializable despite this warning.
      */
     @SuppressWarnings("SE_BAD_FIELD")
-    private final LinkedList<Price> prices;
+    private LinkedList<Price> prices;
 
     private Journey(JourneyBuilder journey) {
         this.id = journey.getId();
@@ -59,6 +66,59 @@ public final class Journey implements Serializable {
             return (LinkedList<Price>) prices.clone();
         }
         return null;
+    }
+
+    @JsonIgnore
+    @Override
+    public int getFactoryId() {
+        return DRAVEL_OPS_FACTORY_ID;
+    }
+
+    @JsonIgnore
+    @Override
+    public int getClassId() {
+        return JOURNEY_CLASS_ID;
+    }
+
+    @Override
+    public void writePortable(PortableWriter writer) throws IOException {
+        writer.writeUTF(ID_FIELD, this.id);
+        if (this.language != null) {
+            writer.writeBoolean(HAS_LANGUAGE_FIELD, true);
+            writer.writeUTF(LANGUAGE_FIELD, this.language.getLanguage());
+        }
+        if (this.legs != null) {
+            writer.writeBoolean(HAS_LEGS_FIELD, true);
+            writer.writePortableArray(LEGS_FIELD, this.legs.toArray(new Portable[this.legs.size()]));
+        }
+        if (this.prices != null) {
+            writer.writeBoolean(HAS_PRICES_FIELD, true);
+            writer.writePortableArray(PRICES_FIELD, this.prices.toArray(new Portable[this.prices.size()]));
+        }
+    }
+
+    @Override
+    public void readPortable(PortableReader reader) throws IOException {
+        this.id = reader.readUTF(ID_FIELD);
+        if (reader.readBoolean(HAS_LANGUAGE_FIELD)) {
+            this.language = new Locale(reader.readUTF(LANGUAGE_FIELD));
+        }
+        if (reader.readBoolean(HAS_LEGS_FIELD)) {
+            Portable[] legs = reader.readPortableArray(LEGS_FIELD);
+            for (Portable leg : legs) {
+                this.legs.add((Leg) leg);
+            }
+        } else {
+            this.legs = null;
+        }
+        if (reader.readBoolean(HAS_PRICES_FIELD)) {
+            Portable[] prices = reader.readPortableArray(PRICES_FIELD);
+            for (Portable price : prices) {
+                this.prices.add((Price) price);
+            }
+        } else {
+            this.prices = null;
+        }
     }
 
     @Setter

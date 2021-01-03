@@ -9,10 +9,14 @@ import java.net.URL;
 public class TravelProviderObjectMother {
 
     public static TravelProvider getTravelProviderWithNoEmptyFields() {
+        return getTravelProviderBuilderWithNoEmptyFields()
+                .build();
+    }
+
+    public static TravelProvider.TravelProviderBuilder getTravelProviderBuilderWithNoEmptyFields() {
         return new TravelProvider.TravelProviderBuilder()
                 .setName("Verkehrsverbund Schwarzwald-Baar")
-                .setUrl(getUrl())
-                .build();
+                .setUrl(getUrl());
     }
 
     public static TravelProvider getSuedbadenTravelProvider() {
