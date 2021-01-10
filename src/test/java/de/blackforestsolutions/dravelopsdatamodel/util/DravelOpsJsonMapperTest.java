@@ -30,13 +30,15 @@ class DravelOpsJsonMapperTest {
     }
 
     @Test
-    void test_readValue_with_valid_json_returns_apiTokenObject() throws JsonProcessingException {
+    void test_readValue_with_valid_json_returns_apiTokenObject_and_correct_languages() throws JsonProcessingException {
         String jsonApiToken = getResourceFileAsString("json/apitoken.json");
         ApiToken expectedApiToken = getApiTokenWithNoEmptyFields();
 
         ApiToken result = classUnderTest.readValue(jsonApiToken, ApiToken.class);
 
         assertThat(result).isEqualToComparingFieldByField(expectedApiToken);
+        assertThat(result.getLanguage().toLanguageTag()).isEqualTo("de");
+        assertThat(result.getLanguage().getLanguage()).isEqualTo("de");
     }
 
     @Test
