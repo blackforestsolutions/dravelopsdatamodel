@@ -24,7 +24,6 @@
         <lombok.version>1.18.8</lombok.version>
         <apache.lang-version>2.6</apache.lang-version>
         <jackson.version>2.10.1</jackson.version>
-        <hazelcast.version>4.1.1</hazelcast.version>
         <!-- Maven Test Dependencies -->
         <assertj.version>3.9.0</assertj.version>
         <junit.version>5.0.0</junit.version>
@@ -71,11 +70,6 @@
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-jsr310</artifactId>
             <version>${jackson.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.hazelcast</groupId>
-            <artifactId>hazelcast</artifactId>
-            <version>${hazelcast.version}</version>
         </dependency>
 
         <!-- Test dependencies -->
