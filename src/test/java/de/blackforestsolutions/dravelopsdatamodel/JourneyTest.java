@@ -14,7 +14,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class JourneyTest {
 
     /**
-     * checks if journeyId is conform with shaId pattern
+     * checks if journeyId is conform with shaId pattern (40 hex-characters)
      * @throws IOException when io is not available
      */
     @Test
