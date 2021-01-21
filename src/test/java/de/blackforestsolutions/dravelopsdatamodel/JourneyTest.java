@@ -13,6 +13,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class JourneyTest {
 
+    /**
+     * checks if journeyId is conform with shaId pattern
+     * @throws IOException when io is not available
+     */
     @Test
     void test_build_journey_generates_conform_sha1Id() throws IOException {
         Pattern sha1IdPattern = Pattern.compile("[0-9a-f]{40}");
