@@ -15,6 +15,7 @@ class JourneyTest {
 
     /**
      * checks if journeyId is conform with shaId pattern (40 hex-characters)
+     *
      * @throws IOException when io is not available
      */
     @Test
@@ -32,7 +33,7 @@ class JourneyTest {
 
         Journey result = testData.build();
 
-        assertThat(result.getId()).isEqualTo("6b8fc49341c09935792635b143372e0d451386a3");
+        assertThat(result.getId()).isEqualTo("812270a702d896f2c0c3299ba946f4d0fa4338d9");
     }
 
     @Test

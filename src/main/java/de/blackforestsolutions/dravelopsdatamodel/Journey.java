@@ -3,9 +3,14 @@ package de.blackforestsolutions.dravelopsdatamodel;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
+import com.hazelcast.nio.ObjectDataInput;
+import com.hazelcast.nio.ObjectDataOutput;
+import com.hazelcast.nio.serialization.DataSerializable;
 import de.blackforestsolutions.dravelopsdatamodel.util.DravelOpsJsonMapper;
 import edu.umd.cs.findbugs.annotations.SuppressWarnings;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 import org.apache.commons.codec.digest.DigestUtils;
@@ -14,15 +19,17 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.Locale;
+import java.util.Optional;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
 @JsonDeserialize(builder = Journey.JourneyBuilder.class)
-public final class Journey implements Serializable {
+public final class Journey implements Serializable, DataSerializable {
 
     private static final long serialVersionUID = 6106269076155338045L;
 
-    private final String id;
-    private final Locale language;
+    private String id;
+    private Locale language;
 
     /**
      * The mistake indicates a serialization problem with this property.
@@ -30,7 +37,7 @@ public final class Journey implements Serializable {
      * is serializable and deserializable despite this warning.
      */
     @SuppressWarnings("SE_BAD_FIELD")
-    private final LinkedList<Leg> legs;
+    private LinkedList<Leg> legs;
 
     /**
      * The mistake indicates a serialization problem with this property.
@@ -38,7 +45,7 @@ public final class Journey implements Serializable {
      * is serializable and deserializable despite this warning.
      */
     @SuppressWarnings("SE_BAD_FIELD")
-    private final LinkedList<Price> prices;
+    private LinkedList<Price> prices;
 
     private Journey(JourneyBuilder journey) {
         this.id = journey.getId();
@@ -59,6 +66,57 @@ public final class Journey implements Serializable {
             return (LinkedList<Price>) prices.clone();
         }
         return null;
+    }
+
+    @Override
+    public void writeData(ObjectDataOutput out) throws IOException {
+        out.writeUTF(this.id);
+        if (Optional.ofNullable(this.language).isPresent()) {
+            out.writeBoolean(true);
+            out.writeUTF(this.language.toLanguageTag());
+        } else {
+            out.writeBoolean(false);
+        }
+        if (Optional.ofNullable(this.legs).isPresent()) {
+            out.writeBoolean(true);
+            out.writeInt(this.legs.size());
+            for (Leg leg : this.legs) {
+                out.writeObject(leg);
+            }
+        } else {
+            out.writeBoolean(false);
+        }
+        if (Optional.ofNullable(this.prices).isPresent()) {
+            out.writeBoolean(true);
+            out.writeInt(this.prices.size());
+            for (Price price : this.prices) {
+                out.writeObject(price);
+            }
+        } else {
+            out.writeBoolean(false);
+        }
+    }
+
+    @Override
+    public void readData(ObjectDataInput in) throws IOException {
+        this.id = in.readUTF();
+        if (in.readBoolean()) {
+            this.language = Locale.forLanguageTag(in.readUTF());
+        }
+        if (in.readBoolean()) {
+            this.legs = new LinkedList<>();
+            int legsSize = in.readInt();
+            for (int i = 0; i < legsSize; i++) {
+                this.legs.add(in.readObject());
+            }
+        }
+        if (in.readBoolean()) {
+            this.prices = new LinkedList<>();
+            int pricesSize = in.readInt();
+            for (int i = 0; i < pricesSize; i++) {
+                this.prices.add(in.readObject());
+            }
+        }
     }
 
     @Setter
