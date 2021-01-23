@@ -6,7 +6,7 @@
 
     <groupId>de.blackforestsolutions</groupId>
     <artifactId>dravelopsdatamodel</artifactId>
-    <version>0.1.0</version>
+    <version>5.1.1</version>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -24,6 +24,7 @@
         <lombok.version>1.18.8</lombok.version>
         <apache.lang-version>2.6</apache.lang-version>
         <jackson.version>2.10.1</jackson.version>
+        <hazelcast.version>4.1.1</hazelcast.version>
         <!-- Maven Test Dependencies -->
         <assertj.version>3.9.0</assertj.version>
         <junit.version>5.0.0</junit.version>
@@ -70,6 +71,11 @@
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-jsr310</artifactId>
             <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.hazelcast</groupId>
+            <artifactId>hazelcast-all</artifactId>
+            <version>${hazelcast.version}</version>
         </dependency>
         <!-- Test dependencies -->
         <dependency>
@@ -250,5 +256,12 @@
         </plugins>
     </build>
 
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub OWNER Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/blackforestsolutions/dravelopsdatamodel</url>
+        </repository>
+    </distributionManagement>
 
 </project>

@@ -8,11 +8,16 @@ import java.util.Currency;
 public class PriceObjectMother {
 
     public static Price getPriceWithNoEmptyFields(PriceType priceType) {
-        return new Price.PriceBuilder()
+        return getPriceBuilderWithNoEmptyFields()
                 .setPriceType(priceType)
-                .setCurrencyCode(Currency.getInstance("EUR"))
-                .setSmallestCurrencyValue(100L)
                 .build();
+    }
+
+    public static Price.PriceBuilder getPriceBuilderWithNoEmptyFields() {
+        return new Price.PriceBuilder()
+                .setPriceType(PriceType.REGULAR)
+                .setCurrencyCode(Currency.getInstance("EUR"))
+                .setSmallestCurrencyValue(100L);
     }
 
     public static Price getFurtwangenToWaldkirchPrice() {

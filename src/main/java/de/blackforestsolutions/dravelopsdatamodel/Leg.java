@@ -2,48 +2,51 @@ package de.blackforestsolutions.dravelopsdatamodel;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
+import com.hazelcast.nio.ObjectDataInput;
+import com.hazelcast.nio.ObjectDataOutput;
+import com.hazelcast.nio.serialization.DataSerializable;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.geo.Distance;
-import org.springframework.data.geo.Point;
+import org.springframework.data.geo.Metrics;
 
+import java.io.IOException;
+import java.io.Serializable;
 import java.time.Duration;
 import java.util.LinkedList;
-import java.util.UUID;
+import java.util.Optional;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
-@Slf4j
 @JsonDeserialize(builder = Leg.LegBuilder.class)
-public final class Leg {
+public final class Leg implements Serializable, DataSerializable {
 
-    private final UUID id;
+    private static final long serialVersionUID = 5393486245718564673L;
 
-    private final TravelPoint departure;
+    private TravelPoint departure;
 
-    private final TravelPoint arrival;
+    private TravelPoint arrival;
 
-    private final Duration delayInMinutes;
+    private Duration delayInMinutes;
 
-    private final Distance distanceInKilometers;
+    private Distance distanceInKilometers;
 
-    private final VehicleType vehicleType;
+    private VehicleType vehicleType;
 
-    private final LinkedList<Point> waypoints;
+    private LinkedList<Point> waypoints;
 
-    private final TravelProvider travelProvider;
+    private TravelProvider travelProvider;
 
-    private final String vehicleNumber;
+    private String vehicleNumber;
 
-    private final String vehicleName;
+    private String vehicleName;
 
-    private final LinkedList<TravelPoint> intermediateStops;
+    private LinkedList<TravelPoint> intermediateStops;
 
     private Leg(LegBuilder legBuilder) {
-        this.id = legBuilder.getId();
         this.departure = legBuilder.getDeparture();
         this.arrival = legBuilder.getArrival();
         this.delayInMinutes = legBuilder.getDelayInMinutes();
@@ -70,15 +73,90 @@ public final class Leg {
         return null;
     }
 
+    @Override
+    public void writeData(ObjectDataOutput out) throws IOException {
+        out.writeObject(this.departure);
+        out.writeObject(this.arrival);
+        if (Optional.ofNullable(this.delayInMinutes).isPresent()) {
+            out.writeBoolean(true);
+            out.writeLong(this.delayInMinutes.toMinutes());
+        } else {
+            out.writeBoolean(false);
+        }
+        if (Optional.ofNullable(this.distanceInKilometers).isPresent()) {
+            out.writeBoolean(true);
+            out.writeDouble(this.distanceInKilometers.getValue());
+        } else {
+            out.writeBoolean(false);
+        }
+        if (Optional.ofNullable(this.vehicleType).isPresent()) {
+            out.writeBoolean(true);
+            out.writeUTF(this.vehicleType.toString());
+        } else {
+            out.writeBoolean(false);
+        }
+        if (Optional.ofNullable(this.waypoints).isPresent()) {
+            out.writeBoolean(true);
+            out.writeInt(this.waypoints.size());
+            for (Point waypoint : this.waypoints) {
+                out.writeObject(waypoint);
+            }
+        } else {
+            out.writeBoolean(false);
+        }
+        out.writeObject(this.travelProvider);
+        out.writeUTF(this.vehicleNumber);
+        out.writeUTF(this.vehicleName);
+        if (Optional.ofNullable(this.intermediateStops).isPresent()) {
+            out.writeBoolean(true);
+            out.writeInt(this.intermediateStops.size());
+            for (TravelPoint intermediateStop : intermediateStops) {
+                out.writeObject(intermediateStop);
+            }
+        } else {
+            out.writeBoolean(false);
+        }
+    }
+
+    @Override
+    public void readData(ObjectDataInput in) throws IOException {
+        this.departure = in.readObject();
+        this.arrival = in.readObject();
+        if (in.readBoolean()) {
+            this.delayInMinutes = Duration.ofMinutes(in.readLong());
+        }
+        if (in.readBoolean()) {
+            this.distanceInKilometers = new Distance(in.readDouble(), Metrics.KILOMETERS);
+        }
+        if (in.readBoolean()) {
+            this.vehicleType = VehicleType.valueOf(in.readUTF());
+        }
+        if (in.readBoolean()) {
+            this.waypoints = new LinkedList<>();
+            int waypointsSize = in.readInt();
+            for (int i = 0; i < waypointsSize; i++) {
+                this.waypoints.add(in.readObject());
+            }
+        }
+        this.travelProvider = in.readObject();
+        this.vehicleNumber = in.readUTF();
+        this.vehicleName = in.readUTF();
+        if (in.readBoolean()) {
+            this.intermediateStops = new LinkedList<>();
+            int intermediateStopsSize = in.readInt();
+            for (int i = 0; i < intermediateStopsSize; i++) {
+                this.intermediateStops.add(in.readObject());
+            }
+        }
+    }
+
 
     @Setter
     @Getter
     @Accessors(chain = true)
     @JsonPOJOBuilder(withPrefix = "set")
-    @NoArgsConstructor(access = AccessLevel.PRIVATE)
+    @NoArgsConstructor(access = AccessLevel.PUBLIC)
     public static class LegBuilder {
-
-        private UUID id;
 
         private TravelPoint departure;
 
@@ -90,7 +168,7 @@ public final class Leg {
 
         private VehicleType vehicleType;
 
-        private LinkedList<Point> waypoints;
+        private LinkedList<Point> waypoints = new LinkedList<>();
 
         private TravelProvider travelProvider;
 
@@ -99,10 +177,6 @@ public final class Leg {
         private String vehicleName = "";
 
         private LinkedList<TravelPoint> intermediateStops = new LinkedList<>();
-
-        public LegBuilder(UUID id) {
-            this.id = id;
-        }
 
         public Leg build() {
             return new Leg(this);

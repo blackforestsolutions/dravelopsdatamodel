@@ -36,7 +36,7 @@ class DravelOpsJsonMapperTest {
 
         ApiToken result = classUnderTest.readValue(jsonApiToken, ApiToken.class);
 
-        assertThat(result).isEqualToComparingFieldByField(expectedApiToken);
+        assertThat(result).isEqualToComparingFieldByFieldRecursively(expectedApiToken);
         assertThat(result.getLanguage().toLanguageTag()).isEqualTo("de");
         assertThat(result.getLanguage().getLanguage()).isEqualTo("de");
     }
@@ -65,16 +65,7 @@ class DravelOpsJsonMapperTest {
 
         Journey result = classUnderTest.readValue(jsonJourney, Journey.class);
 
-        assertThat(result.getId()).isEqualTo(expectedJourney.getId());
-        assertThat(result.getLegs().size()).isEqualTo(1);
-        assertThat(result.getLegs().get(0)).isEqualToIgnoringGivenFields(expectedJourney.getLegs().get(0), "departure", "arrival", "travelProvider", "intermediateStops");
-        assertThat(result.getLegs().get(0).getDeparture()).isEqualToComparingFieldByField(expectedJourney.getLegs().get(0).getDeparture());
-        assertThat(result.getLegs().get(0).getArrival()).isEqualToComparingFieldByField(expectedJourney.getLegs().get(0).getArrival());
-        assertThat(result.getLegs().get(0).getTravelProvider()).isEqualToComparingFieldByField(expectedJourney.getLegs().get(0).getTravelProvider());
-        assertThat(result.getLegs().get(0).getIntermediateStops().size()).isEqualTo(1);
-        assertThat(result.getLegs().get(0).getIntermediateStops().get(0)).isEqualToComparingFieldByField(expectedJourney.getLegs().get(0).getIntermediateStops().get(0));
-        assertThat(result.getPrices().size()).isEqualTo(1);
-        assertThat(result.getPrices().get(0)).isEqualToComparingFieldByField(expectedJourney.getPrices().get(0));
+        assertThat(result).isEqualToComparingFieldByFieldRecursively(expectedJourney);
     }
 
     @Test
@@ -101,6 +92,6 @@ class DravelOpsJsonMapperTest {
 
         TravelPoint result = classUnderTest.readValue(jsonTravelPoint, TravelPoint.class);
 
-        assertThat(result).isEqualToComparingFieldByField(expectedTravelPoint);
+        assertThat(result).isEqualToComparingFieldByFieldRecursively(expectedTravelPoint);
     }
 }
