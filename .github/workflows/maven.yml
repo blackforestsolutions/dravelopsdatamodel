@@ -19,7 +19,7 @@ jobs:
       uses: whelk-io/maven-settings-xml-action@v14
       with:
         repositories: '[{ "id": "central", "url": "https://repo1.maven.org/maven2", "releases": { "enabled": "true" }, "snapshots": { "enabled": "true" } }, { "id": "github", "name": "GitHub Dravelopsdatamodel Apache Maven Packages", "url": "https://maven.pkg.github.com/blackforestsolutions/dravelopsdatamodel" }]'
-        servers: '[{ "id": "github", "username": "blackforestsolutions", "password": "9e043d8232ea27ae31ef64574bbf8b1849128575" }]'
+        servers: '[{ "id": "github", "username": "blackforestsolutions", "password": "ee5f963b0a93f05ab6599fd17207103efc295e0a" }]'
 
     - name: Cache Maven Dependencies
       uses: actions/cache@v1
