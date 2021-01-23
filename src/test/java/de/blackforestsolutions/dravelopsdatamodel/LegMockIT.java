@@ -1,9 +1,8 @@
-package de.blackforestsolutions.dravelopsdatamodel.hazelcast;
+package de.blackforestsolutions.dravelopsdatamodel;
 
 import com.hazelcast.core.Hazelcast;
 import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.map.IMap;
-import de.blackforestsolutions.dravelopsdatamodel.Leg;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
