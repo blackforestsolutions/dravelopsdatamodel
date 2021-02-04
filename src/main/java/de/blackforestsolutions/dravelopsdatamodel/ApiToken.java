@@ -10,8 +10,7 @@ import lombok.experimental.Accessors;
 import org.springframework.data.geo.Box;
 
 import java.time.ZonedDateTime;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 
 @Getter
 @JsonDeserialize(builder = ApiToken.ApiTokenBuilder.class)
@@ -42,6 +41,7 @@ public final class ApiToken {
     private final List<String> layers;
     private final int maxPastDaysInCalendar;
     private final int hazelcastTimeRangeInMinutes;
+    private final Map<String, String> headers;
 
     private ApiToken(ApiTokenBuilder apiTokenBuilder) {
         this.host = apiTokenBuilder.getHost();
@@ -66,6 +66,7 @@ public final class ApiToken {
         this.layers = apiTokenBuilder.getLayers();
         this.maxPastDaysInCalendar = apiTokenBuilder.getMaxPastDaysInCalendar();
         this.hazelcastTimeRangeInMinutes = apiTokenBuilder.getHazelcastTimeRangeInMinutes();
+        this.headers = apiTokenBuilder.getHeaders();
     }
 
     public boolean getIsArrivalDateTime() {
@@ -112,9 +113,10 @@ public final class ApiToken {
         private Integer maxResults;
         private String apiVersion;
         private Box box;
-        private List<String> layers;
+        private List<String> layers = new LinkedList<>();
         private int maxPastDaysInCalendar;
         private int hazelcastTimeRangeInMinutes;
+        private Map<String, String> headers = new HashMap<>();
 
         /**
          * This warning indicates a duplicated code fragment.
@@ -148,6 +150,7 @@ public final class ApiToken {
             this.layers = apiTokenBuilder.getLayers();
             this.maxPastDaysInCalendar = apiTokenBuilder.getMaxPastDaysInCalendar();
             this.hazelcastTimeRangeInMinutes = apiTokenBuilder.getHazelcastTimeRangeInMinutes();
+            this.headers = apiTokenBuilder.getHeaders();
         }
 
         /**
@@ -182,6 +185,7 @@ public final class ApiToken {
             this.layers = apiToken.getLayers();
             this.maxPastDaysInCalendar = apiToken.getMaxPastDaysInCalendar();
             this.hazelcastTimeRangeInMinutes = apiToken.getHazelcastTimeRangeInMinutes();
+            this.headers = apiToken.getHeaders();
         }
 
         public ApiTokenBuilder setIsArrivalDateTime(boolean isArrivalDateTime) {

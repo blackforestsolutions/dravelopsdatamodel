@@ -37,5 +37,8 @@
     "test"
   ],
   "maxPastDaysInCalendar": 2,
-  "hazelcastTimeRangeInMinutes": 120
+  "hazelcastTimeRangeInMinutes": 120,
+  "headers": {
+    "Token": "123"
+  }
 }

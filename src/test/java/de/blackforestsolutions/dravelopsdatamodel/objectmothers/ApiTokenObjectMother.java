@@ -9,6 +9,7 @@ import java.time.ZonedDateTime;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.BoxObjectMother.getOpenTripPlannerBox;
 import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.PointObjectMother.getAmGrosshausbergPoint;
@@ -39,7 +40,8 @@ public class ApiTokenObjectMother {
                 .setBox(new Box(new org.springframework.data.geo.Point(0.0d, 0.0d), new org.springframework.data.geo.Point(0.0d, 0.0d)))
                 .setLayers(Collections.singletonList("test"))
                 .setMaxPastDaysInCalendar(2)
-                .setHazelcastTimeRangeInMinutes(120);
+                .setHazelcastTimeRangeInMinutes(120)
+                .setHeaders(Map.of("Token", "123"));
     }
 
     public static ApiToken getApiTokenWithNoEmptyFields() {
@@ -66,6 +68,7 @@ public class ApiTokenObjectMother {
                 .setLayers(Collections.singletonList("test"))
                 .setMaxPastDaysInCalendar(2)
                 .setHazelcastTimeRangeInMinutes(120)
+                .setHeaders(Map.of("Token", "123"))
                 .build();
     }
 
