@@ -8,8 +8,10 @@ import org.springframework.core.io.support.PropertiesLoaderUtils;
 import reactor.core.publisher.Mono;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.URL;
 import java.util.Properties;
 import java.util.stream.Collectors;
 
@@ -21,7 +23,7 @@ public class TestUtils {
      * Reads given resource file as a string.
      *
      * @param fileName the path to the resource file
-     * @return the file's contents or null if the file could not be opened
+     * @return the file's contents or null if the file could not be found
      */
     public static String getResourceFileAsString(String fileName) {
         ClassLoader classLoader = ClassLoader.getSystemClassLoader();
@@ -29,6 +31,21 @@ public class TestUtils {
         if (inputStream != null) {
             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, UTF_8));
             return reader.lines().collect(Collectors.joining(System.lineSeparator()));
+        }
+        return null;
+    }
+
+    /**
+     * Reads given resource file as a file
+     *
+     * @param fileName the path to the resource file
+     * @return the file's contents or null if the file could not be found
+     */
+    public static File getResourceFile(String fileName) {
+        ClassLoader classLoader = ClassLoader.getSystemClassLoader();
+        URL fileUrl = classLoader.getResource(fileName);
+        if (fileUrl != null) {
+            return new File(fileUrl.getFile());
         }
         return null;
     }
