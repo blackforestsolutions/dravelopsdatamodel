@@ -297,4 +297,24 @@ public class ApiTokenObjectMother {
                 .build();
     }
 
+    // GtfsFileApiToken
+    public static ApiToken getSbgGtfsApiToken() {
+        return new ApiToken.ApiTokenBuilder()
+                .setProtocol("http")
+                .setHost("nvbw.de")
+                .setPath("/fileadmin/user_upload/service/open_data/fahrplandaten_mit_liniennetz/sbg.zip")
+                .setHeaders(Map.of(
+                        "Token", "123"
+                ))
+                .build();
+    }
+
+    public static ApiToken getRnvGtfsApiToken() {
+        return new ApiToken.ApiTokenBuilder()
+                .setProtocol("https")
+                .setHost("gtfs-sandbox-dds.rnv-online.de")
+                .setPath("/latest/gtfs.zip")
+                .build();
+    }
+
 }
