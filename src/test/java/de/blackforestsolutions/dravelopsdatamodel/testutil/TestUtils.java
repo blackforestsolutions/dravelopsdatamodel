@@ -3,20 +3,26 @@ package de.blackforestsolutions.dravelopsdatamodel.testutil;
 import de.blackforestsolutions.dravelopsdatamodel.util.DravelOpsJsonMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PropertiesLoaderUtils;
+import org.springframework.http.HttpHeaders;
 import reactor.core.publisher.Mono;
 
 import java.io.*;
+import java.util.Map;
 import java.util.Properties;
 import java.util.stream.Collectors;
+import java.util.zip.ZipFile;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 
 @Slf4j
 public class TestUtils {
+
+    private static final String ZIP_EXTENSION = "zip";
 
     /**
      * Reads given resource file as a string.
@@ -100,6 +106,45 @@ public class TestUtils {
         } catch (Exception e) {
             return Mono.error(e);
         }
+    }
+
+    /**
+     * verifies if the file has a zip file extension
+     *
+     * @param f File
+     * @return true if the file has the .zip extension or false if not
+     */
+    public static boolean hasZipFileExtension(File f) {
+        String fileName = f.getName();
+        String extension = FilenameUtils.getExtension(fileName);
+        return extension.equals(ZIP_EXTENSION);
+    }
+
+    /**
+     * converts a File to a ZipFile
+     *
+     * @param f file to convert to ZipFile
+     * @return ZipFile
+     */
+    public static ZipFile convertToZipFile(File f) {
+        try {
+            return new ZipFile(f);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
+     * converts a map with a string as key and value to an Spring HttpHeader
+     *
+     * @param headersMap with key as string and value as string
+     * @return HttpHeaders of Spring framework
+     */
+    public static HttpHeaders convertToHeaders(Map<String, String> headersMap) {
+        HttpHeaders httpHeaders = new HttpHeaders();
+        headersMap.forEach(httpHeaders::add);
+        return httpHeaders;
     }
 
 }
