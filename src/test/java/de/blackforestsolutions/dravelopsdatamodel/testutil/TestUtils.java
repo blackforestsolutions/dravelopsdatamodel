@@ -41,7 +41,7 @@ public class TestUtils {
      * @return
      * @throws IOException
      */
-    private File getResourceAsFile(String path, String fileType) throws IOException {
+    public static File getResourceAsFile(String path, String fileType) throws IOException {
         ClassLoader classLoader = ClassLoader.getSystemClassLoader();
         InputStream inputStream = classLoader.getResourceAsStream(path);
         File targetFile = File.createTempFile(path, fileType);
