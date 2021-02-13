@@ -1,6 +1,7 @@
 package de.blackforestsolutions.dravelopsdatamodel.testutil;
 
 import de.blackforestsolutions.dravelopsdatamodel.util.DravelOpsJsonMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.FileSystemResource;
@@ -14,6 +15,7 @@ import java.util.stream.Collectors;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 
+@Slf4j
 public class TestUtils {
 
     /**
@@ -36,20 +38,25 @@ public class TestUtils {
      * NEVER USE IN PRODUCTIVE CODE!
      * Parse the given
      *
-     * @param path such as gtfs/sbg.zip
+     * @param path     such as gtfs/sbg.zip
      * @param fileType such as .zip
      * @return
      * @throws IOException
      */
-    public static File getResourceAsFile(String path, String fileType) throws IOException {
+    public static File getResourceAsFile(String path, String fileType) {
         ClassLoader classLoader = ClassLoader.getSystemClassLoader();
         InputStream inputStream = classLoader.getResourceAsStream(path);
-        File targetFile = File.createTempFile(path, fileType);
-        if (inputStream != null) {
-            FileUtils.copyInputStreamToFile(inputStream, targetFile);
-            return targetFile;
+        try {
+            File targetFile = File.createTempFile(path, fileType);
+            if (inputStream != null) {
+                FileUtils.copyInputStreamToFile(inputStream, targetFile);
+                return targetFile;
+            }
+            return null;
+        } catch (IOException e) {
+            log.error("Error while creating file: ", e);
+            return null;
         }
-        return null;
     }
 
     /**
