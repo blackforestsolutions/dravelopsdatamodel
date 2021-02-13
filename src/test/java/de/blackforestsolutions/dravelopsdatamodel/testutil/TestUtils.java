@@ -1,17 +1,14 @@
 package de.blackforestsolutions.dravelopsdatamodel.testutil;
 
 import de.blackforestsolutions.dravelopsdatamodel.util.DravelOpsJsonMapper;
+import org.apache.commons.io.FileUtils;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PropertiesLoaderUtils;
 import reactor.core.publisher.Mono;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.URL;
+import java.io.*;
 import java.util.Properties;
 import java.util.stream.Collectors;
 
@@ -36,16 +33,21 @@ public class TestUtils {
     }
 
     /**
-     * Reads given resource file as a file
+     * NEVER USE IN PRODUCTIVE CODE!
+     * Parse the given
      *
-     * @param fileName the path to the resource file
-     * @return the file's contents or null if the file could not be found
+     * @param path such as gtfs/sbg.zip
+     * @param fileType such as .zip
+     * @return
+     * @throws IOException
      */
-    public static File getResourceFile(String fileName) {
+    private File getResourceAsFile(String path, String fileType) throws IOException {
         ClassLoader classLoader = ClassLoader.getSystemClassLoader();
-        URL fileUrl = classLoader.getResource(fileName);
-        if (fileUrl != null) {
-            return new File(fileUrl.getFile());
+        InputStream inputStream = classLoader.getResourceAsStream(path);
+        File targetFile = File.createTempFile(path, fileType);
+        if (inputStream != null) {
+            FileUtils.copyInputStreamToFile(inputStream, targetFile);
+            return targetFile;
         }
         return null;
     }

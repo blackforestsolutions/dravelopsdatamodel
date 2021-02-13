@@ -225,6 +225,7 @@ public class TravelPointObjectMother {
         return new TravelPoint.TravelPointBuilder()
                 .setName("Bad Dürkheim Bahnhof")
                 .setPoint(new Point.PointBuilder(8.1704281d, 49.4615289d).build())
+                .setPlatform("1")
                 .build();
     }
 
