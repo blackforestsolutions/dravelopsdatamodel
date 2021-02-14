@@ -1,6 +1,11 @@
 name: Java CICD and publish package
 
-on: [ push ]
+on:
+  push:
+    branches:
+      - '**'
+    branches-ignore:
+      - master
 
 jobs:
   build:
