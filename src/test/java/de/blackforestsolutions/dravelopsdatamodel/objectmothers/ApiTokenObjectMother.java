@@ -317,4 +317,13 @@ public class ApiTokenObjectMother {
                 .build();
     }
 
+    public static ApiToken getConfiguredStationPersistenceApiToken() {
+        return new ApiToken.ApiTokenBuilder()
+                .setProtocol("http")
+                .setHost("localhost")
+                .setPort(8086)
+                .setPath("/travelpoints/get")
+                .build();
+    }
+
 }
