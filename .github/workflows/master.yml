@@ -26,5 +26,5 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven
 
-      - name: Publish package
+      - name: Build with Maven
         run: mvn install
