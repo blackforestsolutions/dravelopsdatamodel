@@ -41,6 +41,7 @@ public final class ApiToken {
     private final List<String> layers;
     private final int maxPastDaysInCalendar;
     private final int hazelcastTimeRangeInMinutes;
+    private final String gtfsUrl;
     private final Map<String, String> headers;
 
     private ApiToken(ApiTokenBuilder apiTokenBuilder) {
@@ -66,6 +67,7 @@ public final class ApiToken {
         this.layers = apiTokenBuilder.getLayers();
         this.maxPastDaysInCalendar = apiTokenBuilder.getMaxPastDaysInCalendar();
         this.hazelcastTimeRangeInMinutes = apiTokenBuilder.getHazelcastTimeRangeInMinutes();
+        this.gtfsUrl = apiTokenBuilder.getGtfsUrl();
         this.headers = apiTokenBuilder.getHeaders();
     }
 
@@ -116,6 +118,7 @@ public final class ApiToken {
         private List<String> layers = new LinkedList<>();
         private int maxPastDaysInCalendar;
         private int hazelcastTimeRangeInMinutes;
+        private String gtfsUrl;
         private Map<String, String> headers = new HashMap<>();
 
         /**
@@ -150,6 +153,7 @@ public final class ApiToken {
             this.layers = apiTokenBuilder.getLayers();
             this.maxPastDaysInCalendar = apiTokenBuilder.getMaxPastDaysInCalendar();
             this.hazelcastTimeRangeInMinutes = apiTokenBuilder.getHazelcastTimeRangeInMinutes();
+            this.gtfsUrl = apiTokenBuilder.getGtfsUrl();
             this.headers = apiTokenBuilder.getHeaders();
         }
 
@@ -185,6 +189,7 @@ public final class ApiToken {
             this.layers = apiToken.getLayers();
             this.maxPastDaysInCalendar = apiToken.getMaxPastDaysInCalendar();
             this.hazelcastTimeRangeInMinutes = apiToken.getHazelcastTimeRangeInMinutes();
+            this.gtfsUrl = apiToken.getGtfsUrl();
             this.headers = apiToken.getHeaders();
         }
 

@@ -41,6 +41,7 @@ public class ApiTokenObjectMother {
                 .setLayers(Collections.singletonList("test"))
                 .setMaxPastDaysInCalendar(2)
                 .setHazelcastTimeRangeInMinutes(120)
+                .setGtfsUrl("http://nvbw.de/fileadmin/user_upload/service/open_data/fahrplandaten_mit_liniennetz/sbg.zip")
                 .setHeaders(Map.of("Token", "123"));
     }
 
@@ -68,6 +69,7 @@ public class ApiTokenObjectMother {
                 .setLayers(Collections.singletonList("test"))
                 .setMaxPastDaysInCalendar(2)
                 .setHazelcastTimeRangeInMinutes(120)
+                .setGtfsUrl("http://nvbw.de/fileadmin/user_upload/service/open_data/fahrplandaten_mit_liniennetz/sbg.zip")
                 .setHeaders(Map.of("Token", "123"))
                 .build();
     }
@@ -300,9 +302,7 @@ public class ApiTokenObjectMother {
     // GtfsFileApiToken
     public static ApiToken getSbgGtfsApiToken() {
         return new ApiToken.ApiTokenBuilder()
-                .setProtocol("http")
-                .setHost("nvbw.de")
-                .setPath("/fileadmin/user_upload/service/open_data/fahrplandaten_mit_liniennetz/sbg.zip")
+                .setGtfsUrl("http://nvbw.de/fileadmin/user_upload/service/open_data/fahrplandaten_mit_liniennetz/sbg.zip")
                 .setHeaders(Map.of(
                         "Token", "123"
                 ))
@@ -311,9 +311,7 @@ public class ApiTokenObjectMother {
 
     public static ApiToken getRnvGtfsApiToken() {
         return new ApiToken.ApiTokenBuilder()
-                .setProtocol("https")
-                .setHost("gtfs-sandbox-dds.rnv-online.de")
-                .setPath("/latest/gtfs.zip")
+                .setGtfsUrl("https://gtfs-sandbox-dds.rnv-online.de/latest/gtfs.zip")
                 .build();
     }
 
