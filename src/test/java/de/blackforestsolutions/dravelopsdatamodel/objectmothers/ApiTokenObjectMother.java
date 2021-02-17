@@ -9,6 +9,7 @@ import java.time.ZonedDateTime;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.BoxObjectMother.getOpenTripPlannerBox;
 import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.PointObjectMother.getAmGrosshausbergPoint;
@@ -39,7 +40,9 @@ public class ApiTokenObjectMother {
                 .setBox(new Box(new org.springframework.data.geo.Point(0.0d, 0.0d), new org.springframework.data.geo.Point(0.0d, 0.0d)))
                 .setLayers(Collections.singletonList("test"))
                 .setMaxPastDaysInCalendar(2)
-                .setHazelcastTimeRangeInMinutes(120);
+                .setHazelcastTimeRangeInMinutes(120)
+                .setGtfsUrl("http://nvbw.de/fileadmin/user_upload/service/open_data/fahrplandaten_mit_liniennetz/sbg.zip")
+                .setHeaders(Map.of("Token", "123"));
     }
 
     public static ApiToken getApiTokenWithNoEmptyFields() {
@@ -66,6 +69,8 @@ public class ApiTokenObjectMother {
                 .setLayers(Collections.singletonList("test"))
                 .setMaxPastDaysInCalendar(2)
                 .setHazelcastTimeRangeInMinutes(120)
+                .setGtfsUrl("http://nvbw.de/fileadmin/user_upload/service/open_data/fahrplandaten_mit_liniennetz/sbg.zip")
+                .setHeaders(Map.of("Token", "123"))
                 .build();
     }
 
@@ -291,6 +296,31 @@ public class ApiTokenObjectMother {
         return new ApiToken.ApiTokenBuilder()
                 .setMaxPastDaysInCalendar(2)
                 .setHazelcastTimeRangeInMinutes(120)
+                .build();
+    }
+
+    // GtfsFileApiToken
+    public static ApiToken getSbgGtfsApiToken() {
+        return new ApiToken.ApiTokenBuilder()
+                .setGtfsUrl("http://nvbw.de/fileadmin/user_upload/service/open_data/fahrplandaten_mit_liniennetz/sbg.zip")
+                .setHeaders(Map.of(
+                        "Token", "123"
+                ))
+                .build();
+    }
+
+    public static ApiToken getRnvGtfsApiToken() {
+        return new ApiToken.ApiTokenBuilder()
+                .setGtfsUrl("https://gtfs-sandbox-dds.rnv-online.de/latest/gtfs.zip")
+                .build();
+    }
+
+    public static ApiToken getConfiguredStationPersistenceApiToken() {
+        return new ApiToken.ApiTokenBuilder()
+                .setProtocol("http")
+                .setHost("localhost")
+                .setPort(8086)
+                .setPath("/travelpoints/get")
                 .build();
     }
 

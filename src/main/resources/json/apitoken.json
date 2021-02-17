@@ -37,5 +37,9 @@
     "test"
   ],
   "maxPastDaysInCalendar": 2,
-  "hazelcastTimeRangeInMinutes": 120
+  "hazelcastTimeRangeInMinutes": 120,
+  "gtfsUrl": "http://nvbw.de/fileadmin/user_upload/service/open_data/fahrplandaten_mit_liniennetz/sbg.zip",
+  "headers": {
+    "Token": "123"
+  }
 }

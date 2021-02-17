@@ -220,4 +220,43 @@ public class TravelPointObjectMother {
                 .setPoint(new Point.PointBuilder(8.207673d, 48.051086d).build())
                 .build();
     }
+
+    public static TravelPoint getBadDuerkheimTravelPoint() {
+        return new TravelPoint.TravelPointBuilder()
+                .setName("Bad Dürkheim Bahnhof")
+                .setPoint(new Point.PointBuilder(8.1704281d, 49.4615289d).build())
+                .setPlatform("1")
+                .build();
+    }
+
+    public static TravelPoint getNeckarauTrainStationTravelPoint() {
+        return new TravelPoint.TravelPointBuilder()
+                .setName("Neckarau Bahnhof")
+                .setPoint(new Point.PointBuilder(8.4942986d, 49.4554028d).build())
+                .setPlatform("B")
+                .build();
+    }
+
+    public static TravelPoint getKarlsbaderStreetTravelPoint() {
+        return new TravelPoint.TravelPointBuilder()
+                .setName("Karlsbader Straße")
+                .setPoint(new Point.PointBuilder(8.4040203d, 49.4770297d).build())
+                .setPlatform("A")
+                .build();
+    }
+
+    public static TravelPoint getFurtwangenBirkeTravelPoint() {
+        return new TravelPoint.TravelPointBuilder()
+                .setName("Furtwangen Birke")
+                .setPoint(new Point.PointBuilder(8.203244d, 48.079146d).build())
+                .build();
+    }
+
+    public static TravelPoint getTribergStationStreetTravelPoint() {
+        return new TravelPoint.TravelPointBuilder()
+                .setName("Triberg Bahnhofstraße")
+                .setPoint(new Point.PointBuilder(8.240066d, 48.137905d).build())
+                .build();
+    }
+
 }
