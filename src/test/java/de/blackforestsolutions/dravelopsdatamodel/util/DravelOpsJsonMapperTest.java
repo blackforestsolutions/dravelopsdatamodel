@@ -4,11 +4,13 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.exc.MismatchedInputException;
 import de.blackforestsolutions.dravelopsdatamodel.ApiToken;
 import de.blackforestsolutions.dravelopsdatamodel.Journey;
+import de.blackforestsolutions.dravelopsdatamodel.Polygon;
 import de.blackforestsolutions.dravelopsdatamodel.TravelPoint;
 import org.junit.jupiter.api.Test;
 
 import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.ApiTokenObjectMother.getApiTokenWithNoEmptyFields;
 import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.JourneyObjectMother.getJourneyWithNoEmptyFields;
+import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.PolygonObjectMother.getPolygonWithMinPoints;
 import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.TravelPointObjectMother.getTravelPointWithNoEmptyFields;
 import static de.blackforestsolutions.dravelopsdatamodel.testutil.TestUtils.getResourceFileAsString;
 import static org.apache.commons.lang.StringUtils.deleteWhitespace;
@@ -93,5 +95,25 @@ class DravelOpsJsonMapperTest {
         TravelPoint result = classUnderTest.readValue(jsonTravelPoint, TravelPoint.class);
 
         assertThat(result).isEqualToComparingFieldByFieldRecursively(expectedTravelPoint);
+    }
+
+    @Test
+    void test_writeValueAsString_with_polygon_returns_polygon_as_json_string() throws JsonProcessingException {
+        Polygon testPolygon = getPolygonWithMinPoints();
+        String expectedJsonPolygon = getResourceFileAsString("json/polygon.json");
+
+        String result = classUnderTest.writeValueAsString(testPolygon);
+
+        assertThat(deleteWhitespace(result)).isEqualTo(deleteWhitespace(expectedJsonPolygon));
+    }
+
+    @Test
+    void test_readValue_with_valid_json_as_polygon_returns_polygonObject() throws JsonProcessingException {
+        String jsonPolygon = getResourceFileAsString("json/travelpoint.json");
+        Polygon expectedPolygon = getPolygonWithMinPoints();
+
+        Polygon result = classUnderTest.readValue(jsonPolygon, Polygon.class);
+
+        assertThat(result).isEqualTo(expectedPolygon);
     }
 }
