@@ -16,7 +16,7 @@ import static de.blackforestsolutions.dravelopsdatamodel.jackson.JacksonConfigur
 
 public class PolygonDeserializer extends JsonDeserializer<Polygon> {
 
-    private static final GeometryFactory geometryFactory = new GeometryFactory();
+    private static final GeometryFactory GEOMETRY_FACTORY = new GeometryFactory();
 
     @Override
     public Polygon deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException {
@@ -24,7 +24,7 @@ public class PolygonDeserializer extends JsonDeserializer<Polygon> {
 
         Iterator<JsonNode> points = node.get(COORDINATES_JSON_FIELD).elements();
         Geometry[] geometries = extractPointsFrom(points);
-        GeometryCollection geometryCollection = new GeometryCollection(geometries, geometryFactory);
+        GeometryCollection geometryCollection = new GeometryCollection(geometries, GEOMETRY_FACTORY);
 
         return (Polygon) new ConvexHull(geometryCollection).getConvexHull();
     }
@@ -42,6 +42,6 @@ public class PolygonDeserializer extends JsonDeserializer<Polygon> {
 
     private Point convertToPoint(double x, double y) {
         Coordinate coordinate = new Coordinate(x, y);
-        return geometryFactory.createPoint(coordinate);
+        return GEOMETRY_FACTORY.createPoint(coordinate);
     }
 }
