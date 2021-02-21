@@ -109,11 +109,11 @@ class DravelOpsJsonMapperTest {
 
     @Test
     void test_readValue_with_valid_json_as_polygon_returns_polygonObject() throws JsonProcessingException {
-        String jsonPolygon = getResourceFileAsString("json/travelpoint.json");
+        String jsonPolygon = getResourceFileAsString("json/polygon.json");
         Polygon expectedPolygon = getPolygonWithMinPoints();
 
         Polygon result = classUnderTest.readValue(jsonPolygon, Polygon.class);
 
-        assertThat(result).isEqualTo(expectedPolygon);
+        assertThat(result).isEqualToComparingFieldByFieldRecursively(expectedPolygon);
     }
 }
