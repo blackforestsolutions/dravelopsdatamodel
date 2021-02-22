@@ -24,11 +24,11 @@
   "maxResults": 1,
   "apiVersion": "v1",
   "box": {
-    "first": {
+    "topLeft": {
       "x": 0.0,
       "y": 0.0
     },
-    "second": {
+    "bottomRight": {
       "x": 0.0,
       "y": 0.0
     }

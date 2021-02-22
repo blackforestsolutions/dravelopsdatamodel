@@ -1,9 +1,9 @@
 package de.blackforestsolutions.dravelopsdatamodel.objectmothers;
 
 import de.blackforestsolutions.dravelopsdatamodel.ApiToken;
+import de.blackforestsolutions.dravelopsdatamodel.Box;
 import de.blackforestsolutions.dravelopsdatamodel.Optimization;
 import de.blackforestsolutions.dravelopsdatamodel.Point;
-import org.springframework.data.geo.Box;
 
 import java.time.ZonedDateTime;
 import java.util.Collections;
@@ -37,7 +37,10 @@ public class ApiTokenObjectMother {
                 .setPath("/path")
                 .setApiVersion("v1")
                 .setMaxResults(1)
-                .setBox(new Box(new org.springframework.data.geo.Point(0.0d, 0.0d), new org.springframework.data.geo.Point(0.0d, 0.0d)))
+                .setBox(new Box.BoxBuilder(
+                        new Point.PointBuilder(0.0d, 0.0d).build(),
+                        new Point.PointBuilder(0.0d, 0.0d).build()
+                ).build())
                 .setLayers(Collections.singletonList("test"))
                 .setMaxPastDaysInCalendar(2)
                 .setHazelcastTimeRangeInMinutes(120)
@@ -65,7 +68,10 @@ public class ApiTokenObjectMother {
                 .setPath("/path")
                 .setMaxResults(1)
                 .setApiVersion("v1")
-                .setBox(new Box(new org.springframework.data.geo.Point(0.0d, 0.0d), new org.springframework.data.geo.Point(0.0d, 0.0d)))
+                .setBox(new Box.BoxBuilder(
+                        new Point.PointBuilder(0.0d, 0.0d).build(),
+                        new Point.PointBuilder(0.0d, 0.0d).build()
+                ).build())
                 .setLayers(Collections.singletonList("test"))
                 .setMaxPastDaysInCalendar(2)
                 .setHazelcastTimeRangeInMinutes(120)

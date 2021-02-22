@@ -3,12 +3,14 @@ package de.blackforestsolutions.dravelopsdatamodel.util;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.exc.MismatchedInputException;
 import de.blackforestsolutions.dravelopsdatamodel.ApiToken;
+import de.blackforestsolutions.dravelopsdatamodel.Box;
 import de.blackforestsolutions.dravelopsdatamodel.Journey;
 import de.blackforestsolutions.dravelopsdatamodel.TravelPoint;
 import org.junit.jupiter.api.Test;
 import org.locationtech.jts.geom.Polygon;
 
 import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.ApiTokenObjectMother.getApiTokenWithNoEmptyFields;
+import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.BoxObjectMother.getBoxWithNoEmptyFields;
 import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.JourneyObjectMother.getJourneyWithNoEmptyFields;
 import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.PolygonObjectMother.getPolygonWithNoEmptyFields;
 import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.TravelPointObjectMother.getTravelPointWithNoEmptyFields;
@@ -115,5 +117,25 @@ class DravelOpsJsonMapperTest {
         Polygon result = classUnderTest.readValue(jsonPolygon, Polygon.class);
 
         assertThat(result).isEqualToComparingFieldByFieldRecursively(expectedPolygon);
+    }
+
+    @Test
+    void test_writeValueAsString_with_box_returns_box_as_json_string() throws JsonProcessingException {
+        Box testBox = getBoxWithNoEmptyFields();
+        String expectedJsonBox = getResourceFileAsString("json/box.json");
+
+        String result = classUnderTest.writeValueAsString(testBox);
+
+        assertThat(deleteWhitespace(result)).isEqualTo(deleteWhitespace(expectedJsonBox));
+    }
+
+    @Test
+    void test_readValue_with_valid_json_as_box_returns_boxObject() throws JsonProcessingException {
+        String jsonBox = getResourceFileAsString("json/box.json");
+        Box expectedBox = getBoxWithNoEmptyFields();
+
+        Box result = classUnderTest.readValue(jsonBox, Box.class);
+
+        assertThat(result).isEqualToComparingFieldByFieldRecursively(expectedBox);
     }
 }

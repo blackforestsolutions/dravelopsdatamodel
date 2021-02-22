@@ -25,7 +25,7 @@ public class PolygonObjectMother {
     }
 
     private static Coordinate[] buildPolygonCoordinates() {
-        return new Coordinate[]{
+        return new Coordinate[] {
                 new Coordinate(0.0d, 0.0d),
                 new Coordinate(0.0d, 10.0d),
                 new Coordinate(10.0d, 10.0d),
