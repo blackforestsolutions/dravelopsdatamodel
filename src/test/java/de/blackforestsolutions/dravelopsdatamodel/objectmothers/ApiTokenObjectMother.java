@@ -329,7 +329,7 @@ public class ApiTokenObjectMother {
 
     public static ApiToken getConfiguredPolygonPersistenceApiToken() {
         return getConfiguredStationPersistenceApiToken()
-                .setPath("/geocoding/get/operatingPoygon")
+                .setPath("/geocoding/get/operatingPolygon")
                 .build();
     }
 
