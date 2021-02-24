@@ -321,13 +321,29 @@ public class ApiTokenObjectMother {
                 .build();
     }
 
-    public static ApiToken getConfiguredStationPersistenceApiToken() {
+    public static ApiToken getConfiguredTravelPointPersistenceApiToken() {
+        return getConfiguredStationPersistenceApiToken()
+                .setPath("/travelpoints/get")
+                .build();
+    }
+
+    public static ApiToken getConfiguredPolygonPersistenceApiToken() {
+        return getConfiguredStationPersistenceApiToken()
+                .setPath("/geocoding/get/operatingPoygon")
+                .build();
+    }
+
+    public static ApiToken getConfiguredBoxPersistenceApiToken() {
+        return getConfiguredStationPersistenceApiToken()
+                .setPath("/geocoding/get/operatingBox")
+                .build();
+    }
+
+    private static ApiToken.ApiTokenBuilder getConfiguredStationPersistenceApiToken() {
         return new ApiToken.ApiTokenBuilder()
                 .setProtocol("http")
                 .setHost("localhost")
-                .setPort(8086)
-                .setPath("/travelpoints/get")
-                .build();
+                .setPort(8086);
     }
 
 }
