@@ -26,9 +26,9 @@ public class PolygonSerializer extends JsonSerializer<Polygon> {
     }
 
     private void writePolygonCoordinates(LineString ring, JsonGenerator jsonGenerator) throws IOException {
-        for (int i = 0; i < ring.getNumPoints(); i++) {
-            Point point = ring.getPointN(i);
-            writeCoordinate(point, jsonGenerator);
+        for (int ringPointNumber = 0; ringPointNumber < ring.getNumPoints(); ringPointNumber++) {
+            Point ringPoint = ring.getPointN(ringPointNumber);
+            writeCoordinate(ringPoint, jsonGenerator);
         }
     }
 
