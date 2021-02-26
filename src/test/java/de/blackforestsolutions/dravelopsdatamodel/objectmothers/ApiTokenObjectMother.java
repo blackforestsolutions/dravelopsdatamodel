@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.BoxObjectMother.getOpenTripPlannerBox;
+import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.BoxObjectMother.getStationPersistenceBox;
 
 public class ApiTokenObjectMother {
 
@@ -287,7 +287,7 @@ public class ApiTokenObjectMother {
                 .setLanguage(DEFAULT_TEST_LANGUAGE)
                 .setMaxResults(DEFAULT_TEST_PELIAS_RESULTS)
                 .setLayers(DEFAULT_TEST_PELIAS_LAYERS)
-                .setBox(getOpenTripPlannerBox())
+                .setBox(getStationPersistenceBox())
                 .build();
     }
     // End

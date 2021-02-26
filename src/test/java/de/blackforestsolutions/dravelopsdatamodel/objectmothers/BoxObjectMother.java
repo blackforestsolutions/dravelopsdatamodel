@@ -12,7 +12,7 @@ public class BoxObjectMother {
         ).build();
     }
 
-    public static Box getOpenTripPlannerBox() {
+    public static Box getStationPersistenceBox() {
         return new Box.BoxBuilder(
                 new Point.PointBuilder(7.593844d, 47.590746d).build(),
                 new Point.PointBuilder(9.798538d, 49.717617d).build()
