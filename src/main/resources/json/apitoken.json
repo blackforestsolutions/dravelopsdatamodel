@@ -4,13 +4,13 @@
   "port": 8000,
   "departure": "Am Großhausberg 8",
   "departureCoordinate": {
-    "x": 0.0,
-    "y": 0.0
+    "x": 8.209198,
+    "y": 48.048381
   },
   "arrival": "Sick AG",
   "arrivalCoordinate": {
-    "x": 0.0,
-    "y": 0.0
+    "x": 7.891595,
+    "y": 48.087517
   },
   "dateTime": "2020-09-30T13:00:00+02:00",
   "isArrivalDateTime": false,

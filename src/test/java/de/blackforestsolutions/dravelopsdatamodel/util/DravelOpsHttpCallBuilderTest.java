@@ -22,7 +22,7 @@ class DravelOpsHttpCallBuilderTest {
         assertThat(result.getHost()).isEqualTo(testData.getHost());
         assertThat(result.getPort()).isEqualTo(testData.getPort());
         assertThat(result.getPath()).isEqualTo(testData.getPath());
-        assertThat(result.toString()).isEqualTo("http://localhost:8080/path");
+        assertThat(result.toString()).isEqualTo("http://localhost:8000/path");
     }
 
     @Test
