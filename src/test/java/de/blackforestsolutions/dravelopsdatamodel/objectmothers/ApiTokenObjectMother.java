@@ -6,77 +6,114 @@ import de.blackforestsolutions.dravelopsdatamodel.Optimization;
 import de.blackforestsolutions.dravelopsdatamodel.Point;
 
 import java.time.ZonedDateTime;
-import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
 import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.BoxObjectMother.getOpenTripPlannerBox;
-import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.PointObjectMother.getAmGrosshausbergPoint;
-import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.PointObjectMother.getSickAgPoint;
 
 public class ApiTokenObjectMother {
 
+    /**
+     * This section of constants represents real data for our services in development mode
+     * Please keep them as current as possible.
+     */
+    private static final String HOST = "localhost";
+    private static final String PROTOCOL = "http";
+    private static final int STATION_PERSISTENCE_PORT = 8086;
+    private static final int ROUTE_PERSISTENCE_PORT = 8088;
+    private static final int OTP_PORT = 8080;
+    private static final int OTP_MAPPER_SERVICE_PORT = 8084;
+    private static final int PELIAS_PORT = 4000;
+    private static final int POLYGON_SERVICE_PORT = 8083;
+    private static final String ROUTE_PERSISTENCE_JOURNEY_CONTROLLER_PATH = "/otp/journeys/get";
+    private static final String PELIAS_TRAVEL_POINT_CONTROLLER = "/pelias/travelpoints/get";
+
+    /**
+     * This section of constants represents fake data for testing purpose. The aim is to make them congruent as much
+     * as possible to real use cases.
+     */
+    private static final int DEFAULT_TEST_PORT = 8000;
+    private static final String DEFAULT_TEST_PATH = "/path";
+    private static final String DEFAULT_TEST_ROUTER = "bw";
+    private static final Locale DEFAULT_TEST_LANGUAGE = new Locale("de");
+    private static final ZonedDateTime DEFAULT_TEST_DATE_TIME = ZonedDateTime.parse("2020-09-30T13:00:00+02:00");
+    private static final boolean DEFAULT_TEST_IS_ARRIVAL_DATE_TIME = false;
+    private static final String DEFAULT_TEST_DEPARTURE_PLACEHOLDER = "Start";
+    private static final String DEFAULT_TEST_ARRIVAL_PLACEHOLDER = "Ziel";
+    private static final String DEFAULT_TEST_PELIAS_API_VERSION = "v1";
+    private static final String DEFAULT_TEST_ARRIVAL = "Sick AG";
+    private static final String DEFAULT_TEST_DEPARTURE = "Am Großhausberg 8";
+    private static final Point DEFAULT_TEST_DEPARTURE_COORDINATE = PointObjectMother.getAmGrosshausbergPoint();
+    private static final Point DEFAULT_TEST_ARRIVAL_COORDINATE = PointObjectMother.getSickAgPoint();
+    private static final Box DEFAULT_TEST_BOX = BoxObjectMother.getOpenTripPlannerStartBox();
+    private static final int DEFAULT_TEST_MAX_PAST_DAYS_IN_CALENDAR = 2;
+    private static final int DEFAULT_TEST_HAZELCAST_TIME_SEARCH_RANGE = 120;
+    private static final int DEFAULT_TEST_PELIAS_REVERSE_RESULTS = 1;
+    private static final int DEFAULT_TEST_PELIAS_RESULTS = 10;
+    private static final Map<String, String> DEFAULT_TEST_HEADERS = Map.of("Token", "123");
+    private static final int DEFAULT_TEST_RADIUS = 3000;
+    private static final boolean DEFAULT_TEST_OTP_HAS_DETAILS = true;
+    private static final boolean DEFAULT_TEST_OTP_HAS_REFERENCES = true;
+    private static final List<String> DEFAULT_TEST_PELIAS_LAYERS = ApiTokenObjectMother.getDefaultTestPeliasLayers();
+    private static final Optimization DEFAULT_TEST_OPTIMIZATION = Optimization.QUICK;
+    private static final String DEFAULT_TEST_GTFS_URL = "http://nvbw.de/fileadmin/user_upload/service/open_data/fahrplandaten_mit_liniennetz/sbg.zip";
+
+
     public static ApiToken.ApiTokenBuilder getApiTokenBuilderWithNoEmptyFields() {
         return new ApiToken.ApiTokenBuilder()
-                .setHost("localhost")
-                .setProtocol("http")
-                .setPort(8080)
-                .setDeparture("Furtwangen")
-                .setDepartureCoordinate(new Point.PointBuilder(8.0d, 50.0d).build())
-                .setArrival("Triberg")
-                .setArrivalCoordinate(new Point.PointBuilder(8.0d, 50.0d).build())
-                .setDateTime(ZonedDateTime.parse("2020-09-27T10:15:30+02:00"))
-                .setIsArrivalDateTime(true)
-                .setLanguage(new Locale("de"))
-                .setRouter("sbg")
-                .setOptimize(Optimization.QUICK)
-                .setRadius(3000)
-                .setHasDetails(true)
-                .setHasReferences(true)
-                .setPath("/path")
-                .setApiVersion("v1")
-                .setMaxResults(1)
-                .setBox(new Box.BoxBuilder(
-                        new Point.PointBuilder(0.0d, 0.0d).build(),
-                        new Point.PointBuilder(0.0d, 0.0d).build()
-                ).build())
-                .setLayers(Collections.singletonList("test"))
-                .setMaxPastDaysInCalendar(2)
-                .setHazelcastTimeRangeInMinutes(120)
-                .setGtfsUrl("http://nvbw.de/fileadmin/user_upload/service/open_data/fahrplandaten_mit_liniennetz/sbg.zip")
-                .setHeaders(Map.of("Token", "123"));
+                .setHost(HOST)
+                .setProtocol(PROTOCOL)
+                .setPort(DEFAULT_TEST_PORT)
+                .setDeparture(DEFAULT_TEST_DEPARTURE)
+                .setDepartureCoordinate(DEFAULT_TEST_DEPARTURE_COORDINATE)
+                .setArrival(DEFAULT_TEST_ARRIVAL)
+                .setArrivalCoordinate(DEFAULT_TEST_ARRIVAL_COORDINATE)
+                .setDateTime(DEFAULT_TEST_DATE_TIME)
+                .setIsArrivalDateTime(DEFAULT_TEST_IS_ARRIVAL_DATE_TIME)
+                .setLanguage(DEFAULT_TEST_LANGUAGE)
+                .setRouter(DEFAULT_TEST_ROUTER)
+                .setOptimize(DEFAULT_TEST_OPTIMIZATION)
+                .setRadius(DEFAULT_TEST_RADIUS)
+                .setHasDetails(DEFAULT_TEST_OTP_HAS_DETAILS)
+                .setHasReferences(DEFAULT_TEST_OTP_HAS_REFERENCES)
+                .setPath(DEFAULT_TEST_PATH)
+                .setApiVersion(DEFAULT_TEST_PELIAS_API_VERSION)
+                .setMaxResults(DEFAULT_TEST_PELIAS_REVERSE_RESULTS)
+                .setBox(DEFAULT_TEST_BOX)
+                .setLayers(DEFAULT_TEST_PELIAS_LAYERS)
+                .setMaxPastDaysInCalendar(DEFAULT_TEST_MAX_PAST_DAYS_IN_CALENDAR)
+                .setHazelcastTimeRangeInMinutes(DEFAULT_TEST_HAZELCAST_TIME_SEARCH_RANGE)
+                .setGtfsUrl(DEFAULT_TEST_GTFS_URL)
+                .setHeaders(DEFAULT_TEST_HEADERS);
     }
 
     public static ApiToken getApiTokenWithNoEmptyFields() {
         return new ApiToken.ApiTokenBuilder()
-                .setHost("localhost")
-                .setProtocol("http")
-                .setPort(8080)
-                .setDeparture("Furtwangen")
-                .setDepartureCoordinate(new Point.PointBuilder(8.0d, 50.0d).build())
-                .setArrival("Triberg")
-                .setArrivalCoordinate(new Point.PointBuilder(8.0d, 50.0d).build())
-                .setDateTime(ZonedDateTime.parse("2020-09-27T10:15:30+02:00"))
-                .setIsArrivalDateTime(true)
-                .setLanguage(new Locale("de"))
-                .setRouter("sbg")
-                .setOptimize(Optimization.QUICK)
-                .setRadius(3000)
-                .setHasDetails(true)
-                .setHasReferences(true)
-                .setPath("/path")
-                .setMaxResults(1)
-                .setApiVersion("v1")
-                .setBox(new Box.BoxBuilder(
-                        new Point.PointBuilder(0.0d, 0.0d).build(),
-                        new Point.PointBuilder(0.0d, 0.0d).build()
-                ).build())
-                .setLayers(Collections.singletonList("test"))
-                .setMaxPastDaysInCalendar(2)
-                .setHazelcastTimeRangeInMinutes(120)
-                .setGtfsUrl("http://nvbw.de/fileadmin/user_upload/service/open_data/fahrplandaten_mit_liniennetz/sbg.zip")
-                .setHeaders(Map.of("Token", "123"))
+                .setHost(HOST)
+                .setProtocol(PROTOCOL)
+                .setPort(DEFAULT_TEST_PORT)
+                .setDeparture(DEFAULT_TEST_DEPARTURE)
+                .setDepartureCoordinate(DEFAULT_TEST_DEPARTURE_COORDINATE)
+                .setArrival(DEFAULT_TEST_ARRIVAL)
+                .setArrivalCoordinate(DEFAULT_TEST_ARRIVAL_COORDINATE)
+                .setDateTime(DEFAULT_TEST_DATE_TIME)
+                .setIsArrivalDateTime(DEFAULT_TEST_IS_ARRIVAL_DATE_TIME)
+                .setLanguage(DEFAULT_TEST_LANGUAGE)
+                .setRouter(DEFAULT_TEST_ROUTER)
+                .setOptimize(DEFAULT_TEST_OPTIMIZATION)
+                .setRadius(DEFAULT_TEST_RADIUS)
+                .setHasDetails(DEFAULT_TEST_OTP_HAS_DETAILS)
+                .setHasReferences(DEFAULT_TEST_OTP_HAS_REFERENCES)
+                .setPath(DEFAULT_TEST_PATH)
+                .setMaxResults(DEFAULT_TEST_PELIAS_REVERSE_RESULTS)
+                .setApiVersion(DEFAULT_TEST_PELIAS_API_VERSION)
+                .setBox(DEFAULT_TEST_BOX)
+                .setLayers(DEFAULT_TEST_PELIAS_LAYERS)
+                .setMaxPastDaysInCalendar(DEFAULT_TEST_MAX_PAST_DAYS_IN_CALENDAR)
+                .setHazelcastTimeRangeInMinutes(DEFAULT_TEST_HAZELCAST_TIME_SEARCH_RANGE)
+                .setGtfsUrl(DEFAULT_TEST_GTFS_URL)
+                .setHeaders(DEFAULT_TEST_HEADERS)
                 .build();
     }
 
@@ -93,85 +130,85 @@ public class ApiTokenObjectMother {
     // Journey Token Request Chain from StargateService to OpenTripPlanner
     public static ApiToken getJourneyUserRequestToken() {
         return new ApiToken.ApiTokenBuilder()
-                .setOptimize(Optimization.QUICK)
-                .setIsArrivalDateTime(false)
-                .setDateTime(ZonedDateTime.parse("2020-09-30T13:00:00+02:00"))
-                .setDepartureCoordinate(getAmGrosshausbergPoint())
-                .setArrivalCoordinate(getSickAgPoint())
-                .setLanguage(new Locale("de"))
+                .setOptimize(DEFAULT_TEST_OPTIMIZATION)
+                .setIsArrivalDateTime(DEFAULT_TEST_IS_ARRIVAL_DATE_TIME)
+                .setDateTime(DEFAULT_TEST_DATE_TIME)
+                .setDepartureCoordinate(DEFAULT_TEST_DEPARTURE_COORDINATE)
+                .setArrivalCoordinate(DEFAULT_TEST_ARRIVAL_COORDINATE)
+                .setLanguage(DEFAULT_TEST_LANGUAGE)
                 .build();
     }
 
     public static ApiToken getConfiguredRoutePersistenceApiToken() {
         return new ApiToken.ApiTokenBuilder()
-                .setProtocol("http")
-                .setHost("localhost")
-                .setPort(8088)
-                .setPath("/otp/journeys/get")
+                .setProtocol(PROTOCOL)
+                .setHost(HOST)
+                .setPort(ROUTE_PERSISTENCE_PORT)
+                .setPath(ROUTE_PERSISTENCE_JOURNEY_CONTROLLER_PATH)
                 .build();
     }
 
     public static ApiToken getRoutePersistenceApiToken() {
         return new ApiToken.ApiTokenBuilder()
-                .setProtocol("http")
-                .setHost("localhost")
-                .setPort(8088)
-                .setPath("/otp/journeys/get")
-                .setIsArrivalDateTime(false)
-                .setOptimize(Optimization.QUICK)
-                .setDateTime(ZonedDateTime.parse("2020-09-30T13:00:00+02:00"))
-                .setDepartureCoordinate(getAmGrosshausbergPoint())
-                .setArrivalCoordinate(getSickAgPoint())
-                .setLanguage(new Locale("de"))
+                .setProtocol(PROTOCOL)
+                .setHost(HOST)
+                .setPort(ROUTE_PERSISTENCE_PORT)
+                .setPath(ROUTE_PERSISTENCE_JOURNEY_CONTROLLER_PATH)
+                .setIsArrivalDateTime(DEFAULT_TEST_IS_ARRIVAL_DATE_TIME)
+                .setOptimize(DEFAULT_TEST_OPTIMIZATION)
+                .setDateTime(DEFAULT_TEST_DATE_TIME)
+                .setDepartureCoordinate(DEFAULT_TEST_DEPARTURE_COORDINATE)
+                .setArrivalCoordinate(DEFAULT_TEST_ARRIVAL_COORDINATE)
+                .setLanguage(DEFAULT_TEST_LANGUAGE)
                 .build();
     }
 
     public static ApiToken getConfiguredOtpMapperApiToken() {
         return new ApiToken.ApiTokenBuilder()
-                .setProtocol("http")
-                .setHost("localhost")
-                .setPort(8084)
-                .setPath("/otp/journeys/get")
+                .setProtocol(PROTOCOL)
+                .setHost(HOST)
+                .setPort(OTP_MAPPER_SERVICE_PORT)
+                .setPath(ROUTE_PERSISTENCE_JOURNEY_CONTROLLER_PATH)
                 .build();
     }
 
     public static ApiToken getOtpMapperApiToken() {
         return new ApiToken.ApiTokenBuilder()
-                .setProtocol("http")
-                .setHost("localhost")
-                .setPort(8084)
-                .setPath("/otp/journeys/get")
-                .setOptimize(Optimization.QUICK)
-                .setIsArrivalDateTime(false)
-                .setDateTime(ZonedDateTime.parse("2020-09-30T13:00:00+02:00"))
-                .setDepartureCoordinate(getAmGrosshausbergPoint())
-                .setArrivalCoordinate(getSickAgPoint())
-                .setLanguage(new Locale("de"))
+                .setProtocol(PROTOCOL)
+                .setHost(HOST)
+                .setPort(OTP_MAPPER_SERVICE_PORT)
+                .setPath(ROUTE_PERSISTENCE_JOURNEY_CONTROLLER_PATH)
+                .setOptimize(DEFAULT_TEST_OPTIMIZATION)
+                .setIsArrivalDateTime(DEFAULT_TEST_IS_ARRIVAL_DATE_TIME)
+                .setDateTime(DEFAULT_TEST_DATE_TIME)
+                .setDepartureCoordinate(DEFAULT_TEST_DEPARTURE_COORDINATE)
+                .setArrivalCoordinate(DEFAULT_TEST_ARRIVAL_COORDINATE)
+                .setLanguage(DEFAULT_TEST_LANGUAGE)
                 .build();
     }
 
     public static ApiToken getConfiguredPeliasReverseApiToken() {
         return new ApiToken.ApiTokenBuilder()
-                .setProtocol("http")
-                .setHost("localhost")
-                .setPort(4000)
-                .setApiVersion("v1")
-                .setMaxResults(1)
-                .setDeparture("Start")
-                .setArrival("Ziel")
+                .setProtocol(PROTOCOL)
+                .setHost(HOST)
+                .setPort(PELIAS_PORT)
+                .setApiVersion(DEFAULT_TEST_PELIAS_API_VERSION)
+                .setMaxResults(DEFAULT_TEST_PELIAS_REVERSE_RESULTS)
+                .setDeparture(DEFAULT_TEST_DEPARTURE_PLACEHOLDER)
+                .setArrival(DEFAULT_TEST_ARRIVAL_PLACEHOLDER)
                 .build();
     }
 
     public static ApiToken getPeliasReverseApiToken() {
         return new ApiToken.ApiTokenBuilder()
-                .setProtocol("http")
-                .setHost("localhost")
-                .setPort(4000)
-                .setApiVersion("v1")
-                .setMaxResults(1)
-                .setDeparture("Start")
-                .setArrival("Ziel")
-                .setLanguage(new Locale("de"))
+                .setProtocol(PROTOCOL)
+                .setHost(HOST)
+                .setPort(PELIAS_PORT)
+                .setApiVersion(DEFAULT_TEST_PELIAS_API_VERSION)
+                .setMaxResults(DEFAULT_TEST_PELIAS_REVERSE_RESULTS)
+                .setDeparture(DEFAULT_TEST_DEPARTURE_PLACEHOLDER)
+                .setArrival(DEFAULT_TEST_ARRIVAL_PLACEHOLDER)
+                .setLanguage(DEFAULT_TEST_LANGUAGE)
                 .build();
     }
 
@@ -180,18 +217,18 @@ public class ApiTokenObjectMother {
 
     public static ApiToken getOpenTripPlannerApiToken() {
         return new ApiToken.ApiTokenBuilder()
-                .setProtocol("http")
-                .setHost("localhost")
-                .setPort(8089)
-                .setRouter("bw")
-                .setLanguage(new Locale("de"))
-                .setOptimize(Optimization.QUICK)
-                .setIsArrivalDateTime(false)
-                .setDateTime(ZonedDateTime.parse("2020-09-30T13:00:00+02:00"))
-                .setDeparture("Am Großhausberg 8")
-                .setDepartureCoordinate(getAmGrosshausbergPoint())
-                .setArrival("Sick AG")
-                .setArrivalCoordinate(getSickAgPoint())
+                .setProtocol(PROTOCOL)
+                .setHost(HOST)
+                .setPort(OTP_PORT)
+                .setRouter(DEFAULT_TEST_ROUTER)
+                .setLanguage(DEFAULT_TEST_LANGUAGE)
+                .setOptimize(DEFAULT_TEST_OPTIMIZATION)
+                .setIsArrivalDateTime(DEFAULT_TEST_IS_ARRIVAL_DATE_TIME)
+                .setDateTime(DEFAULT_TEST_DATE_TIME)
+                .setDeparture(DEFAULT_TEST_DEPARTURE)
+                .setDepartureCoordinate(DEFAULT_TEST_DEPARTURE_COORDINATE)
+                .setArrival(DEFAULT_TEST_ARRIVAL)
+                .setArrivalCoordinate(DEFAULT_TEST_ARRIVAL_COORDINATE)
                 .build();
     }
     // End
@@ -201,28 +238,28 @@ public class ApiTokenObjectMother {
     // TravelPoint Token Request Chain from StargateService to DravelOpsPelias
     public static ApiToken getTravelPointUserRequestToken() {
         return new ApiToken.ApiTokenBuilder()
-                .setDeparture("Sick AG")
-                .setLanguage(new Locale("de"))
+                .setDeparture(DEFAULT_TEST_DEPARTURE)
+                .setLanguage(DEFAULT_TEST_LANGUAGE)
                 .build();
     }
 
     public static ApiToken getConfiguredPolygonApiToken() {
         return new ApiToken.ApiTokenBuilder()
-                .setProtocol("http")
-                .setHost("localhost")
-                .setPort(8083)
-                .setPath("/pelias/travelpoints/get")
+                .setProtocol(PROTOCOL)
+                .setHost(HOST)
+                .setPort(POLYGON_SERVICE_PORT)
+                .setPath(PELIAS_TRAVEL_POINT_CONTROLLER)
                 .build();
     }
 
     public static ApiToken getPolygonApiToken() {
         return new ApiToken.ApiTokenBuilder()
-                .setProtocol("http")
-                .setHost("localhost")
-                .setPort(8083)
-                .setPath("/pelias/travelpoints/get")
-                .setDeparture("Sick AG")
-                .setLanguage(new Locale("de"))
+                .setProtocol(PROTOCOL)
+                .setHost(HOST)
+                .setPort(POLYGON_SERVICE_PORT)
+                .setPath(PELIAS_TRAVEL_POINT_CONTROLLER)
+                .setDeparture(DEFAULT_TEST_DEPARTURE)
+                .setLanguage(DEFAULT_TEST_LANGUAGE)
                 .build();
     }
 
@@ -231,55 +268,25 @@ public class ApiTokenObjectMother {
 
     public static ApiToken getConfiguredPeliasAutocompleteApiToken() {
         return new ApiToken.ApiTokenBuilder()
-                .setProtocol("http")
-                .setHost("localhost")
-                .setPort(4000)
-                .setApiVersion("v1")
-                .setMaxResults(10)
-                .setLayers(List.of(
-                        "venue",
-                        "address",
-                        "street",
-                        "country",
-                        "macroregion",
-                        "region",
-                        "macrocounty",
-                        "county",
-                        "locality",
-                        "localadmin",
-                        "borough",
-                        "neighbourhood",
-                        "coarse",
-                        "postalcode"
-                ))
+                .setProtocol(PROTOCOL)
+                .setHost(HOST)
+                .setPort(PELIAS_PORT)
+                .setApiVersion(DEFAULT_TEST_PELIAS_API_VERSION)
+                .setMaxResults(DEFAULT_TEST_PELIAS_RESULTS)
+                .setLayers(DEFAULT_TEST_PELIAS_LAYERS)
                 .build();
     }
 
     public static ApiToken getPeliasAutocompleteApiToken() {
         return new ApiToken.ApiTokenBuilder()
-                .setProtocol("http")
-                .setHost("localhost")
-                .setPort(4000)
-                .setApiVersion("v1")
-                .setDeparture("Sick AG")
-                .setLanguage(new Locale("de"))
-                .setMaxResults(10)
-                .setLayers(List.of(
-                        "venue",
-                        "address",
-                        "street",
-                        "country",
-                        "macroregion",
-                        "region",
-                        "macrocounty",
-                        "county",
-                        "locality",
-                        "localadmin",
-                        "borough",
-                        "neighbourhood",
-                        "coarse",
-                        "postalcode"
-                ))
+                .setProtocol(PROTOCOL)
+                .setHost(HOST)
+                .setPort(PELIAS_PORT)
+                .setApiVersion(DEFAULT_TEST_PELIAS_API_VERSION)
+                .setDeparture(DEFAULT_TEST_DEPARTURE)
+                .setLanguage(DEFAULT_TEST_LANGUAGE)
+                .setMaxResults(DEFAULT_TEST_PELIAS_RESULTS)
+                .setLayers(DEFAULT_TEST_PELIAS_LAYERS)
                 .setBox(getOpenTripPlannerBox())
                 .build();
     }
@@ -289,10 +296,10 @@ public class ApiTokenObjectMother {
     // Both (Journey and TravelPoint RequestToken)
     public static ApiToken getOpenTripPlannerConfiguredApiToken() {
         return new ApiToken.ApiTokenBuilder()
-                .setProtocol("http")
-                .setHost("localhost")
-                .setPort(8089)
-                .setRouter("bw")
+                .setProtocol(PROTOCOL)
+                .setHost(HOST)
+                .setPort(OTP_PORT)
+                .setRouter(DEFAULT_TEST_ROUTER)
                 .build();
     }
     // End
@@ -300,18 +307,16 @@ public class ApiTokenObjectMother {
     // HazelcastApiToken
     public static ApiToken getHazelcastApiToken() {
         return new ApiToken.ApiTokenBuilder()
-                .setMaxPastDaysInCalendar(2)
-                .setHazelcastTimeRangeInMinutes(120)
+                .setMaxPastDaysInCalendar(DEFAULT_TEST_MAX_PAST_DAYS_IN_CALENDAR)
+                .setHazelcastTimeRangeInMinutes(DEFAULT_TEST_HAZELCAST_TIME_SEARCH_RANGE)
                 .build();
     }
 
     // GtfsFileApiToken
     public static ApiToken getSbgGtfsApiToken() {
         return new ApiToken.ApiTokenBuilder()
-                .setGtfsUrl("http://nvbw.de/fileadmin/user_upload/service/open_data/fahrplandaten_mit_liniennetz/sbg.zip")
-                .setHeaders(Map.of(
-                        "Token", "123"
-                ))
+                .setGtfsUrl(DEFAULT_TEST_GTFS_URL)
+                .setHeaders(DEFAULT_TEST_HEADERS)
                 .build();
     }
 
@@ -341,9 +346,28 @@ public class ApiTokenObjectMother {
 
     private static ApiToken.ApiTokenBuilder getConfiguredStationPersistenceApiToken() {
         return new ApiToken.ApiTokenBuilder()
-                .setProtocol("http")
-                .setHost("localhost")
-                .setPort(8086);
+                .setProtocol(PROTOCOL)
+                .setHost(HOST)
+                .setPort(STATION_PERSISTENCE_PORT);
+    }
+
+    private static List<String> getDefaultTestPeliasLayers() {
+        return List.of(
+                "venue",
+                "address",
+                "street",
+                "country",
+                "macroregion",
+                "region",
+                "macrocounty",
+                "county",
+                "locality",
+                "localadmin",
+                "borough",
+                "neighbourhood",
+                "coarse",
+                "postalcode"
+        );
     }
 
 }

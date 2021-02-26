@@ -28,8 +28,8 @@ public class BoxObjectMother {
 
     public static Box getOpenTripPlannerStartBox() {
         return new Box.BoxBuilder(
-                new Point.PointBuilder(0d, 0d).build(),
-                new Point.PointBuilder(0d, 0d).build()
+                new Point.PointBuilder(0.0d, 0.0d).build(),
+                new Point.PointBuilder(0.0d, 0.0d).build()
         ).build();
     }
 }
