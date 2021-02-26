@@ -1,21 +1,21 @@
 {
   "host": "localhost",
   "protocol": "http",
-  "port": 8080,
-  "departure": "Furtwangen",
+  "port": 8000,
+  "departure": "Am Großhausberg 8",
   "departureCoordinate": {
-    "x": 8.0,
-    "y": 50.0
+    "x": 8.209198,
+    "y": 48.048381
   },
-  "arrival": "Triberg",
+  "arrival": "Sick AG",
   "arrivalCoordinate": {
-    "x": 8.0,
-    "y": 50.0
+    "x": 7.891595,
+    "y": 48.087517
   },
-  "dateTime": "2020-09-27T10:15:30+02:00",
-  "isArrivalDateTime": true,
+  "dateTime": "2020-09-30T13:00:00+02:00",
+  "isArrivalDateTime": false,
   "language": "de",
-  "router": "sbg",
+  "router": "bw",
   "optimize": "QUICK",
   "radius": 3000,
   "hasDetails": true,
@@ -24,22 +24,36 @@
   "maxResults": 1,
   "apiVersion": "v1",
   "box": {
-    "first": {
+    "topLeft": {
       "x": 0.0,
       "y": 0.0
     },
-    "second": {
+    "bottomRight": {
       "x": 0.0,
       "y": 0.0
     }
   },
   "layers": [
-    "test"
+    "venue",
+    "address",
+    "street",
+    "country",
+    "macroregion",
+    "region",
+    "macrocounty",
+    "county",
+    "locality",
+    "localadmin",
+    "borough",
+    "neighbourhood",
+    "coarse",
+    "postalcode"
   ],
   "maxPastDaysInCalendar": 2,
   "hazelcastTimeRangeInMinutes": 120,
   "gtfsUrl": "http://nvbw.de/fileadmin/user_upload/service/open_data/fahrplandaten_mit_liniennetz/sbg.zip",
   "headers": {
     "Token": "123"
-  }
+  },
+  "retryTimeInSeconds":10
 }

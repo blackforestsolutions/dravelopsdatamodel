@@ -6,7 +6,7 @@
 
     <groupId>de.blackforestsolutions</groupId>
     <artifactId>dravelopsdatamodel</artifactId>
-    <version>6.0.2</version>
+    <version>6.5.0</version>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -25,6 +25,7 @@
         <apache.lang-version>2.6</apache.lang-version>
         <jackson.version>2.10.1</jackson.version>
         <hazelcast.version>4.1.1</hazelcast.version>
+        <jts.core.version>1.18.0</jts.core.version>
         <!-- Maven Test Dependencies -->
         <assertj.version>3.9.0</assertj.version>
         <junit.version>5.0.0</junit.version>
@@ -76,6 +77,11 @@
             <groupId>com.hazelcast</groupId>
             <artifactId>hazelcast-all</artifactId>
             <version>${hazelcast.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.locationtech.jts</groupId>
+            <artifactId>jts-core</artifactId>
+            <version>${jts.core.version}</version>
         </dependency>
         <!-- Test dependencies -->
         <dependency>
