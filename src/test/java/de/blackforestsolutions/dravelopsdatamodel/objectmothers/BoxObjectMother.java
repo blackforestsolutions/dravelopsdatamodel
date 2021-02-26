@@ -26,7 +26,7 @@ public class BoxObjectMother {
         ).build();
     }
 
-    public static Box getOpenTripPlannerStartBox() {
+    public static Box getBoxServiceStartBox() {
         return new Box.BoxBuilder(
                 new Point.PointBuilder(0.0d, 0.0d).build(),
                 new Point.PointBuilder(0.0d, 0.0d).build()

@@ -46,7 +46,7 @@ public class ApiTokenObjectMother {
     private static final String DEFAULT_TEST_DEPARTURE = "Am Großhausberg 8";
     private static final Point DEFAULT_TEST_DEPARTURE_COORDINATE = PointObjectMother.getAmGrosshausbergPoint();
     private static final Point DEFAULT_TEST_ARRIVAL_COORDINATE = PointObjectMother.getSickAgPoint();
-    private static final Box DEFAULT_TEST_BOX = BoxObjectMother.getOpenTripPlannerStartBox();
+    private static final Box DEFAULT_TEST_BOX = BoxObjectMother.getBoxServiceStartBox();
     private static final int DEFAULT_TEST_MAX_PAST_DAYS_IN_CALENDAR = 2;
     private static final int DEFAULT_TEST_HAZELCAST_TIME_SEARCH_RANGE = 120;
     private static final int DEFAULT_TEST_PELIAS_REVERSE_RESULTS = 1;
