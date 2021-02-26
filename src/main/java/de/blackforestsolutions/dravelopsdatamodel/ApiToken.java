@@ -42,6 +42,7 @@ public final class ApiToken {
     private final int hazelcastTimeRangeInMinutes;
     private final String gtfsUrl;
     private final Map<String, String> headers;
+    private final long retryTimeInSeconds;
 
     private ApiToken(ApiTokenBuilder apiTokenBuilder) {
         this.host = apiTokenBuilder.getHost();
@@ -68,6 +69,7 @@ public final class ApiToken {
         this.hazelcastTimeRangeInMinutes = apiTokenBuilder.getHazelcastTimeRangeInMinutes();
         this.gtfsUrl = apiTokenBuilder.getGtfsUrl();
         this.headers = apiTokenBuilder.getHeaders();
+        this.retryTimeInSeconds = apiTokenBuilder.getRetryTimeInSeconds();
     }
 
     public boolean getIsArrivalDateTime() {
@@ -119,6 +121,7 @@ public final class ApiToken {
         private int hazelcastTimeRangeInMinutes;
         private String gtfsUrl;
         private Map<String, String> headers = new HashMap<>();
+        private long retryTimeInSeconds;
 
         /**
          * This warning indicates a duplicated code fragment.
@@ -154,6 +157,7 @@ public final class ApiToken {
             this.hazelcastTimeRangeInMinutes = apiTokenBuilder.getHazelcastTimeRangeInMinutes();
             this.gtfsUrl = apiTokenBuilder.getGtfsUrl();
             this.headers = apiTokenBuilder.getHeaders();
+            this.retryTimeInSeconds = apiTokenBuilder.getRetryTimeInSeconds();
         }
 
         /**
@@ -190,6 +194,7 @@ public final class ApiToken {
             this.hazelcastTimeRangeInMinutes = apiToken.getHazelcastTimeRangeInMinutes();
             this.gtfsUrl = apiToken.getGtfsUrl();
             this.headers = apiToken.getHeaders();
+            this.retryTimeInSeconds = apiToken.getRetryTimeInSeconds();
         }
 
         public ApiTokenBuilder setIsArrivalDateTime(boolean isArrivalDateTime) {

@@ -54,5 +54,6 @@
   "gtfsUrl": "http://nvbw.de/fileadmin/user_upload/service/open_data/fahrplandaten_mit_liniennetz/sbg.zip",
   "headers": {
     "Token": "123"
-  }
+  },
+  "retryTimeInSeconds":10
 }
