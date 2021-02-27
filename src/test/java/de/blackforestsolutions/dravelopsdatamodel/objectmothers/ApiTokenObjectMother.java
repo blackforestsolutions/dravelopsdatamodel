@@ -25,7 +25,7 @@ public class ApiTokenObjectMother {
     private static final int OTP_PORT = 8080;
     private static final int OTP_MAPPER_SERVICE_PORT = 8084;
     private static final int PELIAS_PORT = 4000;
-    private static final int POLYGON_SERVICE_PORT = 8083;
+    private static final int BOX_SERVICE_PORT = 8083;
     private static final String ROUTE_PERSISTENCE_JOURNEY_CONTROLLER_PATH = "/otp/journeys/get";
     private static final String PELIAS_TRAVEL_POINT_CONTROLLER = "/pelias/travelpoints/get";
 
@@ -215,8 +215,8 @@ public class ApiTokenObjectMother {
                 .build();
     }
 
-    // Now here is coming {@link getOpenTripPlannerConfiguredApiToken} which is used for DravelopsOtpMapperService
-    // as well as DravelOpsPolygonService
+    // Now here is coming {@link getOpenTripPlannerConfiguredApiToken} which is used for dravelopsotpmapperservice
+    // as well as dravelopsboxservice
 
     public static ApiToken getOpenTripPlannerApiToken() {
         return new ApiToken.ApiTokenBuilder()
@@ -246,28 +246,28 @@ public class ApiTokenObjectMother {
                 .build();
     }
 
-    public static ApiToken getConfiguredPolygonApiToken() {
+    public static ApiToken getConfiguredBoxServiceApiToken() {
         return new ApiToken.ApiTokenBuilder()
                 .setProtocol(PROTOCOL)
                 .setHost(HOST)
-                .setPort(POLYGON_SERVICE_PORT)
+                .setPort(BOX_SERVICE_PORT)
                 .setPath(PELIAS_TRAVEL_POINT_CONTROLLER)
                 .build();
     }
 
-    public static ApiToken getPolygonApiToken() {
+    public static ApiToken getBoxServiceApiToken() {
         return new ApiToken.ApiTokenBuilder()
                 .setProtocol(PROTOCOL)
                 .setHost(HOST)
-                .setPort(POLYGON_SERVICE_PORT)
+                .setPort(BOX_SERVICE_PORT)
                 .setPath(PELIAS_TRAVEL_POINT_CONTROLLER)
                 .setDeparture(DEFAULT_TEST_DEPARTURE)
                 .setLanguage(DEFAULT_TEST_LANGUAGE)
                 .build();
     }
 
-    // Now here is coming {@link getOpenTripPlannerConfiguredApiToken()} which is used for DravelopsOtpMapperService
-    // as well as DravelOpsPolygonService
+    // Now here is coming {@link getOpenTripPlannerConfiguredApiToken()} which is used for Dravelopsotpmapperservice
+    // as well as dravelopsboxservice
 
     public static ApiToken getConfiguredPeliasAutocompleteApiToken() {
         return new ApiToken.ApiTokenBuilder()
