@@ -148,7 +148,6 @@ public class ApiTokenObjectMother {
                 .setPort(ROUTE_PERSISTENCE_PORT)
                 .setPath(ROUTE_PERSISTENCE_JOURNEY_CONTROLLER_PATH)
                 .setMaxResults(DEFAULT_TEST_MAX_JOURNEYS_RESULT)
-                .setJourneySearchWindowInMinutes(DEFAULT_TEST_JOURNEY_SEARCH_WINDOW)
                 .build();
     }
 
@@ -159,7 +158,6 @@ public class ApiTokenObjectMother {
                 .setPort(ROUTE_PERSISTENCE_PORT)
                 .setPath(ROUTE_PERSISTENCE_JOURNEY_CONTROLLER_PATH)
                 .setMaxResults(DEFAULT_TEST_MAX_JOURNEYS_RESULT)
-                .setJourneySearchWindowInMinutes(DEFAULT_TEST_JOURNEY_SEARCH_WINDOW)
                 .setIsArrivalDateTime(DEFAULT_TEST_IS_ARRIVAL_DATE_TIME)
                 .setDateTime(DEFAULT_TEST_DATE_TIME)
                 .setDepartureCoordinate(DEFAULT_TEST_DEPARTURE_COORDINATE)
