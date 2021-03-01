@@ -15,6 +15,7 @@ public class DravelOpsHttpCallBuilder {
         Objects.requireNonNull(apiToken.getProtocol(), "protocol is not allowed to be null");
         Objects.requireNonNull(apiToken.getHost(), "host is not allowed to be null");
         Objects.requireNonNull(apiToken.getPath(), "path is not allowed to be null");
+        Objects.requireNonNull(apiToken.getPort(), "port is not allowed to be null");
         try {
             if (apiToken.getPort() == 0 || apiToken.getPort() == -1) {
                 return new URL(apiToken.getProtocol(), apiToken.getHost(), apiToken.getPath());
