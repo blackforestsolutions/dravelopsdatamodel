@@ -28,7 +28,6 @@ public final class ApiToken {
     private final boolean isArrivalDateTime;
     private final Locale language;
     private final String router;
-    private final Optimization optimize;
     private final int radius;
     @Getter(AccessLevel.NONE)
     private final boolean hasDetails;
@@ -40,9 +39,11 @@ public final class ApiToken {
     private final Box box;
     private final List<String> layers;
     private final int maxPastDaysInCalendar;
-    private final int hazelcastTimeRangeInMinutes;
+    private final int journeySearchWindowInMinutes;
     private final String gtfsUrl;
     private final Map<String, String> headers;
+    @Getter(AccessLevel.NONE)
+    private final boolean showIntermediateStops;
 
     private ApiToken(ApiTokenBuilder apiTokenBuilder) {
         this.host = apiTokenBuilder.getHost();
@@ -56,7 +57,6 @@ public final class ApiToken {
         this.isArrivalDateTime = apiTokenBuilder.getIsArrivalDateTime();
         this.language = apiTokenBuilder.getLanguage();
         this.router = apiTokenBuilder.getRouter();
-        this.optimize = apiTokenBuilder.getOptimize();
         this.radius = apiTokenBuilder.getRadius();
         this.hasDetails = apiTokenBuilder.getHasDetails();
         this.hasReferences = apiTokenBuilder.getHasReferences();
@@ -66,9 +66,10 @@ public final class ApiToken {
         this.box = apiTokenBuilder.getBox();
         this.layers = apiTokenBuilder.getLayers();
         this.maxPastDaysInCalendar = apiTokenBuilder.getMaxPastDaysInCalendar();
-        this.hazelcastTimeRangeInMinutes = apiTokenBuilder.getHazelcastTimeRangeInMinutes();
+        this.journeySearchWindowInMinutes = apiTokenBuilder.getJourneySearchWindowInMinutes();
         this.gtfsUrl = apiTokenBuilder.getGtfsUrl();
         this.headers = apiTokenBuilder.getHeaders();
+        this.showIntermediateStops = apiTokenBuilder.getShowIntermediateStops();
     }
 
     public boolean getIsArrivalDateTime() {
@@ -81,6 +82,10 @@ public final class ApiToken {
 
     public boolean getHasReferences() {
         return this.hasReferences;
+    }
+
+    public boolean getShowIntermediateStops() {
+        return this.showIntermediateStops;
     }
 
     @Setter
@@ -103,7 +108,6 @@ public final class ApiToken {
         private boolean isArrivalDateTime;
         private Locale language;
         private String router;
-        private Optimization optimize;
         private int radius;
         @Setter(AccessLevel.NONE)
         @Getter(AccessLevel.NONE)
@@ -117,9 +121,12 @@ public final class ApiToken {
         private Box box;
         private List<String> layers = new LinkedList<>();
         private int maxPastDaysInCalendar;
-        private int hazelcastTimeRangeInMinutes;
+        private int journeySearchWindowInMinutes;
         private String gtfsUrl;
         private Map<String, String> headers = new HashMap<>();
+        @Setter(AccessLevel.NONE)
+        @Getter(AccessLevel.NONE)
+        private boolean showIntermediateStops;
 
         /**
          * This warning indicates a duplicated code fragment.
@@ -142,7 +149,6 @@ public final class ApiToken {
             this.isArrivalDateTime = apiTokenBuilder.getIsArrivalDateTime();
             this.language = apiTokenBuilder.getLanguage();
             this.router = apiTokenBuilder.getRouter();
-            this.optimize = apiTokenBuilder.getOptimize();
             this.radius = apiTokenBuilder.getRadius();
             this.hasDetails = apiTokenBuilder.getHasDetails();
             this.hasReferences = apiTokenBuilder.getHasReferences();
@@ -152,9 +158,10 @@ public final class ApiToken {
             this.box = apiTokenBuilder.getBox();
             this.layers = apiTokenBuilder.getLayers();
             this.maxPastDaysInCalendar = apiTokenBuilder.getMaxPastDaysInCalendar();
-            this.hazelcastTimeRangeInMinutes = apiTokenBuilder.getHazelcastTimeRangeInMinutes();
+            this.journeySearchWindowInMinutes = apiTokenBuilder.getJourneySearchWindowInMinutes();
             this.gtfsUrl = apiTokenBuilder.getGtfsUrl();
             this.headers = apiTokenBuilder.getHeaders();
+            this.showIntermediateStops = apiTokenBuilder.getShowIntermediateStops();
         }
 
         /**
@@ -178,7 +185,6 @@ public final class ApiToken {
             this.isArrivalDateTime = apiToken.getIsArrivalDateTime();
             this.language = apiToken.getLanguage();
             this.router = apiToken.getRouter();
-            this.optimize = apiToken.getOptimize();
             this.radius = apiToken.getRadius();
             this.hasDetails = apiToken.getHasDetails();
             this.hasReferences = apiToken.getHasReferences();
@@ -188,9 +194,10 @@ public final class ApiToken {
             this.box = apiToken.getBox();
             this.layers = apiToken.getLayers();
             this.maxPastDaysInCalendar = apiToken.getMaxPastDaysInCalendar();
-            this.hazelcastTimeRangeInMinutes = apiToken.getHazelcastTimeRangeInMinutes();
+            this.journeySearchWindowInMinutes = apiToken.getJourneySearchWindowInMinutes();
             this.gtfsUrl = apiToken.getGtfsUrl();
             this.headers = apiToken.getHeaders();
+            this.showIntermediateStops = apiToken.getShowIntermediateStops();
         }
 
         public ApiTokenBuilder setIsArrivalDateTime(boolean isArrivalDateTime) {
@@ -218,6 +225,15 @@ public final class ApiToken {
 
         public boolean getHasReferences() {
             return this.hasReferences;
+        }
+
+        public ApiTokenBuilder setShowIntermediateStops(boolean showIntermediateStops) {
+            this.showIntermediateStops = showIntermediateStops;
+            return this;
+        }
+
+        public boolean getShowIntermediateStops() {
+            return this.showIntermediateStops;
         }
 
         public ApiToken build() {

@@ -1,7 +1,6 @@
 package de.blackforestsolutions.dravelopsdatamodel.objectmothers;
 
 import de.blackforestsolutions.dravelopsdatamodel.ApiToken;
-import de.blackforestsolutions.dravelopsdatamodel.Optimization;
 import de.blackforestsolutions.dravelopsdatamodel.Point;
 import org.springframework.data.geo.Box;
 
@@ -30,7 +29,6 @@ public class ApiTokenObjectMother {
                 .setIsArrivalDateTime(true)
                 .setLanguage(new Locale("de"))
                 .setRouter("sbg")
-                .setOptimize(Optimization.QUICK)
                 .setRadius(3000)
                 .setHasDetails(true)
                 .setHasReferences(true)
@@ -40,9 +38,10 @@ public class ApiTokenObjectMother {
                 .setBox(new Box(new org.springframework.data.geo.Point(0.0d, 0.0d), new org.springframework.data.geo.Point(0.0d, 0.0d)))
                 .setLayers(Collections.singletonList("test"))
                 .setMaxPastDaysInCalendar(2)
-                .setHazelcastTimeRangeInMinutes(120)
+                .setJourneySearchWindowInMinutes(120)
                 .setGtfsUrl("http://nvbw.de/fileadmin/user_upload/service/open_data/fahrplandaten_mit_liniennetz/sbg.zip")
-                .setHeaders(Map.of("Token", "123"));
+                .setHeaders(Map.of("Token", "123"))
+                .setShowIntermediateStops(true);
     }
 
     public static ApiToken getApiTokenWithNoEmptyFields() {
@@ -58,7 +57,6 @@ public class ApiTokenObjectMother {
                 .setIsArrivalDateTime(true)
                 .setLanguage(new Locale("de"))
                 .setRouter("sbg")
-                .setOptimize(Optimization.QUICK)
                 .setRadius(3000)
                 .setHasDetails(true)
                 .setHasReferences(true)
@@ -68,9 +66,10 @@ public class ApiTokenObjectMother {
                 .setBox(new Box(new org.springframework.data.geo.Point(0.0d, 0.0d), new org.springframework.data.geo.Point(0.0d, 0.0d)))
                 .setLayers(Collections.singletonList("test"))
                 .setMaxPastDaysInCalendar(2)
-                .setHazelcastTimeRangeInMinutes(120)
+                .setJourneySearchWindowInMinutes(120)
                 .setGtfsUrl("http://nvbw.de/fileadmin/user_upload/service/open_data/fahrplandaten_mit_liniennetz/sbg.zip")
                 .setHeaders(Map.of("Token", "123"))
+                .setShowIntermediateStops(true)
                 .build();
     }
 
@@ -87,7 +86,6 @@ public class ApiTokenObjectMother {
     // Journey Token Request Chain from StargateService to OpenTripPlanner
     public static ApiToken getJourneyUserRequestToken() {
         return new ApiToken.ApiTokenBuilder()
-                .setOptimize(Optimization.QUICK)
                 .setIsArrivalDateTime(false)
                 .setDateTime(ZonedDateTime.parse("2020-09-30T13:00:00+02:00"))
                 .setDepartureCoordinate(getAmGrosshausbergPoint())
@@ -102,6 +100,8 @@ public class ApiTokenObjectMother {
                 .setHost("localhost")
                 .setPort(8088)
                 .setPath("/otp/journeys/get")
+                .setMaxResults(5)
+                .setJourneySearchWindowInMinutes(120)
                 .build();
     }
 
@@ -111,8 +111,9 @@ public class ApiTokenObjectMother {
                 .setHost("localhost")
                 .setPort(8088)
                 .setPath("/otp/journeys/get")
+                .setMaxResults(5)
+                .setJourneySearchWindowInMinutes(120)
                 .setIsArrivalDateTime(false)
-                .setOptimize(Optimization.QUICK)
                 .setDateTime(ZonedDateTime.parse("2020-09-30T13:00:00+02:00"))
                 .setDepartureCoordinate(getAmGrosshausbergPoint())
                 .setArrivalCoordinate(getSickAgPoint())
@@ -126,6 +127,8 @@ public class ApiTokenObjectMother {
                 .setHost("localhost")
                 .setPort(8084)
                 .setPath("/otp/journeys/get")
+                .setShowIntermediateStops(true)
+                .setJourneySearchWindowInMinutes(120)
                 .build();
     }
 
@@ -135,7 +138,8 @@ public class ApiTokenObjectMother {
                 .setHost("localhost")
                 .setPort(8084)
                 .setPath("/otp/journeys/get")
-                .setOptimize(Optimization.QUICK)
+                .setShowIntermediateStops(true)
+                .setJourneySearchWindowInMinutes(120)
                 .setIsArrivalDateTime(false)
                 .setDateTime(ZonedDateTime.parse("2020-09-30T13:00:00+02:00"))
                 .setDepartureCoordinate(getAmGrosshausbergPoint())
@@ -179,7 +183,6 @@ public class ApiTokenObjectMother {
                 .setPort(8089)
                 .setRouter("bw")
                 .setLanguage(new Locale("de"))
-                .setOptimize(Optimization.QUICK)
                 .setIsArrivalDateTime(false)
                 .setDateTime(ZonedDateTime.parse("2020-09-30T13:00:00+02:00"))
                 .setDeparture("Am Großhausberg 8")
@@ -295,7 +298,7 @@ public class ApiTokenObjectMother {
     public static ApiToken getHazelcastApiToken() {
         return new ApiToken.ApiTokenBuilder()
                 .setMaxPastDaysInCalendar(2)
-                .setHazelcastTimeRangeInMinutes(120)
+                .setJourneySearchWindowInMinutes(120)
                 .build();
     }
 
