@@ -1,4 +1,4 @@
-package de.blackforestsolutions.dravelopsdatamodel.deserializer;
+package de.blackforestsolutions.dravelopsdatamodel.jackson;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;

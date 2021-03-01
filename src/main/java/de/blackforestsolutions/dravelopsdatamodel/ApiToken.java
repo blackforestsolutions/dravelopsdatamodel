@@ -7,7 +7,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
-import org.springframework.data.geo.Box;
 
 import java.time.ZonedDateTime;
 import java.util.*;
@@ -44,6 +43,7 @@ public final class ApiToken {
     private final Map<String, String> headers;
     @Getter(AccessLevel.NONE)
     private final boolean showIntermediateStops;
+    private final long retryTimeInSeconds;
 
     private ApiToken(ApiTokenBuilder apiTokenBuilder) {
         this.host = apiTokenBuilder.getHost();
@@ -70,6 +70,7 @@ public final class ApiToken {
         this.gtfsUrl = apiTokenBuilder.getGtfsUrl();
         this.headers = apiTokenBuilder.getHeaders();
         this.showIntermediateStops = apiTokenBuilder.getShowIntermediateStops();
+        this.retryTimeInSeconds = apiTokenBuilder.getRetryTimeInSeconds();
     }
 
     public boolean getIsArrivalDateTime() {
@@ -127,6 +128,7 @@ public final class ApiToken {
         @Setter(AccessLevel.NONE)
         @Getter(AccessLevel.NONE)
         private boolean showIntermediateStops;
+        private long retryTimeInSeconds;
 
         /**
          * This warning indicates a duplicated code fragment.
@@ -162,6 +164,7 @@ public final class ApiToken {
             this.gtfsUrl = apiTokenBuilder.getGtfsUrl();
             this.headers = apiTokenBuilder.getHeaders();
             this.showIntermediateStops = apiTokenBuilder.getShowIntermediateStops();
+            this.retryTimeInSeconds = apiTokenBuilder.getRetryTimeInSeconds();
         }
 
         /**
@@ -198,6 +201,7 @@ public final class ApiToken {
             this.gtfsUrl = apiToken.getGtfsUrl();
             this.headers = apiToken.getHeaders();
             this.showIntermediateStops = apiToken.getShowIntermediateStops();
+            this.retryTimeInSeconds = apiToken.getRetryTimeInSeconds();
         }
 
         public ApiTokenBuilder setIsArrivalDateTime(boolean isArrivalDateTime) {

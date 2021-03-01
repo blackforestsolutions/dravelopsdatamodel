@@ -15,6 +15,8 @@ import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.PriceObje
 @Slf4j
 public class JourneyObjectMother {
 
+    private static final Locale DEFAULT_TEST_LANGUAGE = new Locale("de");
+
     public static Journey getJourneyWithEmptyFields() {
         try {
             return new Journey.JourneyBuilder()
@@ -37,7 +39,7 @@ public class JourneyObjectMother {
 
     public static Journey.JourneyBuilder getJourneyBuilderWithNoEmptyFields() {
         return new Journey.JourneyBuilder()
-                .setLanguage(new Locale("de"))
+                .setLanguage(DEFAULT_TEST_LANGUAGE)
                 .setLegs(getLegs())
                 .setPrices(getPrices());
     }
@@ -112,7 +114,7 @@ public class JourneyObjectMother {
     public static Journey getJourneyWithDoubleLegAndPriceKey() {
         try {
             return new Journey.JourneyBuilder()
-                    .setLanguage(new Locale("de"))
+                    .setLanguage(DEFAULT_TEST_LANGUAGE)
                     .setLegs(getLegsWithDoubleLeg())
                     .setPrices(getPricesWithDoublePrice())
                     .build();
@@ -125,7 +127,7 @@ public class JourneyObjectMother {
     public static Journey getFurtwangenToWaldkirchJourney() {
         try {
             return new Journey.JourneyBuilder()
-                    .setLanguage(new Locale("de"))
+                    .setLanguage(DEFAULT_TEST_LANGUAGE)
                     .setLegs(getFurtwangenToWaldkirchLegs())
                     .setPrices(getFurtwangenToWaldkirchPrices())
                     .build();
@@ -138,7 +140,7 @@ public class JourneyObjectMother {
     public static Journey getMannheimHbfLudwigsburgCenterJourney() {
         try {
             return new Journey.JourneyBuilder()
-                    .setLanguage(new Locale("de"))
+                    .setLanguage(DEFAULT_TEST_LANGUAGE)
                     .setLegs(getMannheimHbfToLudwigsburgCenterLegs())
                     .build();
         } catch (IOException e) {

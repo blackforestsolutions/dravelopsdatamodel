@@ -54,6 +54,12 @@ public class TravelPointObjectMother {
                 .build();
     }
 
+    public static TravelPoint getTravelPointWithNoEmptyFieldsBy(Point point) {
+        return getTravelPointBuilderWithNoEmptyFields()
+                .setPoint(point)
+                .build();
+    }
+
     public static TravelPoint getGrosshausbergTravelPoint() {
         return new TravelPoint.TravelPointBuilder()
                 .setName("Am Großhausberg 8")
