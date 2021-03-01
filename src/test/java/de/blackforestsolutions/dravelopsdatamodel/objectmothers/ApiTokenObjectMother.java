@@ -172,8 +172,6 @@ public class ApiTokenObjectMother {
                 .setHost(HOST)
                 .setPort(OTP_MAPPER_SERVICE_PORT)
                 .setPath(ROUTE_PERSISTENCE_JOURNEY_CONTROLLER_PATH)
-                .setShowIntermediateStops(DEFAULT_TEST_SHOW_INTERMEDIATE_STOPS)
-                .setJourneySearchWindowInMinutes(DEFAULT_TEST_JOURNEY_SEARCH_WINDOW)
                 .build();
     }
 
@@ -183,8 +181,6 @@ public class ApiTokenObjectMother {
                 .setHost(HOST)
                 .setPort(OTP_MAPPER_SERVICE_PORT)
                 .setPath(ROUTE_PERSISTENCE_JOURNEY_CONTROLLER_PATH)
-                .setShowIntermediateStops(DEFAULT_TEST_SHOW_INTERMEDIATE_STOPS)
-                .setJourneySearchWindowInMinutes(DEFAULT_TEST_JOURNEY_SEARCH_WINDOW)
                 .setIsArrivalDateTime(DEFAULT_TEST_IS_ARRIVAL_DATE_TIME)
                 .setDateTime(DEFAULT_TEST_DATE_TIME)
                 .setDepartureCoordinate(DEFAULT_TEST_DEPARTURE_COORDINATE)
@@ -227,6 +223,8 @@ public class ApiTokenObjectMother {
                 .setHost(HOST)
                 .setPort(OTP_PORT)
                 .setRouter(DEFAULT_TEST_ROUTER)
+                .setShowIntermediateStops(DEFAULT_TEST_SHOW_INTERMEDIATE_STOPS)
+                .setJourneySearchWindowInMinutes(DEFAULT_TEST_JOURNEY_SEARCH_WINDOW)
                 .setLanguage(DEFAULT_TEST_LANGUAGE)
                 .setIsArrivalDateTime(DEFAULT_TEST_IS_ARRIVAL_DATE_TIME)
                 .setDateTime(DEFAULT_TEST_DATE_TIME)
@@ -305,6 +303,8 @@ public class ApiTokenObjectMother {
                 .setHost(HOST)
                 .setPort(OTP_PORT)
                 .setRouter(DEFAULT_TEST_ROUTER)
+                .setShowIntermediateStops(DEFAULT_TEST_SHOW_INTERMEDIATE_STOPS)
+                .setJourneySearchWindowInMinutes(DEFAULT_TEST_JOURNEY_SEARCH_WINDOW)
                 .build();
     }
     // End
