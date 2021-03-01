@@ -2,7 +2,6 @@ package de.blackforestsolutions.dravelopsdatamodel;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
-import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -17,33 +16,29 @@ public final class ApiToken {
 
     private final String host;
     private final String protocol;
-    private final int port;
+    private final Integer port;
     private final String departure;
     private final Point departureCoordinate;
     private final String arrival;
     private final Point arrivalCoordinate;
     private final ZonedDateTime dateTime;
-    @Getter(AccessLevel.NONE)
-    private final boolean isArrivalDateTime;
+    private final Boolean isArrivalDateTime;
     private final Locale language;
     private final String router;
-    private final int radius;
-    @Getter(AccessLevel.NONE)
-    private final boolean hasDetails;
-    @Getter(AccessLevel.NONE)
-    private final boolean hasReferences;
+    private final Integer radius;
+    private final Boolean hasDetails;
+    private final Boolean hasReferences;
     private final String path;
     private final Integer maxResults;
     private final String apiVersion;
     private final Box box;
     private final List<String> layers;
-    private final int maxPastDaysInCalendar;
-    private final int journeySearchWindowInMinutes;
+    private final Integer maxPastDaysInCalendar;
+    private final Integer journeySearchWindowInMinutes;
     private final String gtfsUrl;
     private final Map<String, String> headers;
-    @Getter(AccessLevel.NONE)
-    private final boolean showIntermediateStops;
-    private final long retryTimeInSeconds;
+    private final Boolean showIntermediateStops;
+    private final Long retryTimeInSeconds;
 
     private ApiToken(ApiTokenBuilder apiTokenBuilder) {
         this.host = apiTokenBuilder.getHost();
@@ -73,22 +68,6 @@ public final class ApiToken {
         this.retryTimeInSeconds = apiTokenBuilder.getRetryTimeInSeconds();
     }
 
-    public boolean getIsArrivalDateTime() {
-        return this.isArrivalDateTime;
-    }
-
-    public boolean getHasDetails() {
-        return this.hasDetails;
-    }
-
-    public boolean getHasReferences() {
-        return this.hasReferences;
-    }
-
-    public boolean getShowIntermediateStops() {
-        return this.showIntermediateStops;
-    }
-
     @Setter
     @Getter
     @Accessors(chain = true)
@@ -98,37 +77,29 @@ public final class ApiToken {
 
         private String host;
         private String protocol;
-        private int port = -1;
+        private Integer port = -1;
         private String departure;
         private Point departureCoordinate;
         private String arrival;
         private Point arrivalCoordinate;
         private ZonedDateTime dateTime;
-        @Setter(AccessLevel.NONE)
-        @Getter(AccessLevel.NONE)
-        private boolean isArrivalDateTime;
+        private Boolean isArrivalDateTime;
         private Locale language;
         private String router;
-        private int radius;
-        @Setter(AccessLevel.NONE)
-        @Getter(AccessLevel.NONE)
-        private boolean hasDetails = true;
-        @Setter(AccessLevel.NONE)
-        @Getter(AccessLevel.NONE)
-        private boolean hasReferences = true;
+        private Integer radius;
+        private Boolean hasDetails;
+        private Boolean hasReferences;
         private String path;
         private Integer maxResults;
         private String apiVersion;
         private Box box;
         private List<String> layers = new LinkedList<>();
-        private int maxPastDaysInCalendar;
-        private int journeySearchWindowInMinutes;
+        private Integer maxPastDaysInCalendar;
+        private Integer journeySearchWindowInMinutes;
         private String gtfsUrl;
         private Map<String, String> headers = new HashMap<>();
-        @Setter(AccessLevel.NONE)
-        @Getter(AccessLevel.NONE)
-        private boolean showIntermediateStops;
-        private long retryTimeInSeconds;
+        private Boolean showIntermediateStops;
+        private Long retryTimeInSeconds;
 
         /**
          * This warning indicates a duplicated code fragment.
@@ -202,42 +173,6 @@ public final class ApiToken {
             this.headers = apiToken.getHeaders();
             this.showIntermediateStops = apiToken.getShowIntermediateStops();
             this.retryTimeInSeconds = apiToken.getRetryTimeInSeconds();
-        }
-
-        public ApiTokenBuilder setIsArrivalDateTime(boolean isArrivalDateTime) {
-            this.isArrivalDateTime = isArrivalDateTime;
-            return this;
-        }
-
-        public boolean getIsArrivalDateTime() {
-            return this.isArrivalDateTime;
-        }
-
-        public ApiTokenBuilder setHasDetails(boolean hasDetails) {
-            this.hasDetails = hasDetails;
-            return this;
-        }
-
-        public boolean getHasDetails() {
-            return this.hasDetails;
-        }
-
-        public ApiTokenBuilder setHasReferences(boolean hasReferences) {
-            this.hasReferences = hasReferences;
-            return this;
-        }
-
-        public boolean getHasReferences() {
-            return this.hasReferences;
-        }
-
-        public ApiTokenBuilder setShowIntermediateStops(boolean showIntermediateStops) {
-            this.showIntermediateStops = showIntermediateStops;
-            return this;
-        }
-
-        public boolean getShowIntermediateStops() {
-            return this.showIntermediateStops;
         }
 
         public ApiToken build() {
