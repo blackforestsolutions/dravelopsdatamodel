@@ -177,6 +177,7 @@ public class ApiTokenObjectMother {
                 .setHost(HOST)
                 .setPort(OTP_MAPPER_SERVICE_PORT)
                 .setPath(ROUTE_PERSISTENCE_JOURNEY_CONTROLLER_PATH)
+                .setMaxResults(DEFAULT_TEST_MAX_JOURNEYS_RESULT)
                 .build();
     }
 
@@ -186,6 +187,7 @@ public class ApiTokenObjectMother {
                 .setHost(HOST)
                 .setPort(OTP_MAPPER_SERVICE_PORT)
                 .setPath(ROUTE_PERSISTENCE_JOURNEY_CONTROLLER_PATH)
+                .setMaxResults(DEFAULT_TEST_MAX_JOURNEYS_RESULT)
                 .setIsArrivalDateTime(DEFAULT_TEST_IS_ARRIVAL_DATE_TIME)
                 .setDateTime(DEFAULT_TEST_DATE_TIME)
                 .setDepartureCoordinate(DEFAULT_TEST_DEPARTURE_COORDINATE)
