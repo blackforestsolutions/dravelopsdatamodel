@@ -21,10 +21,15 @@ public class ApiTokenObjectMother {
     private static final String PROTOCOL = "http";
     private static final int STATION_PERSISTENCE_PORT = 8086;
     private static final int ROUTE_PERSISTENCE_PORT = 8088;
-    private static final int OTP_PORT = 8080;
+    private static final int OTP_FAST_LANE_PORT = 9000;
+    private static final int OTP_SLOW_LANE_PORT = 9002;
     private static final int OTP_MAPPER_SERVICE_PORT = 8084;
     private static final int PELIAS_PORT = 4000;
     private static final int BOX_SERVICE_PORT = 8083;
+    private static final String OTP_FAST_LANE_ROUTER = "bw-fast";
+    private static final String OTP_SLOW_LANE_ROUTER = "bw-slow";
+    private static final int OTP_FAST_LANE_JOURNEY_SEARCH_WINDOW_IN_MINUTES = 120;
+    private static final int OTP_SLOW_LANE_JOURNEY_SEARCH_WINDOW_IN_MINUTES = 1440;
     private static final String ROUTE_PERSISTENCE_JOURNEY_CONTROLLER_PATH = "/otp/journeys/get";
     private static final String PELIAS_TRAVEL_POINT_CONTROLLER = "/pelias/travelpoints/get";
 
@@ -214,17 +219,43 @@ public class ApiTokenObjectMother {
                 .build();
     }
 
-    // Now here is coming {@link getOpenTripPlannerConfiguredApiToken} which is used for dravelopsotpmapperservice
-    // as well as dravelopsboxservice
+    public static ApiToken getOtpConfiguredFastLaneApiToken() {
+        return getOpenTripPlannerConfiguredApiToken()
+                .setPort(OTP_FAST_LANE_PORT)
+                .setRouter(OTP_FAST_LANE_ROUTER)
+                .setJourneySearchWindowInMinutes(OTP_FAST_LANE_JOURNEY_SEARCH_WINDOW_IN_MINUTES)
+                .build();
+    }
 
-    public static ApiToken getOpenTripPlannerApiToken() {
+    public static ApiToken getOtpConfiguredSlowLaneApiToken() {
+        return getOpenTripPlannerConfiguredApiToken()
+                .setPort(OTP_SLOW_LANE_PORT)
+                .setRouter(OTP_SLOW_LANE_ROUTER)
+                .setJourneySearchWindowInMinutes(OTP_SLOW_LANE_JOURNEY_SEARCH_WINDOW_IN_MINUTES)
+                .build();
+    }
+
+    private static ApiToken.ApiTokenBuilder getOpenTripPlannerConfiguredApiToken() {
         return new ApiToken.ApiTokenBuilder()
                 .setProtocol(PROTOCOL)
                 .setHost(HOST)
-                .setPort(OTP_PORT)
-                .setRouter(DEFAULT_TEST_ROUTER)
-                .setShowIntermediateStops(DEFAULT_TEST_SHOW_INTERMEDIATE_STOPS)
-                .setJourneySearchWindowInMinutes(DEFAULT_TEST_JOURNEY_SEARCH_WINDOW)
+                .setShowIntermediateStops(DEFAULT_TEST_SHOW_INTERMEDIATE_STOPS);
+    }
+
+    public static ApiToken getOtpFastLaneApiToken() {
+        return new ApiToken.ApiTokenBuilder(getOtpConfiguredFastLaneApiToken())
+                .setLanguage(DEFAULT_TEST_LANGUAGE)
+                .setIsArrivalDateTime(DEFAULT_TEST_IS_ARRIVAL_DATE_TIME)
+                .setDateTime(DEFAULT_TEST_DATE_TIME)
+                .setDeparture(DEFAULT_TEST_DEPARTURE)
+                .setDepartureCoordinate(DEFAULT_TEST_DEPARTURE_COORDINATE)
+                .setArrival(DEFAULT_TEST_ARRIVAL)
+                .setArrivalCoordinate(DEFAULT_TEST_ARRIVAL_COORDINATE)
+                .build();
+    }
+
+    public static ApiToken getOtpSlowLaneApiToken() {
+        return new ApiToken.ApiTokenBuilder(getOtpConfiguredSlowLaneApiToken())
                 .setLanguage(DEFAULT_TEST_LANGUAGE)
                 .setIsArrivalDateTime(DEFAULT_TEST_IS_ARRIVAL_DATE_TIME)
                 .setDateTime(DEFAULT_TEST_DATE_TIME)
@@ -266,9 +297,6 @@ public class ApiTokenObjectMother {
                 .build();
     }
 
-    // Now here is coming {@link getOpenTripPlannerConfiguredApiToken()} which is used for Dravelopsotpmapperservice
-    // as well as dravelopsboxservice
-
     public static ApiToken getConfiguredPeliasAutocompleteApiToken() {
         return new ApiToken.ApiTokenBuilder()
                 .setProtocol(PROTOCOL)
@@ -291,20 +319,6 @@ public class ApiTokenObjectMother {
                 .setMaxResults(DEFAULT_TEST_PELIAS_RESULTS)
                 .setLayers(DEFAULT_TEST_PELIAS_LAYERS)
                 .setBox(getStationPersistenceBox())
-                .build();
-    }
-    // End
-
-    // Start
-    // Both (Journey and TravelPoint RequestToken)
-    public static ApiToken getOpenTripPlannerConfiguredApiToken() {
-        return new ApiToken.ApiTokenBuilder()
-                .setProtocol(PROTOCOL)
-                .setHost(HOST)
-                .setPort(OTP_PORT)
-                .setRouter(DEFAULT_TEST_ROUTER)
-                .setShowIntermediateStops(DEFAULT_TEST_SHOW_INTERMEDIATE_STOPS)
-                .setJourneySearchWindowInMinutes(DEFAULT_TEST_JOURNEY_SEARCH_WINDOW)
                 .build();
     }
     // End
