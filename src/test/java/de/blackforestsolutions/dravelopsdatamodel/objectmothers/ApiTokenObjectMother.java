@@ -223,7 +223,6 @@ public class ApiTokenObjectMother {
         return getOpenTripPlannerConfiguredApiToken()
                 .setPort(OTP_FAST_LANE_PORT)
                 .setRouter(OTP_FAST_LANE_ROUTER)
-                .setJourneySearchWindowInMinutes(OTP_FAST_LANE_JOURNEY_SEARCH_WINDOW_IN_MINUTES)
                 .build();
     }
 
@@ -231,7 +230,6 @@ public class ApiTokenObjectMother {
         return getOpenTripPlannerConfiguredApiToken()
                 .setPort(OTP_SLOW_LANE_PORT)
                 .setRouter(OTP_SLOW_LANE_ROUTER)
-                .setJourneySearchWindowInMinutes(OTP_SLOW_LANE_JOURNEY_SEARCH_WINDOW_IN_MINUTES)
                 .build();
     }
 
