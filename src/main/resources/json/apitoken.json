@@ -16,7 +16,7 @@
   "isArrivalDateTime": false,
   "language": "de",
   "router": "bw",
-  "radius": 3000,
+  "radiusInKilometers": 1,
   "hasDetails": true,
   "hasReferences": true,
   "path": "/path",

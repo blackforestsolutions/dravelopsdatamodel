@@ -3,6 +3,8 @@ package de.blackforestsolutions.dravelopsdatamodel.objectmothers;
 import de.blackforestsolutions.dravelopsdatamodel.ApiToken;
 import de.blackforestsolutions.dravelopsdatamodel.Point;
 import de.blackforestsolutions.dravelopsdatamodel.TravelPoint;
+import org.springframework.data.geo.Distance;
+import org.springframework.data.geo.Metrics;
 
 import java.time.ZonedDateTime;
 
@@ -19,7 +21,8 @@ public class TravelPointObjectMother {
                 .setPoint(new Point.PointBuilder(48.052590d, 8.207245d).build())
                 .setArrivalTime(ZonedDateTime.parse("2020-09-27T10:15:30+02:00[Europe/Berlin]"))
                 .setDepartureTime(ZonedDateTime.parse("2020-09-27T10:15:30+02:00[Europe/Berlin]"))
-                .setPlatform("1");
+                .setPlatform("1")
+                .setDistanceInKilometers(new Distance(0.5d, Metrics.KILOMETERS));
     }
 
     public static TravelPoint getTravelPointWithNoEmptyFieldsByArrivalTime(Point point) {

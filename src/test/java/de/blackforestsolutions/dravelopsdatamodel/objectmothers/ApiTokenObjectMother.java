@@ -56,7 +56,7 @@ public class ApiTokenObjectMother {
     private static final int DEFAULT_TEST_PELIAS_REVERSE_RESULTS = 1;
     private static final int DEFAULT_TEST_PELIAS_RESULTS = 10;
     private static final Map<String, String> DEFAULT_TEST_HEADERS = Map.of("Token", "123");
-    private static final int DEFAULT_TEST_RADIUS = 3000;
+    private static final int DEFAULT_TEST_RADIUS_IN_KILOMETERS = 1;
     private static final boolean DEFAULT_TEST_OTP_HAS_DETAILS = true;
     private static final boolean DEFAULT_TEST_OTP_HAS_REFERENCES = true;
     private static final List<String> DEFAULT_TEST_PELIAS_LAYERS = ApiTokenObjectMother.getDefaultTestPeliasLayers();
@@ -79,7 +79,7 @@ public class ApiTokenObjectMother {
                 .setIsArrivalDateTime(DEFAULT_TEST_IS_ARRIVAL_DATE_TIME)
                 .setLanguage(DEFAULT_TEST_LANGUAGE)
                 .setRouter(DEFAULT_TEST_ROUTER)
-                .setRadius(DEFAULT_TEST_RADIUS)
+                .setRadiusInKilometers(DEFAULT_TEST_RADIUS_IN_KILOMETERS)
                 .setHasDetails(DEFAULT_TEST_OTP_HAS_DETAILS)
                 .setHasReferences(DEFAULT_TEST_OTP_HAS_REFERENCES)
                 .setPath(DEFAULT_TEST_PATH)
@@ -108,7 +108,7 @@ public class ApiTokenObjectMother {
                 .setIsArrivalDateTime(DEFAULT_TEST_IS_ARRIVAL_DATE_TIME)
                 .setLanguage(DEFAULT_TEST_LANGUAGE)
                 .setRouter(DEFAULT_TEST_ROUTER)
-                .setRadius(DEFAULT_TEST_RADIUS)
+                .setRadiusInKilometers(DEFAULT_TEST_RADIUS_IN_KILOMETERS)
                 .setHasDetails(DEFAULT_TEST_OTP_HAS_DETAILS)
                 .setHasReferences(DEFAULT_TEST_OTP_HAS_REFERENCES)
                 .setPath(DEFAULT_TEST_PATH)

@@ -10,6 +10,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
+import org.springframework.data.geo.Distance;
+import org.springframework.data.geo.Metrics;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -33,12 +35,15 @@ public final class TravelPoint implements Serializable, DataSerializable {
 
     private String platform;
 
+    private Distance distanceInKilometers;
+
     private TravelPoint(TravelPointBuilder travelPointBuilder) {
         this.name = travelPointBuilder.getName();
         this.point = travelPointBuilder.getPoint();
         this.arrivalTime = travelPointBuilder.getArrivalTime();
         this.departureTime = travelPointBuilder.getDepartureTime();
         this.platform = travelPointBuilder.getPlatform();
+        this.distanceInKilometers = travelPointBuilder.getDistanceInKilometers();
     }
 
     @Override
@@ -58,6 +63,12 @@ public final class TravelPoint implements Serializable, DataSerializable {
             out.writeBoolean(false);
         }
         out.writeUTF(this.platform);
+        if (Optional.ofNullable(this.distanceInKilometers).isPresent()) {
+            out.writeBoolean(true);
+            out.writeDouble(this.distanceInKilometers.getValue());
+        } else {
+            out.writeBoolean(false);
+        }
     }
 
     @Override
@@ -71,6 +82,9 @@ public final class TravelPoint implements Serializable, DataSerializable {
             this.departureTime = ZonedDateTime.parse(in.readUTF());
         }
         this.platform = in.readUTF();
+        if (in.readBoolean()) {
+            this.distanceInKilometers = new Distance(in.readDouble(), Metrics.KILOMETERS);
+        }
     }
 
 
@@ -89,6 +103,8 @@ public final class TravelPoint implements Serializable, DataSerializable {
         private ZonedDateTime departureTime;
 
         private String platform = "";
+
+        private Distance distanceInKilometers;
 
         public TravelPoint build() {
             return new TravelPoint(this);

@@ -25,7 +25,7 @@ public final class ApiToken {
     private final Boolean isArrivalDateTime;
     private final Locale language;
     private final String router;
-    private final Integer radius;
+    private final Integer radiusInKilometers;
     private final Boolean hasDetails;
     private final Boolean hasReferences;
     private final String path;
@@ -52,7 +52,7 @@ public final class ApiToken {
         this.isArrivalDateTime = apiTokenBuilder.getIsArrivalDateTime();
         this.language = apiTokenBuilder.getLanguage();
         this.router = apiTokenBuilder.getRouter();
-        this.radius = apiTokenBuilder.getRadius();
+        this.radiusInKilometers = apiTokenBuilder.getRadiusInKilometers();
         this.hasDetails = apiTokenBuilder.getHasDetails();
         this.hasReferences = apiTokenBuilder.getHasReferences();
         this.path = apiTokenBuilder.getPath();
@@ -86,7 +86,7 @@ public final class ApiToken {
         private Boolean isArrivalDateTime;
         private Locale language;
         private String router;
-        private Integer radius;
+        private Integer radiusInKilometers;
         private Boolean hasDetails;
         private Boolean hasReferences;
         private String path;
@@ -122,7 +122,7 @@ public final class ApiToken {
             this.isArrivalDateTime = apiTokenBuilder.getIsArrivalDateTime();
             this.language = apiTokenBuilder.getLanguage();
             this.router = apiTokenBuilder.getRouter();
-            this.radius = apiTokenBuilder.getRadius();
+            this.radiusInKilometers = apiTokenBuilder.getRadiusInKilometers();
             this.hasDetails = apiTokenBuilder.getHasDetails();
             this.hasReferences = apiTokenBuilder.getHasReferences();
             this.path = apiTokenBuilder.getPath();
@@ -159,7 +159,7 @@ public final class ApiToken {
             this.isArrivalDateTime = apiToken.getIsArrivalDateTime();
             this.language = apiToken.getLanguage();
             this.router = apiToken.getRouter();
-            this.radius = apiToken.getRadius();
+            this.radiusInKilometers = apiToken.getRadiusInKilometers();
             this.hasDetails = apiToken.getHasDetails();
             this.hasReferences = apiToken.getHasReferences();
             this.path = apiToken.getPath();
