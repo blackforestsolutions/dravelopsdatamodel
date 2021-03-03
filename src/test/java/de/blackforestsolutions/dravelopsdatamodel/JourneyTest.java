@@ -33,7 +33,7 @@ class JourneyTest {
 
         Journey result = testData.build();
 
-        assertThat(result.getId()).isEqualTo("6b8fc49341c09935792635b143372e0d451386a3");
+        assertThat(result.getId()).isEqualTo("b4f8bc5bedfb376632f16c006c8e4d4215d1e49e");
     }
 
     @Test
