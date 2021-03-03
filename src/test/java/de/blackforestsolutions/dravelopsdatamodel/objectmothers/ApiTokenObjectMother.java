@@ -199,6 +199,7 @@ public class ApiTokenObjectMother {
                 .setMaxResults(DEFAULT_TEST_PELIAS_REVERSE_RESULTS)
                 .setDeparture(DEFAULT_TEST_DEPARTURE_PLACEHOLDER)
                 .setArrival(DEFAULT_TEST_ARRIVAL_PLACEHOLDER)
+                .setLayers(DEFAULT_TEST_PELIAS_LAYERS)
                 .build();
     }
 
@@ -212,6 +213,7 @@ public class ApiTokenObjectMother {
                 .setDeparture(DEFAULT_TEST_DEPARTURE_PLACEHOLDER)
                 .setArrival(DEFAULT_TEST_ARRIVAL_PLACEHOLDER)
                 .setLanguage(DEFAULT_TEST_LANGUAGE)
+                .setLayers(DEFAULT_TEST_PELIAS_LAYERS)
                 .build();
     }
 
