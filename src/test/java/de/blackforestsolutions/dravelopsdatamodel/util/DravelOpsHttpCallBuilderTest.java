@@ -77,11 +77,18 @@ class DravelOpsHttpCallBuilderTest {
         assertThrows(NullPointerException.class, () -> DravelOpsHttpCallBuilder.buildUrlWith(testData.build()));
     }
 
-
     @Test
     void test_buildUrlWith_protocol_host_as_null_port_and_path_throws_exception() {
         ApiToken.ApiTokenBuilder testData = new ApiToken.ApiTokenBuilder(getApiTokenWithNoEmptyFields());
         testData.setHost(null);
+
+        assertThrows(NullPointerException.class, () -> DravelOpsHttpCallBuilder.buildUrlWith(testData.build()));
+    }
+
+    @Test
+    void test_buildUrlWith_protocol_host_port_as_null_and_path_throws_exception() {
+        ApiToken.ApiTokenBuilder testData = new ApiToken.ApiTokenBuilder(getApiTokenWithNoEmptyFields());
+        testData.setPort(null);
 
         assertThrows(NullPointerException.class, () -> DravelOpsHttpCallBuilder.buildUrlWith(testData.build()));
     }
