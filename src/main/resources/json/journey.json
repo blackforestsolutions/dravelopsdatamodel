@@ -26,7 +26,7 @@
         "departureTime" : "2020-09-27T10:15:30+02:00[Europe/Berlin]",
         "platform" : "1",
         "distanceInKilometers" : {
-          "value" : 0,
+          "value" : 0.5,
           "metric" : "KILOMETERS"
         }
       },
