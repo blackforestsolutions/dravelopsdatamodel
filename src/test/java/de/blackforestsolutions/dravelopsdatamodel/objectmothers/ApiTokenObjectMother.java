@@ -3,6 +3,8 @@ package de.blackforestsolutions.dravelopsdatamodel.objectmothers;
 import de.blackforestsolutions.dravelopsdatamodel.ApiToken;
 import de.blackforestsolutions.dravelopsdatamodel.Box;
 import de.blackforestsolutions.dravelopsdatamodel.Point;
+import org.springframework.data.geo.Distance;
+import org.springframework.data.geo.Metrics;
 
 import java.time.ZonedDateTime;
 import java.util.List;
@@ -57,7 +59,7 @@ public class ApiTokenObjectMother {
     private static final int DEFAULT_TEST_PELIAS_REVERSE_RESULTS = 1;
     private static final int DEFAULT_TEST_PELIAS_RESULTS = 10;
     private static final Map<String, String> DEFAULT_TEST_HEADERS = Map.of("Token", "123");
-    private static final int DEFAULT_TEST_RADIUS_IN_KILOMETERS = 1;
+    private static final Distance DEFAULT_TEST_RADIUS_IN_KILOMETERS = new Distance(1.0, Metrics.KILOMETERS);
     private static final boolean DEFAULT_TEST_OTP_HAS_DETAILS = true;
     private static final boolean DEFAULT_TEST_OTP_HAS_REFERENCES = true;
     private static final List<String> DEFAULT_TEST_PELIAS_LAYERS = ApiTokenObjectMother.getDefaultTestPeliasLayers();

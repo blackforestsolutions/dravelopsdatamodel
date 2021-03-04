@@ -16,7 +16,10 @@
   "isArrivalDateTime": false,
   "language": "de",
   "router": "bw",
-  "radiusInKilometers": 1,
+  "radiusInKilometers": {
+    "value": 1.0,
+    "metric": "KILOMETERS"
+  },
   "hasDetails": true,
   "hasReferences": true,
   "path": "/path",
@@ -55,5 +58,5 @@
     "Token": "123"
   },
   "showIntermediateStops": true,
-  "retryTimeInSeconds":10
+  "retryTimeInSeconds": 10
 }

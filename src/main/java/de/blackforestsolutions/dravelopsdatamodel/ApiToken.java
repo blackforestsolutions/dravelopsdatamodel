@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
+import org.springframework.data.geo.Distance;
 
 import java.time.ZonedDateTime;
 import java.util.*;
@@ -25,7 +26,7 @@ public final class ApiToken {
     private final Boolean isArrivalDateTime;
     private final Locale language;
     private final String router;
-    private final Integer radiusInKilometers;
+    private final Distance radiusInKilometers;
     private final Boolean hasDetails;
     private final Boolean hasReferences;
     private final String path;
@@ -86,7 +87,7 @@ public final class ApiToken {
         private Boolean isArrivalDateTime;
         private Locale language;
         private String router;
-        private Integer radiusInKilometers;
+        private Distance radiusInKilometers;
         private Boolean hasDetails;
         private Boolean hasReferences;
         private String path;
