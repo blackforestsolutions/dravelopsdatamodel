@@ -14,6 +14,7 @@ import lombok.experimental.Accessors;
 import java.io.IOException;
 import java.io.Serializable;
 import java.net.URL;
+import java.util.Objects;
 import java.util.Optional;
 
 
@@ -31,6 +32,26 @@ public final class TravelProvider implements Serializable, DataSerializable {
     private TravelProvider(TravelProvider.TravelProviderBuilder travelProviderBuilder) {
         this.name = travelProviderBuilder.getName();
         this.url = travelProviderBuilder.getUrl();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        TravelProvider that = (TravelProvider) o;
+        return Objects.equals(name, that.name)
+                &&
+                Objects.equals(url, that.url);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, url);
     }
 
     @Override

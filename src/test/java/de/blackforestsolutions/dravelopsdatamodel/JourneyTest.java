@@ -1,5 +1,6 @@
 package de.blackforestsolutions.dravelopsdatamodel;
 
+import nl.jqno.equalsverifier.EqualsVerifier;
 import org.assertj.core.api.WritableAssertionInfo;
 import org.assertj.core.internal.Strings;
 import org.junit.jupiter.api.Test;
@@ -55,5 +56,10 @@ class JourneyTest {
         Journey firstResult = firstTestData.build();
 
         assertThat(firstResult.getId()).isNotEqualTo(secondTestData.getId());
+    }
+
+    @Test
+    void test_equals_and_hashCode_contract_for_journey() {
+        EqualsVerifier.simple().forClass(Journey.class).verify();
     }
 }

@@ -13,6 +13,7 @@ import lombok.experimental.Accessors;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.Objects;
 
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
@@ -28,6 +29,26 @@ public final class Point implements Serializable, DataSerializable {
     private Point(PointBuilder pointBuilder) {
         this.x = pointBuilder.getX();
         this.y = pointBuilder.getY();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || this.getClass() != obj.getClass()) {
+            return false;
+        }
+
+        Point that = (Point) obj;
+        return Objects.equals(this.x, that.x)
+                &&
+                Objects.equals(this.y, that.y);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(x, y);
     }
 
     @Override
