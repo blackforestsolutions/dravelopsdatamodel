@@ -9,9 +9,11 @@ import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PropertiesLoaderUtils;
 import org.springframework.http.HttpHeaders;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.io.*;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.stream.Collectors;
@@ -105,6 +107,30 @@ public class TestUtils {
             return Mono.just(mapper.readValue(json, pojo));
         } catch (Exception e) {
             return Mono.error(e);
+        }
+    }
+
+    /**
+     * NEVER USE IN PRODUCTIVE CODE!
+     * Parse the given json resource into list object of type pojo
+     *
+     * @param resource   the given json file path
+     * @param returnType pojo of class json has to be parsed
+     * @param <T>        type of the class json has to be parsed
+     * @return object
+     */
+    public static <T> List<T> retrieveJsonToListPojo(String resource, Class<T> returnType) {
+        String json = getResourceFileAsString(resource);
+        return retrieveJsonToReactivePojoList(json, returnType).collectList().block();
+    }
+
+    private static <T> Flux<T> retrieveJsonToReactivePojoList(String json, Class<T> pojo) {
+        try {
+            DravelOpsJsonMapper mapper = new DravelOpsJsonMapper();
+            List<T> pojoList = mapper.readValue(json, mapper.getTypeFactory().constructCollectionType(List.class, pojo));
+            return Flux.fromIterable(pojoList);
+        } catch (Exception e) {
+            return Flux.error(e);
         }
     }
 
