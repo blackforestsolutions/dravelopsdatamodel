@@ -9,6 +9,7 @@ import lombok.Setter;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 @Getter
 @JsonDeserialize(builder = Box.BoxBuilder.class)
@@ -22,6 +23,26 @@ public final class Box implements Serializable {
     private Box(BoxBuilder boxBuilder) {
         this.topLeft = boxBuilder.getTopLeft();
         this.bottomRight = boxBuilder.getBottomRight();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        Box that = (Box) o;
+        return Objects.equals(topLeft, that.topLeft)
+                &&
+                Objects.equals(bottomRight, that.bottomRight);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(topLeft, bottomRight);
     }
 
     @Setter

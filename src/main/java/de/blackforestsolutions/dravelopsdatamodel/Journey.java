@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.Optional;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
@@ -66,6 +67,30 @@ public final class Journey implements Serializable, DataSerializable {
             return (LinkedList<Price>) prices.clone();
         }
         return null;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        Journey that = (Journey) o;
+        return Objects.equals(id, that.id)
+                &&
+                Objects.equals(language, that.language)
+                &&
+                Objects.equals(legs, that.legs)
+                &&
+                Objects.equals(prices, that.prices);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, language, legs, prices);
     }
 
     @Override

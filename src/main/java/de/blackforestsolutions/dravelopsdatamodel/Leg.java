@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.time.Duration;
 import java.util.LinkedList;
+import java.util.Objects;
 import java.util.Optional;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
@@ -71,6 +72,53 @@ public final class Leg implements Serializable, DataSerializable {
             return (LinkedList<TravelPoint>) intermediateStops.clone();
         }
         return null;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        Leg that = (Leg) o;
+        return Objects.equals(departure, that.departure)
+                &&
+                Objects.equals(arrival, that.arrival)
+                &&
+                Objects.equals(delayInMinutes, that.delayInMinutes)
+                &&
+                Objects.equals(distanceInKilometers, that.distanceInKilometers)
+                &&
+                Objects.equals(vehicleType, that.vehicleType)
+                &&
+                Objects.equals(waypoints, that.waypoints)
+                &&
+                Objects.equals(travelProvider, that.travelProvider)
+                &&
+                Objects.equals(vehicleNumber, that.vehicleNumber)
+                &&
+                Objects.equals(vehicleName, that.vehicleName)
+                &&
+                Objects.equals(intermediateStops, that.intermediateStops);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(
+                departure,
+                arrival,
+                delayInMinutes,
+                distanceInKilometers,
+                vehicleType,
+                waypoints,
+                travelProvider,
+                vehicleNumber,
+                vehicleName,
+                intermediateStops
+        );
     }
 
     @Override

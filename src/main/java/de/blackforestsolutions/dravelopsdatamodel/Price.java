@@ -14,6 +14,7 @@ import lombok.experimental.Accessors;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.Currency;
+import java.util.Objects;
 import java.util.Optional;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
@@ -33,6 +34,28 @@ public final class Price implements Serializable, DataSerializable {
         this.currencyCode = priceBuilder.getCurrencyCode();
         this.smallestCurrencyValue = priceBuilder.getSmallestCurrencyValue();
         this.priceType = priceBuilder.getPriceType();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        Price that = (Price) o;
+        return Objects.equals(priceType, that.priceType)
+                &&
+                Objects.equals(currencyCode, that.currencyCode)
+                &&
+                Objects.equals(smallestCurrencyValue, that.smallestCurrencyValue);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(priceType, currencyCode, smallestCurrencyValue);
     }
 
     @Override

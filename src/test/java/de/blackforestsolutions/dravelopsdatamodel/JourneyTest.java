@@ -1,5 +1,6 @@
 package de.blackforestsolutions.dravelopsdatamodel;
 
+import nl.jqno.equalsverifier.EqualsVerifier;
 import org.assertj.core.api.WritableAssertionInfo;
 import org.assertj.core.internal.Strings;
 import org.junit.jupiter.api.Test;
@@ -33,7 +34,7 @@ class JourneyTest {
 
         Journey result = testData.build();
 
-        assertThat(result.getId()).isEqualTo("6b8fc49341c09935792635b143372e0d451386a3");
+        assertThat(result.getId()).isEqualTo("b4f8bc5bedfb376632f16c006c8e4d4215d1e49e");
     }
 
     @Test
@@ -55,5 +56,10 @@ class JourneyTest {
         Journey firstResult = firstTestData.build();
 
         assertThat(firstResult.getId()).isNotEqualTo(secondTestData.getId());
+    }
+
+    @Test
+    void test_equals_and_hashCode_contract_for_journey() {
+        EqualsVerifier.simple().forClass(Journey.class).verify();
     }
 }

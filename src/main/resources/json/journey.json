@@ -1,5 +1,5 @@
 {
-  "id": "6b8fc49341c09935792635b143372e0d451386a3",
+  "id": "b4f8bc5bedfb376632f16c006c8e4d4215d1e49e",
   "language": "de",
   "legs" : [ {
       "departure" : {
@@ -10,7 +10,11 @@
         },
         "arrivalTime" : "2020-09-27T10:15:30+02:00[Europe/Berlin]",
         "departureTime" : "2020-09-27T10:15:30+02:00[Europe/Berlin]",
-        "platform" : "1"
+        "platform" : "1",
+        "distanceInKilometers" : {
+          "value" : 0.5,
+          "metric" : "KILOMETERS"
+        }
       },
       "arrival" : {
         "name" : "Furtwangen",
@@ -20,7 +24,11 @@
         },
         "arrivalTime" : "2020-09-27T10:15:30+02:00[Europe/Berlin]",
         "departureTime" : "2020-09-27T10:15:30+02:00[Europe/Berlin]",
-        "platform" : "1"
+        "platform" : "1",
+        "distanceInKilometers" : {
+          "value" : 0.5,
+          "metric" : "KILOMETERS"
+        }
       },
       "delayInMinutes" : 60.000000000,
       "distanceInKilometers" : {
@@ -46,7 +54,11 @@
         },
         "arrivalTime" : "2020-09-27T10:15:30+02:00[Europe/Berlin]",
         "departureTime" : "2020-09-27T10:15:30+02:00[Europe/Berlin]",
-        "platform" : "1"
+        "platform" : "1",
+        "distanceInKilometers" : {
+          "value" : 0.5,
+          "metric" : "KILOMETERS"
+        }
       } ]
   } ],
   "prices" : [ {

@@ -3,6 +3,8 @@ package de.blackforestsolutions.dravelopsdatamodel.objectmothers;
 import de.blackforestsolutions.dravelopsdatamodel.ApiToken;
 import de.blackforestsolutions.dravelopsdatamodel.Box;
 import de.blackforestsolutions.dravelopsdatamodel.Point;
+import org.springframework.data.geo.Distance;
+import org.springframework.data.geo.Metrics;
 
 import java.time.ZonedDateTime;
 import java.util.List;
@@ -31,7 +33,8 @@ public class ApiTokenObjectMother {
     private static final int OTP_FAST_LANE_JOURNEY_SEARCH_WINDOW_IN_MINUTES = 120;
     private static final int OTP_SLOW_LANE_JOURNEY_SEARCH_WINDOW_IN_MINUTES = 1440;
     private static final String ROUTE_PERSISTENCE_JOURNEY_CONTROLLER_PATH = "/otp/journeys/get";
-    private static final String PELIAS_TRAVEL_POINT_CONTROLLER = "/pelias/travelpoints/get";
+    private static final String AUTOCOMPLETE_ADDRESSES_CONTROLLER_PATH = "/travelpoints/autocomplete";
+    private static final String NEAREST_ADDRESSES_CONTROLLER_PATH = "/travelpoints/nearest";
 
     /**
      * This section of constants represents fake data for testing purpose. The aim is to make them congruent as much
@@ -56,7 +59,7 @@ public class ApiTokenObjectMother {
     private static final int DEFAULT_TEST_PELIAS_REVERSE_RESULTS = 1;
     private static final int DEFAULT_TEST_PELIAS_RESULTS = 10;
     private static final Map<String, String> DEFAULT_TEST_HEADERS = Map.of("Token", "123");
-    private static final int DEFAULT_TEST_RADIUS = 3000;
+    private static final Distance DEFAULT_TEST_RADIUS_IN_KILOMETERS = new Distance(1.0, Metrics.KILOMETERS);
     private static final boolean DEFAULT_TEST_OTP_HAS_DETAILS = true;
     private static final boolean DEFAULT_TEST_OTP_HAS_REFERENCES = true;
     private static final List<String> DEFAULT_TEST_PELIAS_LAYERS = ApiTokenObjectMother.getDefaultTestPeliasLayers();
@@ -79,7 +82,7 @@ public class ApiTokenObjectMother {
                 .setIsArrivalDateTime(DEFAULT_TEST_IS_ARRIVAL_DATE_TIME)
                 .setLanguage(DEFAULT_TEST_LANGUAGE)
                 .setRouter(DEFAULT_TEST_ROUTER)
-                .setRadius(DEFAULT_TEST_RADIUS)
+                .setRadiusInKilometers(DEFAULT_TEST_RADIUS_IN_KILOMETERS)
                 .setHasDetails(DEFAULT_TEST_OTP_HAS_DETAILS)
                 .setHasReferences(DEFAULT_TEST_OTP_HAS_REFERENCES)
                 .setPath(DEFAULT_TEST_PATH)
@@ -108,7 +111,7 @@ public class ApiTokenObjectMother {
                 .setIsArrivalDateTime(DEFAULT_TEST_IS_ARRIVAL_DATE_TIME)
                 .setLanguage(DEFAULT_TEST_LANGUAGE)
                 .setRouter(DEFAULT_TEST_ROUTER)
-                .setRadius(DEFAULT_TEST_RADIUS)
+                .setRadiusInKilometers(DEFAULT_TEST_RADIUS_IN_KILOMETERS)
                 .setHasDetails(DEFAULT_TEST_OTP_HAS_DETAILS)
                 .setHasReferences(DEFAULT_TEST_OTP_HAS_REFERENCES)
                 .setPath(DEFAULT_TEST_PATH)
@@ -205,6 +208,7 @@ public class ApiTokenObjectMother {
                 .setMaxResults(DEFAULT_TEST_PELIAS_REVERSE_RESULTS)
                 .setDeparture(DEFAULT_TEST_DEPARTURE_PLACEHOLDER)
                 .setArrival(DEFAULT_TEST_ARRIVAL_PLACEHOLDER)
+                .setLayers(DEFAULT_TEST_PELIAS_LAYERS)
                 .build();
     }
 
@@ -218,6 +222,7 @@ public class ApiTokenObjectMother {
                 .setDeparture(DEFAULT_TEST_DEPARTURE_PLACEHOLDER)
                 .setArrival(DEFAULT_TEST_ARRIVAL_PLACEHOLDER)
                 .setLanguage(DEFAULT_TEST_LANGUAGE)
+                .setLayers(DEFAULT_TEST_PELIAS_LAYERS)
                 .build();
     }
 
@@ -269,56 +274,111 @@ public class ApiTokenObjectMother {
 
 
     // Start
-    // TravelPoint Token Request Chain from StargateService to DravelOpsPelias
-    public static ApiToken getTravelPointUserRequestToken() {
+    // Autocomplete Token Request Chain from StargateService to DravelOpsPelias
+    public static ApiToken getAutocompleteUserRequestToken() {
         return new ApiToken.ApiTokenBuilder()
                 .setDeparture(DEFAULT_TEST_DEPARTURE)
                 .setLanguage(DEFAULT_TEST_LANGUAGE)
                 .build();
     }
 
-    public static ApiToken getConfiguredBoxServiceApiToken() {
+    public static ApiToken getConfiguredAutocompleteBoxServiceApiToken() {
         return new ApiToken.ApiTokenBuilder()
                 .setProtocol(PROTOCOL)
                 .setHost(HOST)
                 .setPort(BOX_SERVICE_PORT)
-                .setPath(PELIAS_TRAVEL_POINT_CONTROLLER)
+                .setPath(AUTOCOMPLETE_ADDRESSES_CONTROLLER_PATH)
                 .build();
     }
 
-    public static ApiToken getBoxServiceApiToken() {
+    public static ApiToken getAutocompleteBoxServiceApiToken() {
         return new ApiToken.ApiTokenBuilder()
                 .setProtocol(PROTOCOL)
                 .setHost(HOST)
                 .setPort(BOX_SERVICE_PORT)
-                .setPath(PELIAS_TRAVEL_POINT_CONTROLLER)
+                .setPath(AUTOCOMPLETE_ADDRESSES_CONTROLLER_PATH)
                 .setDeparture(DEFAULT_TEST_DEPARTURE)
                 .setLanguage(DEFAULT_TEST_LANGUAGE)
                 .build();
     }
 
-    public static ApiToken getConfiguredPeliasAutocompleteApiToken() {
-        return new ApiToken.ApiTokenBuilder()
-                .setProtocol(PROTOCOL)
-                .setHost(HOST)
-                .setPort(PELIAS_PORT)
-                .setApiVersion(DEFAULT_TEST_PELIAS_API_VERSION)
-                .setMaxResults(DEFAULT_TEST_PELIAS_RESULTS)
-                .setLayers(DEFAULT_TEST_PELIAS_LAYERS)
-                .build();
-    }
+    // Now here is coming {@link getConfiguredPeliasApiToken} which is used for autocomplete call
+    // as well as nearest addresses call
 
     public static ApiToken getPeliasAutocompleteApiToken() {
         return new ApiToken.ApiTokenBuilder()
                 .setProtocol(PROTOCOL)
                 .setHost(HOST)
                 .setPort(PELIAS_PORT)
-                .setApiVersion(DEFAULT_TEST_PELIAS_API_VERSION)
-                .setDeparture(DEFAULT_TEST_DEPARTURE)
-                .setLanguage(DEFAULT_TEST_LANGUAGE)
                 .setMaxResults(DEFAULT_TEST_PELIAS_RESULTS)
                 .setLayers(DEFAULT_TEST_PELIAS_LAYERS)
                 .setBox(getStationPersistenceBox())
+                .setApiVersion(DEFAULT_TEST_PELIAS_API_VERSION)
+                .setDeparture(DEFAULT_TEST_DEPARTURE)
+                .setLanguage(DEFAULT_TEST_LANGUAGE)
+                .build();
+    }
+    // End
+
+    // Start
+    // Nearest Addresses Token Request Chain from StargateService to DravelOpsPelias
+    public static ApiToken getNearestAddressesUserRequestToken() {
+        return new ApiToken.ApiTokenBuilder()
+                .setArrivalCoordinate(DEFAULT_TEST_ARRIVAL_COORDINATE)
+                .setRadiusInKilometers(DEFAULT_TEST_RADIUS_IN_KILOMETERS)
+                .setLanguage(DEFAULT_TEST_LANGUAGE)
+                .build();
+    }
+
+    public static ApiToken getConfiguredNearestAddressesBoxServiceApiToken() {
+        return new ApiToken.ApiTokenBuilder()
+                .setProtocol(PROTOCOL)
+                .setHost(HOST)
+                .setPort(BOX_SERVICE_PORT)
+                .setPath(NEAREST_ADDRESSES_CONTROLLER_PATH)
+                .build();
+    }
+
+    public static ApiToken getNearestAddressesBoxServiceApiToken() {
+        return new ApiToken.ApiTokenBuilder()
+                .setProtocol(PROTOCOL)
+                .setHost(HOST)
+                .setPort(BOX_SERVICE_PORT)
+                .setPath(NEAREST_ADDRESSES_CONTROLLER_PATH)
+                .setArrivalCoordinate(DEFAULT_TEST_ARRIVAL_COORDINATE)
+                .setRadiusInKilometers(DEFAULT_TEST_RADIUS_IN_KILOMETERS)
+                .setLanguage(DEFAULT_TEST_LANGUAGE)
+                .build();
+    }
+
+    // Now here is coming {@link getConfiguredPeliasApiToken} which is used for autocomplete call
+    // as well as nearest addresses call
+
+    public static ApiToken getPeliasNearestAddressesApiToken() {
+        return new ApiToken.ApiTokenBuilder()
+                .setProtocol(PROTOCOL)
+                .setHost(HOST)
+                .setPort(PELIAS_PORT)
+                .setMaxResults(DEFAULT_TEST_PELIAS_RESULTS)
+                .setLayers(DEFAULT_TEST_PELIAS_LAYERS)
+                .setApiVersion(DEFAULT_TEST_PELIAS_API_VERSION)
+                .setArrivalCoordinate(DEFAULT_TEST_ARRIVAL_COORDINATE)
+                .setRadiusInKilometers(DEFAULT_TEST_RADIUS_IN_KILOMETERS)
+                .setLanguage(DEFAULT_TEST_LANGUAGE)
+                .build();
+    }
+    // End
+
+    // Start
+    // Both autocomplete call and nearest addresses call
+    public static ApiToken getConfiguredPeliasApiToken() {
+        return new ApiToken.ApiTokenBuilder()
+                .setProtocol(PROTOCOL)
+                .setHost(HOST)
+                .setPort(PELIAS_PORT)
+                .setApiVersion(DEFAULT_TEST_PELIAS_API_VERSION)
+                .setMaxResults(DEFAULT_TEST_PELIAS_RESULTS)
+                .setLayers(DEFAULT_TEST_PELIAS_LAYERS)
                 .build();
     }
     // End

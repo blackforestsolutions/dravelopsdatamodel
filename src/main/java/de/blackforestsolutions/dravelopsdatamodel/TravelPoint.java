@@ -10,10 +10,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
+import org.springframework.data.geo.Distance;
+import org.springframework.data.geo.Metrics;
 
 import java.io.IOException;
 import java.io.Serializable;
 import java.time.ZonedDateTime;
+import java.util.Objects;
 import java.util.Optional;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
@@ -33,12 +36,43 @@ public final class TravelPoint implements Serializable, DataSerializable {
 
     private String platform;
 
+    private Distance distanceInKilometers;
+
     private TravelPoint(TravelPointBuilder travelPointBuilder) {
         this.name = travelPointBuilder.getName();
         this.point = travelPointBuilder.getPoint();
         this.arrivalTime = travelPointBuilder.getArrivalTime();
         this.departureTime = travelPointBuilder.getDepartureTime();
         this.platform = travelPointBuilder.getPlatform();
+        this.distanceInKilometers = travelPointBuilder.getDistanceInKilometers();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        TravelPoint that = (TravelPoint) o;
+        return Objects.equals(name, that.name)
+                &&
+                Objects.equals(point, that.point)
+                &&
+                Objects.equals(arrivalTime, that.arrivalTime)
+                &&
+                Objects.equals(departureTime, that.departureTime)
+                &&
+                Objects.equals(platform, that.platform)
+                &&
+                Objects.equals(distanceInKilometers, that.distanceInKilometers);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, point, arrivalTime, departureTime, platform, distanceInKilometers);
     }
 
     @Override
@@ -58,6 +92,12 @@ public final class TravelPoint implements Serializable, DataSerializable {
             out.writeBoolean(false);
         }
         out.writeUTF(this.platform);
+        if (Optional.ofNullable(this.distanceInKilometers).isPresent()) {
+            out.writeBoolean(true);
+            out.writeDouble(this.distanceInKilometers.getValue());
+        } else {
+            out.writeBoolean(false);
+        }
     }
 
     @Override
@@ -71,6 +111,9 @@ public final class TravelPoint implements Serializable, DataSerializable {
             this.departureTime = ZonedDateTime.parse(in.readUTF());
         }
         this.platform = in.readUTF();
+        if (in.readBoolean()) {
+            this.distanceInKilometers = new Distance(in.readDouble(), Metrics.KILOMETERS);
+        }
     }
 
 
@@ -89,6 +132,8 @@ public final class TravelPoint implements Serializable, DataSerializable {
         private ZonedDateTime departureTime;
 
         private String platform = "";
+
+        private Distance distanceInKilometers;
 
         public TravelPoint build() {
             return new TravelPoint(this);

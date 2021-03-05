@@ -3,6 +3,8 @@ package de.blackforestsolutions.dravelopsdatamodel.objectmothers;
 import de.blackforestsolutions.dravelopsdatamodel.ApiToken;
 import de.blackforestsolutions.dravelopsdatamodel.Point;
 import de.blackforestsolutions.dravelopsdatamodel.TravelPoint;
+import org.springframework.data.geo.Distance;
+import org.springframework.data.geo.Metrics;
 
 import java.time.ZonedDateTime;
 
@@ -19,7 +21,8 @@ public class TravelPointObjectMother {
                 .setPoint(new Point.PointBuilder(48.052590d, 8.207245d).build())
                 .setArrivalTime(ZonedDateTime.parse("2020-09-27T10:15:30+02:00[Europe/Berlin]"))
                 .setDepartureTime(ZonedDateTime.parse("2020-09-27T10:15:30+02:00[Europe/Berlin]"))
-                .setPlatform("1");
+                .setPlatform("1")
+                .setDistanceInKilometers(new Distance(0.5d, Metrics.KILOMETERS));
     }
 
     public static TravelPoint getTravelPointWithNoEmptyFieldsByArrivalTime(Point point) {
@@ -185,45 +188,51 @@ public class TravelPointObjectMother {
                 .build();
     }
 
-    public static TravelPoint getStuttgarterStreetOneTravelPoint() {
+    public static TravelPoint getStuttgarterStreetOneTravelPoint(Distance distanceInKilometers) {
         return new TravelPoint.TravelPointBuilder()
                 .setName("Stuttgarter Straße 1, Rottweil, Deutschland")
                 .setPoint(new Point.PointBuilder(8.674534d, 48.128923d).build())
+                .setDistanceInKilometers(distanceInKilometers)
                 .build();
     }
 
-    public static TravelPoint getGermanyTravelPoint() {
+    public static TravelPoint getGermanyTravelPoint(Distance distanceInKilometers) {
         return new TravelPoint.TravelPointBuilder()
                 .setName("Deutschland")
                 .setPoint(new Point.PointBuilder(9.687096d, 50.970097d).build())
+                .setDistanceInKilometers(distanceInKilometers)
                 .build();
     }
 
-    public static TravelPoint getRendsburgCountyTravelPoint() {
+    public static TravelPoint getRendsburgCountyTravelPoint(Distance distanceInKilometers) {
         return new TravelPoint.TravelPointBuilder()
                 .setName("Kreis Rendsburg-Eckernförde, Deutschland")
                 .setPoint(new Point.PointBuilder(9.7748d, 54.264295d).build())
+                .setDistanceInKilometers(distanceInKilometers)
                 .build();
     }
 
-    public static TravelPoint getFurtwangenLocalityTravelPoint() {
+    public static TravelPoint getFurtwangenLocalityTravelPoint(Distance distanceInKilometers) {
         return new TravelPoint.TravelPointBuilder()
                 .setName("Furtwangen im Schwarzwald, Deutschland")
                 .setPoint(new Point.PointBuilder(8.195593d, 48.049034d).build())
+                .setDistanceInKilometers(distanceInKilometers)
                 .build();
     }
 
-    public static TravelPoint getAmGrosshaubergTravelPoint() {
+    public static TravelPoint getAmGrosshaubergTravelPoint(Distance distanceInKilometers) {
         return new TravelPoint.TravelPointBuilder()
                 .setName("Am Großhausberg, Furtwangen im Schwarzwald, Deutschland")
                 .setPoint(new Point.PointBuilder(8.209198d, 48.048381d).build())
+                .setDistanceInKilometers(distanceInKilometers)
                 .build();
     }
 
-    public static TravelPoint getGermanWatchMuseumTravelPoint() {
+    public static TravelPoint getGermanWatchMuseumTravelPoint(Distance distanceInKilometers) {
         return new TravelPoint.TravelPointBuilder()
                 .setName("Deutsches Uhrenmuseum Furtwangen, Furtwangen im Schwarzwald, Deutschland")
                 .setPoint(new Point.PointBuilder(8.207673d, 48.051086d).build())
+                .setDistanceInKilometers(distanceInKilometers)
                 .build();
     }
 
