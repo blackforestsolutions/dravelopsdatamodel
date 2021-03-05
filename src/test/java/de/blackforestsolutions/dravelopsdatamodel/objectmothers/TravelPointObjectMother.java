@@ -338,4 +338,11 @@ public class TravelPointObjectMother {
                 .build();
     }
 
+    public static TravelPoint getWrongTravelPoint() {
+        return new TravelPoint.TravelPointBuilder()
+                .setName("Wrong Coordinate TravelPoint")
+                .setPoint(new Point.PointBuilder(0d, 0d).build())
+                .build();
+    }
+
 }
