@@ -30,11 +30,10 @@ public class ApiTokenObjectMother {
     private static final int BOX_SERVICE_PORT = 8083;
     private static final String OTP_FAST_LANE_ROUTER = "bw-fast";
     private static final String OTP_SLOW_LANE_ROUTER = "bw-slow";
-    private static final int OTP_FAST_LANE_JOURNEY_SEARCH_WINDOW_IN_MINUTES = 120;
-    private static final int OTP_SLOW_LANE_JOURNEY_SEARCH_WINDOW_IN_MINUTES = 1440;
-    private static final String ROUTE_PERSISTENCE_JOURNEY_CONTROLLER_PATH = "/otp/journeys/get";
+    private static final String JOURNEY_CONTROLLER_PATH = "/journeys/otp";
     private static final String AUTOCOMPLETE_ADDRESSES_CONTROLLER_PATH = "/travelpoints/autocomplete";
     private static final String NEAREST_ADDRESSES_CONTROLLER_PATH = "/travelpoints/nearest";
+    private static final String NEAREST_STATIONS_CONTROLLER_PATH = "/travelpoints/nearest";
 
     /**
      * This section of constants represents fake data for testing purpose. The aim is to make them congruent as much
@@ -57,7 +56,7 @@ public class ApiTokenObjectMother {
     private static final int DEFAULT_TEST_MAX_PAST_DAYS_IN_CALENDAR = 2;
     private static final int DEFAULT_TEST_JOURNEY_SEARCH_WINDOW = 120;
     private static final int DEFAULT_TEST_PELIAS_REVERSE_RESULTS = 1;
-    private static final int DEFAULT_TEST_PELIAS_RESULTS = 10;
+    private static final int DEFAULT_TEST_MAX_RESULTS = 10;
     private static final Map<String, String> DEFAULT_TEST_HEADERS = Map.of("Token", "123");
     private static final Distance DEFAULT_TEST_RADIUS_IN_KILOMETERS = new Distance(1.0, Metrics.KILOMETERS);
     private static final boolean DEFAULT_TEST_OTP_HAS_DETAILS = true;
@@ -66,7 +65,6 @@ public class ApiTokenObjectMother {
     private static final String DEFAULT_TEST_GTFS_URL = "http://nvbw.de/fileadmin/user_upload/service/open_data/fahrplandaten_mit_liniennetz/sbg.zip";
     private static final boolean DEFAULT_TEST_SHOW_INTERMEDIATE_STOPS = true;
     private static final long DEFAULT_TEST_RETRY_TIME_IN_SECONDS = 10L;
-    private static final int DEFAULT_TEST_MAX_JOURNEYS_RESULT = 10;
 
 
     public static ApiToken.ApiTokenBuilder getApiTokenBuilderWithNoEmptyFields() {
@@ -99,32 +97,7 @@ public class ApiTokenObjectMother {
     }
 
     public static ApiToken getApiTokenWithNoEmptyFields() {
-        return new ApiToken.ApiTokenBuilder()
-                .setHost(HOST)
-                .setProtocol(PROTOCOL)
-                .setPort(DEFAULT_TEST_PORT)
-                .setDeparture(DEFAULT_TEST_DEPARTURE)
-                .setDepartureCoordinate(DEFAULT_TEST_DEPARTURE_COORDINATE)
-                .setArrival(DEFAULT_TEST_ARRIVAL)
-                .setArrivalCoordinate(DEFAULT_TEST_ARRIVAL_COORDINATE)
-                .setDateTime(DEFAULT_TEST_DATE_TIME)
-                .setIsArrivalDateTime(DEFAULT_TEST_IS_ARRIVAL_DATE_TIME)
-                .setLanguage(DEFAULT_TEST_LANGUAGE)
-                .setRouter(DEFAULT_TEST_ROUTER)
-                .setRadiusInKilometers(DEFAULT_TEST_RADIUS_IN_KILOMETERS)
-                .setHasDetails(DEFAULT_TEST_OTP_HAS_DETAILS)
-                .setHasReferences(DEFAULT_TEST_OTP_HAS_REFERENCES)
-                .setPath(DEFAULT_TEST_PATH)
-                .setMaxResults(DEFAULT_TEST_PELIAS_REVERSE_RESULTS)
-                .setApiVersion(DEFAULT_TEST_PELIAS_API_VERSION)
-                .setBox(DEFAULT_TEST_BOX)
-                .setLayers(DEFAULT_TEST_PELIAS_LAYERS)
-                .setMaxPastDaysInCalendar(DEFAULT_TEST_MAX_PAST_DAYS_IN_CALENDAR)
-                .setJourneySearchWindowInMinutes(DEFAULT_TEST_JOURNEY_SEARCH_WINDOW)
-                .setGtfsUrl(DEFAULT_TEST_GTFS_URL)
-                .setHeaders(DEFAULT_TEST_HEADERS)
-                .setShowIntermediateStops(DEFAULT_TEST_SHOW_INTERMEDIATE_STOPS)
-                .setRetryTimeInSeconds(DEFAULT_TEST_RETRY_TIME_IN_SECONDS)
+        return new ApiToken.ApiTokenBuilder(getApiTokenBuilderWithNoEmptyFields())
                 .build();
     }
 
@@ -154,8 +127,8 @@ public class ApiTokenObjectMother {
                 .setProtocol(PROTOCOL)
                 .setHost(HOST)
                 .setPort(ROUTE_PERSISTENCE_PORT)
-                .setPath(ROUTE_PERSISTENCE_JOURNEY_CONTROLLER_PATH)
-                .setMaxResults(DEFAULT_TEST_MAX_JOURNEYS_RESULT)
+                .setPath(JOURNEY_CONTROLLER_PATH)
+                .setMaxResults(DEFAULT_TEST_MAX_RESULTS)
                 .build();
     }
 
@@ -164,8 +137,8 @@ public class ApiTokenObjectMother {
                 .setProtocol(PROTOCOL)
                 .setHost(HOST)
                 .setPort(ROUTE_PERSISTENCE_PORT)
-                .setPath(ROUTE_PERSISTENCE_JOURNEY_CONTROLLER_PATH)
-                .setMaxResults(DEFAULT_TEST_MAX_JOURNEYS_RESULT)
+                .setPath(JOURNEY_CONTROLLER_PATH)
+                .setMaxResults(DEFAULT_TEST_MAX_RESULTS)
                 .setIsArrivalDateTime(DEFAULT_TEST_IS_ARRIVAL_DATE_TIME)
                 .setDateTime(DEFAULT_TEST_DATE_TIME)
                 .setDepartureCoordinate(DEFAULT_TEST_DEPARTURE_COORDINATE)
@@ -174,23 +147,23 @@ public class ApiTokenObjectMother {
                 .build();
     }
 
-    public static ApiToken getConfiguredOtpMapperApiToken() {
+    public static ApiToken getConfiguredJourneyOtpMapperApiToken() {
         return new ApiToken.ApiTokenBuilder()
                 .setProtocol(PROTOCOL)
                 .setHost(HOST)
                 .setPort(OTP_MAPPER_SERVICE_PORT)
-                .setPath(ROUTE_PERSISTENCE_JOURNEY_CONTROLLER_PATH)
-                .setMaxResults(DEFAULT_TEST_MAX_JOURNEYS_RESULT)
+                .setPath(JOURNEY_CONTROLLER_PATH)
+                .setMaxResults(DEFAULT_TEST_MAX_RESULTS)
                 .build();
     }
 
-    public static ApiToken getOtpMapperApiToken() {
+    public static ApiToken getJourneyOtpMapperApiToken() {
         return new ApiToken.ApiTokenBuilder()
                 .setProtocol(PROTOCOL)
                 .setHost(HOST)
                 .setPort(OTP_MAPPER_SERVICE_PORT)
-                .setPath(ROUTE_PERSISTENCE_JOURNEY_CONTROLLER_PATH)
-                .setMaxResults(DEFAULT_TEST_MAX_JOURNEYS_RESULT)
+                .setPath(JOURNEY_CONTROLLER_PATH)
+                .setMaxResults(DEFAULT_TEST_MAX_RESULTS)
                 .setIsArrivalDateTime(DEFAULT_TEST_IS_ARRIVAL_DATE_TIME)
                 .setDateTime(DEFAULT_TEST_DATE_TIME)
                 .setDepartureCoordinate(DEFAULT_TEST_DEPARTURE_COORDINATE)
@@ -226,6 +199,86 @@ public class ApiTokenObjectMother {
                 .build();
     }
 
+    // Now here is coming {@link getOpenTripPlannerConfiguredApiToken} {@link getOtpConfiguredFastLaneApiToken}
+    // and {@link getOtpConfiguredSlowLaneApiToken} which are used for journey call as well as nearest stations
+
+    public static ApiToken getJourneyOtpFastLaneApiToken() {
+        return new ApiToken.ApiTokenBuilder(getOtpConfiguredFastLaneApiToken())
+                .setLanguage(DEFAULT_TEST_LANGUAGE)
+                .setIsArrivalDateTime(DEFAULT_TEST_IS_ARRIVAL_DATE_TIME)
+                .setDateTime(DEFAULT_TEST_DATE_TIME)
+                .setDeparture(DEFAULT_TEST_DEPARTURE)
+                .setDepartureCoordinate(DEFAULT_TEST_DEPARTURE_COORDINATE)
+                .setArrival(DEFAULT_TEST_ARRIVAL)
+                .setArrivalCoordinate(DEFAULT_TEST_ARRIVAL_COORDINATE)
+                .build();
+    }
+
+    public static ApiToken getJourneyOtpSlowLaneApiToken() {
+        return new ApiToken.ApiTokenBuilder(getOtpConfiguredSlowLaneApiToken())
+                .setLanguage(DEFAULT_TEST_LANGUAGE)
+                .setIsArrivalDateTime(DEFAULT_TEST_IS_ARRIVAL_DATE_TIME)
+                .setDateTime(DEFAULT_TEST_DATE_TIME)
+                .setDeparture(DEFAULT_TEST_DEPARTURE)
+                .setDepartureCoordinate(DEFAULT_TEST_DEPARTURE_COORDINATE)
+                .setArrival(DEFAULT_TEST_ARRIVAL)
+                .setArrivalCoordinate(DEFAULT_TEST_ARRIVAL_COORDINATE)
+                .build();
+    }
+    // End
+
+    // Start
+    // Nearest stations token request chain from stargateService to OpenTripPlanner
+    public static ApiToken getNearestStationsUserRequestToken() {
+        return new ApiToken.ApiTokenBuilder()
+                .setArrivalCoordinate(DEFAULT_TEST_DEPARTURE_COORDINATE)
+                .setRadiusInKilometers(DEFAULT_TEST_RADIUS_IN_KILOMETERS)
+                .setLanguage(DEFAULT_TEST_LANGUAGE)
+                .build();
+    }
+
+    public static ApiToken getConfiguredNearestStationsOtpMapperApiToken() {
+        return new ApiToken.ApiTokenBuilder()
+                .setProtocol(PROTOCOL)
+                .setHost(HOST)
+                .setPort(OTP_MAPPER_SERVICE_PORT)
+                .setPath(NEAREST_STATIONS_CONTROLLER_PATH)
+                .build();
+    }
+
+    public static ApiToken getNearestStationsOtpMapperApiToken() {
+        return new ApiToken.ApiTokenBuilder()
+                .setProtocol(PROTOCOL)
+                .setHost(HOST)
+                .setPort(OTP_MAPPER_SERVICE_PORT)
+                .setPath(NEAREST_STATIONS_CONTROLLER_PATH)
+                .setArrivalCoordinate(DEFAULT_TEST_DEPARTURE_COORDINATE)
+                .setRadiusInKilometers(DEFAULT_TEST_RADIUS_IN_KILOMETERS)
+                .setLanguage(DEFAULT_TEST_LANGUAGE)
+                .build();
+    }
+
+    // Now here is coming {@link getOpenTripPlannerConfiguredApiToken} {@link getOtpConfiguredFastLaneApiToken}
+    // and {@link getOtpConfiguredSlowLaneApiToken} which are used for journey call as well as nearest stations
+
+    public static ApiToken getNearestStationsOtpFastLaneApiToken() {
+        return new ApiToken.ApiTokenBuilder(getOtpConfiguredFastLaneApiToken())
+                .setArrivalCoordinate(DEFAULT_TEST_DEPARTURE_COORDINATE)
+                .setRadiusInKilometers(DEFAULT_TEST_RADIUS_IN_KILOMETERS)
+                .setLanguage(DEFAULT_TEST_LANGUAGE)
+                .build();
+    }
+
+    public static ApiToken getNearestStationsOtpSlowLaneApiToken() {
+        return new ApiToken.ApiTokenBuilder(getOtpConfiguredSlowLaneApiToken())
+                .setArrivalCoordinate(DEFAULT_TEST_DEPARTURE_COORDINATE)
+                .setRadiusInKilometers(DEFAULT_TEST_RADIUS_IN_KILOMETERS)
+                .setLanguage(DEFAULT_TEST_LANGUAGE)
+                .build();
+    }
+
+    // Start
+    // Both journey call and nearest stations call
     public static ApiToken getOtpConfiguredFastLaneApiToken() {
         return getOpenTripPlannerConfiguredApiToken()
                 .setPort(OTP_FAST_LANE_PORT)
@@ -244,34 +297,10 @@ public class ApiTokenObjectMother {
         return new ApiToken.ApiTokenBuilder()
                 .setProtocol(PROTOCOL)
                 .setHost(HOST)
-                .setShowIntermediateStops(DEFAULT_TEST_SHOW_INTERMEDIATE_STOPS);
-    }
-
-    public static ApiToken getOtpFastLaneApiToken() {
-        return new ApiToken.ApiTokenBuilder(getOtpConfiguredFastLaneApiToken())
-                .setLanguage(DEFAULT_TEST_LANGUAGE)
-                .setIsArrivalDateTime(DEFAULT_TEST_IS_ARRIVAL_DATE_TIME)
-                .setDateTime(DEFAULT_TEST_DATE_TIME)
-                .setDeparture(DEFAULT_TEST_DEPARTURE)
-                .setDepartureCoordinate(DEFAULT_TEST_DEPARTURE_COORDINATE)
-                .setArrival(DEFAULT_TEST_ARRIVAL)
-                .setArrivalCoordinate(DEFAULT_TEST_ARRIVAL_COORDINATE)
-                .build();
-    }
-
-    public static ApiToken getOtpSlowLaneApiToken() {
-        return new ApiToken.ApiTokenBuilder(getOtpConfiguredSlowLaneApiToken())
-                .setLanguage(DEFAULT_TEST_LANGUAGE)
-                .setIsArrivalDateTime(DEFAULT_TEST_IS_ARRIVAL_DATE_TIME)
-                .setDateTime(DEFAULT_TEST_DATE_TIME)
-                .setDeparture(DEFAULT_TEST_DEPARTURE)
-                .setDepartureCoordinate(DEFAULT_TEST_DEPARTURE_COORDINATE)
-                .setArrival(DEFAULT_TEST_ARRIVAL)
-                .setArrivalCoordinate(DEFAULT_TEST_ARRIVAL_COORDINATE)
-                .build();
+                .setShowIntermediateStops(DEFAULT_TEST_SHOW_INTERMEDIATE_STOPS)
+                .setMaxResults(DEFAULT_TEST_MAX_RESULTS);
     }
     // End
-
 
     // Start
     // Autocomplete Token Request Chain from StargateService to DravelOpsPelias
@@ -310,7 +339,7 @@ public class ApiTokenObjectMother {
                 .setProtocol(PROTOCOL)
                 .setHost(HOST)
                 .setPort(PELIAS_PORT)
-                .setMaxResults(DEFAULT_TEST_PELIAS_RESULTS)
+                .setMaxResults(DEFAULT_TEST_MAX_RESULTS)
                 .setLayers(DEFAULT_TEST_PELIAS_LAYERS)
                 .setBox(getStationPersistenceBox())
                 .setApiVersion(DEFAULT_TEST_PELIAS_API_VERSION)
@@ -359,7 +388,7 @@ public class ApiTokenObjectMother {
                 .setProtocol(PROTOCOL)
                 .setHost(HOST)
                 .setPort(PELIAS_PORT)
-                .setMaxResults(DEFAULT_TEST_PELIAS_RESULTS)
+                .setMaxResults(DEFAULT_TEST_MAX_RESULTS)
                 .setLayers(DEFAULT_TEST_PELIAS_LAYERS)
                 .setApiVersion(DEFAULT_TEST_PELIAS_API_VERSION)
                 .setArrivalCoordinate(DEFAULT_TEST_ARRIVAL_COORDINATE)
@@ -377,7 +406,7 @@ public class ApiTokenObjectMother {
                 .setHost(HOST)
                 .setPort(PELIAS_PORT)
                 .setApiVersion(DEFAULT_TEST_PELIAS_API_VERSION)
-                .setMaxResults(DEFAULT_TEST_PELIAS_RESULTS)
+                .setMaxResults(DEFAULT_TEST_MAX_RESULTS)
                 .setLayers(DEFAULT_TEST_PELIAS_LAYERS)
                 .build();
     }
