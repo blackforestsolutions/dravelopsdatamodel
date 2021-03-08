@@ -36,6 +36,7 @@ public final class ApiToken {
     private final List<String> layers;
     private final Integer maxPastDaysInCalendar;
     private final Integer journeySearchWindowInMinutes;
+    private final String gtfsProvider;
     private final String gtfsUrl;
     private final Map<String, String> headers;
     private final Boolean showIntermediateStops;
@@ -63,6 +64,7 @@ public final class ApiToken {
         this.layers = apiTokenBuilder.getLayers();
         this.maxPastDaysInCalendar = apiTokenBuilder.getMaxPastDaysInCalendar();
         this.journeySearchWindowInMinutes = apiTokenBuilder.getJourneySearchWindowInMinutes();
+        this.gtfsProvider = apiTokenBuilder.getGtfsProvider();
         this.gtfsUrl = apiTokenBuilder.getGtfsUrl();
         this.headers = apiTokenBuilder.getHeaders();
         this.showIntermediateStops = apiTokenBuilder.getShowIntermediateStops();
@@ -97,6 +99,7 @@ public final class ApiToken {
         private List<String> layers = new LinkedList<>();
         private Integer maxPastDaysInCalendar;
         private Integer journeySearchWindowInMinutes;
+        private String gtfsProvider;
         private String gtfsUrl;
         private Map<String, String> headers = new HashMap<>();
         private Boolean showIntermediateStops;
@@ -133,6 +136,7 @@ public final class ApiToken {
             this.layers = apiTokenBuilder.getLayers();
             this.maxPastDaysInCalendar = apiTokenBuilder.getMaxPastDaysInCalendar();
             this.journeySearchWindowInMinutes = apiTokenBuilder.getJourneySearchWindowInMinutes();
+            this.gtfsProvider = apiTokenBuilder.getGtfsProvider();
             this.gtfsUrl = apiTokenBuilder.getGtfsUrl();
             this.headers = apiTokenBuilder.getHeaders();
             this.showIntermediateStops = apiTokenBuilder.getShowIntermediateStops();
@@ -170,6 +174,7 @@ public final class ApiToken {
             this.layers = apiToken.getLayers();
             this.maxPastDaysInCalendar = apiToken.getMaxPastDaysInCalendar();
             this.journeySearchWindowInMinutes = apiToken.getJourneySearchWindowInMinutes();
+            this.gtfsProvider = apiToken.getGtfsProvider();
             this.gtfsUrl = apiToken.getGtfsUrl();
             this.headers = apiToken.getHeaders();
             this.showIntermediateStops = apiToken.getShowIntermediateStops();
