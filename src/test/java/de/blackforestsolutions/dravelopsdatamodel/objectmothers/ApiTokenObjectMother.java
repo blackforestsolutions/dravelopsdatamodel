@@ -62,6 +62,7 @@ public class ApiTokenObjectMother {
     private static final boolean DEFAULT_TEST_OTP_HAS_DETAILS = true;
     private static final boolean DEFAULT_TEST_OTP_HAS_REFERENCES = true;
     private static final List<String> DEFAULT_TEST_PELIAS_LAYERS = ApiTokenObjectMother.getDefaultTestPeliasLayers();
+    private static final String DEFAULT_TEST_GTFS_PROVIDER = "sbg";
     private static final String DEFAULT_TEST_GTFS_URL = "http://nvbw.de/fileadmin/user_upload/service/open_data/fahrplandaten_mit_liniennetz/sbg.zip";
     private static final boolean DEFAULT_TEST_SHOW_INTERMEDIATE_STOPS = true;
     private static final long DEFAULT_TEST_RETRY_TIME_IN_SECONDS = 10L;
@@ -90,6 +91,7 @@ public class ApiTokenObjectMother {
                 .setLayers(DEFAULT_TEST_PELIAS_LAYERS)
                 .setMaxPastDaysInCalendar(DEFAULT_TEST_MAX_PAST_DAYS_IN_CALENDAR)
                 .setJourneySearchWindowInMinutes(DEFAULT_TEST_JOURNEY_SEARCH_WINDOW)
+                .setGtfsProvider(DEFAULT_TEST_GTFS_PROVIDER)
                 .setGtfsUrl(DEFAULT_TEST_GTFS_URL)
                 .setHeaders(DEFAULT_TEST_HEADERS)
                 .setShowIntermediateStops(DEFAULT_TEST_SHOW_INTERMEDIATE_STOPS)
@@ -423,6 +425,7 @@ public class ApiTokenObjectMother {
     // GtfsFileApiToken
     public static ApiToken getSbgGtfsApiToken() {
         return new ApiToken.ApiTokenBuilder()
+                .setGtfsProvider(DEFAULT_TEST_GTFS_PROVIDER)
                 .setGtfsUrl(DEFAULT_TEST_GTFS_URL)
                 .setHeaders(DEFAULT_TEST_HEADERS)
                 .build();
@@ -430,6 +433,7 @@ public class ApiTokenObjectMother {
 
     public static ApiToken getRnvGtfsApiToken() {
         return new ApiToken.ApiTokenBuilder()
+                .setGtfsProvider("rnv")
                 .setGtfsUrl("https://gtfs-sandbox-dds.rnv-online.de/latest/gtfs.zip")
                 .build();
     }
