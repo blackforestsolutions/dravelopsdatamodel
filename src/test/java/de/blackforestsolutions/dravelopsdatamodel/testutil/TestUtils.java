@@ -15,6 +15,7 @@ import reactor.core.publisher.Mono;
 import java.io.*;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Properties;
 import java.util.stream.Collectors;
 import java.util.zip.ZipFile;
@@ -168,9 +169,13 @@ public class TestUtils {
      * @return HttpHeaders of Spring framework
      */
     public static HttpHeaders convertToHeaders(Map<String, String> headersMap) {
-        HttpHeaders httpHeaders = new HttpHeaders();
-        headersMap.forEach(httpHeaders::add);
-        return httpHeaders;
+        return Optional.ofNullable(headersMap)
+                .map(headers -> {
+                    HttpHeaders httpHeaders = new HttpHeaders();
+                    headersMap.forEach(httpHeaders::add);
+                    return httpHeaders;
+                })
+                .orElse(HttpHeaders.EMPTY);
     }
 
 }
