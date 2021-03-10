@@ -172,7 +172,7 @@ public final class Journey implements Serializable, DataSerializable {
             return this;
         }
 
-        public Journey build() throws IOException {
+        public Journey build() {
             return new Journey(this);
         }
 
