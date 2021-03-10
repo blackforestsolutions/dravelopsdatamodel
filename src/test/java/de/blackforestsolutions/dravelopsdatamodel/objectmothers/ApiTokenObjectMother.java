@@ -64,7 +64,6 @@ public class ApiTokenObjectMother {
     private static final List<String> DEFAULT_TEST_PELIAS_LAYERS = ApiTokenObjectMother.getDefaultTestPeliasLayers();
     private static final String DEFAULT_TEST_GTFS_PROVIDER = "sbg";
     private static final String DEFAULT_TEST_GTFS_URL = "http://nvbw.de/fileadmin/user_upload/service/open_data/fahrplandaten_mit_liniennetz/sbg.zip";
-    private static final boolean DEFAULT_TEST_SHOW_INTERMEDIATE_STOPS = true;
     private static final long DEFAULT_TEST_RETRY_TIME_IN_SECONDS = 10L;
 
 
@@ -94,7 +93,6 @@ public class ApiTokenObjectMother {
                 .setGtfsProvider(DEFAULT_TEST_GTFS_PROVIDER)
                 .setGtfsUrl(DEFAULT_TEST_GTFS_URL)
                 .setHeaders(DEFAULT_TEST_HEADERS)
-                .setShowIntermediateStops(DEFAULT_TEST_SHOW_INTERMEDIATE_STOPS)
                 .setRetryTimeInSeconds(DEFAULT_TEST_RETRY_TIME_IN_SECONDS);
     }
 
@@ -299,7 +297,6 @@ public class ApiTokenObjectMother {
         return new ApiToken.ApiTokenBuilder()
                 .setProtocol(PROTOCOL)
                 .setHost(HOST)
-                .setShowIntermediateStops(DEFAULT_TEST_SHOW_INTERMEDIATE_STOPS)
                 .setMaxResults(DEFAULT_TEST_MAX_RESULTS);
     }
     // End

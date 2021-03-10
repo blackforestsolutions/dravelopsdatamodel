@@ -39,7 +39,6 @@ public final class ApiToken {
     private final String gtfsProvider;
     private final String gtfsUrl;
     private final Map<String, String> headers;
-    private final Boolean showIntermediateStops;
     private final Long retryTimeInSeconds;
 
     private ApiToken(ApiTokenBuilder apiTokenBuilder) {
@@ -67,7 +66,6 @@ public final class ApiToken {
         this.gtfsProvider = apiTokenBuilder.getGtfsProvider();
         this.gtfsUrl = apiTokenBuilder.getGtfsUrl();
         this.headers = apiTokenBuilder.getHeaders();
-        this.showIntermediateStops = apiTokenBuilder.getShowIntermediateStops();
         this.retryTimeInSeconds = apiTokenBuilder.getRetryTimeInSeconds();
     }
 
@@ -102,7 +100,6 @@ public final class ApiToken {
         private String gtfsProvider;
         private String gtfsUrl;
         private Map<String, String> headers = new HashMap<>();
-        private Boolean showIntermediateStops;
         private Long retryTimeInSeconds;
 
         /**
@@ -139,7 +136,6 @@ public final class ApiToken {
             this.gtfsProvider = apiTokenBuilder.getGtfsProvider();
             this.gtfsUrl = apiTokenBuilder.getGtfsUrl();
             this.headers = apiTokenBuilder.getHeaders();
-            this.showIntermediateStops = apiTokenBuilder.getShowIntermediateStops();
             this.retryTimeInSeconds = apiTokenBuilder.getRetryTimeInSeconds();
         }
 
@@ -177,7 +173,6 @@ public final class ApiToken {
             this.gtfsProvider = apiToken.getGtfsProvider();
             this.gtfsUrl = apiToken.getGtfsUrl();
             this.headers = apiToken.getHeaders();
-            this.showIntermediateStops = apiToken.getShowIntermediateStops();
             this.retryTimeInSeconds = apiToken.getRetryTimeInSeconds();
         }
 
