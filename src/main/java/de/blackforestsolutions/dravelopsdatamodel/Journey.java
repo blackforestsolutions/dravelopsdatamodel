@@ -1,26 +1,21 @@
 package de.blackforestsolutions.dravelopsdatamodel;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 import com.hazelcast.nio.ObjectDataInput;
 import com.hazelcast.nio.ObjectDataOutput;
 import com.hazelcast.nio.serialization.DataSerializable;
-import de.blackforestsolutions.dravelopsdatamodel.util.DravelOpsJsonMapper;
 import edu.umd.cs.findbugs.annotations.SuppressWarnings;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
-import org.apache.commons.codec.digest.DigestUtils;
+import org.springframework.lang.NonNull;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.LinkedList;
-import java.util.Locale;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
@@ -29,7 +24,7 @@ public final class Journey implements Serializable, DataSerializable {
 
     private static final long serialVersionUID = 6106269076155338045L;
 
-    private String id;
+    private UUID id;
     private Locale language;
 
     /**
@@ -79,9 +74,7 @@ public final class Journey implements Serializable, DataSerializable {
         }
 
         Journey that = (Journey) o;
-        return Objects.equals(id, that.id)
-                &&
-                Objects.equals(language, that.language)
+        return Objects.equals(language, that.language)
                 &&
                 Objects.equals(legs, that.legs)
                 &&
@@ -90,12 +83,17 @@ public final class Journey implements Serializable, DataSerializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, language, legs, prices);
+        return Objects.hash(language, legs, prices);
     }
 
     @Override
     public void writeData(ObjectDataOutput out) throws IOException {
-        out.writeUTF(this.id);
+        if (Optional.ofNullable(this.id).isPresent()) {
+            out.writeBoolean(true);
+            out.writeUTF(this.id.toString());
+        } else {
+            out.writeBoolean(false);
+        }
         if (Optional.ofNullable(this.language).isPresent()) {
             out.writeBoolean(true);
             out.writeUTF(this.language.toLanguageTag());
@@ -124,7 +122,9 @@ public final class Journey implements Serializable, DataSerializable {
 
     @Override
     public void readData(ObjectDataInput in) throws IOException {
-        this.id = in.readUTF();
+        if (in.readBoolean()) {
+            this.id = UUID.fromString(in.readUTF());
+        }
         if (in.readBoolean()) {
             this.language = Locale.forLanguageTag(in.readUTF());
         }
@@ -152,8 +152,7 @@ public final class Journey implements Serializable, DataSerializable {
 
         private static final long serialVersionUID = 2562545155672883922L;
 
-        @JsonIgnore
-        private String id;
+        private UUID id;
 
         private Locale language;
 
@@ -161,17 +160,20 @@ public final class Journey implements Serializable, DataSerializable {
 
         private LinkedList<Price> prices = new LinkedList<>();
 
-        public JourneyBuilder() {
+        private JourneyBuilder() {
+        }
+
+        public JourneyBuilder(@NonNull UUID id) {
+            this.id = id;
+        }
+
+        public JourneyBuilder setId(@NonNull UUID id) {
+            this.id = id;
+            return this;
         }
 
         public Journey build() throws IOException {
-            this.id = createSha1Id();
             return new Journey(this);
-        }
-
-        private String createSha1Id() throws IOException {
-            DravelOpsJsonMapper jsonMapper = new DravelOpsJsonMapper();
-            return DigestUtils.sha1Hex(jsonMapper.writeValueAsString(this));
         }
 
     }

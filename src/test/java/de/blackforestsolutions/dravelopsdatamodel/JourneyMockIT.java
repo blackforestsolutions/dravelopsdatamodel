@@ -31,6 +31,17 @@ class JourneyMockIT {
     @Test
     void test_journey_with_all_properties_populated_to_be_dataSerializable() {
         Journey testData = getJourneyWithNoEmptyFields();
+        IMap<UUID, Journey> testMap = hazelcastMock.getMap("journeys");
+
+        testMap.put(testData.getId(), testData);
+        Journey result = testMap.get(testData.getId());
+
+        assertThat(result).isEqualToComparingFieldByFieldRecursively(testData);
+    }
+
+    @Test
+    void test_journey_with_id_as_null_to_be_dataSerializable() throws IOException {
+        Journey testData = getJourneyBuilderWithNoEmptyFields().setId(null).build();
         UUID testKey = UUID.randomUUID();
         IMap<UUID, Journey> testMap = hazelcastMock.getMap("journeys");
 
@@ -41,60 +52,41 @@ class JourneyMockIT {
     }
 
     @Test
-    void test_journey_with_id_as_null_to_be_dataSerializable() throws IOException {
-        Journey.JourneyBuilder testData = getJourneyBuilderWithNoEmptyFields();
-        testData.setId(null);
-        UUID testKey = UUID.randomUUID();
-        IMap<UUID, Journey> testMap = hazelcastMock.getMap("journeys");
-
-        testMap.put(testKey, testData.build());
-        Journey result = testMap.get(testKey);
-
-        assertThat(result).isEqualToComparingFieldByFieldRecursively(testData.build());
-    }
-
-    @Test
     void test_journey_with_language_as_null_to_be_dataSerializable() throws IOException {
-        Journey.JourneyBuilder testData = getJourneyBuilderWithNoEmptyFields();
-        testData.setLanguage(null);
-        UUID testKey = UUID.randomUUID();
+        Journey testData = getJourneyBuilderWithNoEmptyFields().setLanguage(null).build();
         IMap<UUID, Journey> testMap = hazelcastMock.getMap("journeys");
 
-        testMap.put(testKey, testData.build());
-        Journey result = testMap.get(testKey);
+        testMap.put(testData.getId(), testData);
+        Journey result = testMap.get(testData.getId());
 
-        assertThat(result).isEqualToComparingFieldByFieldRecursively(testData.build());
+        assertThat(result).isEqualToComparingFieldByFieldRecursively(testData);
     }
 
     @Test
     void test_journey_with_legs_as_null_to_be_dataSerializable() throws IOException {
-        Journey.JourneyBuilder testData = getJourneyBuilderWithNoEmptyFields();
-        testData.setLegs(null);
-        UUID testKey = UUID.randomUUID();
+        Journey testData = getJourneyBuilderWithNoEmptyFields().setLegs(null).build();
         IMap<UUID, Journey> testMap = hazelcastMock.getMap("journeys");
 
-        testMap.put(testKey, testData.build());
-        Journey result = testMap.get(testKey);
+        testMap.put(testData.getId(), testData);
+        Journey result = testMap.get(testData.getId());
 
-        assertThat(result).isEqualToComparingFieldByFieldRecursively(testData.build());
+        assertThat(result).isEqualToComparingFieldByFieldRecursively(testData);
     }
 
     @Test
     void test_journey_with_prices_as_null_to_be_dataSerializable() throws IOException {
-        Journey.JourneyBuilder testData = getJourneyBuilderWithNoEmptyFields();
-        testData.setPrices(null);
-        UUID testKey = UUID.randomUUID();
+        Journey testData = getJourneyBuilderWithNoEmptyFields().setPrices(null).build();
         IMap<UUID, Journey> testMap = hazelcastMock.getMap("journeys");
 
-        testMap.put(testKey, testData.build());
-        Journey result = testMap.get(testKey);
+        testMap.put(testData.getId(), testData);
+        Journey result = testMap.get(testData.getId());
 
-        assertThat(result).isEqualToComparingFieldByFieldRecursively(testData.build());
+        assertThat(result).isEqualToComparingFieldByFieldRecursively(testData);
     }
 
     @Test
     void test_journey_with_no_properties_populated_to_be_dataSerializable() throws IOException {
-        Journey.JourneyBuilder testData = new Journey.JourneyBuilder();
+        Journey.JourneyBuilder testData = new Journey.JourneyBuilder(null);
         UUID testKey = UUID.randomUUID();
         IMap<UUID, Journey> testMap = hazelcastMock.getMap("journeys");
 

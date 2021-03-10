@@ -11,6 +11,7 @@ import java.util.Locale;
 import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.LegObjectMother.*;
 import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.PriceObjectMother.getFurtwangenToWaldkirchPrice;
 import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.PriceObjectMother.getPriceWithNoEmptyFields;
+import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.UUIDObjectMother.*;
 
 @Slf4j
 public class JourneyObjectMother {
@@ -19,7 +20,7 @@ public class JourneyObjectMother {
 
     public static Journey getJourneyWithEmptyFields() {
         try {
-            return new Journey.JourneyBuilder()
+            return new Journey.JourneyBuilder(TEST_UUID_5)
                     .build();
         } catch (IOException e) {
             log.error("ShaId from Journey could not be generated: ", e);
@@ -38,7 +39,7 @@ public class JourneyObjectMother {
     }
 
     public static Journey.JourneyBuilder getJourneyBuilderWithNoEmptyFields() {
-        return new Journey.JourneyBuilder()
+        return new Journey.JourneyBuilder(TEST_UUID_1)
                 .setLanguage(DEFAULT_TEST_LANGUAGE)
                 .setLegs(getLegs())
                 .setPrices(getPrices());
@@ -113,7 +114,7 @@ public class JourneyObjectMother {
 
     public static Journey getJourneyWithDoubleLegAndPriceKey() {
         try {
-            return new Journey.JourneyBuilder()
+            return new Journey.JourneyBuilder(TEST_UUID_4)
                     .setLanguage(DEFAULT_TEST_LANGUAGE)
                     .setLegs(getLegsWithDoubleLeg())
                     .setPrices(getPricesWithDoublePrice())
@@ -126,7 +127,7 @@ public class JourneyObjectMother {
 
     public static Journey getFurtwangenToWaldkirchJourney() {
         try {
-            return new Journey.JourneyBuilder()
+            return new Journey.JourneyBuilder(TEST_UUID_2)
                     .setLanguage(DEFAULT_TEST_LANGUAGE)
                     .setLegs(getFurtwangenToWaldkirchLegs())
                     .setPrices(getFurtwangenToWaldkirchPrices())
@@ -139,7 +140,7 @@ public class JourneyObjectMother {
 
     public static Journey getMannheimHbfLudwigsburgCenterJourney() {
         try {
-            return new Journey.JourneyBuilder()
+            return new Journey.JourneyBuilder(TEST_UUID_3)
                     .setLanguage(DEFAULT_TEST_LANGUAGE)
                     .setLegs(getMannheimHbfToLudwigsburgCenterLegs())
                     .build();
