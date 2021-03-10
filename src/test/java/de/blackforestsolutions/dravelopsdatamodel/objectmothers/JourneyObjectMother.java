@@ -3,7 +3,6 @@ package de.blackforestsolutions.dravelopsdatamodel.objectmothers;
 import de.blackforestsolutions.dravelopsdatamodel.*;
 import lombok.extern.slf4j.Slf4j;
 
-import java.io.IOException;
 import java.time.ZonedDateTime;
 import java.util.LinkedList;
 import java.util.Locale;
@@ -42,38 +41,44 @@ public class JourneyObjectMother {
                 .build();
     }
 
-    public static Journey getJourneyWithNoEmptyFieldsByArrivalPoint(Point arrivalPoint) {
+    public static Journey getJourneyWithNoEmptyFieldsByArrivalPoint(Point arrivalPoint, UUID id) {
         return getJourneyBuilderWithNoEmptyFields()
+                .setId(id)
                 .setLegs(getLegsByArrivalPoint(arrivalPoint))
                 .build();
     }
 
-    public static Journey getJourneyWithNoEmptyFieldsByDeparturePoint(Point departurePoint) {
+    public static Journey getJourneyWithNoEmptyFieldsByDeparturePoint(Point departurePoint, UUID id) {
         return getJourneyBuilderWithNoEmptyFields()
+                .setId(id)
                 .setLegs(getLegsByDeparturePoint(departurePoint))
                 .build();
     }
 
-    public static Journey getJourneyWithNoEmptyFieldsByArrivalTime(ZonedDateTime arrivalTime) {
+    public static Journey getJourneyWithNoEmptyFieldsByArrivalTime(ZonedDateTime arrivalTime, UUID id) {
         return getJourneyBuilderWithNoEmptyFields()
+                .setId(id)
                 .setLegs(getLegsByArrivalTime(arrivalTime))
                 .build();
     }
 
-    public static Journey getJourneyWithNoEmptyFieldsByDepartureTime(ZonedDateTime departureTime) {
+    public static Journey getJourneyWithNoEmptyFieldsByDepartureTime(ZonedDateTime departureTime, UUID id) {
         return getJourneyBuilderWithNoEmptyFields()
+                .setId(id)
                 .setLegs(getLegsByDepartureTime(departureTime))
                 .build();
     }
 
-    public static Journey getJourneyWithNoEmptyFieldsByLanguage(Locale language) {
+    public static Journey getJourneyWithNoEmptyFieldsByLanguage(Locale language, UUID id) {
         return getJourneyBuilderWithNoEmptyFields()
+                .setId(id)
                 .setLanguage(language)
                 .build();
     }
 
-    public static Journey getJourneyWithNoEmptyFieldsBy(ApiToken apiToken) {
+    public static Journey getJourneyWithNoEmptyFieldsBy(ApiToken apiToken, UUID id) {
         return getJourneyBuilderWithNoEmptyFields()
+                .setId(id)
                 .setLanguage(apiToken.getLanguage())
                 .setLegs(getLegsBy(apiToken))
                 .build();
