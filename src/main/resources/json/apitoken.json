@@ -58,6 +58,5 @@
   "headers": {
     "Token": "123"
   },
-  "showIntermediateStops": true,
   "retryTimeInSeconds": 10
 }

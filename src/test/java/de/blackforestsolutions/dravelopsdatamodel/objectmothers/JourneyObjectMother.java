@@ -3,14 +3,15 @@ package de.blackforestsolutions.dravelopsdatamodel.objectmothers;
 import de.blackforestsolutions.dravelopsdatamodel.*;
 import lombok.extern.slf4j.Slf4j;
 
-import java.io.IOException;
 import java.time.ZonedDateTime;
 import java.util.LinkedList;
 import java.util.Locale;
+import java.util.UUID;
 
 import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.LegObjectMother.*;
 import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.PriceObjectMother.getFurtwangenToWaldkirchPrice;
 import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.PriceObjectMother.getPriceWithNoEmptyFields;
+import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.UUIDObjectMother.*;
 
 @Slf4j
 public class JourneyObjectMother {
@@ -18,135 +19,92 @@ public class JourneyObjectMother {
     private static final Locale DEFAULT_TEST_LANGUAGE = new Locale("de");
 
     public static Journey getJourneyWithEmptyFields() {
-        try {
-            return new Journey.JourneyBuilder()
-                    .build();
-        } catch (IOException e) {
-            log.error("ShaId from Journey could not be generated: ", e);
-            return null;
-        }
+        return new Journey.JourneyBuilder(TEST_UUID_5)
+                .build();
     }
 
     public static Journey getJourneyWithNoEmptyFields() {
-        try {
-            return getJourneyBuilderWithNoEmptyFields()
-                    .build();
-        } catch (IOException e) {
-            log.error("ShaId from Journey could not be generated: ", e);
-            return null;
-        }
+        return getJourneyBuilderWithNoEmptyFields()
+                .build();
     }
 
     public static Journey.JourneyBuilder getJourneyBuilderWithNoEmptyFields() {
-        return new Journey.JourneyBuilder()
+        return new Journey.JourneyBuilder(TEST_UUID_1)
                 .setLanguage(DEFAULT_TEST_LANGUAGE)
                 .setLegs(getLegs())
                 .setPrices(getPrices());
     }
 
-    public static Journey getJourneyWithNoEmptyFieldsByArrivalPoint(Point arrivalPoint) {
-        try {
-            return getJourneyBuilderWithNoEmptyFields()
-                    .setLegs(getLegsByArrivalPoint(arrivalPoint))
-                    .build();
-        } catch (IOException e) {
-            log.error("ShaId from Journey could not be generated: ", e);
-            return null;
-        }
+    public static Journey getJourneyWithNoEmptyFieldsById(UUID id) {
+        return getJourneyBuilderWithNoEmptyFields()
+                .setId(id)
+                .build();
     }
 
-    public static Journey getJourneyWithNoEmptyFieldsByDeparturePoint(Point departurePoint) {
-        try {
-            return getJourneyBuilderWithNoEmptyFields()
-                    .setLegs(getLegsByDeparturePoint(departurePoint))
-                    .build();
-        } catch (IOException e) {
-            log.error("ShaId from Journey could not be generated: ", e);
-            return null;
-        }
+    public static Journey getJourneyWithNoEmptyFieldsByArrivalPoint(Point arrivalPoint, UUID id) {
+        return getJourneyBuilderWithNoEmptyFields()
+                .setId(id)
+                .setLegs(getLegsByArrivalPoint(arrivalPoint))
+                .build();
     }
 
-    public static Journey getJourneyWithNoEmptyFieldsByArrivalTime(ZonedDateTime arrivalTime) {
-        try {
-            return getJourneyBuilderWithNoEmptyFields()
-                    .setLegs(getLegsByArrivalTime(arrivalTime))
-                    .build();
-        } catch (IOException e) {
-            log.error("ShaId from Journey could not be generated: ", e);
-            return null;
-        }
+    public static Journey getJourneyWithNoEmptyFieldsByDeparturePoint(Point departurePoint, UUID id) {
+        return getJourneyBuilderWithNoEmptyFields()
+                .setId(id)
+                .setLegs(getLegsByDeparturePoint(departurePoint))
+                .build();
     }
 
-    public static Journey getJourneyWithNoEmptyFieldsByDepartureTime(ZonedDateTime departureTime) {
-        try {
-            return getJourneyBuilderWithNoEmptyFields()
-                    .setLegs(getLegsByDepartureTime(departureTime))
-                    .build();
-        } catch (IOException e) {
-            log.error("ShaId from Journey could not be generated: ", e);
-            return null;
-        }
+    public static Journey getJourneyWithNoEmptyFieldsByArrivalTime(ZonedDateTime arrivalTime, UUID id) {
+        return getJourneyBuilderWithNoEmptyFields()
+                .setId(id)
+                .setLegs(getLegsByArrivalTime(arrivalTime))
+                .build();
     }
 
-    public static Journey getJourneyWithNoEmptyFieldsByLanguage(Locale language) {
-        try {
-            return getJourneyBuilderWithNoEmptyFields()
-                    .setLanguage(language)
-                    .build();
-        } catch (IOException e) {
-            log.error("ShaId from Journey could not be generated: ", e);
-            return null;
-        }
+    public static Journey getJourneyWithNoEmptyFieldsByDepartureTime(ZonedDateTime departureTime, UUID id) {
+        return getJourneyBuilderWithNoEmptyFields()
+                .setId(id)
+                .setLegs(getLegsByDepartureTime(departureTime))
+                .build();
     }
 
-    public static Journey getJourneyWithNoEmptyFieldsBy(ApiToken apiToken) {
-        try {
-            return getJourneyBuilderWithNoEmptyFields()
-                    .setLanguage(apiToken.getLanguage())
-                    .setLegs(getLegsBy(apiToken))
-                    .build();
-        } catch (IOException e) {
-            log.error("ShaId from Journey could not be generated: ", e);
-            return null;
-        }
+    public static Journey getJourneyWithNoEmptyFieldsByLanguage(Locale language, UUID id) {
+        return getJourneyBuilderWithNoEmptyFields()
+                .setId(id)
+                .setLanguage(language)
+                .build();
+    }
+
+    public static Journey getJourneyWithNoEmptyFieldsBy(ApiToken apiToken, UUID id) {
+        return getJourneyBuilderWithNoEmptyFields()
+                .setId(id)
+                .setLanguage(apiToken.getLanguage())
+                .setLegs(getLegsBy(apiToken))
+                .build();
     }
 
     public static Journey getJourneyWithDoubleLegAndPriceKey() {
-        try {
-            return new Journey.JourneyBuilder()
-                    .setLanguage(DEFAULT_TEST_LANGUAGE)
-                    .setLegs(getLegsWithDoubleLeg())
-                    .setPrices(getPricesWithDoublePrice())
-                    .build();
-        } catch (IOException e) {
-            log.error("ShaId from Journey could not be generated: ", e);
-            return null;
-        }
+        return new Journey.JourneyBuilder(TEST_UUID_4)
+                .setLanguage(DEFAULT_TEST_LANGUAGE)
+                .setLegs(getLegsWithDoubleLeg())
+                .setPrices(getPricesWithDoublePrice())
+                .build();
     }
 
     public static Journey getFurtwangenToWaldkirchJourney() {
-        try {
-            return new Journey.JourneyBuilder()
-                    .setLanguage(DEFAULT_TEST_LANGUAGE)
-                    .setLegs(getFurtwangenToWaldkirchLegs())
-                    .setPrices(getFurtwangenToWaldkirchPrices())
-                    .build();
-        } catch (IOException e) {
-            log.error("ShaId from Journey could not be generated: ", e);
-            return null;
-        }
+        return new Journey.JourneyBuilder(TEST_UUID_2)
+                .setLanguage(DEFAULT_TEST_LANGUAGE)
+                .setLegs(getFurtwangenToWaldkirchLegs())
+                .setPrices(getFurtwangenToWaldkirchPrices())
+                .build();
     }
 
     public static Journey getMannheimHbfLudwigsburgCenterJourney() {
-        try {
-            return new Journey.JourneyBuilder()
-                    .setLanguage(DEFAULT_TEST_LANGUAGE)
-                    .setLegs(getMannheimHbfToLudwigsburgCenterLegs())
-                    .build();
-        } catch (IOException e) {
-            log.error("ShaId from Journey could not be generated: ", e);
-            return null;
-        }
+        return new Journey.JourneyBuilder(TEST_UUID_3)
+                .setLanguage(DEFAULT_TEST_LANGUAGE)
+                .setLegs(getMannheimHbfToLudwigsburgCenterLegs())
+                .build();
     }
 
     private static LinkedList<Leg> getLegs() {
