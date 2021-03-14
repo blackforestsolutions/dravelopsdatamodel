@@ -5,6 +5,11 @@ import de.blackforestsolutions.dravelopsdatamodel.Point;
 
 public class BoxObjectMother {
 
+    private static final double MIN_WGS_84_LONGITUDE = -180.0d;
+    private static final double MAX_WGS_84_LONGITUDE = 180.0d;
+    private static final double MIN_WGS_84_LATITUDE = -90.0d;
+    private static final double MAX_WGS_84_LATITUDE = 90.0d;
+
     public static Box getBoxWithNoEmptyFields() {
         return new Box.BoxBuilder(
                 new Point.PointBuilder(0.0d, 10.0d).build(),
@@ -28,8 +33,8 @@ public class BoxObjectMother {
 
     public static Box getBoxServiceStartBox() {
         return new Box.BoxBuilder(
-                new Point.PointBuilder(0.0d, 0.0d).build(),
-                new Point.PointBuilder(0.0d, 0.0d).build()
+                new Point.PointBuilder(MIN_WGS_84_LONGITUDE, MAX_WGS_84_LATITUDE).build(),
+                new Point.PointBuilder(MAX_WGS_84_LONGITUDE, MIN_WGS_84_LATITUDE).build()
         ).build();
     }
 }
