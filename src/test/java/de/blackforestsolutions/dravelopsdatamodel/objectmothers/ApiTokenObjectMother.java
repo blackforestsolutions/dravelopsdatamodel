@@ -67,401 +67,399 @@ public class ApiTokenObjectMother {
     private static final long DEFAULT_TEST_RETRY_TIME_IN_SECONDS = 10L;
 
 
-    public static ApiToken.ApiTokenBuilder getApiTokenBuilderWithNoEmptyFields() {
-        return new ApiToken.ApiTokenBuilder()
-                .setHost(HOST)
-                .setProtocol(PROTOCOL)
-                .setPort(DEFAULT_TEST_PORT)
-                .setDeparture(DEFAULT_TEST_DEPARTURE)
-                .setDepartureCoordinate(DEFAULT_TEST_DEPARTURE_COORDINATE)
-                .setArrival(DEFAULT_TEST_ARRIVAL)
-                .setArrivalCoordinate(DEFAULT_TEST_ARRIVAL_COORDINATE)
-                .setDateTime(DEFAULT_TEST_DATE_TIME)
-                .setIsArrivalDateTime(DEFAULT_TEST_IS_ARRIVAL_DATE_TIME)
-                .setLanguage(DEFAULT_TEST_LANGUAGE)
-                .setRouter(DEFAULT_TEST_ROUTER)
-                .setRadiusInKilometers(DEFAULT_TEST_RADIUS_IN_KILOMETERS)
-                .setHasDetails(DEFAULT_TEST_OTP_HAS_DETAILS)
-                .setHasReferences(DEFAULT_TEST_OTP_HAS_REFERENCES)
-                .setPath(DEFAULT_TEST_PATH)
-                .setApiVersion(DEFAULT_TEST_PELIAS_API_VERSION)
-                .setMaxResults(DEFAULT_TEST_PELIAS_REVERSE_RESULTS)
-                .setBox(DEFAULT_TEST_BOX)
-                .setLayers(DEFAULT_TEST_PELIAS_LAYERS)
-                .setMaxPastDaysInCalendar(DEFAULT_TEST_MAX_PAST_DAYS_IN_CALENDAR)
-                .setJourneySearchWindowInMinutes(DEFAULT_TEST_JOURNEY_SEARCH_WINDOW)
-                .setGtfsProvider(DEFAULT_TEST_GTFS_PROVIDER)
-                .setGtfsUrl(DEFAULT_TEST_GTFS_URL)
-                .setHeaders(DEFAULT_TEST_HEADERS)
-                .setRetryTimeInSeconds(DEFAULT_TEST_RETRY_TIME_IN_SECONDS);
-    }
-
     public static ApiToken getApiTokenWithNoEmptyFields() {
-        return new ApiToken.ApiTokenBuilder(getApiTokenBuilderWithNoEmptyFields())
-                .build();
+        ApiToken apiToken = new ApiToken();
+        apiToken.setHost(HOST);
+        apiToken.setProtocol(PROTOCOL);
+        apiToken.setPort(DEFAULT_TEST_PORT);
+        apiToken.setDeparture(DEFAULT_TEST_DEPARTURE);
+        apiToken.setDepartureCoordinate(DEFAULT_TEST_DEPARTURE_COORDINATE);
+        apiToken.setArrival(DEFAULT_TEST_ARRIVAL);
+        apiToken.setArrivalCoordinate(DEFAULT_TEST_ARRIVAL_COORDINATE);
+        apiToken.setDateTime(DEFAULT_TEST_DATE_TIME);
+        apiToken.setIsArrivalDateTime(DEFAULT_TEST_IS_ARRIVAL_DATE_TIME);
+        apiToken.setLanguage(DEFAULT_TEST_LANGUAGE);
+        apiToken.setRouter(DEFAULT_TEST_ROUTER);
+        apiToken.setRadiusInKilometers(DEFAULT_TEST_RADIUS_IN_KILOMETERS);
+        apiToken.setHasDetails(DEFAULT_TEST_OTP_HAS_DETAILS);
+        apiToken.setHasReferences(DEFAULT_TEST_OTP_HAS_REFERENCES);
+        apiToken.setPath(DEFAULT_TEST_PATH);
+        apiToken.setApiVersion(DEFAULT_TEST_PELIAS_API_VERSION);
+        apiToken.setMaxResults(DEFAULT_TEST_PELIAS_REVERSE_RESULTS);
+        apiToken.setBox(DEFAULT_TEST_BOX);
+        apiToken.setLayers(DEFAULT_TEST_PELIAS_LAYERS);
+        apiToken.setMaxPastDaysInCalendar(DEFAULT_TEST_MAX_PAST_DAYS_IN_CALENDAR);
+        apiToken.setJourneySearchWindowInMinutes(DEFAULT_TEST_JOURNEY_SEARCH_WINDOW);
+        apiToken.setGtfsProvider(DEFAULT_TEST_GTFS_PROVIDER);
+        apiToken.setGtfsUrl(DEFAULT_TEST_GTFS_URL);
+        apiToken.setHeaders(DEFAULT_TEST_HEADERS);
+        apiToken.setRetryTimeInSeconds(DEFAULT_TEST_RETRY_TIME_IN_SECONDS);
+        return apiToken;
     }
 
     public static ApiToken getApiTokenWithNoEmptyFieldsBy(Point arrivalCoordinate, Point departureCoordinate, ZonedDateTime dateTime, Locale language) {
-        return getApiTokenBuilderWithNoEmptyFields()
-                .setArrivalCoordinate(arrivalCoordinate)
-                .setDepartureCoordinate(departureCoordinate)
-                .setDateTime(dateTime)
-                .setLanguage(language)
-                .build();
+        ApiToken apiToken = new ApiToken(getApiTokenWithNoEmptyFields());
+        apiToken.setArrivalCoordinate(arrivalCoordinate);
+        apiToken.setDepartureCoordinate(departureCoordinate);
+        apiToken.setDateTime(dateTime);
+        apiToken.setLanguage(language);
+        return apiToken;
     }
 
     // Start
     // Journey Token Request Chain from StargateService to OpenTripPlanner
     public static ApiToken getJourneyUserRequestToken() {
-        return new ApiToken.ApiTokenBuilder()
-                .setIsArrivalDateTime(DEFAULT_TEST_IS_ARRIVAL_DATE_TIME)
-                .setDateTime(DEFAULT_TEST_DATE_TIME)
-                .setDepartureCoordinate(DEFAULT_TEST_DEPARTURE_COORDINATE)
-                .setArrivalCoordinate(DEFAULT_TEST_ARRIVAL_COORDINATE)
-                .setLanguage(DEFAULT_TEST_LANGUAGE)
-                .build();
+        ApiToken apiToken = new ApiToken();
+        apiToken.setIsArrivalDateTime(DEFAULT_TEST_IS_ARRIVAL_DATE_TIME);
+        apiToken.setDateTime(DEFAULT_TEST_DATE_TIME);
+        apiToken.setDepartureCoordinate(DEFAULT_TEST_DEPARTURE_COORDINATE);
+        apiToken.setArrivalCoordinate(DEFAULT_TEST_ARRIVAL_COORDINATE);
+        apiToken.setLanguage(DEFAULT_TEST_LANGUAGE);
+        return apiToken;
     }
 
     public static ApiToken getConfiguredRoutePersistenceApiToken() {
-        return new ApiToken.ApiTokenBuilder()
-                .setProtocol(PROTOCOL)
-                .setHost(HOST)
-                .setPort(ROUTE_PERSISTENCE_PORT)
-                .setPath(JOURNEY_CONTROLLER_PATH)
-                .setMaxResults(DEFAULT_TEST_MAX_RESULTS)
-                .build();
+        ApiToken apiToken = new ApiToken();
+        apiToken.setProtocol(PROTOCOL);
+        apiToken.setHost(HOST);
+        apiToken.setPort(ROUTE_PERSISTENCE_PORT);
+        apiToken.setPath(JOURNEY_CONTROLLER_PATH);
+        apiToken.setMaxResults(DEFAULT_TEST_MAX_RESULTS);
+        return apiToken;
     }
 
     public static ApiToken getRoutePersistenceApiToken() {
-        return new ApiToken.ApiTokenBuilder()
-                .setProtocol(PROTOCOL)
-                .setHost(HOST)
-                .setPort(ROUTE_PERSISTENCE_PORT)
-                .setPath(JOURNEY_CONTROLLER_PATH)
-                .setMaxResults(DEFAULT_TEST_MAX_RESULTS)
-                .setIsArrivalDateTime(DEFAULT_TEST_IS_ARRIVAL_DATE_TIME)
-                .setDateTime(DEFAULT_TEST_DATE_TIME)
-                .setDepartureCoordinate(DEFAULT_TEST_DEPARTURE_COORDINATE)
-                .setArrivalCoordinate(DEFAULT_TEST_ARRIVAL_COORDINATE)
-                .setLanguage(DEFAULT_TEST_LANGUAGE)
-                .build();
+        ApiToken apiToken = new ApiToken();
+        apiToken.setProtocol(PROTOCOL);
+        apiToken.setHost(HOST);
+        apiToken.setPort(ROUTE_PERSISTENCE_PORT);
+        apiToken.setPath(JOURNEY_CONTROLLER_PATH);
+        apiToken.setMaxResults(DEFAULT_TEST_MAX_RESULTS);
+        apiToken.setIsArrivalDateTime(DEFAULT_TEST_IS_ARRIVAL_DATE_TIME);
+        apiToken.setDateTime(DEFAULT_TEST_DATE_TIME);
+        apiToken.setDepartureCoordinate(DEFAULT_TEST_DEPARTURE_COORDINATE);
+        apiToken.setArrivalCoordinate(DEFAULT_TEST_ARRIVAL_COORDINATE);
+        apiToken.setLanguage(DEFAULT_TEST_LANGUAGE);
+        return apiToken;
     }
 
     public static ApiToken getConfiguredJourneyOtpMapperApiToken() {
-        return new ApiToken.ApiTokenBuilder()
-                .setProtocol(PROTOCOL)
-                .setHost(HOST)
-                .setPort(OTP_MAPPER_SERVICE_PORT)
-                .setPath(JOURNEY_CONTROLLER_PATH)
-                .setMaxResults(DEFAULT_TEST_MAX_RESULTS)
-                .build();
+        ApiToken apiToken = new ApiToken();
+        apiToken.setProtocol(PROTOCOL);
+        apiToken.setHost(HOST);
+        apiToken.setPort(OTP_MAPPER_SERVICE_PORT);
+        apiToken.setPath(JOURNEY_CONTROLLER_PATH);
+        apiToken.setMaxResults(DEFAULT_TEST_MAX_RESULTS);
+        return apiToken;
     }
 
     public static ApiToken getJourneyOtpMapperApiToken() {
-        return new ApiToken.ApiTokenBuilder()
-                .setProtocol(PROTOCOL)
-                .setHost(HOST)
-                .setPort(OTP_MAPPER_SERVICE_PORT)
-                .setPath(JOURNEY_CONTROLLER_PATH)
-                .setMaxResults(DEFAULT_TEST_MAX_RESULTS)
-                .setIsArrivalDateTime(DEFAULT_TEST_IS_ARRIVAL_DATE_TIME)
-                .setDateTime(DEFAULT_TEST_DATE_TIME)
-                .setDepartureCoordinate(DEFAULT_TEST_DEPARTURE_COORDINATE)
-                .setArrivalCoordinate(DEFAULT_TEST_ARRIVAL_COORDINATE)
-                .setLanguage(DEFAULT_TEST_LANGUAGE)
-                .build();
+        ApiToken apiToken = new ApiToken();
+        apiToken.setProtocol(PROTOCOL);
+        apiToken.setHost(HOST);
+        apiToken.setPort(OTP_MAPPER_SERVICE_PORT);
+        apiToken.setPath(JOURNEY_CONTROLLER_PATH);
+        apiToken.setMaxResults(DEFAULT_TEST_MAX_RESULTS);
+        apiToken.setIsArrivalDateTime(DEFAULT_TEST_IS_ARRIVAL_DATE_TIME);
+        apiToken.setDateTime(DEFAULT_TEST_DATE_TIME);
+        apiToken.setDepartureCoordinate(DEFAULT_TEST_DEPARTURE_COORDINATE);
+        apiToken.setArrivalCoordinate(DEFAULT_TEST_ARRIVAL_COORDINATE);
+        apiToken.setLanguage(DEFAULT_TEST_LANGUAGE);
+        return apiToken;
     }
 
     public static ApiToken getConfiguredPeliasReverseApiToken() {
-        return new ApiToken.ApiTokenBuilder()
-                .setProtocol(PROTOCOL)
-                .setHost(HOST)
-                .setPort(PELIAS_PORT)
-                .setApiVersion(DEFAULT_TEST_PELIAS_API_VERSION)
-                .setMaxResults(DEFAULT_TEST_PELIAS_REVERSE_RESULTS)
-                .setDeparture(DEFAULT_TEST_DEPARTURE_PLACEHOLDER)
-                .setArrival(DEFAULT_TEST_ARRIVAL_PLACEHOLDER)
-                .setLayers(DEFAULT_TEST_PELIAS_LAYERS)
-                .build();
+        ApiToken apiToken = new ApiToken();
+        apiToken.setProtocol(PROTOCOL);
+        apiToken.setHost(HOST);
+        apiToken.setPort(PELIAS_PORT);
+        apiToken.setApiVersion(DEFAULT_TEST_PELIAS_API_VERSION);
+        apiToken.setMaxResults(DEFAULT_TEST_PELIAS_REVERSE_RESULTS);
+        apiToken.setDeparture(DEFAULT_TEST_DEPARTURE_PLACEHOLDER);
+        apiToken.setArrival(DEFAULT_TEST_ARRIVAL_PLACEHOLDER);
+        apiToken.setLayers(DEFAULT_TEST_PELIAS_LAYERS);
+        return apiToken;
     }
 
     public static ApiToken getPeliasReverseApiToken() {
-        return new ApiToken.ApiTokenBuilder()
-                .setProtocol(PROTOCOL)
-                .setHost(HOST)
-                .setPort(PELIAS_PORT)
-                .setApiVersion(DEFAULT_TEST_PELIAS_API_VERSION)
-                .setMaxResults(DEFAULT_TEST_PELIAS_REVERSE_RESULTS)
-                .setDeparture(DEFAULT_TEST_DEPARTURE_PLACEHOLDER)
-                .setArrival(DEFAULT_TEST_ARRIVAL_PLACEHOLDER)
-                .setLanguage(DEFAULT_TEST_LANGUAGE)
-                .setLayers(DEFAULT_TEST_PELIAS_LAYERS)
-                .build();
+        ApiToken apiToken = new ApiToken();
+        apiToken.setProtocol(PROTOCOL);
+        apiToken.setHost(HOST);
+        apiToken.setPort(PELIAS_PORT);
+        apiToken.setApiVersion(DEFAULT_TEST_PELIAS_API_VERSION);
+        apiToken.setMaxResults(DEFAULT_TEST_PELIAS_REVERSE_RESULTS);
+        apiToken.setDeparture(DEFAULT_TEST_DEPARTURE_PLACEHOLDER);
+        apiToken.setArrival(DEFAULT_TEST_ARRIVAL_PLACEHOLDER);
+        apiToken.setLanguage(DEFAULT_TEST_LANGUAGE);
+        apiToken.setLayers(DEFAULT_TEST_PELIAS_LAYERS);
+        return apiToken;
     }
 
     // Now here is coming {@link getOpenTripPlannerConfiguredApiToken} {@link getOtpConfiguredFastLaneApiToken}
     // and {@link getOtpConfiguredSlowLaneApiToken} which are used for journey call as well as nearest stations
 
     public static ApiToken getJourneyOtpFastLaneApiToken() {
-        return new ApiToken.ApiTokenBuilder(getOtpConfiguredFastLaneApiToken())
-                .setLanguage(DEFAULT_TEST_LANGUAGE)
-                .setIsArrivalDateTime(DEFAULT_TEST_IS_ARRIVAL_DATE_TIME)
-                .setDateTime(DEFAULT_TEST_DATE_TIME)
-                .setDeparture(DEFAULT_TEST_DEPARTURE)
-                .setDepartureCoordinate(DEFAULT_TEST_DEPARTURE_COORDINATE)
-                .setArrival(DEFAULT_TEST_ARRIVAL)
-                .setArrivalCoordinate(DEFAULT_TEST_ARRIVAL_COORDINATE)
-                .build();
+        ApiToken apiToken = new ApiToken(getOtpConfiguredFastLaneApiToken());
+        apiToken.setLanguage(DEFAULT_TEST_LANGUAGE);
+        apiToken.setIsArrivalDateTime(DEFAULT_TEST_IS_ARRIVAL_DATE_TIME);
+        apiToken.setDateTime(DEFAULT_TEST_DATE_TIME);
+        apiToken.setDeparture(DEFAULT_TEST_DEPARTURE);
+        apiToken.setDepartureCoordinate(DEFAULT_TEST_DEPARTURE_COORDINATE);
+        apiToken.setArrival(DEFAULT_TEST_ARRIVAL);
+        apiToken.setArrivalCoordinate(DEFAULT_TEST_ARRIVAL_COORDINATE);
+        return apiToken;
     }
 
     public static ApiToken getJourneyOtpSlowLaneApiToken() {
-        return new ApiToken.ApiTokenBuilder(getOtpConfiguredSlowLaneApiToken())
-                .setLanguage(DEFAULT_TEST_LANGUAGE)
-                .setIsArrivalDateTime(DEFAULT_TEST_IS_ARRIVAL_DATE_TIME)
-                .setDateTime(DEFAULT_TEST_DATE_TIME)
-                .setDeparture(DEFAULT_TEST_DEPARTURE)
-                .setDepartureCoordinate(DEFAULT_TEST_DEPARTURE_COORDINATE)
-                .setArrival(DEFAULT_TEST_ARRIVAL)
-                .setArrivalCoordinate(DEFAULT_TEST_ARRIVAL_COORDINATE)
-                .build();
+        ApiToken apiToken = new ApiToken(getOtpConfiguredSlowLaneApiToken());
+        apiToken.setLanguage(DEFAULT_TEST_LANGUAGE);
+        apiToken.setIsArrivalDateTime(DEFAULT_TEST_IS_ARRIVAL_DATE_TIME);
+        apiToken.setDateTime(DEFAULT_TEST_DATE_TIME);
+        apiToken.setDeparture(DEFAULT_TEST_DEPARTURE);
+        apiToken.setDepartureCoordinate(DEFAULT_TEST_DEPARTURE_COORDINATE);
+        apiToken.setArrival(DEFAULT_TEST_ARRIVAL);
+        apiToken.setArrivalCoordinate(DEFAULT_TEST_ARRIVAL_COORDINATE);
+        return apiToken;
     }
     // End
 
     // Start
     // Nearest stations token request chain from stargateService to OpenTripPlanner
     public static ApiToken getNearestStationsUserRequestToken() {
-        return new ApiToken.ApiTokenBuilder()
-                .setArrivalCoordinate(DEFAULT_TEST_DEPARTURE_COORDINATE)
-                .setRadiusInKilometers(DEFAULT_TEST_RADIUS_IN_KILOMETERS)
-                .setLanguage(DEFAULT_TEST_LANGUAGE)
-                .build();
+        ApiToken apiToken = new ApiToken();
+        apiToken.setArrivalCoordinate(DEFAULT_TEST_DEPARTURE_COORDINATE);
+        apiToken.setRadiusInKilometers(DEFAULT_TEST_RADIUS_IN_KILOMETERS);
+        apiToken.setLanguage(DEFAULT_TEST_LANGUAGE);
+        return apiToken;
     }
 
     public static ApiToken getConfiguredNearestStationsOtpMapperApiToken() {
-        return new ApiToken.ApiTokenBuilder()
-                .setProtocol(PROTOCOL)
-                .setHost(HOST)
-                .setPort(OTP_MAPPER_SERVICE_PORT)
-                .setPath(NEAREST_STATIONS_CONTROLLER_PATH)
-                .build();
+        ApiToken apiToken = new ApiToken();
+        apiToken.setProtocol(PROTOCOL);
+        apiToken.setHost(HOST);
+        apiToken.setPort(OTP_MAPPER_SERVICE_PORT);
+        apiToken.setPath(NEAREST_STATIONS_CONTROLLER_PATH);
+        return apiToken;
     }
 
     public static ApiToken getNearestStationsOtpMapperApiToken() {
-        return new ApiToken.ApiTokenBuilder()
-                .setProtocol(PROTOCOL)
-                .setHost(HOST)
-                .setPort(OTP_MAPPER_SERVICE_PORT)
-                .setPath(NEAREST_STATIONS_CONTROLLER_PATH)
-                .setArrivalCoordinate(DEFAULT_TEST_DEPARTURE_COORDINATE)
-                .setRadiusInKilometers(DEFAULT_TEST_RADIUS_IN_KILOMETERS)
-                .setLanguage(DEFAULT_TEST_LANGUAGE)
-                .build();
+        ApiToken apiToken = new ApiToken();
+        apiToken.setProtocol(PROTOCOL);
+        apiToken.setHost(HOST);
+        apiToken.setPort(OTP_MAPPER_SERVICE_PORT);
+        apiToken.setPath(NEAREST_STATIONS_CONTROLLER_PATH);
+        apiToken.setArrivalCoordinate(DEFAULT_TEST_DEPARTURE_COORDINATE);
+        apiToken.setRadiusInKilometers(DEFAULT_TEST_RADIUS_IN_KILOMETERS);
+        apiToken.setLanguage(DEFAULT_TEST_LANGUAGE);
+        return apiToken;
     }
 
     // Now here is coming {@link getOpenTripPlannerConfiguredApiToken} {@link getOtpConfiguredFastLaneApiToken}
     // and {@link getOtpConfiguredSlowLaneApiToken} which are used for journey call as well as nearest stations
 
     public static ApiToken getNearestStationsOtpFastLaneApiToken() {
-        return new ApiToken.ApiTokenBuilder(getOtpConfiguredFastLaneApiToken())
-                .setArrivalCoordinate(DEFAULT_TEST_DEPARTURE_COORDINATE)
-                .setRadiusInKilometers(DEFAULT_TEST_RADIUS_IN_KILOMETERS)
-                .setLanguage(DEFAULT_TEST_LANGUAGE)
-                .build();
+        ApiToken apiToken = new ApiToken(getOtpConfiguredFastLaneApiToken());
+        apiToken.setArrivalCoordinate(DEFAULT_TEST_DEPARTURE_COORDINATE);
+        apiToken.setRadiusInKilometers(DEFAULT_TEST_RADIUS_IN_KILOMETERS);
+        apiToken.setLanguage(DEFAULT_TEST_LANGUAGE);
+        return apiToken;
     }
 
     public static ApiToken getNearestStationsOtpSlowLaneApiToken() {
-        return new ApiToken.ApiTokenBuilder(getOtpConfiguredSlowLaneApiToken())
-                .setArrivalCoordinate(DEFAULT_TEST_DEPARTURE_COORDINATE)
-                .setRadiusInKilometers(DEFAULT_TEST_RADIUS_IN_KILOMETERS)
-                .setLanguage(DEFAULT_TEST_LANGUAGE)
-                .build();
+        ApiToken apiToken = new ApiToken(getOtpConfiguredSlowLaneApiToken());
+        apiToken.setArrivalCoordinate(DEFAULT_TEST_DEPARTURE_COORDINATE);
+        apiToken.setRadiusInKilometers(DEFAULT_TEST_RADIUS_IN_KILOMETERS);
+        apiToken.setLanguage(DEFAULT_TEST_LANGUAGE);
+        return apiToken;
     }
 
     // Start
     // Both journey call and nearest stations call
     public static ApiToken getOtpConfiguredFastLaneApiToken() {
-        return getOpenTripPlannerConfiguredApiToken()
-                .setPort(OTP_FAST_LANE_PORT)
-                .setRouter(OTP_FAST_LANE_ROUTER)
-                .build();
+        ApiToken apiToken = new ApiToken(getOpenTripPlannerConfiguredApiToken());
+        apiToken.setPort(OTP_FAST_LANE_PORT);
+        apiToken.setRouter(OTP_FAST_LANE_ROUTER);
+        return apiToken;
     }
 
     public static ApiToken getOtpConfiguredSlowLaneApiToken() {
-        return getOpenTripPlannerConfiguredApiToken()
-                .setPort(OTP_SLOW_LANE_PORT)
-                .setRouter(OTP_SLOW_LANE_ROUTER)
-                .build();
+        ApiToken apiToken = new ApiToken(getOpenTripPlannerConfiguredApiToken());
+        apiToken.setPort(OTP_SLOW_LANE_PORT);
+        apiToken.setRouter(OTP_SLOW_LANE_ROUTER);
+        return apiToken;
     }
 
-    private static ApiToken.ApiTokenBuilder getOpenTripPlannerConfiguredApiToken() {
-        return new ApiToken.ApiTokenBuilder()
-                .setProtocol(PROTOCOL)
-                .setHost(HOST)
-                .setMaxResults(DEFAULT_TEST_MAX_RESULTS);
+    private static ApiToken getOpenTripPlannerConfiguredApiToken() {
+        ApiToken apiToken = new ApiToken();
+        apiToken.setProtocol(PROTOCOL);
+        apiToken.setHost(HOST);
+        apiToken.setMaxResults(DEFAULT_TEST_MAX_RESULTS);
+        return apiToken;
     }
     // End
 
     // Start
     // Autocomplete Token Request Chain from StargateService to DravelOpsPelias
     public static ApiToken getAutocompleteUserRequestToken() {
-        return new ApiToken.ApiTokenBuilder()
-                .setDeparture(DEFAULT_TEST_DEPARTURE)
-                .setLanguage(DEFAULT_TEST_LANGUAGE)
-                .build();
+        ApiToken apiToken = new ApiToken();
+        apiToken.setDeparture(DEFAULT_TEST_DEPARTURE);
+        apiToken.setLanguage(DEFAULT_TEST_LANGUAGE);
+        return apiToken;
     }
 
     public static ApiToken getConfiguredAutocompleteBoxServiceApiToken() {
-        return new ApiToken.ApiTokenBuilder()
-                .setProtocol(PROTOCOL)
-                .setHost(HOST)
-                .setPort(BOX_SERVICE_PORT)
-                .setPath(AUTOCOMPLETE_ADDRESSES_CONTROLLER_PATH)
-                .build();
+        ApiToken apiToken = new ApiToken();
+        apiToken.setProtocol(PROTOCOL);
+        apiToken.setHost(HOST);
+        apiToken.setPort(BOX_SERVICE_PORT);
+        apiToken.setPath(AUTOCOMPLETE_ADDRESSES_CONTROLLER_PATH);
+        return apiToken;
     }
 
     public static ApiToken getAutocompleteBoxServiceApiToken() {
-        return new ApiToken.ApiTokenBuilder()
-                .setProtocol(PROTOCOL)
-                .setHost(HOST)
-                .setPort(BOX_SERVICE_PORT)
-                .setPath(AUTOCOMPLETE_ADDRESSES_CONTROLLER_PATH)
-                .setDeparture(DEFAULT_TEST_DEPARTURE)
-                .setLanguage(DEFAULT_TEST_LANGUAGE)
-                .build();
+        ApiToken apiToken = new ApiToken();
+        apiToken.setProtocol(PROTOCOL);
+        apiToken.setHost(HOST);
+        apiToken.setPort(BOX_SERVICE_PORT);
+        apiToken.setPath(AUTOCOMPLETE_ADDRESSES_CONTROLLER_PATH);
+        apiToken.setDeparture(DEFAULT_TEST_DEPARTURE);
+        apiToken.setLanguage(DEFAULT_TEST_LANGUAGE);
+        return apiToken;
     }
 
     // Now here is coming {@link getConfiguredPeliasApiToken} which is used for autocomplete call
     // as well as nearest addresses call
 
     public static ApiToken getPeliasAutocompleteApiToken() {
-        return new ApiToken.ApiTokenBuilder()
-                .setProtocol(PROTOCOL)
-                .setHost(HOST)
-                .setPort(PELIAS_PORT)
-                .setMaxResults(DEFAULT_TEST_MAX_RESULTS)
-                .setLayers(DEFAULT_TEST_PELIAS_LAYERS)
-                .setBox(getStationPersistenceBox())
-                .setApiVersion(DEFAULT_TEST_PELIAS_API_VERSION)
-                .setDeparture(DEFAULT_TEST_DEPARTURE)
-                .setLanguage(DEFAULT_TEST_LANGUAGE)
-                .build();
+        ApiToken apiToken = new ApiToken();
+        apiToken.setProtocol(PROTOCOL);
+        apiToken.setHost(HOST);
+        apiToken.setPort(PELIAS_PORT);
+        apiToken.setMaxResults(DEFAULT_TEST_MAX_RESULTS);
+        apiToken.setLayers(DEFAULT_TEST_PELIAS_LAYERS);
+        apiToken.setBox(getStationPersistenceBox());
+        apiToken.setApiVersion(DEFAULT_TEST_PELIAS_API_VERSION);
+        apiToken.setDeparture(DEFAULT_TEST_DEPARTURE);
+        apiToken.setLanguage(DEFAULT_TEST_LANGUAGE);
+        return apiToken;
     }
     // End
 
     // Start
     // Nearest Addresses Token Request Chain from StargateService to DravelOpsPelias
     public static ApiToken getNearestAddressesUserRequestToken() {
-        return new ApiToken.ApiTokenBuilder()
-                .setArrivalCoordinate(DEFAULT_TEST_ARRIVAL_COORDINATE)
-                .setRadiusInKilometers(DEFAULT_TEST_RADIUS_IN_KILOMETERS)
-                .setLanguage(DEFAULT_TEST_LANGUAGE)
-                .build();
+        ApiToken apiToken = new ApiToken();
+        apiToken.setArrivalCoordinate(DEFAULT_TEST_ARRIVAL_COORDINATE);
+        apiToken.setRadiusInKilometers(DEFAULT_TEST_RADIUS_IN_KILOMETERS);
+        apiToken.setLanguage(DEFAULT_TEST_LANGUAGE);
+        return apiToken;
     }
 
     public static ApiToken getConfiguredNearestAddressesBoxServiceApiToken() {
-        return new ApiToken.ApiTokenBuilder()
-                .setProtocol(PROTOCOL)
-                .setHost(HOST)
-                .setPort(BOX_SERVICE_PORT)
-                .setPath(NEAREST_ADDRESSES_CONTROLLER_PATH)
-                .build();
+        ApiToken apiToken = new ApiToken();
+        apiToken.setProtocol(PROTOCOL);
+        apiToken.setHost(HOST);
+        apiToken.setPort(BOX_SERVICE_PORT);
+        apiToken.setPath(NEAREST_ADDRESSES_CONTROLLER_PATH);
+        return apiToken;
     }
 
     public static ApiToken getNearestAddressesBoxServiceApiToken() {
-        return new ApiToken.ApiTokenBuilder()
-                .setProtocol(PROTOCOL)
-                .setHost(HOST)
-                .setPort(BOX_SERVICE_PORT)
-                .setPath(NEAREST_ADDRESSES_CONTROLLER_PATH)
-                .setArrivalCoordinate(DEFAULT_TEST_ARRIVAL_COORDINATE)
-                .setRadiusInKilometers(DEFAULT_TEST_RADIUS_IN_KILOMETERS)
-                .setLanguage(DEFAULT_TEST_LANGUAGE)
-                .build();
+        ApiToken apiToken = new ApiToken();
+        apiToken.setProtocol(PROTOCOL);
+        apiToken.setHost(HOST);
+        apiToken.setPort(BOX_SERVICE_PORT);
+        apiToken.setPath(NEAREST_ADDRESSES_CONTROLLER_PATH);
+        apiToken.setArrivalCoordinate(DEFAULT_TEST_ARRIVAL_COORDINATE);
+        apiToken.setRadiusInKilometers(DEFAULT_TEST_RADIUS_IN_KILOMETERS);
+        apiToken.setLanguage(DEFAULT_TEST_LANGUAGE);
+        return apiToken;
     }
 
     // Now here is coming {@link getConfiguredPeliasApiToken} which is used for autocomplete call
     // as well as nearest addresses call
 
     public static ApiToken getPeliasNearestAddressesApiToken() {
-        return new ApiToken.ApiTokenBuilder()
-                .setProtocol(PROTOCOL)
-                .setHost(HOST)
-                .setPort(PELIAS_PORT)
-                .setMaxResults(DEFAULT_TEST_MAX_RESULTS)
-                .setLayers(DEFAULT_TEST_PELIAS_LAYERS)
-                .setApiVersion(DEFAULT_TEST_PELIAS_API_VERSION)
-                .setArrivalCoordinate(DEFAULT_TEST_ARRIVAL_COORDINATE)
-                .setRadiusInKilometers(DEFAULT_TEST_RADIUS_IN_KILOMETERS)
-                .setLanguage(DEFAULT_TEST_LANGUAGE)
-                .build();
+        ApiToken apiToken = new ApiToken();
+        apiToken.setProtocol(PROTOCOL);
+        apiToken.setHost(HOST);
+        apiToken.setPort(PELIAS_PORT);
+        apiToken.setMaxResults(DEFAULT_TEST_MAX_RESULTS);
+        apiToken.setLayers(DEFAULT_TEST_PELIAS_LAYERS);
+        apiToken.setApiVersion(DEFAULT_TEST_PELIAS_API_VERSION);
+        apiToken.setArrivalCoordinate(DEFAULT_TEST_ARRIVAL_COORDINATE);
+        apiToken.setRadiusInKilometers(DEFAULT_TEST_RADIUS_IN_KILOMETERS);
+        apiToken.setLanguage(DEFAULT_TEST_LANGUAGE);
+        return apiToken;
     }
     // End
 
     // Start
     // Both autocomplete call and nearest addresses call
     public static ApiToken getConfiguredPeliasApiToken() {
-        return new ApiToken.ApiTokenBuilder()
-                .setProtocol(PROTOCOL)
-                .setHost(HOST)
-                .setPort(PELIAS_PORT)
-                .setApiVersion(DEFAULT_TEST_PELIAS_API_VERSION)
-                .setMaxResults(DEFAULT_TEST_MAX_RESULTS)
-                .setLayers(DEFAULT_TEST_PELIAS_LAYERS)
-                .build();
+        ApiToken apiToken = new ApiToken();
+        apiToken.setProtocol(PROTOCOL);
+        apiToken.setHost(HOST);
+        apiToken.setPort(PELIAS_PORT);
+        apiToken.setApiVersion(DEFAULT_TEST_PELIAS_API_VERSION);
+        apiToken.setMaxResults(DEFAULT_TEST_MAX_RESULTS);
+        apiToken.setLayers(DEFAULT_TEST_PELIAS_LAYERS);
+        return apiToken;
     }
     // End
 
     // HazelcastApiToken
     public static ApiToken getHazelcastApiToken() {
-        return new ApiToken.ApiTokenBuilder()
-                .setMaxPastDaysInCalendar(DEFAULT_TEST_MAX_PAST_DAYS_IN_CALENDAR)
-                .setJourneySearchWindowInMinutes(DEFAULT_TEST_JOURNEY_SEARCH_WINDOW)
-                .build();
+        ApiToken apiToken = new ApiToken();
+        apiToken.setMaxPastDaysInCalendar(DEFAULT_TEST_MAX_PAST_DAYS_IN_CALENDAR);
+        apiToken.setJourneySearchWindowInMinutes(DEFAULT_TEST_JOURNEY_SEARCH_WINDOW);
+        return apiToken;
     }
 
     // GtfsFileApiToken
     public static ApiToken getSbgGtfsApiToken() {
-        return new ApiToken.ApiTokenBuilder()
-                .setGtfsProvider(DEFAULT_TEST_GTFS_PROVIDER)
-                .setGtfsUrl(DEFAULT_TEST_GTFS_URL)
-                .setHeaders(DEFAULT_TEST_HEADERS)
-                .build();
+        ApiToken apiToken = new ApiToken();
+        apiToken.setGtfsProvider(DEFAULT_TEST_GTFS_PROVIDER);
+        apiToken.setGtfsUrl(DEFAULT_TEST_GTFS_URL);
+        apiToken.setHeaders(DEFAULT_TEST_HEADERS);
+        return apiToken;
     }
 
     public static ApiToken getRnvGtfsApiToken() {
-        return new ApiToken.ApiTokenBuilder()
-                .setGtfsProvider("rnv")
-                .setGtfsUrl("https://gtfs-sandbox-dds.rnv-online.de/latest/gtfs.zip")
-                .build();
+        ApiToken apiToken = new ApiToken();
+        apiToken.setGtfsProvider("rnv");
+        apiToken.setGtfsUrl("https://gtfs-sandbox-dds.rnv-online.de/latest/gtfs.zip");
+        return apiToken;
     }
 
     public static ApiToken getConfiguredTravelPointPersistenceApiToken() {
-        return getConfiguredStationPersistenceApiToken()
-                .setPath("/travelpoints/get")
-                .build();
+        ApiToken apiToken = new ApiToken(getConfiguredStationPersistenceApiToken());
+        apiToken.setPath("/travelpoints/get");
+        return apiToken;
     }
 
     public static ApiToken getConfiguredPolygonPersistenceApiToken() {
-        return getConfiguredStationPersistenceApiToken()
-                .setPath("/geocoding/get/operatingPolygon")
-                .build();
+        ApiToken apiToken = new ApiToken(getConfiguredStationPersistenceApiToken());
+        apiToken.setPath("/geocoding/get/operatingPolygon");
+        return apiToken;
     }
 
     public static ApiToken getConfiguredBoxPersistenceApiToken() {
-        return getConfiguredStationPersistenceApiToken()
-                .setPath("/geocoding/get/operatingBox")
-                .setRetryTimeInSeconds(DEFAULT_TEST_RETRY_TIME_IN_SECONDS)
-                .build();
+        ApiToken apiToken = new ApiToken(getConfiguredStationPersistenceApiToken());
+        apiToken.setPath("/geocoding/get/operatingBox");
+        apiToken.setRetryTimeInSeconds(DEFAULT_TEST_RETRY_TIME_IN_SECONDS);
+        return apiToken;
     }
 
-    private static ApiToken.ApiTokenBuilder getConfiguredStationPersistenceApiToken() {
-        return new ApiToken.ApiTokenBuilder()
-                .setProtocol(PROTOCOL)
-                .setHost(HOST)
-                .setPort(STATION_PERSISTENCE_PORT);
+    private static ApiToken getConfiguredStationPersistenceApiToken() {
+        ApiToken apiToken = new ApiToken();
+        apiToken.setProtocol(PROTOCOL);
+        apiToken.setHost(HOST);
+        apiToken.setPort(STATION_PERSISTENCE_PORT);
+        return apiToken;
     }
 
-    private static List<String> getDefaultTestPeliasLayers() {
+    private static List<String>getDefaultTestPeliasLayers() {
         return List.of(
                 "venue",
                 "address",

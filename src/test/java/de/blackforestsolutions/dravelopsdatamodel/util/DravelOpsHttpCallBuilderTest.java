@@ -27,10 +27,10 @@ class DravelOpsHttpCallBuilderTest {
 
     @Test
     void test_buildUrlWith_protocol_host_port_as_zero_and_path_returns_correct_url() {
-        ApiToken.ApiTokenBuilder testData = new ApiToken.ApiTokenBuilder(getApiTokenWithNoEmptyFields());
+        ApiToken testData = new ApiToken(getApiTokenWithNoEmptyFields());
         testData.setPort(0);
 
-        URL result = DravelOpsHttpCallBuilder.buildUrlWith(testData.build());
+        URL result = DravelOpsHttpCallBuilder.buildUrlWith(testData);
 
         assertThat(result.getProtocol()).isEqualTo(testData.getProtocol());
         assertThat(result.getHost()).isEqualTo(testData.getHost());
@@ -41,10 +41,10 @@ class DravelOpsHttpCallBuilderTest {
 
     @Test
     void test_buildUrlWith_protocol_host_port_as_minus_one_and_path_returns_correct_url() {
-        ApiToken.ApiTokenBuilder testData = new ApiToken.ApiTokenBuilder(getApiTokenWithNoEmptyFields());
+        ApiToken testData = new ApiToken(getApiTokenWithNoEmptyFields());
         testData.setPort(-1);
 
-        URL result = DravelOpsHttpCallBuilder.buildUrlWith(testData.build());
+        URL result = DravelOpsHttpCallBuilder.buildUrlWith(testData);
 
         assertThat(result.getProtocol()).isEqualTo(testData.getProtocol());
         assertThat(result.getHost()).isEqualTo(testData.getHost());
@@ -55,49 +55,49 @@ class DravelOpsHttpCallBuilderTest {
 
     @Test
     void test_buildUrlWith_protocol_as_null_host_port_and_path_throws_exception() {
-        ApiToken.ApiTokenBuilder testData = new ApiToken.ApiTokenBuilder(getApiTokenWithNoEmptyFields());
+        ApiToken testData = new ApiToken(getApiTokenWithNoEmptyFields());
         testData.setProtocol(null);
 
-        assertThrows(NullPointerException.class, () -> DravelOpsHttpCallBuilder.buildUrlWith(testData.build()));
+        assertThrows(NullPointerException.class, () -> DravelOpsHttpCallBuilder.buildUrlWith(testData));
     }
 
     @Test
     void test_buildUrlWith_wrong_protocol_host_port_path_throws_exception() {
-        ApiToken.ApiTokenBuilder builder = new ApiToken.ApiTokenBuilder(getApiTokenWithNoEmptyFields());
+        ApiToken builder = new ApiToken(getApiTokenWithNoEmptyFields());
         builder.setProtocol("wrong");
 
-        assertThrows(UncheckedIOException.class, () -> DravelOpsHttpCallBuilder.buildUrlWith(builder.build()));
+        assertThrows(UncheckedIOException.class, () -> DravelOpsHttpCallBuilder.buildUrlWith(builder));
     }
 
     @Test
     void test_buildUrlWith_wrong_testData_throws_exception() {
-        ApiToken.ApiTokenBuilder testData = new ApiToken.ApiTokenBuilder(getApiTokenWithNoEmptyFields());
+        ApiToken testData = new ApiToken(getApiTokenWithNoEmptyFields());
         testData.setHost(null);
 
-        assertThrows(NullPointerException.class, () -> DravelOpsHttpCallBuilder.buildUrlWith(testData.build()));
+        assertThrows(NullPointerException.class, () -> DravelOpsHttpCallBuilder.buildUrlWith(testData));
     }
 
     @Test
     void test_buildUrlWith_protocol_host_as_null_port_and_path_throws_exception() {
-        ApiToken.ApiTokenBuilder testData = new ApiToken.ApiTokenBuilder(getApiTokenWithNoEmptyFields());
+        ApiToken testData = new ApiToken(getApiTokenWithNoEmptyFields());
         testData.setHost(null);
 
-        assertThrows(NullPointerException.class, () -> DravelOpsHttpCallBuilder.buildUrlWith(testData.build()));
+        assertThrows(NullPointerException.class, () -> DravelOpsHttpCallBuilder.buildUrlWith(testData));
     }
 
     @Test
     void test_buildUrlWith_protocol_host_port_as_null_and_path_throws_exception() {
-        ApiToken.ApiTokenBuilder testData = new ApiToken.ApiTokenBuilder(getApiTokenWithNoEmptyFields());
+        ApiToken testData = new ApiToken(getApiTokenWithNoEmptyFields());
         testData.setPort(null);
 
-        assertThrows(NullPointerException.class, () -> DravelOpsHttpCallBuilder.buildUrlWith(testData.build()));
+        assertThrows(NullPointerException.class, () -> DravelOpsHttpCallBuilder.buildUrlWith(testData));
     }
 
     @Test
     void test_buildUrlWith_protocol_host_port_and_path_as_null_throws_exception() {
-        ApiToken.ApiTokenBuilder testData = new ApiToken.ApiTokenBuilder(getApiTokenWithNoEmptyFields());
+        ApiToken testData = new ApiToken(getApiTokenWithNoEmptyFields());
         testData.setPath(null);
 
-        assertThrows(NullPointerException.class, () -> DravelOpsHttpCallBuilder.buildUrlWith(testData.build()));
+        assertThrows(NullPointerException.class, () -> DravelOpsHttpCallBuilder.buildUrlWith(testData));
     }
 }
