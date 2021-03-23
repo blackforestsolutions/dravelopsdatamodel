@@ -13,7 +13,7 @@ import java.util.*;
 
 @Getter
 @JsonDeserialize(builder = ApiToken.ApiTokenBuilder.class)
-public final class ApiToken {
+public class ApiToken {
 
     private final String host;
     private final String protocol;
