@@ -58,5 +58,5 @@
   "headers": {
     "Token": "123"
   },
-  "retryTimeInSeconds": 10
+  "retryTimeInMilliseconds": 10
 }

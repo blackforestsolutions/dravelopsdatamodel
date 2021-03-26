@@ -35,7 +35,7 @@ public class ApiToken {
     private String gtfsProvider;
     private String gtfsUrl;
     private Map<String, String> headers = new HashMap<>();
-    private Long retryTimeInSeconds;
+    private Long retryTimeInMilliseconds;
 
     public ApiToken() {
 
@@ -66,7 +66,7 @@ public class ApiToken {
         this.gtfsProvider = apiToken.getGtfsProvider();
         this.gtfsUrl = apiToken.getGtfsUrl();
         this.headers = apiToken.getHeaders();
-        this.retryTimeInSeconds = apiToken.getRetryTimeInSeconds();
+        this.retryTimeInMilliseconds = apiToken.getRetryTimeInMilliseconds();
     }
 
     @Override
@@ -126,7 +126,7 @@ public class ApiToken {
                 &&
                 Objects.equals(headers, that.headers)
                 &&
-                Objects.equals(retryTimeInSeconds, that.retryTimeInSeconds);
+                Objects.equals(retryTimeInMilliseconds, that.retryTimeInMilliseconds);
     }
 
     @Override
@@ -156,7 +156,7 @@ public class ApiToken {
                 gtfsProvider,
                 gtfsUrl,
                 headers,
-                retryTimeInSeconds
+                retryTimeInMilliseconds
         );
     }
 }

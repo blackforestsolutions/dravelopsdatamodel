@@ -64,7 +64,7 @@ public class ApiTokenObjectMother {
     private static final List<String> DEFAULT_TEST_PELIAS_LAYERS = ApiTokenObjectMother.getDefaultTestPeliasLayers();
     private static final String DEFAULT_TEST_GTFS_PROVIDER = "sbg";
     private static final String DEFAULT_TEST_GTFS_URL = "http://nvbw.de/fileadmin/user_upload/service/open_data/fahrplandaten_mit_liniennetz/sbg.zip";
-    private static final long DEFAULT_TEST_RETRY_TIME_IN_SECONDS = 10L;
+    private static final long DEFAULT_TEST_RETRY_TIME_IN_MILLISECONDS = 10L;
 
 
     public static ApiToken getApiTokenWithNoEmptyFields() {
@@ -93,7 +93,7 @@ public class ApiTokenObjectMother {
         apiToken.setGtfsProvider(DEFAULT_TEST_GTFS_PROVIDER);
         apiToken.setGtfsUrl(DEFAULT_TEST_GTFS_URL);
         apiToken.setHeaders(DEFAULT_TEST_HEADERS);
-        apiToken.setRetryTimeInSeconds(DEFAULT_TEST_RETRY_TIME_IN_SECONDS);
+        apiToken.setRetryTimeInMilliseconds(DEFAULT_TEST_RETRY_TIME_IN_MILLISECONDS);
         return apiToken;
     }
 
@@ -447,7 +447,7 @@ public class ApiTokenObjectMother {
     public static ApiToken getConfiguredBoxPersistenceApiToken() {
         ApiToken apiToken = new ApiToken(getConfiguredStationPersistenceApiToken());
         apiToken.setPath("/geocoding/get/operatingBox");
-        apiToken.setRetryTimeInSeconds(DEFAULT_TEST_RETRY_TIME_IN_SECONDS);
+        apiToken.setRetryTimeInMilliseconds(DEFAULT_TEST_RETRY_TIME_IN_MILLISECONDS);
         return apiToken;
     }
 
