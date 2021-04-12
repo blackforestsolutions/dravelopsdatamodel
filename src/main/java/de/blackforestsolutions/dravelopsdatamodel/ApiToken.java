@@ -1,5 +1,6 @@
 package de.blackforestsolutions.dravelopsdatamodel;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.geo.Distance;
@@ -9,6 +10,7 @@ import java.util.*;
 
 @Setter
 @Getter
+@EqualsAndHashCode
 public class ApiToken {
 
     private String host;
@@ -36,6 +38,10 @@ public class ApiToken {
     private String gtfsUrl;
     private Map<String, String> headers = new HashMap<>();
     private Long retryTimeInMilliseconds;
+    private String username;
+    private String password;
+    private String repository;
+    private String filename;
 
     public ApiToken() {
 
@@ -67,96 +73,9 @@ public class ApiToken {
         this.gtfsUrl = apiToken.getGtfsUrl();
         this.headers = apiToken.getHeaders();
         this.retryTimeInMilliseconds = apiToken.getRetryTimeInMilliseconds();
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        ApiToken that = (ApiToken) o;
-        return Objects.equals(host, that.host)
-                &&
-                Objects.equals(protocol, that.protocol)
-                &&
-                Objects.equals(port, that.port)
-                &&
-                Objects.equals(departure, that.departure)
-                &&
-                Objects.equals(departureCoordinate, that.departureCoordinate)
-                &&
-                Objects.equals(arrival, that.arrival)
-                &&
-                Objects.equals(arrivalCoordinate, that.arrivalCoordinate)
-                &&
-                Objects.equals(dateTime, that.dateTime)
-                &&
-                Objects.equals(isArrivalDateTime, that.isArrivalDateTime)
-                &&
-                Objects.equals(language, that.language)
-                &&
-                Objects.equals(router, that.router)
-                &&
-                Objects.equals(radiusInKilometers, that.radiusInKilometers)
-                &&
-                Objects.equals(hasDetails, that.hasDetails)
-                &&
-                Objects.equals(hasReferences, that.hasReferences)
-                &&
-                Objects.equals(path, that.path)
-                &&
-                Objects.equals(maxResults, that.maxResults)
-                &&
-                Objects.equals(apiVersion, that.apiVersion)
-                &&
-                Objects.equals(box, that.box)
-                &&
-                Objects.equals(layers, that.layers)
-                &&
-                Objects.equals(maxPastDaysInCalendar, that.maxPastDaysInCalendar)
-                &&
-                Objects.equals(journeySearchWindowInMinutes, that.journeySearchWindowInMinutes)
-                &&
-                Objects.equals(gtfsProvider, that.gtfsProvider)
-                &&
-                Objects.equals(gtfsUrl, that.gtfsUrl)
-                &&
-                Objects.equals(headers, that.headers)
-                &&
-                Objects.equals(retryTimeInMilliseconds, that.retryTimeInMilliseconds);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(
-                host,
-                protocol,
-                port,
-                departure,
-                departureCoordinate,
-                arrival,
-                arrivalCoordinate,
-                dateTime,
-                isArrivalDateTime,
-                language,
-                router,
-                radiusInKilometers,
-                hasDetails,
-                hasReferences,
-                path,
-                maxResults,
-                apiVersion,
-                box,
-                layers,
-                maxPastDaysInCalendar,
-                journeySearchWindowInMinutes,
-                gtfsProvider,
-                gtfsUrl,
-                headers,
-                retryTimeInMilliseconds
-        );
+        this.username = apiToken.getUsername();
+        this.password = apiToken.getPassword();
+        this.repository = apiToken.getRepository();
+        this.filename = apiToken.getFilename();
     }
 }
