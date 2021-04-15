@@ -42,6 +42,7 @@ public class ApiToken {
     private String password;
     private String repository;
     private String filename;
+    private String fileSuffix;
 
     public ApiToken() {
 
@@ -77,5 +78,6 @@ public class ApiToken {
         this.password = apiToken.getPassword();
         this.repository = apiToken.getRepository();
         this.filename = apiToken.getFilename();
+        this.fileSuffix = apiToken.getFileSuffix();
     }
 }

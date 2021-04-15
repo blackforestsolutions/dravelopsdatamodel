@@ -68,7 +68,8 @@ public class ApiTokenObjectMother {
     private static final String DEFAULT_TEST_USERNAME = "admin";
     private static final String DEFAULT_TEST_PASSWORD = "1234";
     private static final String DEFAULT_TEST_REPOSITORY = "https://github.com/blackforestsolutions/dravelopsdeployment";
-    private static final String DEFAULT_TEST_FILENAME = "application.yaml";
+    private static final String DEFAULT_TEST_FILENAME = "application";
+    private static final String DEFAULT_TEST_FILE_SUFFIX = ".yaml";
 
 
     public static ApiToken getApiTokenWithNoEmptyFields() {
@@ -100,6 +101,7 @@ public class ApiTokenObjectMother {
         apiToken.setRetryTimeInMilliseconds(DEFAULT_TEST_RETRY_TIME_IN_MILLISECONDS);
         apiToken.setRepository(DEFAULT_TEST_REPOSITORY);
         apiToken.setFilename(DEFAULT_TEST_FILENAME);
+        apiToken.setFileSuffix(DEFAULT_TEST_FILE_SUFFIX);
         apiToken.setPassword(DEFAULT_TEST_PASSWORD);
         apiToken.setUsername(DEFAULT_TEST_USERNAME);
         return apiToken;

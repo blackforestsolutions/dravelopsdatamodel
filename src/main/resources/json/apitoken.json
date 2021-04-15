@@ -62,5 +62,6 @@
   "username" : "admin",
   "password" : "1234",
   "repository" : "https://github.com/blackforestsolutions/dravelopsdeployment",
-  "filename" : "application.yaml"
+  "filename" : "application",
+  "fileSuffix" : ".yaml"
 }
