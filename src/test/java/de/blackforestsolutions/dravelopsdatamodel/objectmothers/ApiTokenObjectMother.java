@@ -2,6 +2,7 @@ package de.blackforestsolutions.dravelopsdatamodel.objectmothers;
 
 import de.blackforestsolutions.dravelopsdatamodel.ApiToken;
 import de.blackforestsolutions.dravelopsdatamodel.Box;
+import de.blackforestsolutions.dravelopsdatamodel.GraphQlTab;
 import de.blackforestsolutions.dravelopsdatamodel.Point;
 import org.springframework.data.geo.Distance;
 import org.springframework.data.geo.Metrics;
@@ -449,6 +450,16 @@ public class ApiTokenObjectMother {
         apiToken.setPath("/geocoding/get/operatingBox");
         apiToken.setRetryTimeInMilliseconds(DEFAULT_TEST_RETRY_TIME_IN_MILLISECONDS);
         return apiToken;
+    }
+
+    // Testsoftware
+    public static Map<GraphQlTab, ApiToken> getTestSoftwareApiTokens() {
+        return Map.of(
+                GraphQlTab.JOURNEY, getJourneyUserRequestToken(),
+                GraphQlTab.ADDRESS_AUTOCOMPLETION, getAutocompleteUserRequestToken(),
+                GraphQlTab.NEAREST_ADDRESSES, getNearestAddressesUserRequestToken(),
+                GraphQlTab.NEAREST_STATIONS, getNearestStationsUserRequestToken()
+        );
     }
 
     private static ApiToken getConfiguredStationPersistenceApiToken() {
