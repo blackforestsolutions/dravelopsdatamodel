@@ -7,4 +7,9 @@ public class NoResultFoundException extends RuntimeException {
     public NoResultFoundException() {
         super("No result found from API-Call!");
     }
+
+    public NoResultFoundException(String message) {
+        super(message);
+    }
+
 }
