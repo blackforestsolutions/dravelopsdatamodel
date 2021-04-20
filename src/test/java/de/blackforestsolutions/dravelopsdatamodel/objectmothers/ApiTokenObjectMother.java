@@ -8,6 +8,7 @@ import org.springframework.data.geo.Distance;
 import org.springframework.data.geo.Metrics;
 
 import java.time.ZonedDateTime;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -454,12 +455,14 @@ public class ApiTokenObjectMother {
 
     // Testsoftware
     public static Map<GraphQlTab, ApiToken> getTestSoftwareApiTokens() {
-        return Map.of(
-                GraphQlTab.JOURNEY, getJourneyUserRequestToken(),
-                GraphQlTab.ADDRESS_AUTOCOMPLETION, getAutocompleteUserRequestToken(),
-                GraphQlTab.NEAREST_ADDRESSES, getNearestAddressesUserRequestToken(),
-                GraphQlTab.NEAREST_STATIONS, getNearestStationsUserRequestToken()
-        );
+        Map<GraphQlTab, ApiToken> apiTokens = new HashMap<>();
+
+        apiTokens.put(GraphQlTab.JOURNEY, getJourneyUserRequestToken());
+        apiTokens.put(GraphQlTab.ADDRESS_AUTOCOMPLETION, getAutocompleteUserRequestToken());
+        apiTokens.put(GraphQlTab.NEAREST_ADDRESSES, getNearestAddressesUserRequestToken());
+        apiTokens.put(GraphQlTab.NEAREST_STATIONS, getNearestStationsUserRequestToken());
+
+        return apiTokens;
     }
 
     private static ApiToken getConfiguredStationPersistenceApiToken() {
@@ -470,7 +473,7 @@ public class ApiTokenObjectMother {
         return apiToken;
     }
 
-    private static List<String>getDefaultTestPeliasLayers() {
+    private static List<String> getDefaultTestPeliasLayers() {
         return List.of(
                 "venue",
                 "address",
