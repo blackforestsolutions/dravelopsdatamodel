@@ -45,6 +45,7 @@ public class ApiTokenObjectMother {
     private static final String DEFAULT_TEST_PATH = "/path";
     private static final String DEFAULT_TEST_ROUTER = "bw";
     private static final Locale DEFAULT_TEST_LANGUAGE = new Locale("de");
+    private static final Locale DEFAULT_TEST_INCORRECT_LANGUAGE = new Locale("ro");
     private static final ZonedDateTime DEFAULT_TEST_DATE_TIME = ZonedDateTime.parse("2020-09-30T13:00:00+02:00");
     private static final boolean DEFAULT_TEST_IS_ARRIVAL_DATE_TIME = false;
     private static final String DEFAULT_TEST_DEPARTURE_PLACEHOLDER = "Start";
@@ -52,15 +53,18 @@ public class ApiTokenObjectMother {
     private static final String DEFAULT_TEST_PELIAS_API_VERSION = "v1";
     private static final String DEFAULT_TEST_ARRIVAL = "Sick AG";
     private static final String DEFAULT_TEST_DEPARTURE = "Am Großhausberg 8";
+    private static final String DEFAULT_TEST_INCORRECT_DEPARTURE = "Incorrect Autocomplete Text";
     private static final Point DEFAULT_TEST_DEPARTURE_COORDINATE = PointObjectMother.getAmGrosshausbergPoint();
     private static final Point DEFAULT_TEST_ARRIVAL_COORDINATE = PointObjectMother.getSickAgPoint();
+    private static final Point DEFAULT_TEST_INCORRECT_COORDINATE = PointObjectMother.getWrongPoint();
     private static final Box DEFAULT_TEST_BOX = BoxObjectMother.getBoxServiceStartBox();
     private static final int DEFAULT_TEST_MAX_PAST_DAYS_IN_CALENDAR = 2;
     private static final int DEFAULT_TEST_JOURNEY_SEARCH_WINDOW = 120;
     private static final int DEFAULT_TEST_PELIAS_REVERSE_RESULTS = 1;
     private static final int DEFAULT_TEST_MAX_RESULTS = 10;
     private static final Map<String, String> DEFAULT_TEST_HEADERS = Map.of("Token", "123");
-    private static final Distance DEFAULT_TEST_RADIUS_IN_KILOMETERS = new Distance(1.0, Metrics.KILOMETERS);
+    private static final Distance DEFAULT_TEST_LONG_RADIUS_IN_KILOMETERS = new Distance(1.0d, Metrics.KILOMETERS);
+    private static final Distance DEFAULT_TEST_SHORT_RADIUS_IN_KILOMETERS = new Distance(0.1d, Metrics.KILOMETERS);
     private static final boolean DEFAULT_TEST_OTP_HAS_DETAILS = true;
     private static final boolean DEFAULT_TEST_OTP_HAS_REFERENCES = true;
     private static final List<String> DEFAULT_TEST_PELIAS_LAYERS = ApiTokenObjectMother.getDefaultTestPeliasLayers();
@@ -82,7 +86,7 @@ public class ApiTokenObjectMother {
         apiToken.setIsArrivalDateTime(DEFAULT_TEST_IS_ARRIVAL_DATE_TIME);
         apiToken.setLanguage(DEFAULT_TEST_LANGUAGE);
         apiToken.setRouter(DEFAULT_TEST_ROUTER);
-        apiToken.setRadiusInKilometers(DEFAULT_TEST_RADIUS_IN_KILOMETERS);
+        apiToken.setRadiusInKilometers(DEFAULT_TEST_LONG_RADIUS_IN_KILOMETERS);
         apiToken.setHasDetails(DEFAULT_TEST_OTP_HAS_DETAILS);
         apiToken.setHasReferences(DEFAULT_TEST_OTP_HAS_REFERENCES);
         apiToken.setPath(DEFAULT_TEST_PATH);
@@ -117,6 +121,16 @@ public class ApiTokenObjectMother {
         apiToken.setDepartureCoordinate(DEFAULT_TEST_DEPARTURE_COORDINATE);
         apiToken.setArrivalCoordinate(DEFAULT_TEST_ARRIVAL_COORDINATE);
         apiToken.setLanguage(DEFAULT_TEST_LANGUAGE);
+        return apiToken;
+    }
+
+    public static ApiToken getIncorrectJourneyUserRequestToken() {
+        ApiToken apiToken = new ApiToken();
+        apiToken.setIsArrivalDateTime(DEFAULT_TEST_IS_ARRIVAL_DATE_TIME);
+        apiToken.setDateTime(DEFAULT_TEST_DATE_TIME);
+        apiToken.setDepartureCoordinate(DEFAULT_TEST_INCORRECT_COORDINATE);
+        apiToken.setArrivalCoordinate(DEFAULT_TEST_INCORRECT_COORDINATE);
+        apiToken.setLanguage(DEFAULT_TEST_INCORRECT_LANGUAGE);
         return apiToken;
     }
 
@@ -230,8 +244,16 @@ public class ApiTokenObjectMother {
     public static ApiToken getNearestStationsUserRequestToken() {
         ApiToken apiToken = new ApiToken();
         apiToken.setArrivalCoordinate(DEFAULT_TEST_DEPARTURE_COORDINATE);
-        apiToken.setRadiusInKilometers(DEFAULT_TEST_RADIUS_IN_KILOMETERS);
+        apiToken.setRadiusInKilometers(DEFAULT_TEST_LONG_RADIUS_IN_KILOMETERS);
         apiToken.setLanguage(DEFAULT_TEST_LANGUAGE);
+        return apiToken;
+    }
+
+    public static ApiToken getIncorrectNearestStationsUserRequestToken() {
+        ApiToken apiToken = new ApiToken();
+        apiToken.setArrivalCoordinate(DEFAULT_TEST_INCORRECT_COORDINATE);
+        apiToken.setRadiusInKilometers(DEFAULT_TEST_SHORT_RADIUS_IN_KILOMETERS);
+        apiToken.setLanguage(DEFAULT_TEST_INCORRECT_LANGUAGE);
         return apiToken;
     }
 
@@ -251,7 +273,7 @@ public class ApiTokenObjectMother {
         apiToken.setPort(OTP_MAPPER_SERVICE_PORT);
         apiToken.setPath(NEAREST_STATIONS_CONTROLLER_PATH);
         apiToken.setArrivalCoordinate(DEFAULT_TEST_DEPARTURE_COORDINATE);
-        apiToken.setRadiusInKilometers(DEFAULT_TEST_RADIUS_IN_KILOMETERS);
+        apiToken.setRadiusInKilometers(DEFAULT_TEST_LONG_RADIUS_IN_KILOMETERS);
         apiToken.setLanguage(DEFAULT_TEST_LANGUAGE);
         return apiToken;
     }
@@ -262,7 +284,7 @@ public class ApiTokenObjectMother {
     public static ApiToken getNearestStationsOtpFastLaneApiToken() {
         ApiToken apiToken = new ApiToken(getOtpConfiguredFastLaneApiToken());
         apiToken.setArrivalCoordinate(DEFAULT_TEST_DEPARTURE_COORDINATE);
-        apiToken.setRadiusInKilometers(DEFAULT_TEST_RADIUS_IN_KILOMETERS);
+        apiToken.setRadiusInKilometers(DEFAULT_TEST_LONG_RADIUS_IN_KILOMETERS);
         apiToken.setLanguage(DEFAULT_TEST_LANGUAGE);
         return apiToken;
     }
@@ -270,7 +292,7 @@ public class ApiTokenObjectMother {
     public static ApiToken getNearestStationsOtpSlowLaneApiToken() {
         ApiToken apiToken = new ApiToken(getOtpConfiguredSlowLaneApiToken());
         apiToken.setArrivalCoordinate(DEFAULT_TEST_DEPARTURE_COORDINATE);
-        apiToken.setRadiusInKilometers(DEFAULT_TEST_RADIUS_IN_KILOMETERS);
+        apiToken.setRadiusInKilometers(DEFAULT_TEST_LONG_RADIUS_IN_KILOMETERS);
         apiToken.setLanguage(DEFAULT_TEST_LANGUAGE);
         return apiToken;
     }
@@ -306,6 +328,13 @@ public class ApiTokenObjectMother {
         ApiToken apiToken = new ApiToken();
         apiToken.setDeparture(DEFAULT_TEST_DEPARTURE);
         apiToken.setLanguage(DEFAULT_TEST_LANGUAGE);
+        return apiToken;
+    }
+
+    public static ApiToken getIncorrectAutocompleteUserRequestToken() {
+        ApiToken apiToken = new ApiToken();
+        apiToken.setDeparture(DEFAULT_TEST_INCORRECT_DEPARTURE);
+        apiToken.setLanguage(DEFAULT_TEST_INCORRECT_LANGUAGE);
         return apiToken;
     }
 
@@ -352,7 +381,15 @@ public class ApiTokenObjectMother {
     public static ApiToken getNearestAddressesUserRequestToken() {
         ApiToken apiToken = new ApiToken();
         apiToken.setArrivalCoordinate(DEFAULT_TEST_ARRIVAL_COORDINATE);
-        apiToken.setRadiusInKilometers(DEFAULT_TEST_RADIUS_IN_KILOMETERS);
+        apiToken.setRadiusInKilometers(DEFAULT_TEST_LONG_RADIUS_IN_KILOMETERS);
+        apiToken.setLanguage(DEFAULT_TEST_LANGUAGE);
+        return apiToken;
+    }
+
+    public static ApiToken getIncorrectNearestAddressesUserRequestToken() {
+        ApiToken apiToken = new ApiToken();
+        apiToken.setArrivalCoordinate(DEFAULT_TEST_INCORRECT_COORDINATE);
+        apiToken.setRadiusInKilometers(DEFAULT_TEST_SHORT_RADIUS_IN_KILOMETERS);
         apiToken.setLanguage(DEFAULT_TEST_LANGUAGE);
         return apiToken;
     }
@@ -373,7 +410,7 @@ public class ApiTokenObjectMother {
         apiToken.setPort(BOX_SERVICE_PORT);
         apiToken.setPath(NEAREST_ADDRESSES_CONTROLLER_PATH);
         apiToken.setArrivalCoordinate(DEFAULT_TEST_ARRIVAL_COORDINATE);
-        apiToken.setRadiusInKilometers(DEFAULT_TEST_RADIUS_IN_KILOMETERS);
+        apiToken.setRadiusInKilometers(DEFAULT_TEST_LONG_RADIUS_IN_KILOMETERS);
         apiToken.setLanguage(DEFAULT_TEST_LANGUAGE);
         return apiToken;
     }
@@ -390,7 +427,7 @@ public class ApiTokenObjectMother {
         apiToken.setLayers(DEFAULT_TEST_PELIAS_LAYERS);
         apiToken.setApiVersion(DEFAULT_TEST_PELIAS_API_VERSION);
         apiToken.setArrivalCoordinate(DEFAULT_TEST_ARRIVAL_COORDINATE);
-        apiToken.setRadiusInKilometers(DEFAULT_TEST_RADIUS_IN_KILOMETERS);
+        apiToken.setRadiusInKilometers(DEFAULT_TEST_LONG_RADIUS_IN_KILOMETERS);
         apiToken.setLanguage(DEFAULT_TEST_LANGUAGE);
         return apiToken;
     }
