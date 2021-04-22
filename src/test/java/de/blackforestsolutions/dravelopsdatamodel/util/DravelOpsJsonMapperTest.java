@@ -1,16 +1,18 @@
 package de.blackforestsolutions.dravelopsdatamodel.util;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.exc.MismatchedInputException;
-import de.blackforestsolutions.dravelopsdatamodel.ApiToken;
-import de.blackforestsolutions.dravelopsdatamodel.Box;
-import de.blackforestsolutions.dravelopsdatamodel.Journey;
-import de.blackforestsolutions.dravelopsdatamodel.TravelPoint;
+import de.blackforestsolutions.dravelopsdatamodel.*;
 import org.junit.jupiter.api.Test;
 import org.locationtech.jts.geom.Polygon;
 
+import java.util.Map;
+
 import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.ApiTokenObjectMother.getApiTokenWithNoEmptyFields;
+import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.ApiTokenObjectMother.getTestSoftwareApiTokens;
 import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.BoxObjectMother.getBoxWithNoEmptyFields;
+import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.CallStatusObjectMother.getSuccessfulJourneyCallStatusTab;
 import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.JourneyObjectMother.getJourneyWithNoEmptyFields;
 import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.PolygonObjectMother.getPolygonWithNoEmptyFields;
 import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.TravelPointObjectMother.getTravelPointWithNoEmptyFields;
@@ -137,5 +139,53 @@ class DravelOpsJsonMapperTest {
         Box result = classUnderTest.readValue(jsonBox, Box.class);
 
         assertThat(result).isEqualToComparingFieldByFieldRecursively(expectedBox);
+    }
+
+    @Test
+    void test_writeValueAsString_with_callStatus_returns_callStatus_as_json_string() throws JsonProcessingException {
+        CallStatus<GraphQlTab> testCallStatus = getSuccessfulJourneyCallStatusTab();
+        String expectedJsonCallStatus = getResourceFileAsString("json/callstatus.json");
+
+        String result = classUnderTest.writeValueAsString(testCallStatus);
+
+        assertThat(deleteWhitespace(result)).isEqualTo(deleteWhitespace(expectedJsonCallStatus));
+    }
+
+    @Test
+    void test_readValue_with_valid_json_as_callStatus_returns_callStatusObject() throws JsonProcessingException {
+        String jsonCallStatus = getResourceFileAsString("json/callstatus.json");
+        CallStatus<GraphQlTab> expectedCallStatus = getSuccessfulJourneyCallStatusTab();
+
+        JavaType callStatusType = classUnderTest.getTypeFactory().constructParametricType(CallStatus.class, GraphQlTab.class);
+        CallStatus<GraphQlTab> result = classUnderTest.readValue(jsonCallStatus, callStatusType);
+
+        assertThat(result).isEqualToComparingFieldByField(expectedCallStatus);
+    }
+
+    @Test
+    void test_writeValueAsString_with_apiTokenMap_returns_apiTokenMap_as_json_string() throws JsonProcessingException {
+        Map<GraphQlTab, ApiToken> testApiTokenMap = getTestSoftwareApiTokens();
+
+        String result = classUnderTest.writeValueAsString(testApiTokenMap);
+
+        assertThat(result).containsOnlyOnce(GraphQlTab.JOURNEY.toString());
+        assertThat(result).containsOnlyOnce(GraphQlTab.ADDRESS_AUTOCOMPLETION.toString());
+        assertThat(result).containsOnlyOnce(GraphQlTab.NEAREST_ADDRESSES.toString());
+        assertThat(result).containsOnlyOnce(GraphQlTab.NEAREST_STATIONS.toString());
+    }
+
+    @Test
+    void test_readValue_with_valid_json_as_apiTokenMap_returns_apiTokenMapObject() throws JsonProcessingException {
+        String jsonApiTokenMap = getResourceFileAsString("json/apitokenmap.json");
+        Map<GraphQlTab, ApiToken> expectedApiTokenMap = getTestSoftwareApiTokens();
+
+        JavaType javaType = classUnderTest.getTypeFactory().constructMapType(Map.class, GraphQlTab.class, ApiToken.class);
+        Map<GraphQlTab, ApiToken> result = classUnderTest.readValue(jsonApiTokenMap, javaType);
+
+        assertThat(result.size()).isEqualTo(expectedApiTokenMap.size());
+        assertThat(result.get(GraphQlTab.JOURNEY)).isEqualToComparingFieldByFieldRecursively(expectedApiTokenMap.get(GraphQlTab.JOURNEY));
+        assertThat(result.get(GraphQlTab.ADDRESS_AUTOCOMPLETION)).isEqualToComparingFieldByFieldRecursively(expectedApiTokenMap.get(GraphQlTab.ADDRESS_AUTOCOMPLETION));
+        assertThat(result.get(GraphQlTab.NEAREST_ADDRESSES)).isEqualToComparingFieldByFieldRecursively(expectedApiTokenMap.get(GraphQlTab.NEAREST_ADDRESSES));
+        assertThat(result.get(GraphQlTab.NEAREST_STATIONS)).isEqualToComparingFieldByFieldRecursively(expectedApiTokenMap.get(GraphQlTab.NEAREST_STATIONS));
     }
 }
