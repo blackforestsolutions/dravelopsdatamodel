@@ -1,9 +1,12 @@
 package de.blackforestsolutions.dravelopsdatamodel;
 
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.springframework.lang.NonNull;
 
 @Getter
+@NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
 public final class CallStatus<T> {
 
     private final T calledObject;
