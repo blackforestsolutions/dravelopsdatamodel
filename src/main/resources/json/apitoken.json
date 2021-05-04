@@ -59,9 +59,7 @@
     "Token": "123"
   },
   "retryTimeInMilliseconds": 10,
-  "username" : "admin",
-  "password" : "1234",
-  "repository" : "https://github.com/blackforestsolutions/dravelopsdeployment",
-  "filename" : "application",
-  "fileSuffix" : ".yaml"
+  "password": "thp_y9bY2snmh0Ol2UYCtn7r27AHv759Yg1pvdPU",
+  "repository": "blackforestsolutions/dravelopsdeployment",
+  "filepath": "projects/sbg/application-sbg.yml"
 }

@@ -38,11 +38,9 @@ public class ApiToken {
     private String gtfsUrl;
     private Map<String, String> headers = new HashMap<>();
     private Long retryTimeInMilliseconds;
-    private String username;
     private String password;
     private String repository;
-    private String filename;
-    private String fileSuffix;
+    private String filepath;
 
     public ApiToken() {
 
@@ -74,10 +72,8 @@ public class ApiToken {
         this.gtfsUrl = apiToken.getGtfsUrl();
         this.headers = apiToken.getHeaders();
         this.retryTimeInMilliseconds = apiToken.getRetryTimeInMilliseconds();
-        this.username = apiToken.getUsername();
         this.password = apiToken.getPassword();
         this.repository = apiToken.getRepository();
-        this.filename = apiToken.getFilename();
-        this.fileSuffix = apiToken.getFileSuffix();
+        this.filepath = apiToken.getFilepath();
     }
 }
