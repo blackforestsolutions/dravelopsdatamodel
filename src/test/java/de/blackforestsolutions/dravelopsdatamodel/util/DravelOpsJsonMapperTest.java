@@ -168,7 +168,7 @@ class DravelOpsJsonMapperTest {
 
         String result = classUnderTest.writeValueAsString(testApiTokenMap);
 
-        assertThat(result).containsOnlyOnce(GraphQlTab.JOURNEY.toString());
+        assertThat(result).containsOnlyOnce(GraphQlTab.JOURNEY_QUERY.toString());
         assertThat(result).containsOnlyOnce(GraphQlTab.ADDRESS_AUTOCOMPLETION.toString());
         assertThat(result).containsOnlyOnce(GraphQlTab.NEAREST_ADDRESSES.toString());
         assertThat(result).containsOnlyOnce(GraphQlTab.NEAREST_STATIONS.toString());
@@ -183,7 +183,7 @@ class DravelOpsJsonMapperTest {
         Map<GraphQlTab, ApiToken> result = classUnderTest.readValue(jsonApiTokenMap, javaType);
 
         assertThat(result.size()).isEqualTo(expectedApiTokenMap.size());
-        assertThat(result.get(GraphQlTab.JOURNEY)).isEqualToComparingFieldByFieldRecursively(expectedApiTokenMap.get(GraphQlTab.JOURNEY));
+        assertThat(result.get(GraphQlTab.JOURNEY_QUERY)).isEqualToComparingFieldByFieldRecursively(expectedApiTokenMap.get(GraphQlTab.JOURNEY_QUERY));
         assertThat(result.get(GraphQlTab.ADDRESS_AUTOCOMPLETION)).isEqualToComparingFieldByFieldRecursively(expectedApiTokenMap.get(GraphQlTab.ADDRESS_AUTOCOMPLETION));
         assertThat(result.get(GraphQlTab.NEAREST_ADDRESSES)).isEqualToComparingFieldByFieldRecursively(expectedApiTokenMap.get(GraphQlTab.NEAREST_ADDRESSES));
         assertThat(result.get(GraphQlTab.NEAREST_STATIONS)).isEqualToComparingFieldByFieldRecursively(expectedApiTokenMap.get(GraphQlTab.NEAREST_STATIONS));
