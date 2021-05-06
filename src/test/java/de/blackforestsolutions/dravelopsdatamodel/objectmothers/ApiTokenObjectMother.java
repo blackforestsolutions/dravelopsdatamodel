@@ -494,7 +494,7 @@ public class ApiTokenObjectMother {
     public static Map<GraphQlTab, ApiToken> getTestSoftwareApiTokens() {
         Map<GraphQlTab, ApiToken> apiTokens = new HashMap<>();
 
-        apiTokens.put(GraphQlTab.JOURNEY, getJourneyUserRequestToken());
+        apiTokens.put(GraphQlTab.JOURNEY_QUERY, getJourneyUserRequestToken());
         apiTokens.put(GraphQlTab.ADDRESS_AUTOCOMPLETION, getAutocompleteUserRequestToken());
         apiTokens.put(GraphQlTab.NEAREST_ADDRESSES, getNearestAddressesUserRequestToken());
         apiTokens.put(GraphQlTab.NEAREST_STATIONS, getNearestStationsUserRequestToken());

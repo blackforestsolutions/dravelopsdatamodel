@@ -7,11 +7,11 @@ import de.blackforestsolutions.dravelopsdatamodel.Status;
 public class CallStatusObjectMother {
 
     public static CallStatus<GraphQlTab> getSuccessfulJourneyCallStatusTab() {
-        return new CallStatus<>(GraphQlTab.JOURNEY, Status.SUCCESS, null);
+        return new CallStatus<>(GraphQlTab.JOURNEY_QUERY, Status.SUCCESS, null);
     }
 
     public static CallStatus<GraphQlTab> getFailedJourneyCallStatusTab() {
-        return new CallStatus<>(GraphQlTab.JOURNEY, Status.FAILED, null);
+        return new CallStatus<>(GraphQlTab.JOURNEY_QUERY, Status.FAILED, null);
     }
 
     public static CallStatus<GraphQlTab> getSuccessfulAddressAutocompletionCallStatusTab() {
