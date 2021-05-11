@@ -1,5 +1,6 @@
 package de.blackforestsolutions.dravelopsdatamodel.util;
 
+import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -21,6 +22,15 @@ public class DravelOpsJsonMapper extends ObjectMapper {
     private static final long serialVersionUID = 6106269076155338045L;
 
     public DravelOpsJsonMapper() {
+        this.registerModules();
+    }
+
+    public DravelOpsJsonMapper(JsonFactory factory) {
+        super(factory);
+        this.registerModules();
+    }
+
+    private void registerModules() {
         super.registerModule(configureJavaTimeModule());
         super.registerModule(configurePolygonModule());
         super.registerModule(new GeoModule());
