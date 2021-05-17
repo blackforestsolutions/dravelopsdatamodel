@@ -58,5 +58,8 @@
   "headers": {
     "Token": "123"
   },
-  "retryTimeInMilliseconds": 10
+  "retryTimeInMilliseconds": 10,
+  "password": "thp_y9bY2snmh0Ol2UYCtn7r27AHv759Yg1pvdPU",
+  "repository": "blackforestsolutions/dravelopsdeployment",
+  "filepath": "projects/sbg/application-sbg.yml"
 }

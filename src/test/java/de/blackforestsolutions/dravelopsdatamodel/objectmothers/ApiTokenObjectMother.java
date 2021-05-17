@@ -71,6 +71,9 @@ public class ApiTokenObjectMother {
     private static final String DEFAULT_TEST_GTFS_PROVIDER = "sbg";
     private static final String DEFAULT_TEST_GTFS_URL = "http://nvbw.de/fileadmin/user_upload/service/open_data/fahrplandaten_mit_liniennetz/sbg.zip";
     private static final long DEFAULT_TEST_RETRY_TIME_IN_MILLISECONDS = 10L;
+    private static final String DEFAULT_TEST_PASSWORD = "thp_y9bY2snmh0Ol2UYCtn7r27AHv759Yg1pvdPU";
+    private static final String DEFAULT_TEST_REPOSITORY = "blackforestsolutions/dravelopsdeployment";
+    private static final String DEFAULT_TEST_FILE_PATH = "projects/sbg/application-sbg.yml";
 
 
     public static ApiToken getApiTokenWithNoEmptyFields() {
@@ -100,6 +103,9 @@ public class ApiTokenObjectMother {
         apiToken.setGtfsUrl(DEFAULT_TEST_GTFS_URL);
         apiToken.setHeaders(DEFAULT_TEST_HEADERS);
         apiToken.setRetryTimeInMilliseconds(DEFAULT_TEST_RETRY_TIME_IN_MILLISECONDS);
+        apiToken.setRepository(DEFAULT_TEST_REPOSITORY);
+        apiToken.setPassword(DEFAULT_TEST_PASSWORD);
+        apiToken.setFilepath(DEFAULT_TEST_FILE_PATH);
         return apiToken;
     }
 
