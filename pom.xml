@@ -6,7 +6,7 @@
 
     <groupId>de.blackforestsolutions</groupId>
     <artifactId>dravelopsdatamodel</artifactId>
-    <version>15.1.1</version>
+    <version>15.2.0</version>
 
     <parent>
         <groupId>org.springframework.boot</groupId>

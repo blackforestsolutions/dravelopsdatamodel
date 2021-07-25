@@ -167,6 +167,13 @@ public final class Journey implements Serializable, DataSerializable {
             this.id = id;
         }
 
+        public JourneyBuilder(@NonNull Journey journey) {
+            this.id = journey.getId();
+            this.legs = journey.getLegs();
+            this.prices = journey.getPrices();
+            this.language = journey.getLanguage();
+        }
+
         public JourneyBuilder setId(@NonNull UUID id) {
             this.id = id;
             return this;

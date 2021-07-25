@@ -36,6 +36,7 @@
         "metric" : "KILOMETERS"
       },
       "vehicleType" : "BUS",
+      "polyline": "mtodHyhpo@",
       "waypoints" : [ {
         "x" : 0.0,
         "y" : 0.0
