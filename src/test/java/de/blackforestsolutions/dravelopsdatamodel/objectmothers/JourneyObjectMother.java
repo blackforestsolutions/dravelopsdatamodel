@@ -42,6 +42,12 @@ public class JourneyObjectMother {
                 .build();
     }
 
+    public static Journey getJourneyWithNoEmptyFieldsByVehicleType(VehicleType vehicleType) {
+        return getJourneyBuilderWithNoEmptyFields()
+                .setLegs(getLegsByVehicleType(vehicleType))
+                .build();
+    }
+
     public static Journey getJourneyWithNoEmptyFieldsByArrivalPoint(Point arrivalPoint, UUID id) {
         return getJourneyBuilderWithNoEmptyFields()
                 .setId(id)
@@ -134,6 +140,11 @@ public class JourneyObjectMother {
         return prices;
     }
 
+    private static LinkedList<Leg> getLegsByVehicleType(VehicleType vehicleType) {
+        LinkedList<Leg> legs = new LinkedList<>();
+        legs.add(getLegWithNoEmptyFieldsByVehicleType(vehicleType));
+        return legs;
+    }
 
     private static LinkedList<Leg> getLegsByArrivalPoint(Point arrivalPoint) {
         LinkedList<Leg> legs = new LinkedList<>();

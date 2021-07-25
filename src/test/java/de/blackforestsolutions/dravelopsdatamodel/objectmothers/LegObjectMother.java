@@ -35,6 +35,12 @@ public class LegObjectMother {
                 .setIntermediateStops(getIntermediateStops());
     }
 
+    public static Leg getLegWithNoEmptyFieldsByVehicleType(VehicleType vehicleType) {
+        return getLegBuilderWithNoEmptyFields()
+                .setVehicleType(vehicleType)
+                .build();
+    }
+
     public static Leg getLegWithNoEmptyFieldsByArrivalPoint(Point arrivalPoint) {
         return getLegBuilderWithNoEmptyFields()
                 .setArrival(getTravelPointWithNoEmptyFieldsByArrivalTime(arrivalPoint))
