@@ -10,7 +10,6 @@ import java.util.LinkedList;
 
 import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.TravelPointObjectMother.*;
 import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.TravelProviderObjectMother.*;
-import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.WaypointsObjectMother.getExampleWaypoints;
 
 public class LegObjectMother {
 
@@ -28,6 +27,7 @@ public class LegObjectMother {
                 .setDelayInMinutes(Duration.ofSeconds(60L))
                 .setDistanceInKilometers(new Distance(5.253d, DEFAULT_TEST_DISTANCE_METRIC))
                 .setVehicleType(VehicleType.BUS)
+                .setPolyline("mtodHyhpo@")
                 .setWaypoints(getTrack())
                 .setTravelProvider(getTravelProviderWithNoEmptyFields())
                 .setVehicleNumber("7020")
@@ -72,7 +72,7 @@ public class LegObjectMother {
                 .build();
     }
 
-    public static Leg getGrosshausbergToFurtwangenIlbenstreetLeg() {
+    public static Leg getGrosshausbergToFurtwangenIlbenstreetLeg(LinkedList<Point> waypoints) {
         TravelPoint departure = getGrosshausbergTravelPoint();
         TravelPoint arrival = getFurtwangenIlbenstreetTravelPoint();
         return new Leg.LegBuilder()
@@ -81,11 +81,12 @@ public class LegObjectMother {
                 .setVehicleType(VehicleType.WALK)
                 .setDeparture(departure)
                 .setArrival(arrival)
-                .setWaypoints(getExampleWaypoints())
+                .setPolyline("mtodHyhpo@@HVbDPVHlABAl@QRIDN|@Sd@Gx@Ob@EDp@FfAD~@@JDd@Fd@@JPt@v@{@LM")
+                .setWaypoints(waypoints)
                 .build();
     }
 
-    public static Leg getFurtwangenIlbenstreetToBleibachLeg() {
+    public static Leg getFurtwangenIlbenstreetToBleibachLeg(LinkedList<Point> waypoints) {
         TravelPoint departure = getFurtwangenIlbenstreetTravelPoint();
         TravelPoint arrival = getBleibachSevTravelPoint();
         return new Leg.LegBuilder()
@@ -95,14 +96,15 @@ public class LegObjectMother {
                 .setTravelProvider(getSuedbadenTravelProvider())
                 .setDeparture(departure)
                 .setArrival(arrival)
-                .setWaypoints(getExampleWaypoints())
+                .setPolyline("mtodHyhpo@@HVbDPVHlABAl@QRIDN|@Sd@Gx@Ob@EDp@FfAD~@@JDd@Fd@@JPt@v@{@LM")
+                .setWaypoints(waypoints)
                 .setVehicleNumber("272")
                 .setVehicleName("Waldkirch Gymnasium - Furtwangen Rößleplatz")
                 .setIntermediateStops(getFurtwangenIlbenStreetToBleibachIntermediateStops())
                 .build();
     }
 
-    public static Leg getBleibachToWaldkirchKastelberghalleLeg() {
+    public static Leg getBleibachToWaldkirchKastelberghalleLeg(LinkedList<Point> waypoints) {
         TravelPoint departure = getBleibachSevTravelPoint();
         TravelPoint arrival = getWaldkirchKastelberghalleTravelPoint();
         return new Leg.LegBuilder()
@@ -112,14 +114,15 @@ public class LegObjectMother {
                 .setTravelProvider(getSuedbadenTravelProvider())
                 .setDeparture(departure)
                 .setArrival(arrival)
-                .setWaypoints(getExampleWaypoints())
+                .setPolyline("mtodHyhpo@@HVbDPVHlABAl@QRIDN|@Sd@Gx@Ob@EDp@FfAD~@@JDd@Fd@@JPt@v@{@LM")
+                .setWaypoints(waypoints)
                 .setVehicleNumber("201")
                 .setVehicleName("Oberprechtal Forellenhof - Emmendingen Bahnhof/ZOB")
                 .setIntermediateStops(getBleibachToWaldkirchKastelberghalleIntermediateStops())
                 .build();
     }
 
-    public static Leg getWaldkirchKastelberghalleToSickLeg() {
+    public static Leg getWaldkirchKastelberghalleToSickLeg(LinkedList<Point> waypoints) {
         TravelPoint departure = getWaldkirchKastelberghalleTravelPoint();
         TravelPoint arrival = getSickAgTravelPoint();
         return new Leg.LegBuilder()
@@ -128,11 +131,12 @@ public class LegObjectMother {
                 .setVehicleType(VehicleType.WALK)
                 .setDeparture(departure)
                 .setArrival(arrival)
-                .setWaypoints(getExampleWaypoints())
+                .setPolyline("mtodHyhpo@@HVbDPVHlABAl@QRIDN|@Sd@Gx@Ob@EDp@FfAD~@@JDd@Fd@@JPt@v@{@LM")
+                .setWaypoints(waypoints)
                 .build();
     }
 
-    public static Leg getMannheimHbfToMannheimUniversityLeg() {
+    public static Leg getMannheimHbfToMannheimUniversityLeg(LinkedList<Point> waypoints) {
         TravelPoint departure = getMannheimHbfTravelPoint();
         TravelPoint arrival = getMannheimUniversityTravelPoint();
         return new Leg.LegBuilder()
@@ -141,11 +145,12 @@ public class LegObjectMother {
                 .setVehicleType(VehicleType.WALK)
                 .setDeparture(departure)
                 .setArrival(arrival)
-                .setWaypoints(getExampleWaypoints())
+                .setPolyline("cw_mHgdtr@h@mBFFZVD?BIVs@Pm@Le@BDLR`@l@X\\NLNPDJDJ@D@DBJ@J?H@L?JAL?HJBCDALB?@@Ir@Gb@CV")
+                .setWaypoints(waypoints)
                 .build();
     }
 
-    public static Leg getMannheimUniversityToMannheimBerlinerPlaceLeg() {
+    public static Leg getMannheimUniversityToMannheimBerlinerPlaceLeg(LinkedList<Point> waypoints) {
         TravelPoint departure = getMannheimUniversityTravelPoint();
         TravelPoint arrival = getBerlinerPlaceTravelPoint();
         return new Leg.LegBuilder()
@@ -155,14 +160,15 @@ public class LegObjectMother {
                 .setTravelProvider(getRnvTravelProvider())
                 .setDeparture(departure)
                 .setArrival(arrival)
-                .setWaypoints(getExampleWaypoints())
+                .setPolyline("sn_mH{~sr@i@x\\zJnp@")
+                .setWaypoints(waypoints)
                 .setVehicleNumber("4")
                 .setVehicleName("Bad Dürkheim - LU Oggersheim - LU Hbf - Berliner Platz - MA Hbf - Wasserturm - Paradeplatz - Alte Feuerwache - Schafweide - Universitätsklinikum - Bonafitiuskirche - Ulmenweg - Waldfriedhof")
                 .setIntermediateStops(getMannheimUniversityToMannheimBerlinerPlaceIntermediateStop())
                 .build();
     }
 
-    public static Leg getBerlinerPlaceToDestinationLeg() {
+    public static Leg getBerlinerPlaceToDestinationLeg(LinkedList<Point> waypoints) {
         TravelPoint departure = getBerlinerPlaceTravelPoint();
         TravelPoint arrival = getLudwigsburgCenterTravelPoint();
         return new Leg.LegBuilder()
@@ -171,7 +177,8 @@ public class LegObjectMother {
                 .setVehicleType(VehicleType.WALK)
                 .setDeparture(departure)
                 .setArrival(arrival)
-                .setWaypoints(getExampleWaypoints())
+                .setPolyline("ad_mHsoqr@E@?AG@AICKGBCSBCPOAE^UJEDCJK@BFIFMDMDO@O@M@QAWCUGa@Is@BGrAAfA{A@A@CNS?C@?BER[@F")
+                .setWaypoints(waypoints)
                 .build();
 
     }

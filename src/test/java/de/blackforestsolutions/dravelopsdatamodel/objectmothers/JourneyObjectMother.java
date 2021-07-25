@@ -12,6 +12,7 @@ import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.LegObject
 import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.PriceObjectMother.getFurtwangenToWaldkirchPrice;
 import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.PriceObjectMother.getPriceWithNoEmptyFields;
 import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.UUIDObjectMother.*;
+import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.WaypointsObjectMother.getExampleWaypoints;
 
 @Slf4j
 public class JourneyObjectMother {
@@ -101,15 +102,29 @@ public class JourneyObjectMother {
     public static Journey getFurtwangenToWaldkirchJourney() {
         return new Journey.JourneyBuilder(TEST_UUID_2)
                 .setLanguage(DEFAULT_TEST_LANGUAGE)
-                .setLegs(getFurtwangenToWaldkirchLegs())
+                .setLegs(getFurtwangenToWaldkirchLegs(new LinkedList<>()))
                 .setPrices(getFurtwangenToWaldkirchPrices())
+                .build();
+    }
+
+    public static Journey getFurtwangenToWaldkirchWaypointsJourney() {
+        LinkedList<Point> mockedWaypoints = getExampleWaypoints();
+        return new Journey.JourneyBuilder(getFurtwangenToWaldkirchJourney())
+                .setLegs(getFurtwangenToWaldkirchLegs(mockedWaypoints))
                 .build();
     }
 
     public static Journey getMannheimHbfLudwigsburgCenterJourney() {
         return new Journey.JourneyBuilder(TEST_UUID_3)
                 .setLanguage(DEFAULT_TEST_LANGUAGE)
-                .setLegs(getMannheimHbfToLudwigsburgCenterLegs())
+                .setLegs(getMannheimHbfToLudwigsburgCenterLegs(new LinkedList<>()))
+                .build();
+    }
+
+    public static Journey getMannheimHbfLudwigsburgCenterWaypointsJourney() {
+        LinkedList<Point> mockedWaypoints = getExampleWaypoints();
+        return new Journey.JourneyBuilder(getMannheimHbfLudwigsburgCenterJourney())
+                .setLegs(getMannheimHbfToLudwigsburgCenterLegs(mockedWaypoints))
                 .build();
     }
 
@@ -177,12 +192,12 @@ public class JourneyObjectMother {
         return prices;
     }
 
-    private static LinkedList<Leg> getFurtwangenToWaldkirchLegs() {
+    private static LinkedList<Leg> getFurtwangenToWaldkirchLegs(LinkedList<Point> mockedWaypoints) {
         LinkedList<Leg> legs = new LinkedList<>();
-        legs.add(getGrosshausbergToFurtwangenIlbenstreetLeg());
-        legs.add(getFurtwangenIlbenstreetToBleibachLeg());
-        legs.add(getBleibachToWaldkirchKastelberghalleLeg());
-        legs.add(getWaldkirchKastelberghalleToSickLeg());
+        legs.add(getGrosshausbergToFurtwangenIlbenstreetLeg(mockedWaypoints));
+        legs.add(getFurtwangenIlbenstreetToBleibachLeg(mockedWaypoints));
+        legs.add(getBleibachToWaldkirchKastelberghalleLeg(mockedWaypoints));
+        legs.add(getWaldkirchKastelberghalleToSickLeg(mockedWaypoints));
         return legs;
     }
 
@@ -192,11 +207,11 @@ public class JourneyObjectMother {
         return prices;
     }
 
-    private static LinkedList<Leg> getMannheimHbfToLudwigsburgCenterLegs() {
+    private static LinkedList<Leg> getMannheimHbfToLudwigsburgCenterLegs(LinkedList<Point> mockedWaypoints) {
         LinkedList<Leg> legs = new LinkedList<>();
-        legs.add(getMannheimHbfToMannheimUniversityLeg());
-        legs.add(getMannheimUniversityToMannheimBerlinerPlaceLeg());
-        legs.add(getBerlinerPlaceToDestinationLeg());
+        legs.add(getMannheimHbfToMannheimUniversityLeg(mockedWaypoints));
+        legs.add(getMannheimUniversityToMannheimBerlinerPlaceLeg(mockedWaypoints));
+        legs.add(getBerlinerPlaceToDestinationLeg(mockedWaypoints));
         return legs;
     }
 

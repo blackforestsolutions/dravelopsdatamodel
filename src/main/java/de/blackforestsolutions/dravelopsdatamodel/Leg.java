@@ -37,6 +37,8 @@ public final class Leg implements Serializable, DataSerializable {
 
     private VehicleType vehicleType;
 
+    private String polyline;
+
     private LinkedList<Point> waypoints;
 
     private TravelProvider travelProvider;
@@ -53,6 +55,7 @@ public final class Leg implements Serializable, DataSerializable {
         this.delayInMinutes = legBuilder.getDelayInMinutes();
         this.distanceInKilometers = legBuilder.getDistanceInKilometers();
         this.vehicleType = legBuilder.getVehicleType();
+        this.polyline = legBuilder.getPolyline();
         this.waypoints = legBuilder.getWaypoints();
         this.travelProvider = legBuilder.getTravelProvider();
         this.vehicleNumber = legBuilder.getVehicleNumber();
@@ -94,6 +97,8 @@ public final class Leg implements Serializable, DataSerializable {
                 &&
                 Objects.equals(vehicleType, that.vehicleType)
                 &&
+                Objects.equals(polyline, that.polyline)
+                &&
                 Objects.equals(waypoints, that.waypoints)
                 &&
                 Objects.equals(travelProvider, that.travelProvider)
@@ -113,6 +118,7 @@ public final class Leg implements Serializable, DataSerializable {
                 delayInMinutes,
                 distanceInKilometers,
                 vehicleType,
+                polyline,
                 waypoints,
                 travelProvider,
                 vehicleNumber,
@@ -143,6 +149,7 @@ public final class Leg implements Serializable, DataSerializable {
         } else {
             out.writeBoolean(false);
         }
+        out.writeUTF(this.polyline);
         if (Optional.ofNullable(this.waypoints).isPresent()) {
             out.writeBoolean(true);
             out.writeInt(this.waypoints.size());
@@ -179,6 +186,7 @@ public final class Leg implements Serializable, DataSerializable {
         if (in.readBoolean()) {
             this.vehicleType = VehicleType.valueOf(in.readUTF());
         }
+        this.polyline = in.readUTF();
         if (in.readBoolean()) {
             this.waypoints = new LinkedList<>();
             int waypointsSize = in.readInt();
@@ -216,6 +224,8 @@ public final class Leg implements Serializable, DataSerializable {
 
         private VehicleType vehicleType;
 
+        private String polyline;
+
         private LinkedList<Point> waypoints = new LinkedList<>();
 
         private TravelProvider travelProvider;
@@ -225,6 +235,20 @@ public final class Leg implements Serializable, DataSerializable {
         private String vehicleName = "";
 
         private LinkedList<TravelPoint> intermediateStops = new LinkedList<>();
+
+        public LegBuilder(Leg leg) {
+            this.departure = leg.getDeparture();
+            this.arrival = leg.getArrival();
+            this.delayInMinutes = leg.getDelayInMinutes();
+            this.distanceInKilometers = leg.getDistanceInKilometers();
+            this.vehicleType = leg.getVehicleType();
+            this.polyline = leg.getPolyline();
+            this.waypoints = leg.getWaypoints();
+            this.travelProvider = leg.getTravelProvider();
+            this.vehicleNumber = leg.getVehicleNumber();
+            this.vehicleName = leg.getVehicleName();
+            this.intermediateStops = leg.getIntermediateStops();
+        }
 
         public Leg build() {
             return new Leg(this);

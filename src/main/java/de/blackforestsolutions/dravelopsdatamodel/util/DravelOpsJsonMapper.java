@@ -34,7 +34,6 @@ public class DravelOpsJsonMapper extends ObjectMapper {
         super.registerModule(configureJavaTimeModule());
         super.registerModule(configurePolygonModule());
         super.registerModule(new GeoModule());
-        super.enable(SerializationFeature.INDENT_OUTPUT);
         super.disable(MapperFeature.DEFAULT_VIEW_INCLUSION);
         super.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
         super.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);

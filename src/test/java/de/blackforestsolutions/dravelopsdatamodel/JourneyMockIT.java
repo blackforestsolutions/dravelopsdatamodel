@@ -7,7 +7,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.util.UUID;
 
 import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.JourneyObjectMother.getJourneyBuilderWithNoEmptyFields;
@@ -40,7 +39,7 @@ class JourneyMockIT {
     }
 
     @Test
-    void test_journey_with_id_as_null_to_be_dataSerializable() throws IOException {
+    void test_journey_with_id_as_null_to_be_dataSerializable() {
         Journey testData = getJourneyBuilderWithNoEmptyFields().setId(null).build();
         UUID testKey = UUID.randomUUID();
         IMap<UUID, Journey> testMap = hazelcastMock.getMap("journeys");
@@ -52,7 +51,7 @@ class JourneyMockIT {
     }
 
     @Test
-    void test_journey_with_language_as_null_to_be_dataSerializable() throws IOException {
+    void test_journey_with_language_as_null_to_be_dataSerializable() {
         Journey testData = getJourneyBuilderWithNoEmptyFields().setLanguage(null).build();
         IMap<UUID, Journey> testMap = hazelcastMock.getMap("journeys");
 
@@ -63,7 +62,7 @@ class JourneyMockIT {
     }
 
     @Test
-    void test_journey_with_legs_as_null_to_be_dataSerializable() throws IOException {
+    void test_journey_with_legs_as_null_to_be_dataSerializable() {
         Journey testData = getJourneyBuilderWithNoEmptyFields().setLegs(null).build();
         IMap<UUID, Journey> testMap = hazelcastMock.getMap("journeys");
 
@@ -74,7 +73,7 @@ class JourneyMockIT {
     }
 
     @Test
-    void test_journey_with_prices_as_null_to_be_dataSerializable() throws IOException {
+    void test_journey_with_prices_as_null_to_be_dataSerializable() {
         Journey testData = getJourneyBuilderWithNoEmptyFields().setPrices(null).build();
         IMap<UUID, Journey> testMap = hazelcastMock.getMap("journeys");
 
@@ -85,8 +84,8 @@ class JourneyMockIT {
     }
 
     @Test
-    void test_journey_with_no_properties_populated_to_be_dataSerializable() throws IOException {
-        Journey.JourneyBuilder testData = new Journey.JourneyBuilder(null);
+    void test_journey_with_no_properties_populated_to_be_dataSerializable() {
+        Journey.JourneyBuilder testData = new Journey.JourneyBuilder((UUID) null);
         UUID testKey = UUID.randomUUID();
         IMap<UUID, Journey> testMap = hazelcastMock.getMap("journeys");
 
