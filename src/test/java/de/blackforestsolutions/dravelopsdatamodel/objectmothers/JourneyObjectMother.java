@@ -102,7 +102,7 @@ public class JourneyObjectMother {
     public static Journey getFurtwangenToWaldkirchJourney() {
         return new Journey.JourneyBuilder(TEST_UUID_2)
                 .setLanguage(DEFAULT_TEST_LANGUAGE)
-                .setLegs(getFurtwangenToWaldkirchLegs(null))
+                .setLegs(getFurtwangenToWaldkirchLegs(new LinkedList<>()))
                 .setPrices(getFurtwangenToWaldkirchPrices())
                 .build();
     }
@@ -117,7 +117,7 @@ public class JourneyObjectMother {
     public static Journey getMannheimHbfLudwigsburgCenterJourney() {
         return new Journey.JourneyBuilder(TEST_UUID_3)
                 .setLanguage(DEFAULT_TEST_LANGUAGE)
-                .setLegs(getMannheimHbfToLudwigsburgCenterLegs(null))
+                .setLegs(getMannheimHbfToLudwigsburgCenterLegs(new LinkedList<>()))
                 .build();
     }
 
