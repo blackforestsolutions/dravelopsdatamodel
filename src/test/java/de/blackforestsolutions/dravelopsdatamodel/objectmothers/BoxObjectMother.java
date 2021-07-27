@@ -37,4 +37,18 @@ public class BoxObjectMother {
                 new Point.PointBuilder(MAX_WGS_84_LONGITUDE, MIN_WGS_84_LATITUDE).build()
         ).build();
     }
+
+    public static Box getSbgBox() {
+        return new Box.BoxBuilder(
+                new Point.PointBuilder(7.349162d, 48.371552d).build(),
+                new Point.PointBuilder(9.027188d, 47.537929d).build()
+        ).build();
+    }
+
+    public static Box getHvvBox() {
+        return new Box.BoxBuilder(
+                new Point.PointBuilder(8.310921044198d, 54.906843172932d).build(),
+                new Point.PointBuilder(12.131073730255d, 51.536818622395d).build()
+        ).build();
+    }
 }
