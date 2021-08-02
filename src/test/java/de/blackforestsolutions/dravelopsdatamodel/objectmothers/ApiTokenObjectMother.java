@@ -516,7 +516,7 @@ public class ApiTokenObjectMother {
     private static Map<Layer, Boolean> getDefaultTestPeliasLayers() {
         Map<Layer, Boolean> layers = new LinkedHashMap<>();
 
-        layers.put(Layer.HAS_VENUE, false);
+        layers.put(Layer.HAS_VENUE, true);
         layers.put(Layer.HAS_ADDRESS, true);
         layers.put(Layer.HAS_LOCALITY, true);
         layers.put(Layer.HAS_STREET, true);
