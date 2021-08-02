@@ -35,22 +35,12 @@
       "y": -90.0
     }
   },
-  "layers": [
-    "venue",
-    "address",
-    "street",
-    "country",
-    "macroregion",
-    "region",
-    "macrocounty",
-    "county",
-    "locality",
-    "localadmin",
-    "borough",
-    "neighbourhood",
-    "coarse",
-    "postalcode"
-  ],
+  "layers": {
+    "HAS_VENUE": false,
+    "HAS_ADDRESS": true,
+    "HAS_LOCALITY": true,
+    "HAS_STREET": true
+  },
   "maxPastDaysInCalendar": 2,
   "journeySearchWindowInMinutes": 120,
   "gtfsProvider": "sbg",

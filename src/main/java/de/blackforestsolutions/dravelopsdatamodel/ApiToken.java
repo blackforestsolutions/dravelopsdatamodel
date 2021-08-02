@@ -6,7 +6,10 @@ import lombok.Setter;
 import org.springframework.data.geo.Distance;
 
 import java.time.ZonedDateTime;
-import java.util.*;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Locale;
+import java.util.Map;
 
 @Setter
 @Getter
@@ -31,7 +34,7 @@ public class ApiToken {
     private Integer maxResults;
     private String apiVersion;
     private Box box;
-    private List<String> layers = new LinkedList<>();
+    private Map<Layer, Boolean> layers = new LinkedHashMap<>();
     private Integer maxPastDaysInCalendar;
     private Integer journeySearchWindowInMinutes;
     private String gtfsProvider;
