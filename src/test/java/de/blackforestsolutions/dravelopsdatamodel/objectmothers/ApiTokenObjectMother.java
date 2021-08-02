@@ -64,7 +64,7 @@ public class ApiTokenObjectMother {
     private static final Distance DEFAULT_TEST_SHORT_RADIUS_IN_KILOMETERS = new Distance(0.1d, Metrics.KILOMETERS);
     private static final boolean DEFAULT_TEST_OTP_HAS_DETAILS = true;
     private static final boolean DEFAULT_TEST_OTP_HAS_REFERENCES = true;
-    private static final Map<Layer, Boolean> DEFAULT_TEST_PELIAS_LAYERS = ApiTokenObjectMother.getDefaultTestPeliasLayers();
+    private static final LinkedHashMap<Layer, Boolean> DEFAULT_TEST_PELIAS_LAYERS = ApiTokenObjectMother.getDefaultTestPeliasLayers();
     private static final String DEFAULT_TEST_GTFS_PROVIDER = "sbg";
     private static final String DEFAULT_TEST_GTFS_URL = "http://nvbw.de/fileadmin/user_upload/service/open_data/fahrplandaten_mit_liniennetz/sbg.zip";
     private static final long DEFAULT_TEST_RETRY_TIME_IN_MILLISECONDS = 10L;
@@ -513,8 +513,8 @@ public class ApiTokenObjectMother {
         return apiToken;
     }
 
-    private static Map<Layer, Boolean> getDefaultTestPeliasLayers() {
-        Map<Layer, Boolean> layers = new LinkedHashMap<>();
+    private static LinkedHashMap<Layer, Boolean> getDefaultTestPeliasLayers() {
+        LinkedHashMap<Layer, Boolean> layers = new LinkedHashMap<>();
 
         layers.put(Layer.HAS_VENUE, true);
         layers.put(Layer.HAS_ADDRESS, true);

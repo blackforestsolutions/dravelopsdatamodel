@@ -34,7 +34,7 @@ public class ApiToken {
     private Integer maxResults;
     private String apiVersion;
     private Box box;
-    private Map<Layer, Boolean> layers = new LinkedHashMap<>();
+    private LinkedHashMap<Layer, Boolean> layers = new LinkedHashMap<>();
     private Integer maxPastDaysInCalendar;
     private Integer journeySearchWindowInMinutes;
     private String gtfsProvider;
@@ -78,5 +78,12 @@ public class ApiToken {
         this.password = apiToken.getPassword();
         this.repository = apiToken.getRepository();
         this.filepath = apiToken.getFilepath();
+    }
+
+    public LinkedHashMap<Layer, Boolean> getLayers() {
+        if (layers != null) {
+            return (LinkedHashMap<Layer, Boolean>) layers.clone();
+        }
+        return null;
     }
 }
