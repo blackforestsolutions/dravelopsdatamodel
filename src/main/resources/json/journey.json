@@ -60,7 +60,28 @@
           "value" : 0.5,
           "metric" : "KILOMETERS"
         }
-      } ]
+      } ],
+      "walkSteps": [
+        {
+          "streetName": "Weg",
+          "distanceInKilometers": {
+            "value": 1.253,
+            "metric": "KILOMETERS"
+          },
+          "startPoint": {
+            "x": 8.209198,
+            "y": 48.048381
+          },
+          "endPoint": {
+            "x": 7.891595,
+            "y": 48.087517
+          },
+          "walkingDirection": "RIGHT",
+          "compassDirection": "NORTH",
+          "circleExit": "3",
+          "streetNameGenerated": false,
+          "placeOrTrainPlatform": false
+        } ]
   } ],
   "prices" : [ {
       "priceType": "REGULAR",

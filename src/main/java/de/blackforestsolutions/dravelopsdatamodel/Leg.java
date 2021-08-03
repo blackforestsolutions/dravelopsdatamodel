@@ -49,6 +49,8 @@ public final class Leg implements Serializable, DataSerializable {
 
     private LinkedList<TravelPoint> intermediateStops;
 
+    private LinkedList<WalkStep> walkSteps;
+
     private Leg(LegBuilder legBuilder) {
         this.departure = legBuilder.getDeparture();
         this.arrival = legBuilder.getArrival();
@@ -61,6 +63,7 @@ public final class Leg implements Serializable, DataSerializable {
         this.vehicleNumber = legBuilder.getVehicleNumber();
         this.vehicleName = legBuilder.getVehicleName();
         this.intermediateStops = legBuilder.getIntermediateStops();
+        this.walkSteps = legBuilder.getWalkSteps();
     }
 
     public LinkedList<Point> getWaypoints() {
@@ -73,6 +76,13 @@ public final class Leg implements Serializable, DataSerializable {
     public LinkedList<TravelPoint> getIntermediateStops() {
         if (intermediateStops != null) {
             return (LinkedList<TravelPoint>) intermediateStops.clone();
+        }
+        return null;
+    }
+
+    public LinkedList<WalkStep> getWalkSteps() {
+        if (walkSteps != null) {
+            return (LinkedList<WalkStep>) walkSteps.clone();
         }
         return null;
     }
@@ -107,7 +117,9 @@ public final class Leg implements Serializable, DataSerializable {
                 &&
                 Objects.equals(vehicleName, that.vehicleName)
                 &&
-                Objects.equals(intermediateStops, that.intermediateStops);
+                Objects.equals(intermediateStops, that.intermediateStops)
+                &&
+                Objects.equals(walkSteps, that.walkSteps);
     }
 
     @Override
@@ -123,7 +135,8 @@ public final class Leg implements Serializable, DataSerializable {
                 travelProvider,
                 vehicleNumber,
                 vehicleName,
-                intermediateStops
+                intermediateStops,
+                walkSteps
         );
     }
 
@@ -165,8 +178,17 @@ public final class Leg implements Serializable, DataSerializable {
         if (Optional.ofNullable(this.intermediateStops).isPresent()) {
             out.writeBoolean(true);
             out.writeInt(this.intermediateStops.size());
-            for (TravelPoint intermediateStop : intermediateStops) {
+            for (TravelPoint intermediateStop : this.intermediateStops) {
                 out.writeObject(intermediateStop);
+            }
+        } else {
+            out.writeBoolean(false);
+        }
+        if (Optional.ofNullable(this.walkSteps).isPresent()) {
+            out.writeBoolean(true);
+            out.writeInt(this.walkSteps.size());
+            for (WalkStep walkStep : this.walkSteps) {
+                out.writeObject(walkStep);
             }
         } else {
             out.writeBoolean(false);
@@ -204,6 +226,13 @@ public final class Leg implements Serializable, DataSerializable {
                 this.intermediateStops.add(in.readObject());
             }
         }
+        if (in.readBoolean()) {
+            this.walkSteps = new LinkedList<>();
+            int stepsSize = in.readInt();
+            for (int i = 0; i < stepsSize; i++) {
+                this.walkSteps.add(in.readObject());
+            }
+        }
     }
 
 
@@ -236,6 +265,8 @@ public final class Leg implements Serializable, DataSerializable {
 
         private LinkedList<TravelPoint> intermediateStops = new LinkedList<>();
 
+        private LinkedList<WalkStep> walkSteps = new LinkedList<>();
+
         public LegBuilder(Leg leg) {
             this.departure = leg.getDeparture();
             this.arrival = leg.getArrival();
@@ -248,6 +279,7 @@ public final class Leg implements Serializable, DataSerializable {
             this.vehicleNumber = leg.getVehicleNumber();
             this.vehicleName = leg.getVehicleName();
             this.intermediateStops = leg.getIntermediateStops();
+            this.walkSteps = leg.getWalkSteps();
         }
 
         public Leg build() {
