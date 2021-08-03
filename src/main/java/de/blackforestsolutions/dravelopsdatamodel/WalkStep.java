@@ -143,6 +143,7 @@ public final class WalkStep implements Serializable, DataSerializable {
         }
         this.isStreetNameGenerated = in.readBoolean();
         this.isPlaceOrTrainPlatform = in.readBoolean();
+        this.circleExit = in.readUTF();
     }
 
     @Setter
