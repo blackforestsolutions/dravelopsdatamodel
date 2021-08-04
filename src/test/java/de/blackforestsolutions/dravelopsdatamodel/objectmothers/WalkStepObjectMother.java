@@ -171,7 +171,7 @@ public class WalkStepObjectMother {
         return new WalkStep.WalkStepBuilder()
                 .setStreetName("Carl-Theodor-Platz")
                 .setDistanceInKilometers(new Distance(0.046d, DEFAULT_TEST_DISTANCE_METRIC))
-                .setStartPoint(new Point.PointBuilder(8.464206d, 49.483550d).build())
+                .setStartPoint(new Point.PointBuilder(8.464206d, 49.483549d).build())
                 .setEndPoint(new Point.PointBuilder(8.464752d, 49.483335d).build())
                 .setWalkingDirection(WalkingDirection.DEPART)
                 .setCompassDirection(CompassDirection.SOUTHEAST)
@@ -197,7 +197,7 @@ public class WalkStepObjectMother {
     public static WalkStep getCarlTheodorPlaceToOttoSelzStreetPathWalkStep() {
         return new WalkStep.WalkStepBuilder()
                 .setStreetName(DEFAULT_TEST_PATH_STREET_NAME)
-                .setDistanceInKilometers(new Distance(0.062, DEFAULT_TEST_DISTANCE_METRIC))
+                .setDistanceInKilometers(new Distance(0.027, DEFAULT_TEST_DISTANCE_METRIC))
                 .setStartPoint(new Point.PointBuilder(8.464599d, 49.483121d).build())
                 .setEndPoint(new Point.PointBuilder(8.465324d, 49.482829d).build())
                 .setWalkingDirection(WalkingDirection.LEFT)
@@ -250,7 +250,7 @@ public class WalkStepObjectMother {
         return new WalkStep.WalkStepBuilder()
                 .setStreetName("Plattform")
                 .setDistanceInKilometers(new Distance(0.005d, DEFAULT_TEST_DISTANCE_METRIC))
-                .setStartPoint(new Point.PointBuilder(8.450661d, 49.480492d).build())
+                .setStartPoint(new Point.PointBuilder(8.450661d, 49.480491d).build())
                 .setEndPoint(new Point.PointBuilder(8.450670d, 49.480525d).build())
                 .setWalkingDirection(WalkingDirection.DEPART)
                 .setCompassDirection(CompassDirection.NORTH)
@@ -288,7 +288,7 @@ public class WalkStepObjectMother {
     public static WalkStep getBerlinerPlaceWalkStep() {
         return new WalkStep.WalkStepBuilder()
                 .setStreetName("Berliner Platz")
-                .setDistanceInKilometers(new Distance(0.047d, DEFAULT_TEST_DISTANCE_METRIC))
+                .setDistanceInKilometers(new Distance(0.160d, DEFAULT_TEST_DISTANCE_METRIC))
                 .setStartPoint(new Point.PointBuilder(8.450745d, 49.480632d).build())
                 .setEndPoint(new Point.PointBuilder(8.452390d, 49.480165d).build())
                 .setWalkingDirection(WalkingDirection.RIGHT)
@@ -307,7 +307,7 @@ public class WalkStepObjectMother {
                 .setWalkingDirection(WalkingDirection.RIGHT)
                 .setCompassDirection(CompassDirection.SOUTH)
                 .setStreetNameGenerated(false)
-                .setPlaceOrTrainPlatform(true)
+                .setPlaceOrTrainPlatform(false)
                 .build();
     }
 
@@ -327,7 +327,7 @@ public class WalkStepObjectMother {
     public static WalkStep getHenyRoosPassageToDestinationPathWalkStep(LinkedList<Point> waypoints) {
         return new WalkStep.WalkStepBuilder()
                 .setStreetName(DEFAULT_TEST_PATH_STREET_NAME)
-                .setDistanceInKilometers(new Distance(0.002d, DEFAULT_TEST_DISTANCE_METRIC))
+                .setDistanceInKilometers(new Distance(0.003d, DEFAULT_TEST_DISTANCE_METRIC))
                 .setStartPoint(new Point.PointBuilder(8.453171d, 49.479153d).build())
                 .setEndPoint(extractEndPointFrom(waypoints))
                 .setWalkingDirection(WalkingDirection.RIGHT)
