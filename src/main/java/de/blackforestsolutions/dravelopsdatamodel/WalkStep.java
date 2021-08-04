@@ -150,11 +150,12 @@ public final class WalkStep implements Serializable, DataSerializable {
     @Getter
     @Accessors(chain = true)
     @JsonPOJOBuilder(withPrefix = "set")
+    @NoArgsConstructor(access = AccessLevel.PUBLIC)
     public static class WalkStepBuilder {
 
-        private Distance distanceInKilometers;
-
         private String streetName = "";
+
+        private Distance distanceInKilometers;
 
         private WalkingDirection walkingDirection;
 
@@ -169,6 +170,18 @@ public final class WalkStep implements Serializable, DataSerializable {
         private boolean isPlaceOrTrainPlatform;
 
         private String circleExit = "";
+
+        public WalkStepBuilder(WalkStep walkStep) {
+            this.streetName = walkStep.getStreetName();
+            this.distanceInKilometers = walkStep.getDistanceInKilometers();
+            this.walkingDirection = walkStep.getWalkingDirection();
+            this.compassDirection = walkStep.getCompassDirection();
+            this.startPoint = walkStep.getStartPoint();
+            this.endPoint = walkStep.getEndPoint();
+            this.isStreetNameGenerated = walkStep.isStreetNameGenerated();
+            this.isPlaceOrTrainPlatform = walkStep.isPlaceOrTrainPlatform();
+            this.circleExit = walkStep.getCircleExit();
+        }
 
         public WalkStep build() {
             return new WalkStep(this);
