@@ -231,7 +231,7 @@ public class LegObjectMother {
     private static LinkedList<WalkStep> getGrosshausbergToFurtwangenIlbenstreetWalkSteps(LinkedList<Point> waypoints) {
         LinkedList<WalkStep> walkSteps = new LinkedList<>();
         walkSteps.add(getAmGrosshausbergStreetWalkStep());
-        walkSteps.add(getAmGrosshausbergStreetToMartinSchmittStreetWalkStep());
+        walkSteps.add(getBFiveHundredWalkStep());
         walkSteps.add(getMartinSchmittStreetWalkStep());
         walkSteps.add(getWeibertMahlerStreetWalkStep());
         walkSteps.add(getBregstreetWalkStep(waypoints));

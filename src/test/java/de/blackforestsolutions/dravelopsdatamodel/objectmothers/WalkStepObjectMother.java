@@ -50,16 +50,17 @@ public class WalkStepObjectMother {
                 .build();
     }
 
-    public static WalkStep getAmGrosshausbergStreetToMartinSchmittStreetWalkStep() {
+    public static WalkStep getBFiveHundredWalkStep() {
         return new WalkStep.WalkStepBuilder()
-                .setStreetName(DEFAULT_TEST_PATH_STREET_NAME)
+                .setStreetName("B 500 [Hinterzarten - Triberg]")
                 .setDistanceInKilometers(new Distance(0.350d, DEFAULT_TEST_DISTANCE_METRIC))
                 .setStartPoint(new Point.PointBuilder(8.208427d, 48.048347d).build())
                 .setEndPoint(new Point.PointBuilder(8.203926d, 48.047521d).build())
-                .setWalkingDirection(WalkingDirection.CONTINUE)
+                .setWalkingDirection(WalkingDirection.CIRCLE_CLOCKWISE)
                 .setCompassDirection(CompassDirection.WEST)
-                .setStreetNameGenerated(true)
+                .setStreetNameGenerated(false)
                 .setPlaceOrTrainPlatform(false)
+                .setCircleExit("1")
                 .build();
     }
 
