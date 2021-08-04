@@ -184,7 +184,7 @@ public class WalkStepObjectMother {
     public static WalkStep getCarlTheodorPlaceToOttoSelzStreetFootpathWalkStep() {
         return new WalkStep.WalkStepBuilder()
                 .setStreetName(DEFAULT_TEST_FOOTPATH_STREET_NAME)
-                .setDistanceInKilometers(new Distance(0.062d, DEFAULT_TEST_DISTANCE_METRIC))
+                .setDistanceInKilometers(new Distance(0.027d, DEFAULT_TEST_DISTANCE_METRIC))
                 .setStartPoint(new Point.PointBuilder(8.464752d, 49.483335d).build())
                 .setEndPoint(new Point.PointBuilder(8.464599d, 49.483121d).build())
                 .setWalkingDirection(WalkingDirection.RIGHT)
@@ -197,7 +197,7 @@ public class WalkStepObjectMother {
     public static WalkStep getCarlTheodorPlaceToOttoSelzStreetPathWalkStep() {
         return new WalkStep.WalkStepBuilder()
                 .setStreetName(DEFAULT_TEST_PATH_STREET_NAME)
-                .setDistanceInKilometers(new Distance(0.027, DEFAULT_TEST_DISTANCE_METRIC))
+                .setDistanceInKilometers(new Distance(0.062d, DEFAULT_TEST_DISTANCE_METRIC))
                 .setStartPoint(new Point.PointBuilder(8.464599d, 49.483121d).build())
                 .setEndPoint(new Point.PointBuilder(8.465324d, 49.482829d).build())
                 .setWalkingDirection(WalkingDirection.LEFT)
