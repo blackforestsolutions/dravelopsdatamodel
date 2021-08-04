@@ -123,7 +123,7 @@ public class WalkStepObjectMother {
                 .setEndPoint(new Point.PointBuilder(7.951626d, 48.089830d).build())
                 .setWalkingDirection(WalkingDirection.SLIGHTLY_LEFT)
                 .setCompassDirection(CompassDirection.SOUTHWEST)
-                .setStreetNameGenerated(false)
+                .setStreetNameGenerated(true)
                 .setPlaceOrTrainPlatform(false)
                 .build();
     }

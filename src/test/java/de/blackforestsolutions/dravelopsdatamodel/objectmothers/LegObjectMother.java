@@ -184,6 +184,7 @@ public class LegObjectMother {
                 .setArrival(arrival)
                 .setPolyline("ad_mHsoqr@E@?AG@AICKGBCSBCPOAE^UJEDCJK@BFIFMDMDO@O@M@QAWCUGa@Is@BGrAAfA{A@A@CNS?C@?BER[@F")
                 .setWaypoints(waypoints)
+                .setWalkSteps(getBerlinerPlaceToDestinationWalkSteps(waypoints))
                 .build();
 
     }
