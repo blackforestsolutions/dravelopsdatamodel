@@ -79,7 +79,9 @@
           "walkingDirection": "RIGHT",
           "compassDirection": "NORTH",
           "circleExit": "3",
-          "streetNameGenerated": false
+          "streetNameGenerated": false,
+          "originPoint": false,
+          "destinationPoint": false
         } ]
   } ],
   "prices" : [ {

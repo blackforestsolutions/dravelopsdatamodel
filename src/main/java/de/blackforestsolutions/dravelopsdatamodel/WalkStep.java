@@ -39,6 +39,10 @@ public final class WalkStep implements Serializable, DataSerializable {
 
     private boolean isStreetNameGenerated;
 
+    private boolean isOriginPoint;
+
+    private boolean isDestinationPoint;
+
     private String circleExit;
 
     private WalkStep(WalkStepBuilder walkStepBuilder) {
@@ -49,6 +53,8 @@ public final class WalkStep implements Serializable, DataSerializable {
         this.walkingDirection = walkStepBuilder.getWalkingDirection();
         this.compassDirection = walkStepBuilder.getCompassDirection();
         this.isStreetNameGenerated = walkStepBuilder.isStreetNameGenerated();
+        this.isOriginPoint = walkStepBuilder.isOriginPoint();
+        this.isDestinationPoint = walkStepBuilder.isDestinationPoint();
         this.circleExit = walkStepBuilder.getCircleExit();
     }
 
@@ -76,6 +82,10 @@ public final class WalkStep implements Serializable, DataSerializable {
                 &&
                 Objects.equals(isStreetNameGenerated, that.isStreetNameGenerated)
                 &&
+                Objects.equals(isOriginPoint, that.isOriginPoint)
+                &&
+                Objects.equals(isDestinationPoint, that.isDestinationPoint)
+                &&
                 Objects.equals(circleExit, that.circleExit);
     }
 
@@ -89,6 +99,8 @@ public final class WalkStep implements Serializable, DataSerializable {
                 walkingDirection,
                 compassDirection,
                 isStreetNameGenerated,
+                isOriginPoint,
+                isDestinationPoint,
                 circleExit
         );
     }
@@ -117,6 +129,8 @@ public final class WalkStep implements Serializable, DataSerializable {
             out.writeBoolean(false);
         }
         out.writeBoolean(this.isStreetNameGenerated);
+        out.writeBoolean(this.isOriginPoint);
+        out.writeBoolean(this.isDestinationPoint);
         out.writeUTF(this.circleExit);
     }
 
@@ -135,6 +149,8 @@ public final class WalkStep implements Serializable, DataSerializable {
             this.compassDirection = CompassDirection.valueOf(in.readUTF());
         }
         this.isStreetNameGenerated = in.readBoolean();
+        this.isOriginPoint = in.readBoolean();
+        this.isDestinationPoint = in.readBoolean();
         this.circleExit = in.readUTF();
     }
 
@@ -159,6 +175,10 @@ public final class WalkStep implements Serializable, DataSerializable {
 
         private boolean isStreetNameGenerated;
 
+        private boolean isOriginPoint;
+
+        private boolean isDestinationPoint;
+
         private String circleExit = "";
 
         public WalkStepBuilder(WalkStep walkStep) {
@@ -169,6 +189,8 @@ public final class WalkStep implements Serializable, DataSerializable {
             this.startPoint = walkStep.getStartPoint();
             this.endPoint = walkStep.getEndPoint();
             this.isStreetNameGenerated = walkStep.isStreetNameGenerated();
+            this.isOriginPoint = walkStep.isOriginPoint();
+            this.isDestinationPoint = walkStep.isDestinationPoint();
             this.circleExit = walkStep.getCircleExit();
         }
 

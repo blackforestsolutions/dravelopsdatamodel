@@ -33,7 +33,23 @@ public class WalkStepObjectMother {
                 .setWalkingDirection(WalkingDirection.RIGHT)
                 .setCompassDirection(CompassDirection.NORTH)
                 .setCircleExit("3")
-                .setStreetNameGenerated(false);
+                .setStreetNameGenerated(false)
+                .setOriginPoint(false)
+                .setDestinationPoint(false);
+    }
+
+    public static WalkStep getAmGrosshausbergEightWalkStep() {
+        return new WalkStep.WalkStepBuilder()
+                .setStreetName("Am Großhausberg 8")
+                .setDistanceInKilometers(new Distance(0.0d, DEFAULT_TEST_DISTANCE_METRIC))
+                .setStartPoint(new Point.PointBuilder(8.210368d, 48.047740d).build())
+                .setEndPoint(new Point.PointBuilder(8.210368d, 48.047740d).build())
+                .setWalkingDirection(WalkingDirection.DEPART)
+                .setCompassDirection(CompassDirection.NORTH)
+                .setStreetNameGenerated(false)
+                .setOriginPoint(true)
+                .setDestinationPoint(false)
+                .build();
     }
 
     public static WalkStep getAmGrosshausbergStreetWalkStep() {
@@ -42,9 +58,11 @@ public class WalkStepObjectMother {
                 .setDistanceInKilometers(new Distance(0.120d, DEFAULT_TEST_DISTANCE_METRIC))
                 .setStartPoint(new Point.PointBuilder(8.210010d, 48.048340d).build())
                 .setEndPoint(new Point.PointBuilder(8.208427d, 48.048347d).build())
-                .setWalkingDirection(WalkingDirection.DEPART)
+                .setWalkingDirection(WalkingDirection.LEFT)
                 .setCompassDirection(CompassDirection.NORTHWEST)
                 .setStreetNameGenerated(false)
+                .setOriginPoint(false)
+                .setDestinationPoint(false)
                 .build();
     }
 
@@ -57,6 +75,8 @@ public class WalkStepObjectMother {
                 .setWalkingDirection(WalkingDirection.CIRCLE_CLOCKWISE)
                 .setCompassDirection(CompassDirection.WEST)
                 .setStreetNameGenerated(false)
+                .setOriginPoint(false)
+                .setDestinationPoint(false)
                 .setCircleExit("1")
                 .build();
     }
@@ -70,6 +90,8 @@ public class WalkStepObjectMother {
                 .setWalkingDirection(WalkingDirection.SLIGHTLY_LEFT)
                 .setCompassDirection(CompassDirection.SOUTHWEST)
                 .setStreetNameGenerated(false)
+                .setOriginPoint(false)
+                .setDestinationPoint(false)
                 .build();
     }
 
@@ -82,6 +104,8 @@ public class WalkStepObjectMother {
                 .setWalkingDirection(WalkingDirection.RIGHT)
                 .setCompassDirection(CompassDirection.NORTHWEST)
                 .setStreetNameGenerated(false)
+                .setOriginPoint(false)
+                .setDestinationPoint(false)
                 .build();
     }
 
@@ -94,6 +118,8 @@ public class WalkStepObjectMother {
                 .setWalkingDirection(WalkingDirection.LEFT)
                 .setCompassDirection(CompassDirection.WEST)
                 .setStreetNameGenerated(false)
+                .setOriginPoint(false)
+                .setDestinationPoint(false)
                 .build();
     }
 
@@ -106,6 +132,8 @@ public class WalkStepObjectMother {
                 .setWalkingDirection(WalkingDirection.DEPART)
                 .setCompassDirection(CompassDirection.WEST)
                 .setStreetNameGenerated(false)
+                .setOriginPoint(false)
+                .setDestinationPoint(false)
                 .build();
     }
 
@@ -118,6 +146,8 @@ public class WalkStepObjectMother {
                 .setWalkingDirection(WalkingDirection.SLIGHTLY_LEFT)
                 .setCompassDirection(CompassDirection.SOUTHWEST)
                 .setStreetNameGenerated(true)
+                .setOriginPoint(false)
+                .setDestinationPoint(false)
                 .build();
     }
 
@@ -130,6 +160,8 @@ public class WalkStepObjectMother {
                 .setWalkingDirection(WalkingDirection.SLIGHTLY_LEFT)
                 .setCompassDirection(CompassDirection.SOUTH)
                 .setStreetNameGenerated(false)
+                .setOriginPoint(false)
+                .setDestinationPoint(false)
                 .build();
     }
 
@@ -142,18 +174,36 @@ public class WalkStepObjectMother {
                 .setWalkingDirection(WalkingDirection.RIGHT)
                 .setCompassDirection(CompassDirection.WEST)
                 .setStreetNameGenerated(false)
+                .setOriginPoint(false)
+                .setDestinationPoint(false)
                 .build();
     }
 
-    public static WalkStep getErwinSickStreetWalkStep(LinkedList<Point> waypoints) {
+    public static WalkStep getErwinSickStreetWalkStep() {
         return new WalkStep.WalkStepBuilder()
                 .setStreetName("Erwin-Sick-Straße")
                 .setDistanceInKilometers(new Distance(0.048d, DEFAULT_TEST_DISTANCE_METRIC))
                 .setStartPoint(new Point.PointBuilder(7.950172d, 48.088572d).build())
-                .setEndPoint(extractEndPointFrom(waypoints))
+                .setEndPoint(new Point.PointBuilder(7.949481d, 48.088994d).build())
                 .setWalkingDirection(WalkingDirection.LEFT)
                 .setCompassDirection(CompassDirection.SOUTHEAST)
                 .setStreetNameGenerated(false)
+                .setOriginPoint(false)
+                .setDestinationPoint(false)
+                .build();
+    }
+
+    public static WalkStep getErwinSickStreetOneWalkStep() {
+        return new WalkStep.WalkStepBuilder()
+                .setStreetName("Erwin-Sick-Straße 1")
+                .setDistanceInKilometers(new Distance(0.0d, DEFAULT_TEST_DISTANCE_METRIC))
+                .setStartPoint(new Point.PointBuilder(7.949481d, 48.088994d).build())
+                .setEndPoint(new Point.PointBuilder(7.949481d, 48.088994d).build())
+                .setWalkingDirection(WalkingDirection.RIGHT)
+                .setCompassDirection(CompassDirection.SOUTH)
+                .setStreetNameGenerated(false)
+                .setOriginPoint(false)
+                .setDestinationPoint(true)
                 .build();
     }
 
@@ -166,6 +216,8 @@ public class WalkStepObjectMother {
                 .setWalkingDirection(WalkingDirection.DEPART)
                 .setCompassDirection(CompassDirection.SOUTHEAST)
                 .setStreetNameGenerated(false)
+                .setOriginPoint(false)
+                .setDestinationPoint(false)
                 .build();
     }
 
@@ -179,6 +231,8 @@ public class WalkStepObjectMother {
                 .setWalkingDirection(WalkingDirection.RIGHT)
                 .setCompassDirection(CompassDirection.SOUTHWEST)
                 .setStreetNameGenerated(true)
+                .setOriginPoint(false)
+                .setDestinationPoint(false)
                 .build();
     }
 
@@ -191,6 +245,8 @@ public class WalkStepObjectMother {
                 .setWalkingDirection(WalkingDirection.LEFT)
                 .setCompassDirection(CompassDirection.SOUTHEAST)
                 .setStreetNameGenerated(true)
+                .setOriginPoint(false)
+                .setDestinationPoint(false)
                 .build();
     }
 
@@ -203,6 +259,8 @@ public class WalkStepObjectMother {
                 .setWalkingDirection(WalkingDirection.RIGHT)
                 .setCompassDirection(CompassDirection.SOUTHWEST)
                 .setStreetNameGenerated(false)
+                .setOriginPoint(false)
+                .setDestinationPoint(false)
                 .build();
     }
 
@@ -215,6 +273,8 @@ public class WalkStepObjectMother {
                 .setWalkingDirection(WalkingDirection.LEFT)
                 .setCompassDirection(CompassDirection.SOUTH)
                 .setStreetNameGenerated(true)
+                .setOriginPoint(false)
+                .setDestinationPoint(false)
                 .build();
     }
 
@@ -227,6 +287,8 @@ public class WalkStepObjectMother {
                 .setWalkingDirection(WalkingDirection.LEFT)
                 .setCompassDirection(CompassDirection.SOUTH)
                 .setStreetNameGenerated(false)
+                .setOriginPoint(false)
+                .setDestinationPoint(false)
                 .build();
     }
 
@@ -239,6 +301,8 @@ public class WalkStepObjectMother {
                 .setWalkingDirection(WalkingDirection.DEPART)
                 .setCompassDirection(CompassDirection.NORTH)
                 .setStreetNameGenerated(true)
+                .setOriginPoint(false)
+                .setDestinationPoint(false)
                 .build();
     }
 
@@ -251,6 +315,8 @@ public class WalkStepObjectMother {
                 .setWalkingDirection(WalkingDirection.LEFT)
                 .setCompassDirection(CompassDirection.NORTH)
                 .setStreetNameGenerated(true)
+                .setOriginPoint(false)
+                .setDestinationPoint(false)
                 .build();
     }
 
@@ -263,6 +329,8 @@ public class WalkStepObjectMother {
                 .setWalkingDirection(WalkingDirection.LEFT)
                 .setCompassDirection(CompassDirection.NORTH)
                 .setStreetNameGenerated(false)
+                .setOriginPoint(false)
+                .setDestinationPoint(false)
                 .build();
     }
 
@@ -275,6 +343,8 @@ public class WalkStepObjectMother {
                 .setWalkingDirection(WalkingDirection.RIGHT)
                 .setCompassDirection(CompassDirection.EAST)
                 .setStreetNameGenerated(false)
+                .setOriginPoint(false)
+                .setDestinationPoint(false)
                 .build();
     }
 
@@ -287,6 +357,8 @@ public class WalkStepObjectMother {
                 .setWalkingDirection(WalkingDirection.RIGHT)
                 .setCompassDirection(CompassDirection.SOUTH)
                 .setStreetNameGenerated(false)
+                .setOriginPoint(false)
+                .setDestinationPoint(false)
                 .build();
     }
 
@@ -299,6 +371,8 @@ public class WalkStepObjectMother {
                 .setWalkingDirection(WalkingDirection.SLIGHTLY_LEFT)
                 .setCompassDirection(CompassDirection.SOUTHEAST)
                 .setStreetNameGenerated(true)
+                .setOriginPoint(false)
+                .setDestinationPoint(false)
                 .build();
     }
 
@@ -311,6 +385,8 @@ public class WalkStepObjectMother {
                 .setWalkingDirection(WalkingDirection.RIGHT)
                 .setCompassDirection(CompassDirection.SOUTHWEST)
                 .setStreetNameGenerated(false)
+                .setOriginPoint(false)
+                .setDestinationPoint(false)
                 .build();
     }
 
