@@ -39,8 +39,6 @@ public final class WalkStep implements Serializable, DataSerializable {
 
     private boolean isStreetNameGenerated;
 
-    private boolean isPlaceOrTrainPlatform;
-
     private String circleExit;
 
     private WalkStep(WalkStepBuilder walkStepBuilder) {
@@ -51,7 +49,6 @@ public final class WalkStep implements Serializable, DataSerializable {
         this.walkingDirection = walkStepBuilder.getWalkingDirection();
         this.compassDirection = walkStepBuilder.getCompassDirection();
         this.isStreetNameGenerated = walkStepBuilder.isStreetNameGenerated();
-        this.isPlaceOrTrainPlatform = walkStepBuilder.isPlaceOrTrainPlatform();
         this.circleExit = walkStepBuilder.getCircleExit();
     }
 
@@ -79,8 +76,6 @@ public final class WalkStep implements Serializable, DataSerializable {
                 &&
                 Objects.equals(isStreetNameGenerated, that.isStreetNameGenerated)
                 &&
-                Objects.equals(isPlaceOrTrainPlatform, that.isPlaceOrTrainPlatform)
-                &&
                 Objects.equals(circleExit, that.circleExit);
     }
 
@@ -94,7 +89,6 @@ public final class WalkStep implements Serializable, DataSerializable {
                 walkingDirection,
                 compassDirection,
                 isStreetNameGenerated,
-                isPlaceOrTrainPlatform,
                 circleExit
         );
     }
@@ -123,7 +117,6 @@ public final class WalkStep implements Serializable, DataSerializable {
             out.writeBoolean(false);
         }
         out.writeBoolean(this.isStreetNameGenerated);
-        out.writeBoolean(this.isPlaceOrTrainPlatform);
         out.writeUTF(this.circleExit);
     }
 
@@ -142,7 +135,6 @@ public final class WalkStep implements Serializable, DataSerializable {
             this.compassDirection = CompassDirection.valueOf(in.readUTF());
         }
         this.isStreetNameGenerated = in.readBoolean();
-        this.isPlaceOrTrainPlatform = in.readBoolean();
         this.circleExit = in.readUTF();
     }
 
@@ -167,8 +159,6 @@ public final class WalkStep implements Serializable, DataSerializable {
 
         private boolean isStreetNameGenerated;
 
-        private boolean isPlaceOrTrainPlatform;
-
         private String circleExit = "";
 
         public WalkStepBuilder(WalkStep walkStep) {
@@ -179,7 +169,6 @@ public final class WalkStep implements Serializable, DataSerializable {
             this.startPoint = walkStep.getStartPoint();
             this.endPoint = walkStep.getEndPoint();
             this.isStreetNameGenerated = walkStep.isStreetNameGenerated();
-            this.isPlaceOrTrainPlatform = walkStep.isPlaceOrTrainPlatform();
             this.circleExit = walkStep.getCircleExit();
         }
 
