@@ -7,11 +7,9 @@ import de.blackforestsolutions.dravelopsdatamodel.WalkingDirection;
 import org.springframework.data.geo.Distance;
 import org.springframework.data.geo.Metrics;
 
-import java.util.LinkedList;
-import java.util.Optional;
-
 import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.PointObjectMother.getAmGrosshausbergPoint;
 import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.PointObjectMother.getSickAgPoint;
+import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.WaypointsObjectMother.getExampleWaypoints;
 
 public class WalkStepObjectMother {
 
@@ -109,12 +107,12 @@ public class WalkStepObjectMother {
                 .build();
     }
 
-    public static WalkStep getBregstreetWalkStep(LinkedList<Point> waypoints) {
+    public static WalkStep getBregstreetWalkStep() {
         return new WalkStep.WalkStepBuilder()
                 .setStreetName("Bregstraße")
                 .setDistanceInKilometers(new Distance(0.219d, DEFAULT_TEST_DISTANCE_METRIC))
                 .setStartPoint(new Point.PointBuilder(8.201638d, 48.048698d).build())
-                .setEndPoint(extractEndPointFrom(waypoints))
+                .setEndPoint(getExampleWaypoints().getLast())
                 .setWalkingDirection(WalkingDirection.LEFT)
                 .setCompassDirection(CompassDirection.WEST)
                 .setStreetNameGenerated(false)
@@ -278,12 +276,12 @@ public class WalkStepObjectMother {
                 .build();
     }
 
-    public static WalkStep getPlatformThreeWalkStep(LinkedList<Point> waypoints) {
+    public static WalkStep getPlatformThreeWalkStep() {
         return new WalkStep.WalkStepBuilder()
                 .setStreetName("Plattform 3")
                 .setDistanceInKilometers(new Distance(0.046d, DEFAULT_TEST_DISTANCE_METRIC))
                 .setStartPoint(new Point.PointBuilder(8.463937d, 49.482134d).build())
-                .setEndPoint(extractEndPointFrom(waypoints))
+                .setEndPoint(getExampleWaypoints().getLast())
                 .setWalkingDirection(WalkingDirection.LEFT)
                 .setCompassDirection(CompassDirection.SOUTH)
                 .setStreetNameGenerated(false)
@@ -376,25 +374,18 @@ public class WalkStepObjectMother {
                 .build();
     }
 
-    public static WalkStep getHenyRoosPassageToDestinationPathWalkStep(LinkedList<Point> waypoints) {
+    public static WalkStep getHenyRoosPassageToDestinationPathWalkStep() {
         return new WalkStep.WalkStepBuilder()
                 .setStreetName(DEFAULT_TEST_PATH_STREET_NAME)
                 .setDistanceInKilometers(new Distance(0.003d, DEFAULT_TEST_DISTANCE_METRIC))
                 .setStartPoint(new Point.PointBuilder(8.453171d, 49.479153d).build())
-                .setEndPoint(extractEndPointFrom(waypoints))
+                .setEndPoint(getExampleWaypoints().getLast())
                 .setWalkingDirection(WalkingDirection.RIGHT)
                 .setCompassDirection(CompassDirection.SOUTHWEST)
                 .setStreetNameGenerated(false)
                 .setOriginPoint(false)
                 .setDestinationPoint(false)
                 .build();
-    }
-
-    private static Point extractEndPointFrom(LinkedList<Point> waypoints) {
-        if (Optional.ofNullable(waypoints).isEmpty() || waypoints.size() == 0) {
-            return null;
-        }
-        return new Point.PointBuilder(waypoints.getLast().getX(), waypoints.getLast().getY()).build();
     }
 
 }
