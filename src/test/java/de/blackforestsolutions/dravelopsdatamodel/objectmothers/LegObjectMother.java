@@ -10,6 +10,7 @@ import java.util.LinkedList;
 
 import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.TravelPointObjectMother.*;
 import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.TravelProviderObjectMother.*;
+import static de.blackforestsolutions.dravelopsdatamodel.objectmothers.WalkStepObjectMother.*;
 
 public class LegObjectMother {
 
@@ -32,7 +33,8 @@ public class LegObjectMother {
                 .setTravelProvider(getTravelProviderWithNoEmptyFields())
                 .setVehicleNumber("7020")
                 .setVehicleName("Furtwangen - Triberg")
-                .setIntermediateStops(getIntermediateStops());
+                .setIntermediateStops(getIntermediateStops())
+                .setWalkSteps(getWalkSteps());
     }
 
     public static Leg getLegWithNoEmptyFieldsByVehicleType(VehicleType vehicleType) {
@@ -83,6 +85,7 @@ public class LegObjectMother {
                 .setArrival(arrival)
                 .setPolyline("mtodHyhpo@@HVbDPVHlABAl@QRIDN|@Sd@Gx@Ob@EDp@FfAD~@@JDd@Fd@@JPt@v@{@LM")
                 .setWaypoints(waypoints)
+                .setWalkSteps(getGrosshausbergToFurtwangenIlbenstreetWalkSteps())
                 .build();
     }
 
@@ -133,6 +136,7 @@ public class LegObjectMother {
                 .setArrival(arrival)
                 .setPolyline("mtodHyhpo@@HVbDPVHlABAl@QRIDN|@Sd@Gx@Ob@EDp@FfAD~@@JDd@Fd@@JPt@v@{@LM")
                 .setWaypoints(waypoints)
+                .setWalkSteps(getWaldkirchKastelberghalleToSickWalkSteps())
                 .build();
     }
 
@@ -147,6 +151,7 @@ public class LegObjectMother {
                 .setArrival(arrival)
                 .setPolyline("cw_mHgdtr@h@mBFFZVD?BIVs@Pm@Le@BDLR`@l@X\\NLNPDJDJ@D@DBJ@J?H@L?JAL?HJBCDALB?@@Ir@Gb@CV")
                 .setWaypoints(waypoints)
+                .setWalkSteps(getMannheimHbfToMannheimUniversityWalkSteps())
                 .build();
     }
 
@@ -179,6 +184,7 @@ public class LegObjectMother {
                 .setArrival(arrival)
                 .setPolyline("ad_mHsoqr@E@?AG@AICKGBCSBCPOAE^UJEDCJK@BFIFMDMDO@O@M@QAWCUGa@Is@BGrAAfA{A@A@CNS?C@?BER[@F")
                 .setWaypoints(waypoints)
+                .setWalkSteps(getBerlinerPlaceToDestinationWalkSteps())
                 .build();
 
     }
@@ -214,6 +220,57 @@ public class LegObjectMother {
         LinkedList<TravelPoint> intermediateStops = new LinkedList<>();
         intermediateStops.add(getKonradAdenauerBrTravelPoint());
         return intermediateStops;
+    }
+
+    private static LinkedList<WalkStep> getWalkSteps() {
+        LinkedList<WalkStep> walkSteps = new LinkedList<>();
+        walkSteps.add(getWalkStepWithNoEmptyFields());
+        return walkSteps;
+    }
+
+    private static LinkedList<WalkStep> getGrosshausbergToFurtwangenIlbenstreetWalkSteps() {
+        LinkedList<WalkStep> walkSteps = new LinkedList<>();
+        walkSteps.add(getAmGrosshausbergEightWalkStep());
+        walkSteps.add(getAmGrosshausbergStreetWalkStep());
+        walkSteps.add(getBFiveHundredWalkStep());
+        walkSteps.add(getMartinSchmittStreetWalkStep());
+        walkSteps.add(getWeibertMahlerStreetWalkStep());
+        walkSteps.add(getBregstreetWalkStep());
+        return walkSteps;
+    }
+
+    private static LinkedList<WalkStep> getWaldkirchKastelberghalleToSickWalkSteps() {
+        LinkedList<WalkStep> walkSteps = new LinkedList<>();
+        walkSteps.add(getFreiburgerStreetWalkStep());
+        walkSteps.add(getFreiburgerStreetToUnterfelderPathWalkStep());
+        walkSteps.add(getUnterfelderPathWalkStep());
+        walkSteps.add(getHansjakobStreetWalkStep());
+        walkSteps.add(getErwinSickStreetWalkStep());
+        walkSteps.add(getErwinSickStreetOneWalkStep());
+        return walkSteps;
+    }
+
+    private static LinkedList<WalkStep> getMannheimHbfToMannheimUniversityWalkSteps() {
+        LinkedList<WalkStep> walkSteps = new LinkedList<>();
+        walkSteps.add(getCarlTheodorPlaceWalkStep());
+        walkSteps.add(getCarlTheodorPlaceToOttoSelzStreetFootpathWalkStep());
+        walkSteps.add(getCarlTheodorPlaceToOttoSelzStreetPathWalkStep());
+        walkSteps.add(getOttoSelzStreetWalkStep());
+        walkSteps.add(getOttoSelzStreetToPlatformThreeWalkStep());
+        walkSteps.add(getPlatformThreeWalkStep());
+        return walkSteps;
+    }
+
+    private static LinkedList<WalkStep> getBerlinerPlaceToDestinationWalkSteps() {
+        LinkedList<WalkStep> walkSteps = new LinkedList<>();
+        walkSteps.add(getPlatformWalkStep());
+        walkSteps.add(getPlatformToLudwigStreetWalkStep());
+        walkSteps.add(getLudwigStreetWalkStep());
+        walkSteps.add(getBerlinerPlaceWalkStep());
+        walkSteps.add(getHenyRoosPassageWalkStep());
+        walkSteps.add(getHenyRoosPassageToDestinationFootpathWalkStep());
+        walkSteps.add(getHenyRoosPassageToDestinationPathWalkStep());
+        return walkSteps;
     }
 
 }
