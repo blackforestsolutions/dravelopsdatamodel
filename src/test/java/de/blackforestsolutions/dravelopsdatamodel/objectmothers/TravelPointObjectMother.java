@@ -298,6 +298,7 @@ public class TravelPointObjectMother {
 
     public static TravelPoint getFurtwangenTownChurchTravelPoint() {
         return new TravelPoint.TravelPointBuilder()
+                .setStopId("1:de:08326:1558")
                 .setName("Furtwangen Stadtkirche")
                 .setPoint(new Point.PointBuilder(8.20523d, 48.050348d).build())
                 .setDistanceInKilometers(new Distance(0.367d, Metrics.KILOMETERS))
@@ -306,6 +307,7 @@ public class TravelPointObjectMother {
 
     public static TravelPoint getFurtwangenGerwigSchoolTravelPoint() {
         return new TravelPoint.TravelPointBuilder()
+                .setStopId("1:de:08326:1916")
                 .setName("Furtwangen Robert-Gerwigschule")
                 .setPoint(new Point.PointBuilder(8.21406d, 48.047675d).build())
                 .setDistanceInKilometers(new Distance(0.369d, Metrics.KILOMETERS))
@@ -314,6 +316,7 @@ public class TravelPointObjectMother {
 
     public static TravelPoint getFurtwangenRabenStreetTravelPoint() {
         return new TravelPoint.TravelPointBuilder()
+                .setStopId("1:de:08326:1295")
                 .setName("Furtwangen Rabenstraße")
                 .setPoint(new Point.PointBuilder(8.19851d, 48.049765d).build())
                 .setDistanceInKilometers(new Distance(0.808d, Metrics.KILOMETERS))
@@ -322,6 +325,7 @@ public class TravelPointObjectMother {
 
     public static TravelPoint getFurtwangenFriedrichSchoolTravelPoint() {
         return new TravelPoint.TravelPointBuilder()
+                .setStopId("1:de:08326:1626")
                 .setName("Furtwangen Friedrichschule")
                 .setPoint(new Point.PointBuilder(8.204951d, 48.054017d).build())
                 .setDistanceInKilometers(new Distance(0.701d, Metrics.KILOMETERS))
@@ -330,6 +334,7 @@ public class TravelPointObjectMother {
 
     public static TravelPoint getFurtwangenAllmendStreetTravelPoint() {
         return new TravelPoint.TravelPointBuilder()
+                .setStopId("1:de:08326:1737")
                 .setName("Furtwangen Allmendstraße")
                 .setPoint(new Point.PointBuilder(8.21424d, 48.049765d).build())
                 .setDistanceInKilometers(new Distance(0.404d, Metrics.KILOMETERS))
@@ -338,6 +343,7 @@ public class TravelPointObjectMother {
 
     public static TravelPoint getFurtwangenOttoHahnSchoolTravelPoint() {
         return new TravelPoint.TravelPointBuilder()
+                .setStopId("1:de:08326:491")
                 .setName("Furtwangen Otto-Hahn-Gym.")
                 .setPoint(new Point.PointBuilder(8.197585d, 48.051591d).build())
                 .setDistanceInKilometers(new Distance(0.933d, Metrics.KILOMETERS))
@@ -346,6 +352,7 @@ public class TravelPointObjectMother {
 
     public static TravelPoint getFurtwangenRoessleTravelPoint() {
         return new TravelPoint.TravelPointBuilder()
+                .setStopId("1:de:08326:1181")
                 .setName("Furtwangen Rößleplatz")
                 .setPoint(new Point.PointBuilder(8.207098d, 48.052768d).build())
                 .setDistanceInKilometers(new Distance(0.511d, Metrics.KILOMETERS))
@@ -354,6 +361,7 @@ public class TravelPointObjectMother {
 
     public static TravelPoint getFurtwangenIlbenStreetTravelPoint() {
         return new TravelPoint.TravelPointBuilder()
+                .setStopId("1:de:08326:490")
                 .setName("Furtwangen Ilbenstraße")
                 .setPoint(new Point.PointBuilder(8.198995d, 48.047922d).build())
                 .setDistanceInKilometers(new Distance(0.759d, Metrics.KILOMETERS))
