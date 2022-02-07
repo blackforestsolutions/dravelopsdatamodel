@@ -31,7 +31,7 @@ public final class TravelPoint implements Serializable, DataSerializable {
      */
     private String stopId;
 
-    private int stopSequence;
+    private long stopSequence;
 
     private String name;
 
@@ -87,7 +87,7 @@ public final class TravelPoint implements Serializable, DataSerializable {
     @Override
     public void writeData(ObjectDataOutput out) throws IOException {
         out.writeUTF(this.stopId);
-        out.writeInt(this.stopSequence);
+        out.writeLong(this.stopSequence);
         out.writeUTF(this.name);
         out.writeObject(this.point);
         if (Optional.ofNullable(this.arrivalTime).isPresent()) {
@@ -114,7 +114,7 @@ public final class TravelPoint implements Serializable, DataSerializable {
     @Override
     public void readData(ObjectDataInput in) throws IOException {
         this.stopId = in.readUTF();
-        this.stopSequence = in.readInt();
+        this.stopSequence = in.readLong();
         this.name = in.readUTF();
         this.point = in.readObject();
         if (in.readBoolean()) {
@@ -141,7 +141,7 @@ public final class TravelPoint implements Serializable, DataSerializable {
          */
         private String stopId = "";
 
-        private int stopSequence = -1;
+        private long stopSequence = -1L;
 
         private String name = "";
 
