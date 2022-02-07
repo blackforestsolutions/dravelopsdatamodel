@@ -27,8 +27,14 @@ public final class Leg implements Serializable, DataSerializable {
 
     private static final long serialVersionUID = 5393486245718564673L;
 
+    /**
+     * The routeId is not necessarily unique!
+     */
     private String routeId;
 
+    /**
+     * The tripId is not necessarily unique!
+     */
     private String tripId;
 
     private TravelPoint departure;
@@ -253,8 +259,14 @@ public final class Leg implements Serializable, DataSerializable {
     @NoArgsConstructor(access = AccessLevel.PUBLIC)
     public static class LegBuilder {
 
+        /**
+         * The routeId is not necessarily unique!
+         */
         private String routeId = "";
 
+        /**
+         * The tripId is not necessarily unique!
+         */
         private String tripId = "";
 
         private TravelPoint departure;

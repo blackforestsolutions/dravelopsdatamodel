@@ -26,6 +26,9 @@ public final class TravelPoint implements Serializable, DataSerializable {
 
     private static final long serialVersionUID = 6106269076155338045L;
 
+    /**
+     * The stopId is not necessarily unique!
+     */
     private String stopId;
 
     private int stopSequence;
@@ -133,6 +136,9 @@ public final class TravelPoint implements Serializable, DataSerializable {
     @JsonPOJOBuilder(withPrefix = "set")
     public static class TravelPointBuilder {
 
+        /**
+         * The stopId is not necessarily unique!
+         */
         private String stopId = "";
 
         private int stopSequence = -1;
