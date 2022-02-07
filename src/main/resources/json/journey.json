@@ -2,7 +2,11 @@
   "id": "5f7df5c4-3b55-11ea-b77f-2e728ce88125",
   "language": "de",
   "legs" : [ {
+      "routeId": "1:7-272-j1j-125",
+      "tripId": "1:100.T0.7-272-j1j-1.12043.R",
       "departure" : {
+        "stopId": "1:de:08326:123",
+        "stopSequence": 6,
         "name" : "Furtwangen",
         "point" : {
           "x" : 48.05259,
@@ -17,6 +21,8 @@
         }
       },
       "arrival" : {
+        "stopId": "1:de:08326:123",
+        "stopSequence": 6,
         "name" : "Furtwangen",
         "point" : {
           "x" : 48.05259,
@@ -48,6 +54,8 @@
       "vehicleNumber" : "7020",
       "vehicleName" : "Furtwangen - Triberg",
       "intermediateStops" : [ {
+        "stopId": "1:de:08326:123",
+        "stopSequence": 6,
         "name" : "Furtwangen",
         "point" : {
           "x" : 48.05259,

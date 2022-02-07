@@ -1,4 +1,6 @@
 {
+  "stopId": "1:de:08326:123",
+  "stopSequence": 6,
   "name" : "Furtwangen",
   "point" : {
     "x" : 48.05259,

@@ -40,6 +40,19 @@ class TravelPointMockIT {
     }
 
     @Test
+    void test_travelPoint_with_stopId_as_null_to_be_dataSerializable() {
+        TravelPoint.TravelPointBuilder testData = getTravelPointBuilderWithNoEmptyFields();
+        testData.setStopId(null);
+        UUID testKey = UUID.randomUUID();
+        IMap<UUID, TravelPoint> testMap = hazelcastMock.getMap("travel-points");
+
+        testMap.put(testKey, testData.build());
+        TravelPoint result = testMap.get(testKey);
+
+        assertThat(result).isEqualToComparingFieldByFieldRecursively(testData.build());
+    }
+
+    @Test
     void test_travelPoint_with_name_as_null_to_be_dataSerializable() {
         TravelPoint.TravelPointBuilder testData = getTravelPointBuilderWithNoEmptyFields();
         testData.setName(null);

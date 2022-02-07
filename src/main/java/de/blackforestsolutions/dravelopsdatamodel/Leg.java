@@ -27,6 +27,10 @@ public final class Leg implements Serializable, DataSerializable {
 
     private static final long serialVersionUID = 5393486245718564673L;
 
+    private String routeId;
+
+    private String tripId;
+
     private TravelPoint departure;
 
     private TravelPoint arrival;
@@ -52,6 +56,8 @@ public final class Leg implements Serializable, DataSerializable {
     private LinkedList<WalkStep> walkSteps;
 
     private Leg(LegBuilder legBuilder) {
+        this.routeId = legBuilder.getRouteId();
+        this.tripId = legBuilder.getTripId();
         this.departure = legBuilder.getDeparture();
         this.arrival = legBuilder.getArrival();
         this.delayInMinutes = legBuilder.getDelayInMinutes();
@@ -142,6 +148,8 @@ public final class Leg implements Serializable, DataSerializable {
 
     @Override
     public void writeData(ObjectDataOutput out) throws IOException {
+        out.writeUTF(this.routeId);
+        out.writeUTF(this.tripId);
         out.writeObject(this.departure);
         out.writeObject(this.arrival);
         if (Optional.ofNullable(this.delayInMinutes).isPresent()) {
@@ -197,6 +205,8 @@ public final class Leg implements Serializable, DataSerializable {
 
     @Override
     public void readData(ObjectDataInput in) throws IOException {
+        this.routeId = in.readUTF();
+        this.tripId = in.readUTF();
         this.departure = in.readObject();
         this.arrival = in.readObject();
         if (in.readBoolean()) {
@@ -243,6 +253,10 @@ public final class Leg implements Serializable, DataSerializable {
     @NoArgsConstructor(access = AccessLevel.PUBLIC)
     public static class LegBuilder {
 
+        private String routeId = "";
+
+        private String tripId = "";
+
         private TravelPoint departure;
 
         private TravelPoint arrival;
@@ -268,6 +282,8 @@ public final class Leg implements Serializable, DataSerializable {
         private LinkedList<WalkStep> walkSteps = new LinkedList<>();
 
         public LegBuilder(Leg leg) {
+            this.routeId = leg.getRouteId();
+            this.tripId = leg.getTripId();
             this.departure = leg.getDeparture();
             this.arrival = leg.getArrival();
             this.delayInMinutes = leg.getDelayInMinutes();

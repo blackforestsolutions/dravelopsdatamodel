@@ -23,6 +23,8 @@ public class LegObjectMother {
 
     public static Leg.LegBuilder getLegBuilderWithNoEmptyFields() {
         return new Leg.LegBuilder()
+                .setRouteId("1:7-272-j1j-125")
+                .setTripId("1:100.T0.7-272-j1j-1.12043.R")
                 .setDeparture(getTravelPointWithNoEmptyFields())
                 .setArrival(getTravelPointWithNoEmptyFields())
                 .setDelayInMinutes(Duration.ofSeconds(60L))
@@ -91,8 +93,10 @@ public class LegObjectMother {
 
     public static Leg getFurtwangenIlbenstreetToBleibachLeg(LinkedList<Point> waypoints) {
         TravelPoint departure = getFurtwangenIlbenstreetTravelPoint();
-        TravelPoint arrival = getBleibachSevTravelPoint();
+        TravelPoint arrival = getBleibachSevTravelPoint(37);
         return new Leg.LegBuilder()
+                .setRouteId("1:7-272-j1j-1")
+                .setTripId("1:100.T0.7-272-j1j-1.30.R")
                 .setDelayInMinutes(Duration.ZERO)
                 .setDistanceInKilometers(new Distance(26.394d, DEFAULT_TEST_DISTANCE_METRIC))
                 .setVehicleType(VehicleType.BUS)
@@ -108,9 +112,11 @@ public class LegObjectMother {
     }
 
     public static Leg getBleibachToWaldkirchKastelberghalleLeg(LinkedList<Point> waypoints) {
-        TravelPoint departure = getBleibachSevTravelPoint();
+        TravelPoint departure = getBleibachSevTravelPoint(2);
         TravelPoint arrival = getWaldkirchKastelberghalleTravelPoint();
         return new Leg.LegBuilder()
+                .setRouteId("1:7-201-j1j-1")
+                .setTripId("1:32.T0.7-201-j1j-1.10.H")
                 .setDelayInMinutes(Duration.ZERO)
                 .setDistanceInKilometers(new Distance(6.784d, DEFAULT_TEST_DISTANCE_METRIC))
                 .setVehicleType(VehicleType.BUS)
@@ -159,6 +165,8 @@ public class LegObjectMother {
         TravelPoint departure = getMannheimUniversityTravelPoint();
         TravelPoint arrival = getBerlinerPlaceTravelPoint();
         return new Leg.LegBuilder()
+                .setRouteId("1:4")
+                .setTripId("1:4-280-4004-89100")
                 .setDelayInMinutes(Duration.ZERO)
                 .setDistanceInKilometers(new Distance(0.956d, DEFAULT_TEST_DISTANCE_METRIC))
                 .setVehicleType(VehicleType.TRAM)

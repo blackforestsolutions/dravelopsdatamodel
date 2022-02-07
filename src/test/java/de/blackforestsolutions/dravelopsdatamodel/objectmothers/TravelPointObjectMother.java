@@ -17,6 +17,8 @@ public class TravelPointObjectMother {
 
     public static TravelPoint.TravelPointBuilder getTravelPointBuilderWithNoEmptyFields() {
         return new TravelPoint.TravelPointBuilder()
+                .setStopId("1:de:08326:123")
+                .setStopSequence(6)
                 .setName("Furtwangen")
                 .setPoint(new Point.PointBuilder(48.052590d, 8.207245d).build())
                 .setArrivalTime(ZonedDateTime.parse("2020-09-27T10:15:30+02:00[Europe/Berlin]"))
@@ -73,6 +75,8 @@ public class TravelPointObjectMother {
 
     public static TravelPoint getFurtwangenIlbenstreetTravelPoint() {
         return new TravelPoint.TravelPointBuilder()
+                .setStopId("1:de:08326:490")
+                .setStopSequence(6)
                 .setName("Furtwangen Ilbenstraße")
                 .setPoint(new Point.PointBuilder(8.198995d, 48.047922d).build())
                 .setArrivalTime(ZonedDateTime.parse("2020-09-30T13:20:59+02:00[Europe/Berlin]"))
@@ -80,8 +84,10 @@ public class TravelPointObjectMother {
                 .build();
     }
 
-    public static TravelPoint getBleibachSevTravelPoint() {
+    public static TravelPoint getBleibachSevTravelPoint(int stopSequence) {
         return new TravelPoint.TravelPointBuilder()
+                .setStopId("1:de:08316:11560:1")
+                .setStopSequence(stopSequence)
                 .setName("Bleibach SEV")
                 .setPoint(new Point.PointBuilder(7.998644d, 48.127233d).build())
                 .setArrivalTime(ZonedDateTime.parse("2020-09-30T14:05+02:00[Europe/Berlin]"))
@@ -91,6 +97,8 @@ public class TravelPointObjectMother {
 
     public static TravelPoint getGuetenbachTownHallTravelPoint() {
         return new TravelPoint.TravelPointBuilder()
+                .setStopId("1:de:08326:482")
+                .setStopSequence(15)
                 .setName("Gütenbach Rathaus")
                 .setPoint(new Point.PointBuilder(8.138826d, 48.044378d).build())
                 .setArrivalTime(ZonedDateTime.parse("2020-09-30T13:31+02:00[Europe/Berlin]"))
@@ -100,6 +108,8 @@ public class TravelPointObjectMother {
 
     public static TravelPoint getSimonswaldTownHallTravelPoint() {
         return new TravelPoint.TravelPointBuilder()
+                .setStopId("1:de:08316:462")
+                .setStopSequence(28)
                 .setName("Simonswald Rathaus")
                 .setPoint(new Point.PointBuilder(8.056936d, 48.100225d).build())
                 .setArrivalTime(ZonedDateTime.parse("2020-09-30T13:52+02:00[Europe/Berlin]"))
@@ -109,6 +119,8 @@ public class TravelPointObjectMother {
 
     public static TravelPoint getWaldkirchKastelberghalleTravelPoint() {
         return new TravelPoint.TravelPointBuilder()
+                .setStopId("1:de:08316:811")
+                .setStopSequence(13)
                 .setName("Waldkirch Kastelberghalle")
                 .setPoint(new Point.PointBuilder(7.952947d, 48.090458d).build())
                 .setArrivalTime(ZonedDateTime.parse("2020-09-30T14:29+02:00[Europe/Berlin]"))
@@ -118,6 +130,8 @@ public class TravelPointObjectMother {
 
     public static TravelPoint getKollnauTrainStationTravelPoint() {
         return new TravelPoint.TravelPointBuilder()
+                .setStopId("1:de:08316:6533:4")
+                .setStopSequence(9)
                 .setName("Kollnau Bf (Bus)")
                 .setPoint(new Point.PointBuilder(7.972467d, 48.101665d).build())
                 .setArrivalTime(ZonedDateTime.parse("2020-09-30T14:22+02:00[Europe/Berlin]"))
@@ -127,6 +141,8 @@ public class TravelPointObjectMother {
 
     public static TravelPoint getWaldkirchTownCenterTravelPoint() {
         return new TravelPoint.TravelPointBuilder()
+                .setStopId("1:de:08316:846")
+                .setStopSequence(11)
                 .setName("Waldkirch Stadtmitte")
                 .setPoint(new Point.PointBuilder(7.961104d, 48.093896d).build())
                 .setArrivalTime(ZonedDateTime.parse("2020-09-30T14:26+02:00[Europe/Berlin]"))
@@ -152,6 +168,8 @@ public class TravelPointObjectMother {
 
     public static TravelPoint getMannheimUniversityTravelPoint() {
         return new TravelPoint.TravelPointBuilder()
+                .setStopId("1:247103")
+                .setStopSequence(27)
                 .setName("Universität")
                 .setPlatform("C")
                 .setPoint(new Point.PointBuilder(8.463348d, 49.482188d).build())
@@ -162,6 +180,8 @@ public class TravelPointObjectMother {
 
     public static TravelPoint getBerlinerPlaceTravelPoint() {
         return new TravelPoint.TravelPointBuilder()
+                .setStopId("1:206602")
+                .setStopSequence(29)
                 .setName("Berliner Platz")
                 .setPlatform("B")
                 .setPoint(new Point.PointBuilder(8.45065, 49.48049).build())
@@ -172,6 +192,8 @@ public class TravelPointObjectMother {
 
     public static TravelPoint getKonradAdenauerBrTravelPoint() {
         return new TravelPoint.TravelPointBuilder()
+                .setStopId("1:242602")
+                .setStopSequence(28)
                 .setName("Konrad-Adenauer-Br.")
                 .setPlatform("B")
                 .setPoint(new Point.PointBuilder(8.458577, 49.482392).build())

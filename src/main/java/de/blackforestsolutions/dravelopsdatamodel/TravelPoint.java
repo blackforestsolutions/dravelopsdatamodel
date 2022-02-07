@@ -26,6 +26,10 @@ public final class TravelPoint implements Serializable, DataSerializable {
 
     private static final long serialVersionUID = 6106269076155338045L;
 
+    private String stopId;
+
+    private int stopSequence;
+
     private String name;
 
     private Point point;
@@ -39,6 +43,8 @@ public final class TravelPoint implements Serializable, DataSerializable {
     private Distance distanceInKilometers;
 
     private TravelPoint(TravelPointBuilder travelPointBuilder) {
+        this.stopId = travelPointBuilder.getStopId();
+        this.stopSequence = travelPointBuilder.getStopSequence();
         this.name = travelPointBuilder.getName();
         this.point = travelPointBuilder.getPoint();
         this.arrivalTime = travelPointBuilder.getArrivalTime();
@@ -77,6 +83,8 @@ public final class TravelPoint implements Serializable, DataSerializable {
 
     @Override
     public void writeData(ObjectDataOutput out) throws IOException {
+        out.writeUTF(this.stopId);
+        out.writeInt(this.stopSequence);
         out.writeUTF(this.name);
         out.writeObject(this.point);
         if (Optional.ofNullable(this.arrivalTime).isPresent()) {
@@ -102,6 +110,8 @@ public final class TravelPoint implements Serializable, DataSerializable {
 
     @Override
     public void readData(ObjectDataInput in) throws IOException {
+        this.stopId = in.readUTF();
+        this.stopSequence = in.readInt();
         this.name = in.readUTF();
         this.point = in.readObject();
         if (in.readBoolean()) {
@@ -122,6 +132,10 @@ public final class TravelPoint implements Serializable, DataSerializable {
     @Accessors(chain = true)
     @JsonPOJOBuilder(withPrefix = "set")
     public static class TravelPointBuilder {
+
+        private String stopId = "";
+
+        private int stopSequence = -1;
 
         private String name = "";
 
