@@ -155,6 +155,20 @@ public final class TravelPoint implements Serializable, DataSerializable {
 
         private Distance distanceInKilometers;
 
+        public TravelPointBuilder() {
+        }
+
+        public TravelPointBuilder(TravelPoint travelPoint) {
+            this.stopId = travelPoint.getStopId();
+            this.stopSequence = travelPoint.getStopSequence();
+            this.name = travelPoint.getName();
+            this.point = travelPoint.getPoint();
+            this.arrivalTime = travelPoint.getArrivalTime();
+            this.departureTime = travelPoint.getDepartureTime();
+            this.platform = travelPoint.getPlatform();
+            this.distanceInKilometers = travelPoint.getDistanceInKilometers();
+        }
+
         public TravelPoint build() {
             return new TravelPoint(this);
         }

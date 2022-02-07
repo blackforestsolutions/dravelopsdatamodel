@@ -28,11 +28,6 @@ public final class Leg implements Serializable, DataSerializable {
     private static final long serialVersionUID = 5393486245718564673L;
 
     /**
-     * The routeId is not necessarily unique!
-     */
-    private String routeId;
-
-    /**
      * The tripId is not necessarily unique!
      */
     private String tripId;
@@ -62,7 +57,6 @@ public final class Leg implements Serializable, DataSerializable {
     private LinkedList<WalkStep> walkSteps;
 
     private Leg(LegBuilder legBuilder) {
-        this.routeId = legBuilder.getRouteId();
         this.tripId = legBuilder.getTripId();
         this.departure = legBuilder.getDeparture();
         this.arrival = legBuilder.getArrival();
@@ -154,7 +148,6 @@ public final class Leg implements Serializable, DataSerializable {
 
     @Override
     public void writeData(ObjectDataOutput out) throws IOException {
-        out.writeUTF(this.routeId);
         out.writeUTF(this.tripId);
         out.writeObject(this.departure);
         out.writeObject(this.arrival);
@@ -211,7 +204,6 @@ public final class Leg implements Serializable, DataSerializable {
 
     @Override
     public void readData(ObjectDataInput in) throws IOException {
-        this.routeId = in.readUTF();
         this.tripId = in.readUTF();
         this.departure = in.readObject();
         this.arrival = in.readObject();
@@ -260,11 +252,6 @@ public final class Leg implements Serializable, DataSerializable {
     public static class LegBuilder {
 
         /**
-         * The routeId is not necessarily unique!
-         */
-        private String routeId = "";
-
-        /**
          * The tripId is not necessarily unique!
          */
         private String tripId = "";
@@ -294,7 +281,6 @@ public final class Leg implements Serializable, DataSerializable {
         private LinkedList<WalkStep> walkSteps = new LinkedList<>();
 
         public LegBuilder(Leg leg) {
-            this.routeId = leg.getRouteId();
             this.tripId = leg.getTripId();
             this.departure = leg.getDeparture();
             this.arrival = leg.getArrival();

@@ -40,19 +40,6 @@ class LegMockIT {
     }
 
     @Test
-    void test_with_routeId_as_null_leg_to_be_dataSerializable() {
-        Leg.LegBuilder testData = getLegBuilderWithNoEmptyFields();
-        testData.setRouteId(null);
-        UUID testKey = UUID.randomUUID();
-        IMap<UUID, Leg> testMap = hazelcastMock.getMap("legs");
-
-        testMap.put(testKey, testData.build());
-        Leg result = testMap.get(testKey);
-
-        assertThat(result).isEqualToComparingFieldByFieldRecursively(testData.build());
-    }
-
-    @Test
     void test_with_tripId_as_null_leg_to_be_dataSerializable() {
         Leg.LegBuilder testData = getLegBuilderWithNoEmptyFields();
         testData.setTripId(null);
