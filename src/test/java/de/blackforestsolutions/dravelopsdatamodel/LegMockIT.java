@@ -79,19 +79,6 @@ class LegMockIT {
     }
 
     @Test
-    void test_leg_delayInMinutes_as_null_to_be_dataSerializable_with() {
-        Leg.LegBuilder testData = getLegBuilderWithNoEmptyFields();
-        testData.setDelayInMinutes(null);
-        UUID testKey = UUID.randomUUID();
-        IMap<UUID, Leg> testMap = hazelcastMock.getMap("legs");
-
-        testMap.put(testKey, testData.build());
-        Leg result = testMap.get(testKey);
-
-        assertThat(result).isEqualToComparingFieldByFieldRecursively(testData.build());
-    }
-
-    @Test
     void test_leg_with_distanceInKilometers_as_null_to_be_dataSerializable() {
         Leg.LegBuilder testData = getLegBuilderWithNoEmptyFields();
         testData.setDistanceInKilometers(null);

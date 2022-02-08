@@ -11,7 +11,7 @@ class TravelPointTest {
 
     @Test
     void test_equals_and_hashCode_contract_for_travelPoint() {
-        EqualsVerifier.simple().forClass(TravelPoint.class).withIgnoredFields("stopId", "stopSequence").verify();
+        EqualsVerifier.simple().forClass(TravelPoint.class).withIgnoredFields("stopId", "arrivalDelayInSeconds", "departureDelayInSeconds").verify();
     }
 
     @Test

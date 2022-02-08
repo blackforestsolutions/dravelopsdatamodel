@@ -4,7 +4,6 @@ import de.blackforestsolutions.dravelopsdatamodel.*;
 import org.springframework.data.geo.Distance;
 import org.springframework.data.geo.Metrics;
 
-import java.time.Duration;
 import java.time.ZonedDateTime;
 import java.util.LinkedList;
 
@@ -26,7 +25,6 @@ public class LegObjectMother {
                 .setTripId("1:100.T0.7-272-j1j-1.12043.R")
                 .setDeparture(getTravelPointWithNoEmptyFields())
                 .setArrival(getTravelPointWithNoEmptyFields())
-                .setDelayInMinutes(Duration.ofSeconds(60L))
                 .setDistanceInKilometers(new Distance(5.253d, DEFAULT_TEST_DISTANCE_METRIC))
                 .setVehicleType(VehicleType.BUS)
                 .setPolyline("mtodHyhpo@")
@@ -79,7 +77,6 @@ public class LegObjectMother {
         TravelPoint departure = getGrosshausbergTravelPoint();
         TravelPoint arrival = getFurtwangenIlbenstreetTravelPoint();
         return new Leg.LegBuilder()
-                .setDelayInMinutes(Duration.ZERO)
                 .setDistanceInKilometers(new Distance(0.977d, DEFAULT_TEST_DISTANCE_METRIC))
                 .setVehicleType(VehicleType.WALK)
                 .setDeparture(departure)
@@ -95,7 +92,6 @@ public class LegObjectMother {
         TravelPoint arrival = getBleibachSevTravelPoint(37);
         return new Leg.LegBuilder()
                 .setTripId("1:100.T0.7-272-j1j-1.30.R")
-                .setDelayInMinutes(Duration.ZERO)
                 .setDistanceInKilometers(new Distance(26.394d, DEFAULT_TEST_DISTANCE_METRIC))
                 .setVehicleType(VehicleType.BUS)
                 .setTravelProvider(getSuedbadenTravelProvider())
@@ -114,7 +110,6 @@ public class LegObjectMother {
         TravelPoint arrival = getWaldkirchKastelberghalleTravelPoint();
         return new Leg.LegBuilder()
                 .setTripId("1:32.T0.7-201-j1j-1.10.H")
-                .setDelayInMinutes(Duration.ZERO)
                 .setDistanceInKilometers(new Distance(6.784d, DEFAULT_TEST_DISTANCE_METRIC))
                 .setVehicleType(VehicleType.BUS)
                 .setTravelProvider(getSuedbadenTravelProvider())
@@ -132,7 +127,6 @@ public class LegObjectMother {
         TravelPoint departure = getWaldkirchKastelberghalleTravelPoint();
         TravelPoint arrival = getSickAgTravelPoint();
         return new Leg.LegBuilder()
-                .setDelayInMinutes(Duration.ZERO)
                 .setDistanceInKilometers(new Distance(0.445d, DEFAULT_TEST_DISTANCE_METRIC))
                 .setVehicleType(VehicleType.WALK)
                 .setDeparture(departure)
@@ -147,7 +141,6 @@ public class LegObjectMother {
         TravelPoint departure = getMannheimHbfTravelPoint();
         TravelPoint arrival = getMannheimUniversityTravelPoint();
         return new Leg.LegBuilder()
-                .setDelayInMinutes(Duration.ZERO)
                 .setDistanceInKilometers(new Distance(0.320d, DEFAULT_TEST_DISTANCE_METRIC))
                 .setVehicleType(VehicleType.WALK)
                 .setDeparture(departure)
@@ -163,7 +156,6 @@ public class LegObjectMother {
         TravelPoint arrival = getBerlinerPlaceTravelPoint();
         return new Leg.LegBuilder()
                 .setTripId("1:4-280-4004-89100")
-                .setDelayInMinutes(Duration.ZERO)
                 .setDistanceInKilometers(new Distance(0.956d, DEFAULT_TEST_DISTANCE_METRIC))
                 .setVehicleType(VehicleType.TRAM)
                 .setTravelProvider(getRnvTravelProvider())
@@ -181,7 +173,6 @@ public class LegObjectMother {
         TravelPoint departure = getBerlinerPlaceTravelPoint();
         TravelPoint arrival = getLudwigsburgCenterTravelPoint();
         return new Leg.LegBuilder()
-                .setDelayInMinutes(Duration.ZERO)
                 .setDistanceInKilometers(new Distance(0.319d, DEFAULT_TEST_DISTANCE_METRIC))
                 .setVehicleType(VehicleType.WALK)
                 .setDeparture(departure)

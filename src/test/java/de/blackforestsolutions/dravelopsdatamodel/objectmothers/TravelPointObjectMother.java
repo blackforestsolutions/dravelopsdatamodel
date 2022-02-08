@@ -6,6 +6,7 @@ import de.blackforestsolutions.dravelopsdatamodel.TravelPoint;
 import org.springframework.data.geo.Distance;
 import org.springframework.data.geo.Metrics;
 
+import java.time.Duration;
 import java.time.ZonedDateTime;
 
 public class TravelPointObjectMother {
@@ -22,7 +23,9 @@ public class TravelPointObjectMother {
                 .setName("Furtwangen")
                 .setPoint(new Point.PointBuilder(48.052590d, 8.207245d).build())
                 .setArrivalTime(ZonedDateTime.parse("2020-09-27T10:15:30+02:00[Europe/Berlin]"))
+                .setArrivalDelayInSeconds(Duration.ofSeconds(60L))
                 .setDepartureTime(ZonedDateTime.parse("2020-09-27T10:15:30+02:00[Europe/Berlin]"))
+                .setDepartureDelayInSeconds(Duration.ofSeconds(60L))
                 .setPlatform("1")
                 .setDistanceInKilometers(new Distance(0.5d, Metrics.KILOMETERS));
     }

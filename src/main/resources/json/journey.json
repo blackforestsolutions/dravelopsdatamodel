@@ -12,7 +12,9 @@
           "y" : 8.207245
         },
         "arrivalTime" : "2020-09-27T10:15:30+02:00[Europe/Berlin]",
+        "arrivalDelayInSeconds": 60.000000000,
         "departureTime" : "2020-09-27T10:15:30+02:00[Europe/Berlin]",
+        "departureDelayInSeconds": 60.000000000,
         "platform" : "1",
         "distanceInKilometers" : {
           "value" : 0.5,
@@ -28,14 +30,15 @@
           "y" : 8.207245
         },
         "arrivalTime" : "2020-09-27T10:15:30+02:00[Europe/Berlin]",
+        "arrivalDelayInSeconds": 60.000000000,
         "departureTime" : "2020-09-27T10:15:30+02:00[Europe/Berlin]",
+        "departureDelayInSeconds": 60.000000000,
         "platform" : "1",
         "distanceInKilometers" : {
           "value" : 0.5,
           "metric" : "KILOMETERS"
         }
       },
-      "delayInMinutes" : 60.000000000,
       "distanceInKilometers" : {
         "value" : 5.253,
         "metric" : "KILOMETERS"
@@ -61,7 +64,9 @@
           "y" : 8.207245
         },
         "arrivalTime" : "2020-09-27T10:15:30+02:00[Europe/Berlin]",
+        "arrivalDelayInSeconds": 60.000000000,
         "departureTime" : "2020-09-27T10:15:30+02:00[Europe/Berlin]",
+        "departureDelayInSeconds": 60.000000000,
         "platform" : "1",
         "distanceInKilometers" : {
           "value" : 0.5,

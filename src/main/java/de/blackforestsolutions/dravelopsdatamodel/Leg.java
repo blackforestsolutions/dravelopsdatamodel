@@ -15,7 +15,6 @@ import org.springframework.data.geo.Metrics;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.time.Duration;
 import java.util.LinkedList;
 import java.util.Objects;
 import java.util.Optional;
@@ -35,8 +34,6 @@ public final class Leg implements Serializable, DataSerializable {
     private TravelPoint departure;
 
     private TravelPoint arrival;
-
-    private Duration delayInMinutes;
 
     private Distance distanceInKilometers;
 
@@ -60,7 +57,6 @@ public final class Leg implements Serializable, DataSerializable {
         this.tripId = legBuilder.getTripId();
         this.departure = legBuilder.getDeparture();
         this.arrival = legBuilder.getArrival();
-        this.delayInMinutes = legBuilder.getDelayInMinutes();
         this.distanceInKilometers = legBuilder.getDistanceInKilometers();
         this.vehicleType = legBuilder.getVehicleType();
         this.polyline = legBuilder.getPolyline();
@@ -107,8 +103,6 @@ public final class Leg implements Serializable, DataSerializable {
                 &&
                 Objects.equals(arrival, that.arrival)
                 &&
-                Objects.equals(delayInMinutes, that.delayInMinutes)
-                &&
                 Objects.equals(distanceInKilometers, that.distanceInKilometers)
                 &&
                 Objects.equals(vehicleType, that.vehicleType)
@@ -133,7 +127,6 @@ public final class Leg implements Serializable, DataSerializable {
         return Objects.hash(
                 departure,
                 arrival,
-                delayInMinutes,
                 distanceInKilometers,
                 vehicleType,
                 polyline,
@@ -151,12 +144,6 @@ public final class Leg implements Serializable, DataSerializable {
         out.writeUTF(this.tripId);
         out.writeObject(this.departure);
         out.writeObject(this.arrival);
-        if (Optional.ofNullable(this.delayInMinutes).isPresent()) {
-            out.writeBoolean(true);
-            out.writeLong(this.delayInMinutes.toMinutes());
-        } else {
-            out.writeBoolean(false);
-        }
         if (Optional.ofNullable(this.distanceInKilometers).isPresent()) {
             out.writeBoolean(true);
             out.writeDouble(this.distanceInKilometers.getValue());
@@ -208,9 +195,6 @@ public final class Leg implements Serializable, DataSerializable {
         this.departure = in.readObject();
         this.arrival = in.readObject();
         if (in.readBoolean()) {
-            this.delayInMinutes = Duration.ofMinutes(in.readLong());
-        }
-        if (in.readBoolean()) {
             this.distanceInKilometers = new Distance(in.readDouble(), Metrics.KILOMETERS);
         }
         if (in.readBoolean()) {
@@ -260,8 +244,6 @@ public final class Leg implements Serializable, DataSerializable {
 
         private TravelPoint arrival;
 
-        private Duration delayInMinutes;
-
         private Distance distanceInKilometers;
 
         private VehicleType vehicleType;
@@ -284,7 +266,6 @@ public final class Leg implements Serializable, DataSerializable {
             this.tripId = leg.getTripId();
             this.departure = leg.getDeparture();
             this.arrival = leg.getArrival();
-            this.delayInMinutes = leg.getDelayInMinutes();
             this.distanceInKilometers = leg.getDistanceInKilometers();
             this.vehicleType = leg.getVehicleType();
             this.polyline = leg.getPolyline();

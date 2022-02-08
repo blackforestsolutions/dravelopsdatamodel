@@ -15,6 +15,7 @@ import org.springframework.data.geo.Metrics;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.time.Duration;
 import java.time.ZonedDateTime;
 import java.util.Objects;
 import java.util.Optional;
@@ -39,7 +40,11 @@ public final class TravelPoint implements Serializable, DataSerializable {
 
     private ZonedDateTime arrivalTime;
 
+    private Duration arrivalDelayInSeconds;
+
     private ZonedDateTime departureTime;
+
+    private Duration departureDelayInSeconds;
 
     private String platform;
 
@@ -51,7 +56,9 @@ public final class TravelPoint implements Serializable, DataSerializable {
         this.name = travelPointBuilder.getName();
         this.point = travelPointBuilder.getPoint();
         this.arrivalTime = travelPointBuilder.getArrivalTime();
+        this.arrivalDelayInSeconds = travelPointBuilder.getArrivalDelayInSeconds();
         this.departureTime = travelPointBuilder.getDepartureTime();
+        this.departureDelayInSeconds = travelPointBuilder.getDepartureDelayInSeconds();
         this.platform = travelPointBuilder.getPlatform();
         this.distanceInKilometers = travelPointBuilder.getDistanceInKilometers();
     }
@@ -66,7 +73,9 @@ public final class TravelPoint implements Serializable, DataSerializable {
         }
 
         TravelPoint that = (TravelPoint) o;
-        return Objects.equals(name, that.name)
+        return Objects.equals(stopSequence, that.stopSequence)
+                &&
+                Objects.equals(name, that.name)
                 &&
                 Objects.equals(point, that.point)
                 &&
@@ -81,7 +90,15 @@ public final class TravelPoint implements Serializable, DataSerializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, point, arrivalTime, departureTime, platform, distanceInKilometers);
+        return Objects.hash(
+                stopSequence,
+                name,
+                point,
+                arrivalTime,
+                departureTime,
+                platform,
+                distanceInKilometers
+        );
     }
 
     @Override
@@ -96,9 +113,21 @@ public final class TravelPoint implements Serializable, DataSerializable {
         } else {
             out.writeBoolean(false);
         }
+        if (Optional.ofNullable(this.arrivalDelayInSeconds).isPresent()) {
+            out.writeBoolean(true);
+            out.writeLong(this.arrivalDelayInSeconds.toSeconds());
+        } else {
+            out.writeBoolean(false);
+        }
         if (Optional.ofNullable(this.departureTime).isPresent()) {
             out.writeBoolean(true);
             out.writeUTF(this.departureTime.toString());
+        } else {
+            out.writeBoolean(false);
+        }
+        if (Optional.ofNullable(this.departureDelayInSeconds).isPresent()) {
+            out.writeBoolean(true);
+            out.writeLong(this.departureDelayInSeconds.toSeconds());
         } else {
             out.writeBoolean(false);
         }
@@ -121,7 +150,13 @@ public final class TravelPoint implements Serializable, DataSerializable {
             this.arrivalTime = ZonedDateTime.parse(in.readUTF());
         }
         if (in.readBoolean()) {
+            this.arrivalDelayInSeconds = Duration.ofSeconds(in.readLong());
+        }
+        if (in.readBoolean()) {
             this.departureTime = ZonedDateTime.parse(in.readUTF());
+        }
+        if (in.readBoolean()) {
+            this.departureDelayInSeconds = Duration.ofSeconds(in.readLong());
         }
         this.platform = in.readUTF();
         if (in.readBoolean()) {
@@ -149,7 +184,11 @@ public final class TravelPoint implements Serializable, DataSerializable {
 
         private ZonedDateTime arrivalTime;
 
+        private Duration arrivalDelayInSeconds = Duration.ZERO;
+
         private ZonedDateTime departureTime;
+
+        private Duration departureDelayInSeconds = Duration.ZERO;
 
         private String platform = "";
 
@@ -164,7 +203,9 @@ public final class TravelPoint implements Serializable, DataSerializable {
             this.name = travelPoint.getName();
             this.point = travelPoint.getPoint();
             this.arrivalTime = travelPoint.getArrivalTime();
+            this.arrivalDelayInSeconds = travelPoint.getArrivalDelayInSeconds();
             this.departureTime = travelPoint.getDepartureTime();
+            this.departureDelayInSeconds = travelPoint.getDepartureDelayInSeconds();
             this.platform = travelPoint.getPlatform();
             this.distanceInKilometers = travelPoint.getDistanceInKilometers();
         }
