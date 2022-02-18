@@ -39,6 +39,7 @@ public class ApiToken {
     private Integer journeySearchWindowInMinutes;
     private String gtfsProvider;
     private String gtfsUrl;
+    private String gtfsRealtimeUrl;
     private Map<String, String> headers = new HashMap<>();
     private Long retryTimeInMilliseconds;
     private String password;
@@ -73,6 +74,7 @@ public class ApiToken {
         this.journeySearchWindowInMinutes = apiToken.getJourneySearchWindowInMinutes();
         this.gtfsProvider = apiToken.getGtfsProvider();
         this.gtfsUrl = apiToken.getGtfsUrl();
+        this.gtfsRealtimeUrl = apiToken.getGtfsRealtimeUrl();
         this.headers = apiToken.getHeaders();
         this.retryTimeInMilliseconds = apiToken.getRetryTimeInMilliseconds();
         this.password = apiToken.getPassword();

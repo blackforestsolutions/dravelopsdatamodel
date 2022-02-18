@@ -67,6 +67,7 @@ public class ApiTokenObjectMother {
     private static final LinkedHashMap<Layer, Boolean> DEFAULT_TEST_PELIAS_LAYERS = ApiTokenObjectMother.getDefaultTestPeliasLayers();
     private static final String DEFAULT_TEST_GTFS_PROVIDER = "sbg";
     private static final String DEFAULT_TEST_GTFS_URL = "http://nvbw.de/fileadmin/user_upload/service/open_data/fahrplandaten_mit_liniennetz/sbg.zip";
+    private static final String DEFAULT_TEST_GTFS_REALTIME_URL = "https://v0.hamburg-gtfs-rt.transport.rest/feed";
     private static final long DEFAULT_TEST_RETRY_TIME_IN_MILLISECONDS = 10L;
     private static final String DEFAULT_TEST_PASSWORD = "thp_y9bY2snmh0Ol2UYCtn7r27AHv759Yg1pvdPU";
     private static final String DEFAULT_TEST_REPOSITORY = "blackforestsolutions/dravelopsdeployment";
@@ -97,6 +98,7 @@ public class ApiTokenObjectMother {
         apiToken.setMaxPastDaysInCalendar(DEFAULT_TEST_MAX_PAST_DAYS_IN_CALENDAR);
         apiToken.setJourneySearchWindowInMinutes(DEFAULT_TEST_JOURNEY_SEARCH_WINDOW);
         apiToken.setGtfsProvider(DEFAULT_TEST_GTFS_PROVIDER);
+        apiToken.setGtfsRealtimeUrl(DEFAULT_TEST_GTFS_REALTIME_URL);
         apiToken.setGtfsUrl(DEFAULT_TEST_GTFS_URL);
         apiToken.setHeaders(DEFAULT_TEST_HEADERS);
         apiToken.setRetryTimeInMilliseconds(DEFAULT_TEST_RETRY_TIME_IN_MILLISECONDS);

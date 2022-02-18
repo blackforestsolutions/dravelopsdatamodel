@@ -27,7 +27,7 @@ public final class Leg implements Serializable, DataSerializable {
     private static final long serialVersionUID = 5393486245718564673L;
 
     /**
-     * The tripId is not necessarily unique!
+     * The tripId is not necessarily unique when there are multiple gtfs files!
      */
     private String tripId;
 

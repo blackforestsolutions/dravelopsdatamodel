@@ -45,6 +45,7 @@
   "journeySearchWindowInMinutes": 120,
   "gtfsProvider": "sbg",
   "gtfsUrl": "http://nvbw.de/fileadmin/user_upload/service/open_data/fahrplandaten_mit_liniennetz/sbg.zip",
+  "gtfsRealtimeUrl": "https://v0.hamburg-gtfs-rt.transport.rest/feed",
   "headers": {
     "Token": "123"
   },
