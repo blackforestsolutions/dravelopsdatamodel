@@ -15,12 +15,14 @@ public class TravelProviderObjectMother {
 
     public static TravelProvider.TravelProviderBuilder getTravelProviderBuilderWithNoEmptyFields() {
         return new TravelProvider.TravelProviderBuilder()
+                .setId("sbg")
                 .setName("Verkehrsverbund Schwarzwald-Baar")
                 .setUrl(getUrl());
     }
 
     public static TravelProvider getSuedbadenTravelProvider() {
         return new TravelProvider.TravelProviderBuilder()
+                .setId("sbg")
                 .setName("Sonstige")
                 .setUrl(getSuedbadenUrl())
                 .build();
@@ -28,6 +30,7 @@ public class TravelProviderObjectMother {
 
     public static TravelProvider getRnvTravelProvider() {
         return new TravelProvider.TravelProviderBuilder()
+                .setId("rnv")
                 .setName("Rhein-Neckar-Verkehr GmbH (rnv)")
                 .setUrl(getRnvUrl())
                 .build();

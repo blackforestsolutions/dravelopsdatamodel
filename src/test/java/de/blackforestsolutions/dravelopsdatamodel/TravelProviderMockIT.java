@@ -40,6 +40,19 @@ class TravelProviderMockIT {
     }
 
     @Test
+    void test_travelProvider_with_id_as_null_to_be_dataSerializable() {
+        TravelProvider.TravelProviderBuilder testData = getTravelProviderBuilderWithNoEmptyFields();
+        testData.setId(null);
+        UUID testKey = UUID.randomUUID();
+        IMap<UUID, TravelProvider> testMap = hazelcastMock.getMap("travel-providers");
+
+        testMap.put(testKey, testData.build());
+        TravelProvider result = testMap.get(testKey);
+
+        assertThat(result).isEqualToComparingFieldByField(testData.build());
+    }
+
+    @Test
     void test_travelProvider_with_name_as_null_to_be_dataSerializable() {
         TravelProvider.TravelProviderBuilder testData = getTravelProviderBuilderWithNoEmptyFields();
         testData.setName(null);

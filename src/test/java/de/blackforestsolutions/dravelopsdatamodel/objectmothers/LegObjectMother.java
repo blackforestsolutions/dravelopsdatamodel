@@ -22,7 +22,7 @@ public class LegObjectMother {
 
     public static Leg.LegBuilder getLegBuilderWithNoEmptyFields() {
         return new Leg.LegBuilder()
-                .setTripId("1:100.T0.7-272-j1j-1.12043.R")
+                .setTripId("100.T0.7-272-j1j-1.12043.R")
                 .setDeparture(getTravelPointWithNoEmptyFields())
                 .setArrival(getTravelPointWithNoEmptyFields())
                 .setDistanceInKilometers(new Distance(5.253d, DEFAULT_TEST_DISTANCE_METRIC))
@@ -91,7 +91,7 @@ public class LegObjectMother {
         TravelPoint departure = getFurtwangenIlbenstreetTravelPoint();
         TravelPoint arrival = getBleibachSevTravelPoint(37);
         return new Leg.LegBuilder()
-                .setTripId("1:100.T0.7-272-j1j-1.30.R")
+                .setTripId("100.T0.7-272-j1j-1.30.R")
                 .setDistanceInKilometers(new Distance(26.394d, DEFAULT_TEST_DISTANCE_METRIC))
                 .setVehicleType(VehicleType.BUS)
                 .setTravelProvider(getSuedbadenTravelProvider())
@@ -109,7 +109,7 @@ public class LegObjectMother {
         TravelPoint departure = getBleibachSevTravelPoint(2);
         TravelPoint arrival = getWaldkirchKastelberghalleTravelPoint();
         return new Leg.LegBuilder()
-                .setTripId("1:32.T0.7-201-j1j-1.10.H")
+                .setTripId("32.T0.7-201-j1j-1.10.H")
                 .setDistanceInKilometers(new Distance(6.784d, DEFAULT_TEST_DISTANCE_METRIC))
                 .setVehicleType(VehicleType.BUS)
                 .setTravelProvider(getSuedbadenTravelProvider())
@@ -155,7 +155,7 @@ public class LegObjectMother {
         TravelPoint departure = getMannheimUniversityTravelPoint();
         TravelPoint arrival = getBerlinerPlaceTravelPoint();
         return new Leg.LegBuilder()
-                .setTripId("1:4-280-4004-89100")
+                .setTripId("4-280-4004-89100")
                 .setDistanceInKilometers(new Distance(0.956d, DEFAULT_TEST_DISTANCE_METRIC))
                 .setVehicleType(VehicleType.TRAM)
                 .setTravelProvider(getRnvTravelProvider())

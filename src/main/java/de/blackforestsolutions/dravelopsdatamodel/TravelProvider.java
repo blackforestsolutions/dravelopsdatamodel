@@ -25,11 +25,14 @@ public final class TravelProvider implements Serializable, DataSerializable {
 
     private static final long serialVersionUID = -8728155372687060904L;
 
+    private String id;
+
     private String name;
 
     private URL url;
 
     private TravelProvider(TravelProvider.TravelProviderBuilder travelProviderBuilder) {
+        this.id = travelProviderBuilder.getId();
         this.name = travelProviderBuilder.getName();
         this.url = travelProviderBuilder.getUrl();
     }
@@ -44,18 +47,21 @@ public final class TravelProvider implements Serializable, DataSerializable {
         }
 
         TravelProvider that = (TravelProvider) o;
-        return Objects.equals(name, that.name)
+        return Objects.equals(id, that.id)
+                &&
+                Objects.equals(name, that.name)
                 &&
                 Objects.equals(url, that.url);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, url);
+        return Objects.hash(id, name, url);
     }
 
     @Override
     public void writeData(ObjectDataOutput out) throws IOException {
+        out.writeUTF(this.id);
         out.writeUTF(this.name);
         if (Optional.ofNullable(this.url).isPresent()) {
             out.writeBoolean(true);
@@ -67,6 +73,7 @@ public final class TravelProvider implements Serializable, DataSerializable {
 
     @Override
     public void readData(ObjectDataInput in) throws IOException {
+        this.id = in.readUTF();
         this.name = in.readUTF();
         if (in.readBoolean()) {
             this.url = new URL(in.readUTF());
@@ -79,6 +86,8 @@ public final class TravelProvider implements Serializable, DataSerializable {
     @Accessors(chain = true)
     @JsonPOJOBuilder(withPrefix = "set")
     public static class TravelProviderBuilder {
+
+        private String id = "";
 
         private String name = "";
 
