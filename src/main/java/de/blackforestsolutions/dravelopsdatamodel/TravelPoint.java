@@ -28,7 +28,7 @@ public final class TravelPoint implements Serializable, DataSerializable {
     private static final long serialVersionUID = 6106269076155338045L;
 
     /**
-     * The stopId is not necessarily unique when there are multiple gtfs files!
+     * stopId = id from TravelProvider + stopId
      */
     private String stopId;
 
@@ -172,7 +172,7 @@ public final class TravelPoint implements Serializable, DataSerializable {
     public static class TravelPointBuilder {
 
         /**
-         * The stopId is not necessarily unique!
+         * stopId = id from TravelProvider + stopId
          */
         private String stopId = "";
 

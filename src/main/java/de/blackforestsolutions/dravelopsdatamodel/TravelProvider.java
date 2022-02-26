@@ -25,6 +25,9 @@ public final class TravelProvider implements Serializable, DataSerializable {
 
     private static final long serialVersionUID = -8728155372687060904L;
 
+    /**
+     * id = prefix from agencyId
+     */
     private String id;
 
     private String name;
@@ -87,6 +90,9 @@ public final class TravelProvider implements Serializable, DataSerializable {
     @JsonPOJOBuilder(withPrefix = "set")
     public static class TravelProviderBuilder {
 
+        /**
+         * id = prefix from agencyId
+         */
         private String id = "";
 
         private String name = "";
