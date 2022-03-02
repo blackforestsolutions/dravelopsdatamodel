@@ -27,7 +27,8 @@ public final class Leg implements Serializable, DataSerializable {
     private static final long serialVersionUID = 5393486245718564673L;
 
     /**
-     * tripId = id from TravelProvider + tripId
+     * tripId = id from TravelProvider + ":" + tripId
+     * for instance: sbb:385.TA.91-Q-Y-j22-1.115.R = sbb + ":" + "385.TA.91-Q-Y-j22-1.115.R"
      */
     private String tripId;
 
@@ -99,7 +100,9 @@ public final class Leg implements Serializable, DataSerializable {
         }
 
         Leg that = (Leg) o;
-        return Objects.equals(departure, that.departure)
+        return Objects.equals(tripId, that.tripId)
+                &&
+                Objects.equals(departure, that.departure)
                 &&
                 Objects.equals(arrival, that.arrival)
                 &&
@@ -125,6 +128,7 @@ public final class Leg implements Serializable, DataSerializable {
     @Override
     public int hashCode() {
         return Objects.hash(
+                tripId,
                 departure,
                 arrival,
                 distanceInKilometers,
@@ -236,7 +240,8 @@ public final class Leg implements Serializable, DataSerializable {
     public static class LegBuilder {
 
         /**
-         * tripId = id from TravelProvider + tripId
+         * tripId = id from TravelProvider + ":" + tripId
+         * for instance: sbb:385.TA.91-Q-Y-j22-1.115.R = sbb + ":" + "385.TA.91-Q-Y-j22-1.115.R"
          */
         private String tripId = "";
 

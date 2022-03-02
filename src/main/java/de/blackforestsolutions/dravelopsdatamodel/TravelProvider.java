@@ -27,6 +27,7 @@ public final class TravelProvider implements Serializable, DataSerializable {
 
     /**
      * id = prefix from agencyId
+     * for instance: sbb
      */
     private String id;
 
@@ -92,6 +93,7 @@ public final class TravelProvider implements Serializable, DataSerializable {
 
         /**
          * id = prefix from agencyId
+         * for instance: sbb
          */
         private String id = "";
 

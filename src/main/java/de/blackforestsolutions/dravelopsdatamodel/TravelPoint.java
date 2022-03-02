@@ -28,7 +28,8 @@ public final class TravelPoint implements Serializable, DataSerializable {
     private static final long serialVersionUID = 6106269076155338045L;
 
     /**
-     * stopId = id from TravelProvider + stopId
+     * stopId = id from TravelProvider + ":" + stopId
+     * for instance: sbb:8509411:0:3 = sbb + ":" + "8509411:0:3"
      */
     private String stopId;
 
@@ -73,7 +74,9 @@ public final class TravelPoint implements Serializable, DataSerializable {
         }
 
         TravelPoint that = (TravelPoint) o;
-        return Objects.equals(stopSequence, that.stopSequence)
+        return Objects.equals(stopId, that.stopId)
+                &&
+                Objects.equals(stopSequence, that.stopSequence)
                 &&
                 Objects.equals(name, that.name)
                 &&
@@ -81,7 +84,11 @@ public final class TravelPoint implements Serializable, DataSerializable {
                 &&
                 Objects.equals(arrivalTime, that.arrivalTime)
                 &&
+                Objects.equals(arrivalDelayInSeconds, that.arrivalDelayInSeconds)
+                &&
                 Objects.equals(departureTime, that.departureTime)
+                &&
+                Objects.equals(departureDelayInSeconds, that.departureDelayInSeconds)
                 &&
                 Objects.equals(platform, that.platform)
                 &&
@@ -91,11 +98,14 @@ public final class TravelPoint implements Serializable, DataSerializable {
     @Override
     public int hashCode() {
         return Objects.hash(
+                stopId,
                 stopSequence,
                 name,
                 point,
                 arrivalTime,
+                arrivalDelayInSeconds,
                 departureTime,
+                departureDelayInSeconds,
                 platform,
                 distanceInKilometers
         );
@@ -172,7 +182,8 @@ public final class TravelPoint implements Serializable, DataSerializable {
     public static class TravelPointBuilder {
 
         /**
-         * stopId = id from TravelProvider + stopId
+         * stopId = id from TravelProvider + ":" + stopId
+         * for instance: sbb:8509411:0:3 = sbb + ":" + "8509411:0:3"
          */
         private String stopId = "";
 
